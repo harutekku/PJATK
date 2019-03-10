@@ -29,40 +29,61 @@ public class Main {
     }
     public static void przenies(File f)throws Exception{
         Scanner skan=new Scanner(System.in);
-        String memy="F:\\Z telefonu dobre\\Memy";
-        String laski="F:\\Z telefonu dobre\\laski";
-        String prywatne="F:\\Z telefonu dobre\\Prywatne";
-        String pieski="F:\\Z telefonu dobre\\Kotki piski i inne";
-        String chore="F:\\Z telefonu dobre\\Anime i chore";
-        String rozne="F:\\Z telefonu dobre\\Różne rzeczy";
-        String dokad="";
-        System.out.println("1: memy, 2: laski, 3: prywatne, 4: pieski, 5: chore, 6: rozne 7: usun 0: zakoncz");
-        int gdzie=skan.nextInt();
+        String dokad="F:\\Fajne";
+        String anime="F:\\Fajne\\Anime";
+        String chore="F:\\Fajne\\Chore";
+        String ciekawe="F:\\Fajne\\Ciekawe";
+        String kotki="F:\\Fajne\\Kotki pieski";
+        String laski="F:\\Fajne\\Laski";
+        String memy="F:\\Fajne\\Memy";
+        String prywatne="F:\\Fajne\\Moje i znajomi";
+        String porno="F:\\Fajne\\Porno";
+        String tapety="F:\\Fajne\\Tapety";
+        String reakcje="F:\\Fajne\\Reakcje memowe";
+        String rozne="F:\\Fajne";
+
+        System.out.println("Q: zakoncz, W: memy, E: laski, R: anime, T: chore, A: ciekawe, S: kotki, D: prywatne, F: porno, Z: tapety, X: rozne, V: reakcje, C: usun");
+        String gdzie=skan.next();
         zabij(f);
         TimeUnit.MILLISECONDS.sleep(300);
         switch(gdzie){
-            case 1:
+            case "W":case "w":
                 dokad=memy;
                 break;
-            case 2:
+            case "E":case "e":
                 dokad=laski;
                 break;
-            case 3:
-                dokad=prywatne;
+            case "R":case "r":
+                dokad=anime;
                 break;
-            case 4:
-                dokad=pieski;
-                break;
-            case 5:
+            case "T":case "t":
                 dokad=chore;
                 break;
-            case 6:
+            case "A":case "a":
+                dokad=ciekawe;
+                break;
+            case "S":case "s":
+                dokad=kotki;
+                break;
+            case "D":case "d":
+                dokad=prywatne;
+                break;
+            case "F":case "f":
+                dokad=porno;
+                break;
+            case "Z":case "z":
+                dokad=tapety;
+                break;
+            case "X":case "x":
                 dokad=rozne;
                 break;
-            case 7:
+            case "C":case "c":
                 f.delete();
                 return;
-            case 0:default:
+            case "V":case "v":
+                dokad=reakcje;
+                break;
+            case "Q":case "q":default:
                 System.exit(0);
                 break;
         }
@@ -79,7 +100,7 @@ public class Main {
         System.out.println();
     }
     public static void main(String[] args) {
-        String obecnyPath="F:\\Z telefonu\\memy";
+        String obecnyPath="F:\\Z telefonu\\Facebook";
         File[] files=new File(obecnyPath).listFiles();
         try {
             for(File f:files){
