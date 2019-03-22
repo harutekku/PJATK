@@ -1,0 +1,6 @@
+﻿Baza opisuje Bibliotekę.
+Ma zapisane informacje o wszystkich książkach i pracownikach. 
+Każda książka ma dodatkowe informacje, w tym autora i wydawnictwo. Może do tego występować w różnych wersjach wydania, a klienci mogą łatwo przeszukiwać po autorach czy wydawnictwach.
+Książka jest bytem abstrakcyjnym, każda książka ma więc swoje egzemplarze które są wypożyczane klientom.
+Pracownicy mają swoje role, od których zależą ich obowiązki oraz pensja
+Baza przechowuje wszystkie wypożyczenia książek i można w niej odnaleźć informacje o nie oddanych książkach
