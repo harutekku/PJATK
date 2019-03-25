@@ -1,0 +1,31 @@
+#!/bin/bash 
+
+echo -n "Podaj liczbe A: "
+read A  #wczytanie danych z klawiatury 
+
+echo -n "Podaj liczbe B: "
+read B
+
+echo -n "Podaj liczbe C: "
+read C
+
+let delta=(B*B)-4*A*C
+
+if [ 0 -gt $delta ] ; then
+echo -n "Nie ma pierwiastkow rzeczywistych   "
+exit 0
+fi
+
+
+if [ ! 0 -ne $delta ] ; then
+let wynik=B*-1/2*A
+echo -n "Jedyne miejsce zerowe to $wynik   "
+
+else
+wynik1=$(echo "scale=2;($B*-1-sqrt($delta))/2*$A" | bc)
+wynik2=$(echo "scale=2;($B*-1+sqrt($delta))/2*$A" | bc)
+echo -n "Miejsca zerowe to $wynik1 oraz $wynik2   "
+fi
+
+exit 0
+
