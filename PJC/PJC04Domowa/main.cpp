@@ -2,60 +2,93 @@
 #include <string>
 using std::cin,std::cout,std::endl;
 
-struct list{
-    list* next= nullptr;
-    list* prev= nullptr;
-    std::string slowo;
+struct tree{
+    tree* left= nullptr;
+    tree* right= nullptr;
+    tree* parent= nullptr;
+    int value=NULL;
+    int counter=0;
 };
 
-void push(list* root, std::string value){
-    list* tmp=root;
-    while(tmp->next!=nullptr){
-        tmp=tmp->next;
+void push(tree* root, int value){
+    tree* tmp=root;
+    if(tmp->value==NULL){
+        tmp->value=value;
+        tmp->counter++;
+        return;
     }
-    list* last=new list();
-    last->slowo=value;
-    last->prev=tmp;
-    last->next=nullptr;
-    tmp->next=last;
-}
-void show(list* root,int index){
-    list* tmp=root;
-    while(index>0){
-        if(tmp->next==nullptr){
-            cout<<"Nie ma takiego indeksu"<<endl;
-            return;
+    else if(tmp->value==value){
+        tmp->counter++;
+        return;
+    }
+    else if(tmp->value>value){
+        if(tmp->left== nullptr){
+            tree* left=new tree();
+            tmp->left=left;
+            left->parent=tmp;
         }
-        tmp=tmp->next;
-        index--;
+        push(tmp->left,value);
     }
-    std::string slowo=tmp->slowo;
-    cout<<slowo<<endl;
-}
-void delet(list* root, int index){
-    list* tmp=root;
-    while(index>0){
-        if(tmp->next==nullptr){
-            cout<<"Nie ma takiego indeksu"<<endl;
-            return;
+    else{
+        if(tmp->right== nullptr){
+            tree* right=new tree();
+            tmp->right=right;
+            right->parent=tmp;
         }
-        tmp=tmp->next;
-        index--;
+        push(tmp->right,value);
     }
-    tmp->next->prev=tmp->prev;
-    tmp->prev->next=tmp->next;
+}
+bool search(tree* root, int value){
+    if(root->value==value){
+        return true;
+    }
+    else if(root->value>value){
+        if(root->left==nullptr)return false;
+        search(root->left,value);
+    }
+    else{
+        if(root->right==nullptr)return false;
+        search(root->right,value);
+    }
+}
+void print(tree* root){
+    if(root->left!= nullptr){
+        print(root->left);
+    }
+    for(int i=0;i<root->counter;i++){
+        cout<<root->value<<", ";
+    }
+    if(root->right!= nullptr){
+        print(root->right);
+    }
+}
+void road(tree* root, int value,std::string* text){
+    if(root->value==value){
+        text->append("Znaleziono");
+        //*text="Znaleziono ";//+value;
+        //text+=" po drodze: ";
+        return;
+    }
+    else if(root->value>value){
+        if(root->left==nullptr)return;
+        search(root->left,value);
+        //text+=root->value+", ";
+    }
+    else{
+        if(root->right==nullptr)return;
+        search(root->right,value);
+        //text+=root->value+", ";
+    }
 }
 int main() {
-    list lista;
-    lista.slowo="zero";
-    push(&lista,"jeden");
-    push(&lista,"dwa");
-    push(&lista,"trzy");
-    push(&lista,"cztery");
-    push(&lista,"piec");
-    show(&lista,3);
-    delet(&lista,1);
-    delet(&lista,3);
-    show(&lista,1);
+    tree drzewo;
+    for(int i=0;i<1000;i++){
+        push(&drzewo,std::rand()%(100));
+    }
+    //cout<<search(&drzewo,13)<<endl;
+    print(&drzewo);
+    std::string *text=new std::string();
+    road(&drzewo,20,text);
+    cout<<"maslo, "<<*text<<endl;
     return 0;
 }
