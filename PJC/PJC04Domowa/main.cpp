@@ -37,6 +37,7 @@ void push(tree* root, int value){
         }
         push(tmp->right,value);
     }
+    //delete(tmp);
 }
 bool search(tree* root, int value){
     if(root->value==value){
@@ -62,33 +63,30 @@ void print(tree* root){
         print(root->right);
     }
 }
-void road(tree* root, int value,std::string* text){
+void road(tree* root, int value){
     if(root->value==value){
-        text->append("Znaleziono");
-        //*text="Znaleziono ";//+value;
-        //text+=" po drodze: ";
-        return;
+        cout<<"Znaleziono "<<root->value<<" w ";
     }
     else if(root->value>value){
         if(root->left==nullptr)return;
-        search(root->left,value);
-        //text+=root->value+", ";
+        road(root->left,value);
+        cout<<"lewym "<<root->value<<" w ";
     }
     else{
         if(root->right==nullptr)return;
-        search(root->right,value);
-        //text+=root->value+", ";
+        road(root->right,value);
+        cout<<"prawym "<<root->value<<" w ";
     }
 }
 int main() {
     tree drzewo;
-    for(int i=0;i<1000;i++){
+    for(int i=0;i<100;i++){
         push(&drzewo,std::rand()%(100));
     }
     //cout<<search(&drzewo,13)<<endl;
     print(&drzewo);
-    std::string *text=new std::string();
-    road(&drzewo,20,text);
-    cout<<"maslo, "<<*text<<endl;
+
+    cout<<endl<<endl;
+    road(&drzewo,20);
     return 0;
 }
