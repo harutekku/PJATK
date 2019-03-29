@@ -7,10 +7,13 @@ int leng(const char* str){
     }
     return n;
 }
-char* copy(const char* str){
-    char* nju=new char[leng(str)+1];
-    strcpy(nju,str);
-    return nju;
+char* copy(const char* str) {
+    unsigned int len = leng(str) + 1;
+    char* cp = new char[len];
+    for (unsigned int i = 0; i < len; i++) {
+        cp[i] = str[i];
+    }
+    return cp;
 }
 
 bool palindrom(const char* str){
@@ -31,16 +34,17 @@ int counter_slow(const char* str){
     }
     return n;
 }
-void reverse(char* str){
-    int len=leng(str)-1;
-    std::cout << len << std::endl;
-    for(int i=0;i<len;i++,len--){
-        char tmp=*(str+i);
-        std::cout << tmp << std::endl;
-        *(str+i)=*(str+len);
-        *(str+len)=tmp;
+void reverse(char* str) {
+    int len = leng(str) - 1;
+    //std::cout << len << std::endl;
+    for (int i = 0; i < len; i++, len--) {
+        char tmp = *(str + i);
+        //std::cout << tmp << std::endl;
+        *(str + i) = *(str + len);
+        *(str + len) = tmp;
     }
 }
+
 
 int main() {
 
@@ -58,8 +62,12 @@ int main() {
 
     char* c="hello world world";
     std::cout <<"counter "<< counter_slow(c)<<std::endl;
-    reverse(c);
-    std::cout << c<<std::endl;
+    char* cp = copy(c);
+    reverse(cp);
+    char* d="maselko";
+    std::cout <<cp<<std::endl;
+    reverse(d);
+    std::cout <<d<<std::endl;
 
     return 0;
 }
