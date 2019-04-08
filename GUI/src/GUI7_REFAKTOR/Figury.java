@@ -1,15 +1,14 @@
-package GUI7;
+package GUI7_REFAKTOR;
 
 
 import java.awt.*;
 import java.util.Random;
 
-public abstract class Figury {
+public abstract class Figury implements Writable{
     double width,height;
     Color color;
     Random rand=new Random();
     //Każda figura ma swoje współrzędne w przedziale 0-100 co można przełożyć na procentowe położenie w oknie
-
 
     protected void losujColor(){
         int r = rand.nextInt(256);
@@ -26,7 +25,7 @@ public abstract class Figury {
     protected double poleFigury(){//Pole w rozumieniu prostokat jaki zajmuje
         return width*height;
     }
-    abstract public void rysuj(Graphics g, int wid, int hei);
+    abstract public void rysuj(Graphics2D g, int wid, int hei);
     abstract public String daneFigury();
 
 }

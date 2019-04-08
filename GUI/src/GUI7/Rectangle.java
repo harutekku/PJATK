@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Rectangle extends Figury {
     double x,y;
-    double width,height;
 
     public Rectangle(){
         do {

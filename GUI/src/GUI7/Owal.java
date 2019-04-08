@@ -5,10 +5,14 @@ import java.awt.*;
 public class Owal extends Figury {
     double x;
     double y;
-    double width;
-    double height;
     public Owal(){
-        do {
+
+        do{
+            losujWielkosc();
+        }while(poleFigury()>300||poleFigury()<50);
+        x=Math.random()*(100-width);
+        y=Math.random()*(100-height);
+        /*do {
             x = Math.random() * 100;
             y = Math.random() * 100;
             width = Math.random() * 50;
@@ -17,6 +21,7 @@ public class Owal extends Figury {
             while (y + height > 100) height--;
 
         }while(width*height>300||width*height<50);
+        */
         losujColor();
     }
 
@@ -27,7 +32,7 @@ public class Owal extends Figury {
         int newY=(int)(y*hei/100);
         int newWi=(int)(width*wid/100);
         int newHe=(int)(height*hei/100);
-        g.fillOval(newX,newY,newWi,newHe);
+        g.drawOval(newX,newY,newWi,newHe);
     }
 
     @Override

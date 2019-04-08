@@ -21,8 +21,8 @@ public class Rysuj extends JFrame {
         g.clearRect(0,0,getWidth(),getHeight());
         g.setColor(Color.BLACK);
 
-        for(Figury f:figury){
-            f.rysuj(g, getWidth(),getHeight());
+        for(int i=0;i<figury.size();i++){
+            figury.get(i).rysuj(g, getWidth(),getHeight());
         }
         //Figury test=new Poly();
         //System.out.println(getWidth()+ " "+getHeight());
@@ -36,10 +36,10 @@ public class Rysuj extends JFrame {
                 figury.add(new Owal());
             }
             else if(random==1){
-                figury.add(new Poly());
+                //figury.add(new Poly());
             }
             else{
-                figury.add(new Rectangle());
+                //figury.add(new Rectangle());
             }
         }
     }
@@ -58,8 +58,8 @@ public class Rysuj extends JFrame {
             });
         });
         Thread th1=new Thread(()->{
-            while(figury.size()<10){
-                generujFigury(1);
+            while(figury.size()<50){
+                generujFigury(10);
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
