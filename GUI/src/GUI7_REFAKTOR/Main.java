@@ -1,5 +1,7 @@
 package GUI7_REFAKTOR;
 
+import org.w3c.dom.events.Event;
+
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -10,60 +12,43 @@ import java.util.Scanner;
 public class Main {
     static Random ra=new Random();
     static List<Figury> figury=new ArrayList<>();
+    static boolean endOfProgram=false;
+    static MyFrame frame;
+
 
     private static void generujFigury(int n){
         for(int i=0;i<n;i++){
-            int random=ra.nextInt(3);
-            if(random==0){
-                //figury.add(new Owal());
-            }
-            else if(random==1){
-                figury.add(new Poly());
-            }
-            else{
-                //figury.add(new Rectangle());
-            }
-        }
-        System.out.println("Done");
-    }
-/*
-    private static void odczytaj(File file) throws IOException {
-        DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
-        boolean eof=false;
-        while(!eof){
-            Enums e=Enums.getEnum(in.readInt());
-
+            figury.add(Figury.generujFigure());
         }
     }
-*/
-
-    public static void main(String[] args) {
+    private static void betterChoice(){
         System.out.println("Jaką akcje chcesz wykonać?");
         System.out.println("1: Wygeneruj nowe kształty i zapisz do pliku");
         System.out.println("2: Wczytaj kształty z pliku");
         System.out.println("3: Wygeneruj nowe kształty bez zapisywania");
         System.out.println("0: Przerwij program");
 
-        int wybor= new Scanner(System.in).nextInt();
+        int wybor=new Scanner(System.in).nextInt();
         switch (wybor){
             case 1:
                 System.out.println("Ile kształtów chcesz wygenerować?");
                 generujFigury(new Scanner(System.in).nextInt());
                 try {
-                    DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(new File("figury.dat"))));
-                    for(int i=0;i<figury.size();i++){
-                        figury.get(i).write(dos);
-                    }
-                    dos.flush();
+                    long start=System.currentTimeMillis();
+                    writeBin(new File("figury.dat"),figury);
+                    long stop=System.currentTimeMillis();
+                    System.out.println(stop-start);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
             case 2:
                 try {
-                    DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(new File("figury.dat"))));
-
-                } catch (FileNotFoundException e) {
+                    long start=System.currentTimeMillis();
+                    readBin(new File("figury.dat"),figury);
+                    long stop=System.currentTimeMillis();
+                    System.out.println(stop-start);
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
@@ -74,13 +59,78 @@ public class Main {
             case 0: default:
                 return;
         }
+    }
+    private static void worstChoice(){
+        Thread th = new Thread(() -> {
+            while(!endOfProgram){
+                figury.add(Figury.generujFigure());
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(figury.size()>=100)endOfProgram=true;
+            }
+        });
+        th.start();
+        return;
+    }
+    private static void writeBin(File file, List<Figury> lista) throws IOException {
+        DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
+        for(int i=0;i<figury.size();i++){
+            lista.get(i).write(dos);
+        }
+        dos.flush();
+        dos.close();
+    }
+
+    private static void readBin(File file, List<Figury> lista) throws IOException {
+        DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
+        boolean eof=false;
+        while(!eof){
+            try{
+                Enums e=Enums.getEnum(in.read());
+                switch (e){
+                    case Owal:
+                        Figury o=Owal.read(in);
+                        lista.add(o);
+                        break;
+                    case Poly:
+                        Figury p=Poly.read(in);
+                        lista.add(p);
+                        break;
+                    case Rectangle:
+                        Figury r=Rectangle.read(in);
+                        lista.add(r);
+                        break;
+                    default:
+                        eof=true;
+                        System.out.println("Wczytano wszystko z pliku");
+                        break;
+                }
+            }catch (EOFException e){
+                eof=true;
+            }
+        }
+        in.close();
+    }
+
+    public static void main(String[] args) {
+
+        // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB INTERAKTYWNY
+        int model=1;
+
+
 
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MyFrame();
+                frame=new MyFrame();
             }
         });
+
+        if(model==1)betterChoice();
+        else worstChoice();
 
         return;
     }

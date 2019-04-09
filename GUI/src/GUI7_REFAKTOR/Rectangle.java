@@ -1,12 +1,11 @@
 package GUI7_REFAKTOR;
 
 import java.awt.*;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class Rectangle extends Figury {
-    double x,y;
-
     public Rectangle(){
         do{
             losujWielkosc();
@@ -30,16 +29,15 @@ public class Rectangle extends Figury {
         int newY=(int)(y*hei/100);
         int newWi=(int)(width*wid/100);
         int newHe=(int)(height*hei/100);
-        g.fillRect(newX,newY,newWi,newHe);
+        g.drawRect(newX,newY,newWi,newHe);
     }
-
-    @Override
-    public String daneFigury() {
-        return Enums.Rectangle+" "+x+" "+y+" "+width+" "+height+" "+color.getRGB();
-    }
-
     @Override
     public void write(DataOutputStream dos) throws IOException {
+        dos.write(Enums.Rectangle.getValue());
+        super.write(dos);
+    }
 
+    public static Figury read(DataInputStream in) throws IOException {
+        return(new Rectangle(new Color(in.readInt()),in.readDouble(),in.readDouble(),in.readDouble(),in.readDouble()));
     }
 }
