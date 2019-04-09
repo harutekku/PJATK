@@ -15,10 +15,10 @@ public class Main {
         for(int i=0;i<n;i++){
             int random=ra.nextInt(3);
             if(random==0){
-                figury.add(new Owal());
+                //figury.add(new Owal());
             }
             else if(random==1){
-                //figury.add(new Poly());
+                figury.add(new Poly());
             }
             else{
                 //figury.add(new Rectangle());

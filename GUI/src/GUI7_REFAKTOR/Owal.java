@@ -15,7 +15,8 @@ public class Owal extends Figury {
         y=Math.random()*(100-height);
         losujColor();
     }
-    public Owal(double w, double h, double x, double y){
+    public Owal(Color c,double w, double h, double x, double y){
+        this.color=c;
         this.width=w;
         this.height=h;
         this.x=x;

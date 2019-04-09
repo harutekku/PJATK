@@ -15,6 +15,13 @@ public class Rectangle extends Figury {
         y=Math.random()*(100-height);
         losujColor();
     }
+    public Rectangle(Color c,double w, double h, double x, double y){
+        this.color=c;
+        this.width=w;
+        this.height=h;
+        this.x=x;
+        this.y=y;
+    }
 
     @Override
     public void rysuj(Graphics2D g, int wid, int hei) {
