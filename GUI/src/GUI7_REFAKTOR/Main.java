@@ -118,8 +118,10 @@ public class Main {
     public static void main(String[] args) {
 
         // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB INTERAKTYWNY
-        int model=1;
+        int model=0;
 
+        if(model==1)betterChoice();
+        else worstChoice();
 
 
         EventQueue.invokeLater(new Runnable() {
@@ -128,9 +130,6 @@ public class Main {
                 frame=new MyFrame();
             }
         });
-
-        if(model==1)betterChoice();
-        else worstChoice();
 
         return;
     }
