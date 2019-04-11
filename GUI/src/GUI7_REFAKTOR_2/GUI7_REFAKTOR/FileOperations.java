@@ -34,7 +34,7 @@ public class FileOperations {
                         break;
                     default:
                         eof=true;
-                        System.out.println("Wczytano wszystko z pliku");/// TODO: 11.04.2019
+                        System.out.println("Wczytano wszystko z pliku");
                         break;
                 }
             }catch (EOFException e){

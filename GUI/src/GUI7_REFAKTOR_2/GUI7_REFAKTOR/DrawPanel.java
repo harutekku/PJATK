@@ -3,9 +3,10 @@ package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyJPanel extends JPanel {
-    public MyJPanel(int width, int height) {
-        setPreferredSize(new Dimension(width,height));
+public class DrawPanel extends JPanel {
+    public DrawPanel(int width, int height, MyFrame frame) {
+        setPreferredSize(new Dimension(width, height));
+        repaint();
     }
 
     @Override

@@ -35,7 +35,7 @@ public class Main {
                 generujFigury(new Scanner(System.in).nextInt());
                 try {
                     long start=System.currentTimeMillis();
-                    writeBin(new File("figury.dat"),figury);
+                    writeBin(new File("figures.dat"),figury);
                     long stop=System.currentTimeMillis();
                     System.out.println(stop-start);
                 } catch (IOException e) {
@@ -45,7 +45,7 @@ public class Main {
             case 2:
                 try {
                     long start=System.currentTimeMillis();
-                    readBin(new File("figury.dat"),figury);
+                    readBin(new File("figures.dat"),figury);
                     long stop=System.currentTimeMillis();
                     System.out.println(stop-start);
                 } catch (IOException e) {

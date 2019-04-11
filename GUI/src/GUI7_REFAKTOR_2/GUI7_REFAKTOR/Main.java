@@ -12,13 +12,16 @@ public class Main {
     static List<Figures> figures =new ArrayList<>();
     static MyFrame frame;
     static boolean endOfProgram=false;
+    static File toSave=new File("figures.dat");
+    static File toRead=new File("figures.dat");
 
-    private static void generateFigures(int n){
+    public static void generateFigures(int n){
         for(int i=0;i<n;i++){
             figures.add(Figures.generateFigure());
         }
     }
-    private static void betterChoice(){
+
+    public static void betterChoice(){
         System.out.println(
                 "Jaką akcje chcesz wykonać?\n" +
                 "1: Wygeneruj nowe kształty i zapisz do pliku\n" +
@@ -33,20 +36,14 @@ public class Main {
                 System.out.println("Ile kształtów chcesz wygenerować?");
                 generateFigures(new Scanner(System.in).nextInt());
                 try {
-                    long start=System.currentTimeMillis();
-                    FileOperations.writeBin(new File("figures.dat"),figures);
-                    long stop=System.currentTimeMillis();
-                    System.out.println(stop-start);
+                    FileOperations.writeBin(toSave,figures);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
             case 2:
                 try {
-                    long start=System.currentTimeMillis();
-                    FileOperations.readBin(new File("figures.dat"),figures);
-                    long stop=System.currentTimeMillis();
-                    System.out.println(stop-start);
+                    FileOperations.readBin(toRead,figures);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -59,10 +56,15 @@ public class Main {
                 return;
         }
     }
-    private static void worstChoice(){
+    public static void worstChoice(){
         Thread th = new Thread(() -> {
             while(!endOfProgram){
                 figures.add(Figures.generateFigure());
+                try {
+                    FileOperations.writeBin(toSave,figures);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -81,16 +83,18 @@ public class Main {
         // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB INTERAKTYWNY
         int model=0;
 
-        if(model==1)betterChoice();
-        else worstChoice();
 
-
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                frame=new MyFrame();
+        if(model==0){
+            try {
+                FileOperations.readBin(toRead,figures);
+            } catch (IOException e) {
+                System.err.println("Nie znaleziono pliku");
             }
-        });
+            worstChoice();
+        }
+
+
+        EventQueue.invokeLater(() -> frame=new MyFrame(model));
 
         return;
     }
