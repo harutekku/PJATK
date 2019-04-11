@@ -24,7 +24,7 @@ public class Rysuj extends JFrame {
         for(int i=0;i<figury.size();i++){
             figury.get(i).rysuj(g, getWidth(),getHeight());
         }
-        //Figury test=new Poly();
+        //Figures test=new Polygon();
         //System.out.println(getWidth()+ " "+getHeight());
         //System.out.println();
 
@@ -36,7 +36,7 @@ public class Rysuj extends JFrame {
                 figury.add(new Owal());
             }
             else if(random==1){
-                //figury.add(new Poly());
+                //figury.add(new Polygon());
             }
             else{
                 //figury.add(new Rectangle());
