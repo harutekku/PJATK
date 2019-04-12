@@ -14,8 +14,7 @@ public class MyFrame extends JFrame {
         setTitle("Projekt");
         setMinimumSize(new Dimension(300,200));
         setSize(new Dimension(width, height));
-
-        if(choose==0){
+        if(choose==0 || choose==1){
             drawPanel=new DrawPanel(getWidth(), getHeight(),this);
             add(drawPanel);
         }

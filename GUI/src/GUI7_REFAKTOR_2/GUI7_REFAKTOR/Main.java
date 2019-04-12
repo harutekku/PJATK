@@ -80,8 +80,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB INTERAKTYWNY
-        int model=1;
+        // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB KONSOLOWY, 2: TRYB INTERAKTYWNY
+        int model=0;
+
+        // TODO: 2019-04-12 listDataListener
 
 
         if(model==0){
@@ -92,9 +94,14 @@ public class Main {
             }
             worstChoice();
         }
-
+        else if(model==1){
+            betterChoice();
+        }
 
         EventQueue.invokeLater(() -> frame=new MyFrame(model));
+
+
+
 
         return;
     }
