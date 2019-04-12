@@ -81,7 +81,7 @@ public class Main {
     public static void main(String[] args) {
 
         // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB INTERAKTYWNY
-        int model=0;
+        int model=1;
 
 
         if(model==0){
