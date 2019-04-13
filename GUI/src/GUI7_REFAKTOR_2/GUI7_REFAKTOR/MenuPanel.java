@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class MenuPanel extends JPanel {
-    public MenuPanel(int width, int height, MyFrame frame) {
+class MenuPanel extends JPanel {
+    MenuPanel(int width, int height, MyFrame frame) {
         setPreferredSize(new Dimension(width,height));
         frame.setMinimumSize(new Dimension(500,200));
         setBackground(Color.BLACK);
@@ -44,7 +44,7 @@ public class MenuPanel extends JPanel {
         JButton read=new JButton("Wczytaj figury z pliku");
         read.addActionListener(e->{
             try {
-                FileOperations.readBin(Main.toRead, Main.figures);
+                FileOperations.readBin(Main.file, Main.figures);
                 frame.enableDrawPanel(this, getWidth(), getHeight());
             } catch (IOException ex) {
                 System.err.println("Błąd odczytu danych z pliku");
@@ -58,14 +58,10 @@ public class MenuPanel extends JPanel {
         });
 
         JButton clearFile=new JButton("Wyczyść plik");
-        clearFile.addActionListener(e->{
-            FileOperations.clearFile(Main.toRead);
-        });
+        clearFile.addActionListener(e-> FileOperations.clearFile(Main.file));
 
         JButton exit=new JButton("Zakończ program");
-        exit.addActionListener(e->{
-            System.exit(0);
-        });
+        exit.addActionListener(e-> System.exit(0));
 
         add(standardMode);
         add(standardWithoutReading);

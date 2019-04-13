@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawPanel extends JPanel {
-    public DrawPanel(int width, int height, MyFrame frame) {
+    DrawPanel(int width, int height, MyFrame frame) {
         setPreferredSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(150,150));
 
@@ -24,7 +24,7 @@ public class DrawPanel extends JPanel {
     }
 
 
-    public void drawFigure(Figures figure){
+    void drawFigure(Figures figure){
         figure.draw((Graphics2D)this.getGraphics(),getWidth(),getHeight());
     }
 }

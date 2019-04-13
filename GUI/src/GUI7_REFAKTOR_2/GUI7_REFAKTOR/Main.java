@@ -18,8 +18,8 @@ public class Main {
     static List<Figures> figures=new ArrayList<>();
     static MyFrame frame;
     static boolean endOfProgram=false;
-    static File toSave=new File("figures.dat");
-    static File toRead=new File("figures.dat");
+    static File file =new File("figures.dat");
+
 
     public static void main(String[] args) {
         switch (model){
@@ -33,13 +33,11 @@ public class Main {
                 MainMenu.graphicalMode();
                 break;
             case 3:
-                FileOperations.clearFile(toRead);
+                FileOperations.clearFile(file);
                 break;
             default:
                 System.err.println("Zły model");
-                return;
-
+                break;
         }
-        return;
     }
 }

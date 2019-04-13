@@ -3,13 +3,13 @@ package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyFrame extends JFrame {
+class MyFrame extends JFrame {
     DrawPanel drawPanel;
     MenuPanel menuPanel;
     private int width=500,
                 height=500;
 
-    public MyFrame(int choose) {
+    MyFrame(int choose) {
         setTitle("Projekt");
         setSize(new Dimension(width, height));
 
@@ -26,7 +26,7 @@ public class MyFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    public void enableDrawPanel(JPanel myPanel, int width, int height){
+    void enableDrawPanel(JPanel myPanel, int width, int height){
         remove(myPanel);
         pack();
 

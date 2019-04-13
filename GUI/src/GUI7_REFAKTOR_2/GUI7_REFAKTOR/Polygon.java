@@ -6,11 +6,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class Polygon extends Figures {
-    double xq[]=new double[3];//Wspolrzedne wierzcholkow
-    double yq[]=new double[3];
+    private double xq[]=new double[3];//Wspolrzedne wierzcholkow
+    private double yq[]=new double[3];
 
 
-    public Polygon(){
+    Polygon(){
         do{
             randomSize();
         }while(areaOfFigure()<2000);
@@ -28,7 +28,7 @@ public class Polygon extends Figures {
         randomColor();
     }
 
-    public Polygon(Color c, double width, double height, double x, double y, double xq[], double yq[]){
+    private Polygon(Color c, double width, double height, double x, double y, double xq[], double yq[]){
         this.color=c;
         this.width=width;
         this.height=height;
@@ -66,7 +66,7 @@ public class Polygon extends Figures {
     }
     public static Figures read(DataInputStream in) throws IOException {
         Color color=new Color(in.readInt());
-        double width=in.readDouble(),height=in.readDouble(),x=in.readDouble(),y=in.readDouble();;
+        double width=in.readDouble(),height=in.readDouble(),x=in.readDouble(),y=in.readDouble();
         double xq[]=new double[3];
         double yq[]=new double[3];
         for(int i=0;i<xq.length;i++){

@@ -7,32 +7,32 @@ import java.io.IOException;
 
 public abstract class Figures implements Writable {
     //Każda figura ma swoje współrzędne w przedziale 0-100 co można przełożyć na procentowe położenie w oknie
-    Color color;
-    double width,height,x,y;
+    protected Color color;
+    protected double width,height,x,y;
 
     abstract public void draw(Graphics2D g, int wid, int hei);
-    public static void generateFigures(int n){
+    static void generateFigures(int n){
         for(int i=0;i<n;i++){
             Main.figures.add(Figures.generateFigure());
         }
     }
 
-    protected void randomColor(){
+    void randomColor(){
         int r = Main.rand.nextInt(256);
         int g = Main.rand.nextInt(256);
         int b = Main.rand.nextInt(256);
         color=new Color(r,g,b);
     }
-    protected void randomSize(){//Kazda figura ma z gory nalozone ograniczenie na maksymalna wielkosc 50x50 wzgledem procent okna
+    void randomSize(){//Kazda figura ma z gory nalozone ograniczenie na maksymalna wielkosc 50x50 wzgledem procent okna
         do{
             width = Math.random() * 50;
             height = Math.random() * 50;
         }while(width/height<1.0/3||height/width<1.0/3); //Ograniczenie proporcji kazdej figures
     }
-    protected double areaOfFigure(){//Pole w rozumieniu prostokat jaki zajmuje
+    double areaOfFigure(){//Pole w rozumieniu prostokat jaki zajmuje
         return width*height;
     }
-    public static Figures generateFigure(){//Zwraca pseudolosowa figure
+    static Figures generateFigure(){//Zwraca pseudolosowa figure
         int random=Main.rand.nextInt(3);
         if(random==0){
             return(new Oval());

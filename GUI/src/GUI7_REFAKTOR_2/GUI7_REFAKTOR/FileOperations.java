@@ -3,8 +3,8 @@ package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
 import java.io.*;
 import java.util.List;
 
-public class FileOperations {
-    public static void clearFile(File file){
+class FileOperations {
+    static void clearFile(File file){
         try {
             FileOutputStream fos=new FileOutputStream(file);
             fos.close();
@@ -13,7 +13,7 @@ public class FileOperations {
             System.err.println("Nie znaleziono pliku");
         }
     }
-    public static void writeAllBin(File file, List<Figures> list) throws IOException {
+    static void writeAllBin(File file, List<Figures> list) throws IOException {
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
         for(int i=0;i<Main.figures.size();i++){
             list.get(i).write(dos);
@@ -21,14 +21,14 @@ public class FileOperations {
         dos.flush();
         dos.close();
     }
-    public static void writeOneObjectBin(File file, Figures figure) throws IOException {
+    static void writeOneObjectBin(File file, Figures figure) throws IOException {
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file,true)));
         figure.write(dos);
         dos.flush();
         dos.close();
     }
 
-    public static void readBin(File file, List<Figures> list) throws IOException {
+    static void readBin(File file, List<Figures> list) throws IOException {
         DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
         boolean eof=false;
         while(!eof){

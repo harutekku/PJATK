@@ -6,7 +6,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class Oval extends Figures {
-    public Oval(){
+    Oval(){
         do{
             randomSize();
         }while(areaOfFigure()>300|| areaOfFigure()<50);
@@ -14,7 +14,7 @@ public class Oval extends Figures {
         y=Main.rand.nextDouble()*(100-height);
         randomColor();
     }
-    public Oval(Color c, double width, double height, double x, double y){
+    private Oval(Color c, double width, double height, double x, double y){
         this.color=c;
         this.width=width;
         this.height=height;

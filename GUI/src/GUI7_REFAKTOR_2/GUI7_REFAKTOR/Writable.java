@@ -9,5 +9,5 @@ public interface Writable {
     static Figures read(DataInputStream dis) throws IOException{
         System.err.println("Where is my body");
         return null;
-    };
+    }
 }

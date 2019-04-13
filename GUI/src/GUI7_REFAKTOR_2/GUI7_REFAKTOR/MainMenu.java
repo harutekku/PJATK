@@ -4,8 +4,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class MainMenu {
-    public static void standardModeWithoutReading(){
+class MainMenu {
+    private static void standardModeWithoutReading(){
         if(Main.frame==null){
             EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
         }
@@ -22,7 +22,7 @@ public class MainMenu {
                 Main.figures.add(tmp);
                 Main.frame.drawPanel.drawFigure(tmp);
                 try {
-                    FileOperations.writeOneObjectBin(Main.toSave, tmp);
+                    FileOperations.writeOneObjectBin(Main.file, tmp);
                     Thread.sleep(500);
                 }catch (InterruptedException e) {
                     e.printStackTrace();
@@ -40,16 +40,16 @@ public class MainMenu {
         th.start();
     }
 
-    public static void standardMode(){
+    static void standardMode(){
         try {
-            FileOperations.readBin(Main.toRead, Main.figures);
+            FileOperations.readBin(Main.file, Main.figures);
         } catch (IOException e) {
             System.err.println("Nie znaleziono pliku do odczytu");
         }
         standardModeWithoutReading();
     }
 
-    public static void consoleMode(){
+    static void consoleMode(){
         System.out.println(
                 "Jaką akcje chcesz wykonać?\n" +
                         "1: Uruchom program\n" +
@@ -95,7 +95,7 @@ public class MainMenu {
                 }
                 Main.frame.drawPanel.repaint();
                 try {
-                    FileOperations.writeAllBin(Main.toSave,Main.figures);
+                    FileOperations.writeAllBin(Main.file,Main.figures);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -103,7 +103,7 @@ public class MainMenu {
             case 5:
                 try {
                     EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
-                    FileOperations.readBin(Main.toRead, Main.figures);
+                    FileOperations.readBin(Main.file, Main.figures);
                     while(Main.frame==null){
                         try {
                             Thread.sleep(100);
@@ -117,17 +117,17 @@ public class MainMenu {
                 }
                 break;
             case 6:
-                FileOperations.clearFile(Main.toRead);
+                FileOperations.clearFile(Main.file);
                 break;
             default:
                 System.out.println("Zły wybór");
             case 0:
                 System.out.println("Wyłączanie");
-                return;
+                break;
         }
     }
 
-    public static void graphicalMode(){
+    static void graphicalMode(){
         EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
     }
 }
