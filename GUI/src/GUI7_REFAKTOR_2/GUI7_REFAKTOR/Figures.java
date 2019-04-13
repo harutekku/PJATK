@@ -11,7 +11,11 @@ public abstract class Figures implements Writable {
     double width,height,x,y;
 
     abstract public void draw(Graphics2D g, int wid, int hei);
-
+    public static void generateFigures(int n){
+        for(int i=0;i<n;i++){
+            Main.figures.add(Figures.generateFigure());
+        }
+    }
 
     protected void randomColor(){
         int r = Main.rand.nextInt(256);

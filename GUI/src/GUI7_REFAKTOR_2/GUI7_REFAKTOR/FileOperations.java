@@ -4,11 +4,26 @@ import java.io.*;
 import java.util.List;
 
 public class FileOperations {
-    public static void writeBin(File file, List<Figures> list) throws IOException {
+    public static void clearFile(File file){
+        try {
+            FileOutputStream fos=new FileOutputStream(file);
+            fos.close();
+            System.out.println("Wyczyszczono plik");
+        } catch (IOException e) {
+            System.err.println("Nie znaleziono pliku");
+        }
+    }
+    public static void writeAllBin(File file, List<Figures> list) throws IOException {
         DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
         for(int i=0;i<Main.figures.size();i++){
             list.get(i).write(dos);
         }
+        dos.flush();
+        dos.close();
+    }
+    public static void writeOneObjectBin(File file, Figures figure) throws IOException {
+        DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(file,true)));
+        figure.write(dos);
         dos.flush();
         dos.close();
     }
