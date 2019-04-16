@@ -12,7 +12,7 @@ public abstract class Figures implements Writable {
 
     abstract public void draw(Graphics2D g, int wid, int hei);
     static void generateFigures(int n){
-        for(int i=0;i<n;i++){
+        while(Main.figures.size()<n){
             Main.figures.add(Figures.generateFigure());
         }
     }

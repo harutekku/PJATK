@@ -23,7 +23,7 @@ class MainMenu {
                 Main.frame.drawPanel.drawFigure(tmp);
                 try {
                     FileOperations.writeOneObjectBin(Main.file, tmp);
-                    Thread.sleep(500);
+                    Thread.sleep(Main.time);
                 }catch (InterruptedException e) {
                     e.printStackTrace();
                 }catch (IOException e) {

@@ -8,10 +8,14 @@ import java.util.Random;
 
 public class Main {
     // WYBOR DZIALANIA APLIKACJI, 0: TRYB STANDARDOWY, 1: TRYB KONSOLOWY, 2: TRYB GRAFICZNY, 3: CZYŚĆ PLIK
-    static int model=2;
+    static int model=0;
 
     // MAKSYMALNA ILOŚĆ FIGUR, PO JEJ OSIĄGNIĘCIU PROGRAM NIE GENERUJE NOWYCH, 0 DLA NIELIMITOWANEGO
     static int maxNumberOfFigures=0;
+
+    // CZAS POMIĘDZY GENEROWANIEM NOWYCH OBIEKTOW
+    static int time=1000;
+
 
 
     static Random rand=new Random();

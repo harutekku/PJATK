@@ -44,14 +44,21 @@ public class Polygon extends Figures {
         return (T>0)?T:T*-1;
     }
     @Override
-    public void draw(Graphics2D g, int wid, int hei) {
+    public void draw(Graphics2D g, int frameWidth, int frameHeight) {
         g.setColor(color);
         int newX[]=new int[3];
         int newY[]=new int[3];
         for(int i=0;i<3;i++){
-            newX[i]=(int)(xq[i]*wid/100);
-            newY[i]=(int)(yq[i]*hei/100);
+            newX[i]=(int)(xq[i]*frameWidth/100);
+            newY[i]=(int)(yq[i]*frameHeight/100);
         }
+
+        /*int x=(int)(this.x*frameWidth/100);     //Zobrazowanie rysowania trojkata
+        int y=(int)(this.y*frameHeight/100);
+        int width=(int)(this.width*frameWidth/100);
+        int height=(int)(this.height*frameHeight/100);
+        g.drawRect(x,y,width,height);*/
+
         g.drawPolygon(newX,newY,3);
     }
 

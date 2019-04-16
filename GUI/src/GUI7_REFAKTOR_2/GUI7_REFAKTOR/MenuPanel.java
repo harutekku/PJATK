@@ -26,7 +26,7 @@ class MenuPanel extends JPanel {
                     Main.figures.add(tmp);
                     Main.frame.drawPanel.drawFigure(tmp);
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(Main.time);
                     }catch (InterruptedException ex) {
                         ex.fillInStackTrace();
                     }
@@ -55,6 +55,11 @@ class MenuPanel extends JPanel {
         generateNewFigures.addActionListener(e->{
             Figures.generateFigures(20);
             System.out.println("Wygenerowano figury (20)");
+            try {
+                FileOperations.writeAllBin(Main.file,Main.figures);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         JButton clearFile=new JButton("Wyczyść plik");
