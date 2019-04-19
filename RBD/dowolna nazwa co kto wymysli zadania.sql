@@ -1,12 +1,4 @@
-//1 
-select * from emp,dept;
-//2 
-select * from emp,dept where emp.deptno=dept.deptno;
-//select * from emp full outer join deptno on emp.deptno=dept.deptno;
-//3
-
-
-///////////////////
+////////////////// 1
 //1
 select deptno, ename, mgr from emp;
 //2
@@ -96,3 +88,53 @@ select ename, 12*sal-nvl(comm,0) from emp;
 select ename, deptno, hiredate from emp where EXTRACT(year from hiredate) = 1982;
 //28
 select ename, sal*12, comm from emp where job like 'SALESMAN' and sal>comm order by sal, ename;
+
+
+//////////////// 3
+//1 
+select * from emp,dept;
+//2 
+select * from emp,dept where emp.deptno=dept.deptno;
+//3
+select * from emp full outer join deptno on emp.deptno=dept.deptno;
+
+
+///////////////// 4
+//1
+Select Avg(sal) "średnia placa" from emp;
+//2
+select Min(sal) from emp where job like 'CLERK';
+//3
+select count(ename) from emp where deptno=20;
+//4
+select avg(sal), job from emp group by job;
+//5
+select avg(sal), job from emp where job not like 'MANAGER' group by job;
+//6
+select avg(sal), job, deptno from emp group by job, deptno;
+//7
+select max(sal), job from emp group by job;
+//8
+select avg(sal), count(1) from emp group by deptno having count(1)>3;
+//9
+select job from emp group by job having avg(sal)>=3000;
+//10
+select avg((sal-nvl(comm,0))*12), avg(sal-nvl(comm,0)) from emp group by job;
+//11
+select deptno from emp group by deptno having count(1)>3;
+//12
+select count(1) from emp group by empno;
+//13
+select * from emp; ///////////////////////////////////////////bad
+//14
+select count(1) from emp join dept on emp.deptno=dept.deptno where loc like 'DALLAS';
+//15
+select max(hisal) from salgrade;
+//16
+select count(1) from emp group by sal having count(1)>1;
+//17
+select (hisal+losal)/2 from salgrade where grade=2;
+//18
+select k.ename, count(1) from emp k join emp p on k.empno=p.mgr group by k.ename;
+//19
+select losal+hisal from salgrade where grade=1;
