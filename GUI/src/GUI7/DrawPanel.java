@@ -1,4 +1,4 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,6 @@ public class DrawPanel extends JPanel {
     DrawPanel(int width, int height, MyFrame frame) {
         setPreferredSize(new Dimension(width, height));
         frame.setMinimumSize(new Dimension(150,150));
-
         repaint();
     }
 

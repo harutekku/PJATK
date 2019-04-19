@@ -1,35 +1,46 @@
 package GUI7;
 
 import java.awt.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
-public class Rectangle extends Figury {
-    double x,y;
-
-    public Rectangle(){
-        do {
-            x = Math.random() * 100;
-            y = Math.random() * 100;
-            width = Math.random() * 50;
-            height = Math.random() * 50;
-            while (x + width > 100) width--;
-            while (y + height > 100) height--;
-
-        }while(width*height>300||width*height<50);
-        losujColor();
+public class Rectangle extends Figures {
+    Rectangle(){
+        do{
+            randomSize();
+        }while(areaOfFigure()>300|| areaOfFigure()<50);
+        x=Main.rand.nextDouble()*(100-width);
+        y=Main.rand.nextDouble()*(100-height);
+        randomColor();
     }
+
+    Rectangle(DataInputStream in) throws IOException {
+        read(in);
+    }
+
     @Override
-    public void rysuj(Graphics g, int wid, int hei) {
+    public void draw(Graphics2D g, int frameWidth, int frameHeight) {
         g.setColor(color);
-        int newX=(int)(x*wid/100);
-        int newY=(int)(y*hei/100);
-        int newWi=(int)(width*wid/100);
-        int newHe=(int)(height*hei/100);
-        g.fillRect(newX,newY,newWi,newHe);
+        int newX=(int)(x*frameWidth/100);
+        int newY=(int)(y*frameHeight/100);
+        int newWi=(int)(width*frameWidth/100);
+        int newHe=(int)(height*frameHeight/100);
+        g.drawRect(newX,newY,newWi,newHe);
     }
 
     @Override
-    public String daneFigury() {
-        return Enums.rectangle+" "+x+" "+y+" "+width+" "+height+" "+color.getRGB();
+    public void write(DataOutputStream dos) throws IOException {
+        dos.write(FiguresEnum.Rectangle.getValue());
+        super.write(dos);
     }
 
+    @Override
+    public void read(DataInputStream in) throws IOException {
+        color=new Color(in.readInt());
+        width=in.readDouble();
+        height=in.readDouble();
+        x=in.readDouble();
+        y=in.readDouble();
+    }
 }

@@ -1,4 +1,4 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 import java.io.*;
 import java.util.List;
@@ -36,15 +36,15 @@ class FileOperations {
                 FiguresEnum e=FiguresEnum.getEnum(in.read());
                 switch (e){
                     case Oval:
-                        Figures o=Oval.read(in);
+                        Figures o=new Oval(in);
                         list.add(o);
                         break;
                     case Polygon:
-                        Figures p=Polygon.read(in);
+                        Figures p=new Polygon(in);
                         list.add(p);
                         break;
                     case Rectangle:
-                        Figures r=Rectangle.read(in);
+                        Figures r=new Rectangle(in);
                         list.add(r);
                         break;
                     default:

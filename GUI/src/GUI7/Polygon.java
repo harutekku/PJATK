@@ -1,4 +1,4 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 import java.awt.*;
 import java.io.DataInputStream;
@@ -28,14 +28,8 @@ public class Polygon extends Figures {
         randomColor();
     }
 
-    private Polygon(Color c, double width, double height, double x, double y, double xq[], double yq[]){
-        this.color=c;
-        this.width=width;
-        this.height=height;
-        this.x=x;
-        this.y=y;
-        this.xq=xq;
-        this.yq=yq;
+    Polygon(DataInputStream in) throws IOException {
+        read(in);
     }
 
     private double areaOfTriangle(){//Oblicza pole trojkata
@@ -71,15 +65,16 @@ public class Polygon extends Figures {
             dos.writeDouble(yq[i]);
         }
     }
-    public static Figures read(DataInputStream in) throws IOException {
-        Color color=new Color(in.readInt());
-        double width=in.readDouble(),height=in.readDouble(),x=in.readDouble(),y=in.readDouble();
-        double xq[]=new double[3];
-        double yq[]=new double[3];
+    @Override
+    public void read(DataInputStream in) throws IOException {
+        color=new Color(in.readInt());
+        width=in.readDouble();
+        height=in.readDouble();
+        x=in.readDouble();
+        y=in.readDouble();
         for(int i=0;i<xq.length;i++){
             xq[i]=in.readDouble();
             yq[i]=in.readDouble();
         }
-        return(new Polygon(color,width,height,x,y,xq,yq));
     }
 }

@@ -1,8 +1,7 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 class MenuPanel extends JPanel {
     MenuPanel(int width, int height, MyFrame frame) {
@@ -14,52 +13,27 @@ class MenuPanel extends JPanel {
         JButton standardMode=new JButton("Standardowy tryb");
         standardMode.addActionListener(e->{
             frame.enableDrawPanel(this, getWidth(), getHeight());
+            MainMenu.readFile();
             MainMenu.standardMode();
         });
 
         JButton standardWithoutReading=new JButton("<html>Standardowy tryb bez<br />wczytywania i zapisania</html>");
         standardWithoutReading.addActionListener(e->{
             frame.enableDrawPanel(this, getWidth(), getHeight());
-            Thread th = new Thread(() -> {
-                while(!Main.endOfProgram){
-                    Figures tmp=Figures.generateFigure();
-                    Main.figures.add(tmp);
-                    Main.frame.drawPanel.drawFigure(tmp);
-                    try {
-                        Thread.sleep(Main.time);
-                    }catch (InterruptedException ex) {
-                        ex.fillInStackTrace();
-                    }
-                    if(Main.maxNumberOfFigures!=0){
-                        if(Main.figures.size()>Main.maxNumberOfFigures){
-                            System.out.println("Osiągnięto limit figur");
-                            Main.endOfProgram=true;
-                        }
-                    }
-                }
-            });
-            th.start();
+            MainMenu.standardModeWithoudWrite();
         });
 
         JButton read=new JButton("Wczytaj figury z pliku");
         read.addActionListener(e->{
-            try {
-                FileOperations.readBin(Main.file, Main.figures);
-                frame.enableDrawPanel(this, getWidth(), getHeight());
-            } catch (IOException ex) {
-                System.err.println("Błąd odczytu danych z pliku");
-            }
+            MainMenu.readFile();
+            frame.enableDrawPanel(this, getWidth(), getHeight());
         });
 
         JButton generateNewFigures=new JButton("Wygeneruj nowe figury (20)");
         generateNewFigures.addActionListener(e->{
             Figures.generateFigures(20);
             System.out.println("Wygenerowano figury (20)");
-            try {
-                FileOperations.writeAllBin(Main.file,Main.figures);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            MainMenu.writeFile();
         });
 
         JButton clearFile=new JButton("Wyczyść plik");

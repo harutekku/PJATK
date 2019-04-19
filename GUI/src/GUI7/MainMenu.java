@@ -1,11 +1,25 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
 class MainMenu {
-    private static void standardModeWithoutReading(){
+    static void readFile(){
+        try {
+            FileOperations.readBin(Main.file, Main.figures);
+        } catch (IOException e) {
+            System.err.println("Nie znaleziono pliku do odczytu");
+        }
+    }
+    static void writeFile(){
+        try {
+            FileOperations.writeAllBin(Main.file,Main.figures);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private static void generateFrame(){
         if(Main.frame==null){
             EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
         }
@@ -16,6 +30,12 @@ class MainMenu {
                 e.printStackTrace();
             }
         }
+    }
+    static void graphicalMode(){
+        EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
+    }
+    static void standardMode(){
+        generateFrame();
         Thread th = new Thread(() -> {
             while(!Main.endOfProgram){
                 Figures tmp=Figures.generateFigure();
@@ -29,24 +49,33 @@ class MainMenu {
                 }catch (IOException e) {
                     System.err.println("Błąd zapisu do pliku");
                 }
-                if(Main.maxNumberOfFigures!=0){
-                    if(Main.figures.size()>Main.maxNumberOfFigures){
-                        System.out.println("Osiągnięto limit figur");
-                        Main.endOfProgram=true;
-                    }
+                if(Main.maxNumberOfFigures!=0 && Main.figures.size()>Main.maxNumberOfFigures){
+                    System.out.println("Osiągnięto limit figur");
+                    Main.endOfProgram=true;
                 }
             }
         });
         th.start();
     }
-
-    static void standardMode(){
-        try {
-            FileOperations.readBin(Main.file, Main.figures);
-        } catch (IOException e) {
-            System.err.println("Nie znaleziono pliku do odczytu");
-        }
-        standardModeWithoutReading();
+    static void standardModeWithoudWrite(){
+        generateFrame();
+        Thread th = new Thread(() -> {
+            while(!Main.endOfProgram){
+                Figures tmp=Figures.generateFigure();
+                Main.figures.add(tmp);
+                Main.frame.drawPanel.drawFigure(tmp);
+                try {
+                    Thread.sleep(Main.time);
+                }catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(Main.maxNumberOfFigures!=0 && Main.figures.size()>Main.maxNumberOfFigures){
+                    System.out.println("Osiągnięto limit figur");
+                    Main.endOfProgram=true;
+                }
+            }
+        });
+        th.start();
     }
 
     static void consoleMode(){
@@ -64,57 +93,28 @@ class MainMenu {
         int userChoice=new Scanner(System.in).nextInt();
         switch (userChoice){
             case 1:
+                readFile();
                 standardMode();
                 break;
             case 2:
-                standardModeWithoutReading();
+                standardMode();
                 break;
             case 3:
                 System.out.println("Ile kształtów chcesz wygenerować?");
                 Figures.generateFigures(new Scanner(System.in).nextInt());
-                EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
-                while(Main.frame==null){
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                generateFrame();
                 Main.frame.drawPanel.repaint();
                 break;
             case 4:
                 System.out.println("Ile kształtów chcesz wygenerować?");
                 Figures.generateFigures(new Scanner(System.in).nextInt());
-                EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
-                while(Main.frame==null){
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                generateFrame();
                 Main.frame.drawPanel.repaint();
-                try {
-                    FileOperations.writeAllBin(Main.file,Main.figures);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                writeFile();
                 break;
             case 5:
-                try {
-                    EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
-                    FileOperations.readBin(Main.file, Main.figures);
-                    while(Main.frame==null){
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    Main.frame.drawPanel.repaint();
-                } catch (IOException e) {
-                    System.err.println("Błąd odczytu danych z pliku");
-                }
+                readFile();
+                generateFrame();
                 break;
             case 6:
                 FileOperations.clearFile(Main.file);
@@ -125,9 +125,5 @@ class MainMenu {
                 System.out.println("Wyłączanie");
                 break;
         }
-    }
-
-    static void graphicalMode(){
-        EventQueue.invokeLater(() -> Main.frame=new MyFrame(Main.model));
     }
 }

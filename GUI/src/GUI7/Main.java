@@ -1,4 +1,4 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ public class Main {
     public static void main(String[] args) {
         switch (model){
             case 0:
+                MainMenu.readFile();
                 MainMenu.standardMode();
                 break;
             case 1:

@@ -1,4 +1,4 @@
-package GUI7_REFAKTOR_2.GUI7_REFAKTOR;
+package GUI7;
 
 
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.io.IOException;
 public abstract class Figures implements Writable {
     //Każda figura ma swoje współrzędne w przedziale 0-100 co można przełożyć na procentowe położenie w oknie
     protected Color color;
-    protected double width,height,x,y;
+    double width,height,x,y;
 
     abstract public void draw(Graphics2D g, int wid, int hei);
     static void generateFigures(int n){
