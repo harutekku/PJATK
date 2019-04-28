@@ -85,6 +85,10 @@ public class NavPanel extends JPanel {
         });
         buttons.add(polygon);
 
+        JButton save=new JButton("Save");
+        save.addActionListener(e->FileOperations.saveToFile());
+        buttons.add(save);
+
         for(AbstractButton but:buttons){
             add(but);
         }
