@@ -3,24 +3,28 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class DrawPanel extends JPanel implements MouseListener, MouseMotionListener {
-    static Point pointStart;
-    static ArrayList<Point> polyPoints;
-    static Color color=Color.BLACK;
-    public static boolean ovalMode=false, rectMode=false, lineMode=false, polyMode=false;
-    public static boolean fill=false;
-    public static BasicStroke stroke=new BasicStroke(1);
-    static boolean polyDraw=false;
+    Point pointStart;
+    ArrayList<Point> polyPoints;
+    Color color=Color.BLACK;
+    boolean ovalMode=false, rectMode=false, lineMode=false, polyMode=false;
+    boolean fill=false;
+    BasicStroke stroke=new BasicStroke(1);
+    boolean polyDraw=false;
 
 
-    public DrawPanel(){
+    DrawPanel(){
         setBackground(Color.WHITE);
         setPreferredSize(new Dimension(1000,200));
         addMouseListener(this);
     }
-    public static void drawOval(Graphics2D g,int x, int y){
+    void paintPixel(int i, int j, Color color){
+
+    }
+    void drawOval(Graphics2D g,int x, int y){
         g.setColor(color);
         g.setStroke(stroke);
         int px,py;
@@ -48,7 +52,7 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
             g.drawOval(px,py,width,height);
         }
     }
-    public static void drawRect(Graphics2D g,int x, int y){
+    void drawRect(Graphics2D g,int x, int y){
         g.setColor(color);
         g.setStroke(stroke);
         int px,py;
@@ -76,12 +80,12 @@ public class DrawPanel extends JPanel implements MouseListener, MouseMotionListe
             g.drawRect(px,py,width,height);
         }
     }
-    public static void drawLine(Graphics2D g,int x, int y) {
+    void drawLine(Graphics2D g,int x, int y) {
         g.setColor(color);
         g.setStroke(stroke);
         g.drawLine(pointStart.x,pointStart.y,x,y);
     }
-    public static void drawPoly(Graphics2D g){
+    void drawPoly(Graphics2D g){
         g.setColor(color);
         g.setStroke(stroke);
         Polygon p=new Polygon();

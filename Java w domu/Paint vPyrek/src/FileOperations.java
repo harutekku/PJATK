@@ -13,10 +13,12 @@ public class FileOperations {
             dos.writeInt(height);
             Robot ro=new Robot();
             BufferedImage bi=ro.createScreenCapture(Main.dp.getBounds());
+            bi=new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+            Main.dp.paint(bi.createGraphics());
             for(int i=0;i<height;i+=1){
                 for(int j=0;j<width;j+=1){
                     Color color=new Color(bi.getRGB(j,i));
-                    //System.out.println(j+" "+i+" "+color.getRed()+" "+color.getGreen()+" "+color.getBlue());
+                    //if(j%50==0&&i%20==0)System.out.println(j+" "+i+" "+color.getRed()+" "+color.getGreen()+" "+color.getBlue());
                     dos.writeInt(color.getRGB());
                 }
             }
@@ -37,13 +39,19 @@ public class FileOperations {
             Graphics2D g= (Graphics2D) Main.dp.getGraphics();
             Robot ro=new Robot();
             BufferedImage bi=ro.createScreenCapture(Main.dp.getBounds());
-            for(int i=0;i<height;i+=10){
-                for(int j=0;j<width;j+=50){
+            bi=new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+            for(int i=0;i<height;i+=1){
+                for(int j=0;j<width;j+=1){
                     Color color=new Color(dis.readInt());
-                    bi.setRGB(j,i,color.getRGB());
-                    System.out.println(color);
+                    //bi.setRGB(j,i,color.getRGB());
+                    Main.dp.color=color;
+                    g.setColor(color);
+                    g.drawOval(j,i,1,1);
+                    //System.out.println(color);
                 }
             }
+            //Main.dp.getGraphics().drawOval(10,10,10,10);
+
             System.out.println("done");
         } catch (IOException | AWTException e) {
             e.printStackTrace();

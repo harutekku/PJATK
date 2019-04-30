@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class NavPanel extends JPanel {
-    public NavPanel(){
+class NavPanel extends JPanel {
+    NavPanel(){
         setBackground(Color.GREEN);
         setPreferredSize(new Dimension(1000,50));
         setLayout(new GridLayout());
@@ -13,35 +13,39 @@ public class NavPanel extends JPanel {
         JButton clear=new JButton("Clear");
         clear.addActionListener(e -> {
             Main.dp.repaint();
-            DrawPanel.polyDraw=false;
-            DrawPanel.polyPoints.clear();
+            Main.dp.polyDraw=false;
+            if(Main.dp.polyPoints!=null)
+                Main.dp.polyPoints.clear();
         });
         buttons.add(clear);
 
         JButton color=new JButton("Change Color");
-        color.setBackground(DrawPanel.color);
+        color.setBackground(Main.dp.color);
         color.setForeground(Color.WHITE);
         color.addActionListener(e ->{
-            DrawPanel.color = JColorChooser.showDialog(this, "Color chooser", DrawPanel.color);
-            color.setBackground(DrawPanel.color);
-            double y=(299*DrawPanel.color.getRed()+587*DrawPanel.color.getGreen()+114*DrawPanel.color.getBlue())/1000.0;
-            color.setForeground(y>=128?Color.BLACK:Color.WHITE);
+            Color choose = JColorChooser.showDialog(this, "Color chooser", Main.dp.color);
+            if(choose!=null){
+                Main.dp.color = choose;
+                color.setBackground(Main.dp.color);
+                double y=(299*Main.dp.color.getRed()+587*Main.dp.color.getGreen()+114*Main.dp.color.getBlue())/1000.0;
+                color.setForeground(y>=128?Color.BLACK:Color.WHITE);
+            }
         });
         buttons.add(color);
 
         JToggleButton fill=new JToggleButton("Filled");
         fill.addActionListener(e->{
-            DrawPanel.fill=!DrawPanel.fill;
+            Main.dp.fill=!Main.dp.fill;
 
         });
         buttons.add(fill);
 
         JButton stroke=new JButton("Width of line");
         stroke.addActionListener(e->{
-            String width=JOptionPane.showInputDialog("Input line width",DrawPanel.stroke.getLineWidth());
+            String width=JOptionPane.showInputDialog("Input line width",Main.dp.stroke.getLineWidth());
             if(width!=null){
                 try{
-                    DrawPanel.stroke=new BasicStroke(Integer.valueOf(width));
+                    Main.dp.stroke=new BasicStroke(Integer.valueOf(width));
                 }catch (NumberFormatException ex){
                     System.err.println(ex);
                 }
@@ -51,37 +55,37 @@ public class NavPanel extends JPanel {
 
         JButton oval=new JButton("Oval");
         oval.addActionListener(e -> {
-            DrawPanel.ovalMode=true;
-            DrawPanel.rectMode=false;
-            DrawPanel.lineMode=false;
-            DrawPanel.polyMode=false;
+            Main.dp.ovalMode=true;
+            Main.dp.rectMode=false;
+            Main.dp.lineMode=false;
+            Main.dp.polyMode=false;
         });
         buttons.add(oval);
 
         JButton rectangle=new JButton("Rectangle");
         rectangle.addActionListener(e -> {
-            DrawPanel.ovalMode=false;
-            DrawPanel.rectMode=true;
-            DrawPanel.lineMode=false;
-            DrawPanel.polyMode=false;
+            Main.dp.ovalMode=false;
+            Main.dp.rectMode=true;
+            Main.dp.lineMode=false;
+            Main.dp.polyMode=false;
         });
         buttons.add(rectangle);
 
         JButton line=new JButton("Line");
         line.addActionListener(e -> {
-            DrawPanel.ovalMode=false;
-            DrawPanel.rectMode=false;
-            DrawPanel.lineMode=true;
-            DrawPanel.polyMode=false;
+            Main.dp.ovalMode=false;
+            Main.dp.rectMode=false;
+            Main.dp.lineMode=true;
+            Main.dp.polyMode=false;
         });
         buttons.add(line);
 
         JButton polygon=new JButton("Polygon");
         polygon.addActionListener(e -> {
-            DrawPanel.ovalMode=false;
-            DrawPanel.rectMode=false;
-            DrawPanel.lineMode=false;
-            DrawPanel.polyMode=true;
+            Main.dp.ovalMode=false;
+            Main.dp.rectMode=false;
+            Main.dp.lineMode=false;
+            Main.dp.polyMode=true;
         });
         buttons.add(polygon);
 
