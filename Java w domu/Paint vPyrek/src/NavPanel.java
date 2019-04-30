@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class NavPanel extends JPanel {
     public NavPanel(){
-        setBackground(Color.PINK);
+        setBackground(Color.GREEN);
         setPreferredSize(new Dimension(1000,50));
         setLayout(new GridLayout());
 
@@ -88,6 +88,10 @@ public class NavPanel extends JPanel {
         JButton save=new JButton("Save");
         save.addActionListener(e->FileOperations.saveToFile());
         buttons.add(save);
+
+        JButton read=new JButton("Read");
+        read.addActionListener(e->FileOperations.readFromFile());
+        buttons.add(read);
 
         for(AbstractButton but:buttons){
             add(but);

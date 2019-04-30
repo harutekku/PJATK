@@ -8,21 +8,43 @@ public class FileOperations {
             DataOutputStream dos=new DataOutputStream(new BufferedOutputStream(new FileOutputStream(new File("photo.pyra"))));
             int width=Main.dp.getWidth();
             int height=Main.dp.getHeight();
-            dos.write(width);
-            dos.write(height);
-            BufferedImage bi=new Robot().createScreenCapture(Main.dp.getBounds());
-            Graphics2D g=bi.createGraphics();
-            Main.dp.paint(g);
-            for(int i=0;i<height;i++){
-                for(int j=0;j<width;j++){
-                    int color=bi.getRGB(j,i);
-                    Color c=new Color(color);
-                    System.out.println(color+" "+c.getRGB());
-
-                    //dos.write(Main.dp);
+            System.out.println(width+" "+height);
+            dos.writeInt(width);
+            dos.writeInt(height);
+            Robot ro=new Robot();
+            BufferedImage bi=ro.createScreenCapture(Main.dp.getBounds());
+            for(int i=0;i<height;i+=1){
+                for(int j=0;j<width;j+=1){
+                    Color color=new Color(bi.getRGB(j,i));
+                    //System.out.println(j+" "+i+" "+color.getRed()+" "+color.getGreen()+" "+color.getBlue());
+                    dos.writeInt(color.getRGB());
                 }
             }
+            System.out.println("done");
+            dos.flush();
+            dos.close();
 
+        } catch (IOException | AWTException e) {
+            e.printStackTrace();
+        }
+    }
+    static void readFromFile(){
+        try{
+            DataInputStream dis=new DataInputStream((new BufferedInputStream(new FileInputStream(new File("photo.pyra")))));
+            int width=dis.readInt();
+            int height=dis.readInt();
+            System.out.println(width+" "+height);
+            Graphics2D g= (Graphics2D) Main.dp.getGraphics();
+            Robot ro=new Robot();
+            BufferedImage bi=ro.createScreenCapture(Main.dp.getBounds());
+            for(int i=0;i<height;i+=10){
+                for(int j=0;j<width;j+=50){
+                    Color color=new Color(dis.readInt());
+                    bi.setRGB(j,i,color.getRGB());
+                    System.out.println(color);
+                }
+            }
+            System.out.println("done");
         } catch (IOException | AWTException e) {
             e.printStackTrace();
         }
