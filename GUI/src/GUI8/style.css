@@ -1,0 +1,11 @@
+TextFlow{
+    -fx-font: 50px TimesNewRoman;
+    -fx-text-alignment: center;
+}
+Button{
+    -fx-font: 20px Arial;
+    -fx-font-weight: bold;
+}
+Button:focused{
+    -fx-background-color: rgb(34, 176, 255);
+}
