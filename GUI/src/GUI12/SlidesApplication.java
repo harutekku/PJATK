@@ -45,7 +45,7 @@ public class SlidesApplication {
     private void initSlidesData() {
         slideData.add(new Slide("Podpowiedź dla prelegenta 0", "Slide0","Komentarz",new Background(new BackgroundImage(new Image("file:///GUI12/ping.jpg"),BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT))));
-        slideData.add(new Slide("Podpowiedź dla prelegenta 1", "Slide1","Kocham babierza",new Background(new BackgroundImage(new Image("file:/kot.jpg"),BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        slideData.add(new Slide("Podpowiedź dla prelegenta 1", "Slide1","Kocham babierza",new Background(new BackgroundImage(new Image("file://kot.jpg"),BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT))));
         slideData.add(new Slide("Podpowiedź dla prelegenta 2", "Slide2","maselko",new Background(new BackgroundImage(new Image("file:/kot2.jpg"),BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT))));

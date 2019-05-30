@@ -2,7 +2,12 @@ package GUI15projekt;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.image.Image;
@@ -10,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 
 public class MenuPanelController {
 
@@ -47,7 +53,20 @@ public class MenuPanelController {
         System.out.println(image.getHeight());
     }
     @FXML
-    private void startGame(){
+    private void startGame(ActionEvent event){
+        try {
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("GamePanel.fxml"));
+            Parent root=fxmlLoader.load();
+            GamePanelController gamePanelController=fxmlLoader.getController();
+            gamePanelController.cropImages(image,gameModeBox.getValue());
+            gamePanelController.shuffle();
+            Scene scene = new Scene(root,stage.getWidth(),stage.getHeight());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
     @FXML
