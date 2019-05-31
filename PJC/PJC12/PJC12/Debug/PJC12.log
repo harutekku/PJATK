@@ -1,0 +1,8 @@
+﻿  PJC12.cpp
+z:\pjatk\pjc\pjc12\pjc12\pjc12.cpp(12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+z:\pjatk\pjc\pjc12\pjc12\pjc12.cpp(20): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+z:\pjatk\pjc\pjc12\pjc12\pjc12.cpp(21): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+z:\pjatk\pjc\pjc12\pjc12\pjc12.cpp(22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+z:\pjatk\pjc\pjc12\pjc12\pjc12.cpp(23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+z:\pjatk\pjc\pjc12\pjc12\pjc12.cpp(28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  PJC12.vcxproj -> Z:\PJATK\PJC\PJC12\Debug\PJC12.exe
