@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="scrollPane" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI15projekt.ResultsPanelController">
+<content>
+    <VBox fx:id="resultVBox" alignment="CENTER">
+        <children>
+            <Label contentDisplay="CENTER" text="TOP 10 graczy" textAlignment="CENTER">
+                <font>
+                    <Font size="18.0" />
+                </font>
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+            </Label>
+        </children>
+    </VBox>
+</content>
+</ScrollPane>

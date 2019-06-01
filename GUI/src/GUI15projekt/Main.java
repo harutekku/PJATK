@@ -10,7 +10,7 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MenuPanel.fxml"));
-        Scene scene = new Scene(root, 600, 400);
+        Scene scene = new Scene(root,800,400);
         stage.setTitle("Puzzle");
         stage.setScene(scene);
         stage.show();

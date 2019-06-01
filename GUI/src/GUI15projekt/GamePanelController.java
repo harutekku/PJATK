@@ -1,17 +1,30 @@
 package GUI15projekt;
 
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.Arrays;
 import java.util.Random;
 
 public class GamePanelController {
+    @FXML
+    Button startButton;
+    @FXML
+    Label timeLabel;
+    @FXML
+    VBox resultVBox;
     @FXML
     GridPane Grid;
     @FXML
@@ -20,10 +33,56 @@ public class GamePanelController {
     WritableImage[][] images;
     int[][] actualSetup;
     int[][] correctSetup;
+    int[] actualBlank;
+    boolean allSwap;
+    String nick;
+    Thread game;
+    long startTime;
+    long stopTime;
+    Stage stage;
+
+    void setStage(Stage stage){
+        this.stage=stage;
+    }
+
+
 
     @FXML
     public void initialize(){
+        game=new Thread(()->{
+            startTime=System.currentTimeMillis();
+            while (stage.isShowing()){
+                Platform.runLater(()->{
+                    timeLabel.setText("Twój czas: "+((System.currentTimeMillis()-startTime)/10)/100.0);
+                });
+                if(Arrays.deepEquals(actualSetup, correctSetup)){
+                    stopTime=System.currentTimeMillis();
+                    stopGame();
+                    break;
+                }
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
+    public void startGame(ActionEvent actionEvent) {
+        if(!game.isAlive()){
+            shuffle();
+            game.start();
+        }
+    }
+    void stopGame(){
+        //game.stop();
+    }
+
+    void settings(boolean allSwap, String nick){
+        this.allSwap=allSwap;
+        this.nick=nick;
+    }
+
     void cropImages(Image image, String difficultLevel){
         PixelReader pixelReader=image.getPixelReader();
         int columns,rows,widthOfCroped,heightOfCroped;
@@ -62,6 +121,7 @@ public class GamePanelController {
                 if (row==rows-1&&column==columns-1){ //nadpisuje ostatni element zerem i pustym planem
                     correctSetup[column][row]=actualSetup[column][row]=0;
                     images[column][row]=new WritableImage(widthOfCroped,heightOfCroped);
+                    actualBlank= new int[]{column, row};
                 }
 
                 imageView[column][row]=new ImageView();
@@ -81,7 +141,8 @@ public class GamePanelController {
     }
 
     void mouseClicked(int columnA, int rowA){
-        if(columnA==0){
+        if(allSwap)swap(columnA,rowA,actualBlank[0],actualBlank[1]);
+        else if(columnA==0){
             if(rowA==0){
                 if(actualSetup[columnA+1][rowA]==0)swap(columnA,rowA,columnA+1,rowA);
                 else if(actualSetup[columnA][rowA+1]==0)swap(columnA,rowA,columnA,rowA+1);
@@ -129,24 +190,13 @@ public class GamePanelController {
                 else if(actualSetup[columnA+1][rowA]==0)swap(columnA,rowA,columnA+1,rowA);
             }
         }
-//        int columnB=-1,rowB=-1;
-//        for(int i=0;i<actualSetup.length;i++){
-//            for(int j=0;j<actualSetup[i].length;j++){
-//                if(actualSetup[j][i]==0){
-//                    columnB=j;
-//                    rowB=i;
-//                    break;
-//                }
-//            }
-//        }
-        //swap(columnA,rowA,columnB,rowB);
-        if(Arrays.deepEquals(actualSetup, correctSetup)) System.out.println("dobrze");
     }
 
     void swap(int columnA, int rowA, int columnB, int rowB) {
-        int inttmp = actualSetup[columnA][rowA];
+        int inttmp = actualSetup[columnA][rowA]; //zmieniam oznaczenie pustego elementu
         actualSetup[columnA][rowA] = actualSetup[columnB][rowB];
         actualSetup[columnB][rowB] = inttmp;
+        actualBlank[0]=columnA;actualBlank[1]=rowA;
         WritableImage tmp = images[columnA][rowA]; //zamieniam obrazy w tablicy
         images[columnA][rowA] = images[columnB][rowB];
         images[columnB][rowB] = tmp;
@@ -155,15 +205,50 @@ public class GamePanelController {
         ((ImageView) Grid.getChildren().get(indexA)).setImage((images[columnA][rowA]));
         ((ImageView) Grid.getChildren().get(indexB)).setImage((images[columnB][rowB]));
     }
+
     void shuffle(){
         Random rand=new Random();
-        for(int i=0;i<50;i++){
-            mouseClicked(rand.nextInt(actualSetup.length),rand.nextInt(actualSetup.length));
-//            try {
-//                //Thread.sleep(50);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+        for(int i=0;i<((actualSetup.length<5)?100:500);i++){
+            arrowMove(rand.nextInt(4));
+        }
+    }
+
+    void arrowMove(int direction){
+        switch (direction){
+            case 0:
+                if(actualBlank[1]>0)swap(actualBlank[0],actualBlank[1]-1,actualBlank[0],actualBlank[1]);
+                break;
+            case 1:
+                if(actualBlank[0]<actualSetup.length-1)swap(actualBlank[0]+1,actualBlank[1],actualBlank[0],actualBlank[1]);
+                break;
+            case 2:
+                if(actualBlank[1]<actualSetup.length-1)swap(actualBlank[0],actualBlank[1]+1,actualBlank[0],actualBlank[1]);
+                break;
+            case 3:
+                if(actualBlank[0]>0)swap(actualBlank[0]-1,actualBlank[1],actualBlank[0],actualBlank[1]);
+                break;
+            default:
+                System.out.println("bad");
+                break;
+        }
+    }
+
+    public void keyClicked(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()){
+            case UP:
+                arrowMove(0);
+                break;
+            case RIGHT:
+                arrowMove(1);
+                break;
+            case DOWN:
+                arrowMove(2);
+                break;
+            case LEFT:
+                arrowMove(3);
+                break;
+            default:
+                break;
         }
     }
 }
