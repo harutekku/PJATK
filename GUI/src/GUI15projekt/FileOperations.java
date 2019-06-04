@@ -1,36 +1,62 @@
 package GUI15projekt;
 
 import java.io.*;
+import java.util.Arrays;
 
 public class FileOperations {
-    void write(){
+    void writeCells(ResultCellController[] cells){
         try {
-            FileOutputStream fos=new FileOutputStream("src/GUI15projekt/results.txt");
-            fos.write("maslo".getBytes());
-            fos.flush();
+            DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("src/GUI15projekt/results.bin")));
+            dos.writeByte(cells.length);
+            for(int i=0;i<cells.length;i++){
+                dos.writeByte(cells[i].getNick().length());
+                dos.writeChars(cells[i].getNick());
+                dos.writeLong(cells[i].getTime());
+                dos.writeByte(cells[i].getLevel());
+                dos.writeBoolean(cells[i].getAllSwap());
+            }
+            dos.flush();
+            dos.close();
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    void read(){
+    ResultCellController[] readCells(){
         try {
-            BufferedInputStream bif = new BufferedInputStream(new FileInputStream(new File("src/GUI15projekt/results.txt")));
-            FileInputStream fis=new FileInputStream("src/GUI15projekt/results.txt");
-            String a="";
-            //for(int i=0;i<1;i++){
-              //  a+= ((char) in.readByte());
-            //}
-            System.out.println(a+" "+fis.read());
+            DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream("src/GUI15projekt/results.bin")));
+            byte length=in.readByte();
+            ResultCellController[] cells=new ResultCellController[length];
+            for(int i=0;i<length;i++){
+                String nick="";
+                for(int j=in.readByte();j>0;j--){
+                    nick+=in.readChar();
+                }
+                byte level=in.readByte();
+                boolean allSwap=in.readBoolean();
+                cells[i]=new ResultCellController(nick,in.readLong(),level,allSwap);
+            }
+            Arrays.sort(cells);
+            return cells;
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return new ResultCellController[0];
     }
 
     public static void main(String[] args) {
         FileOperations fo=new FileOperations();
-        fo.write();
-        fo.read();
+//        ResultCellController[] cells=new ResultCellController[3];
+//        cells[0]=new ResultCellController("Maciek",53342,(byte)0,false);
+//        cells[1]=new ResultCellController("Stasio",236345,(byte)1,false);
+//        cells[2]=new ResultCellController("Robert",812452,(byte)2,true);
+//        fo.writeCells(cells);
+
+
+//        ResultCellController[] cells=fo.readCells();
+//        for(ResultCellController cell:cells){
+//            System.out.println(cell.getNick());
+//        }
     }
 }

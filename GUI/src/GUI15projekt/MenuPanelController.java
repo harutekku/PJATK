@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -22,7 +23,7 @@ public class MenuPanelController {
     @FXML
     private TextField nickField;
     @FXML
-    private ObservableList<String> gameMode= FXCollections.observableArrayList("Łatwy","Średni","Trudny");
+    private ObservableList<String> gameMode = FXCollections.observableArrayList("Łatwy", "Średni", "Trudny");
     @FXML
     private ChoiceBox<String> gameModeBox;
     @FXML
@@ -36,47 +37,58 @@ public class MenuPanelController {
     @FXML
     private CheckBox allSwapBox;
 
-    private Image image=new Image("file:/C:/Users/Kubbit/Desktop/kot.png");
+    private Image image;
 
     Stage stage;
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         gameModeBox.setItems(gameMode);
         gameModeBox.setValue(gameMode.get(0));
-        fileChooser=new FileChooser();
+        fileChooser = new FileChooser();
+        image = new Image(String.valueOf(new File("GUI15projekt/kot.jpg")));
     }
+
     @FXML
-    private void selectImage(){
-        Stage stage=new Stage();
-        File file=fileChooser.showOpenDialog(stage);
-        if(file!=null){
-            image=new Image(file.toURI().toString());
+    private void selectImage() {
+        Stage stage = new Stage();
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            image = new Image(file.toURI().toString());
             System.out.println(file.toURI().toString());
         }
         System.out.println(image.getHeight());
     }
+
     @FXML
-    private void startGame(ActionEvent event){
+    private void startGame(ActionEvent event) {
         try {
-            stage=(Stage)((Node)event.getSource()).getScene().getWindow();
-            FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("GamePanel.fxml"));
-            Parent root=fxmlLoader.load();
-            GamePanelController gamePanelController=fxmlLoader.getController();
-            gamePanelController.cropImages(image,gameModeBox.getValue());
-            gamePanelController.settings(allSwapBox.isSelected(),nickField.getText());
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePanel.fxml"));
+            Parent root = fxmlLoader.load();
+            GamePanelController gamePanelController = fxmlLoader.getController();
+            gamePanelController.cropImages(image, gameModeBox.getValue());
+            gamePanelController.settings(allSwapBox.isSelected(), nickField.getText(),(byte)(gameModeBox.getValue().equals("Łatwy")?0:(gameModeBox.getValue().equals("Średni"))?1:2));
             gamePanelController.setStage(stage);
-            Scene scene = new Scene(root,stage.getWidth(),stage.getHeight());
+            Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
             scene.setOnKeyPressed(gamePanelController::keyClicked);
             stage.setScene(scene);
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-    @FXML
-    private void showResults(){
 
+    @FXML
+    private void showResults(ActionEvent event) {
+        try {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ResultsPanel.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

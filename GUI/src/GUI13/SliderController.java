@@ -22,7 +22,7 @@ public class SliderController {
     public void initialize() {
 
         // Tworzymy zadanie
-        progressTask = new Task<>() {
+        progressTask = new Task<Integer>() {
             @Override
             protected Integer call() throws Exception {
                 int value = 0;

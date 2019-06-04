@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class ResultsPanelController {
     @FXML
@@ -13,17 +14,17 @@ public class ResultsPanelController {
 
     @FXML
     void initialize(){
-
-    }
-    void addCell(){
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultCell.fxml"));
-        ResultCellController controller = new ResultCellController("adam",100);
-        loader.setController(controller);
-        try {
-            Pane pane = loader.load();
-            resultVBox.getChildren().add(pane);
-        } catch (IOException e) {
-            e.printStackTrace();
+        FileOperations fo=new FileOperations();
+        ResultCellController[] cells=fo.readCells();
+        for(int i=0;i<cells.length;i++){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultCell.fxml"));
+            loader.setController(cells[i]);
+            try {
+                Pane pane = loader.load();
+                resultVBox.getChildren().add(pane);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
