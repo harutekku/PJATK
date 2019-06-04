@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        prefHeight="196.0"
+        prefWidth="969.0"
+        xmlns="http://javafx.com/javafx/8.0.121"
+        fx:controller="GUI13.SliderController">
+
+    <Text
+            fx:id="name"
+            layoutX="27.0"
+            layoutY="43.0"
+            strokeType="OUTSIDE"
+            strokeWidth="0.0"
+            text="Postęp"
+            wrappingWidth="210" />
+
+    <ProgressBar
+            fx:id="progress"
+            layoutX="25.0"
+            layoutY="126.0"
+            prefHeight="20.0"
+            prefWidth="958.0"
+            progress="0.0"
+            AnchorPane.leftAnchor="25.0"
+            AnchorPane.rightAnchor="25.0" />
+    <Button
+            layoutX="712.0"
+            layoutY="25.0"
+            minHeight="77.0"
+            minWidth="238.0"
+            mnemonicParsing="false"
+            onAction="#stop"
+            prefHeight="77.0"
+            prefWidth="238.0"
+            text="Zatrzymaj" />
+
+</AnchorPane>

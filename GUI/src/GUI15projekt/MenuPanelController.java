@@ -64,7 +64,6 @@ public class MenuPanelController {
             Parent root=fxmlLoader.load();
             GamePanelController gamePanelController=fxmlLoader.getController();
             gamePanelController.cropImages(image,gameModeBox.getValue());
-            //gamePanelController.shuffle();
             gamePanelController.settings(allSwapBox.isSelected(),nickField.getText());
             gamePanelController.setStage(stage);
             Scene scene = new Scene(root,stage.getWidth(),stage.getHeight());
