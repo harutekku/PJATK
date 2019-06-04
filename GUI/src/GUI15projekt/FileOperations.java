@@ -6,7 +6,8 @@ public class FileOperations {
     void write(){
         try {
             FileOutputStream fos=new FileOutputStream("src/GUI15projekt/results.txt");
-            fos.write(200);
+            fos.write("maslo".getBytes());
+            fos.flush();
 
 
         } catch (IOException e) {
