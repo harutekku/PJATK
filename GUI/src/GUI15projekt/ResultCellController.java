@@ -7,12 +7,15 @@ public class ResultCellController implements Comparable{
     String nick;
     long time;
     @FXML
-    Label label;
+    Label nickTime;
+    @FXML
+    Label levelSwap;
     byte level;
     boolean allSwap;
     @FXML
     void initialize(){
-        label.setText(nick+": "+((time)/10)/100.0+" "+((level==0)?"Łatwy":(level==1)?"Średni":"Trudny")+" "+(allSwap?"z zamianą":""));
+        nickTime.setText(nick+": "+((time)/10)/100.0);
+        levelSwap.setText(((level==0)?"Łatwy":(level==1)?"Średni":"Trudny")+" "+(allSwap?"z zamianą":""));
     }
     ResultCellController(String nick, long time, byte level, boolean allSwap){
         this.nick=nick;

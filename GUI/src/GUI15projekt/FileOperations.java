@@ -8,12 +8,12 @@ public class FileOperations {
         try {
             DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("src/GUI15projekt/results.bin")));
             dos.writeByte(cells.length);
-            for(int i=0;i<cells.length;i++){
-                dos.writeByte(cells[i].getNick().length());
-                dos.writeChars(cells[i].getNick());
-                dos.writeLong(cells[i].getTime());
-                dos.writeByte(cells[i].getLevel());
-                dos.writeBoolean(cells[i].getAllSwap());
+            for (ResultCellController cell : cells) {
+                dos.writeByte(cell.getNick().length());
+                dos.writeChars(cell.getNick());
+                dos.writeLong(cell.getTime());
+                dos.writeByte(cell.getLevel());
+                dos.writeBoolean(cell.getAllSwap());
             }
             dos.flush();
             dos.close();
@@ -33,9 +33,7 @@ public class FileOperations {
                 for(int j=in.readByte();j>0;j--){
                     nick+=in.readChar();
                 }
-                byte level=in.readByte();
-                boolean allSwap=in.readBoolean();
-                cells[i]=new ResultCellController(nick,in.readLong(),level,allSwap);
+                cells[i]=new ResultCellController(nick,in.readLong(),in.readByte(),in.readBoolean());
             }
             Arrays.sort(cells);
             return cells;
@@ -54,9 +52,9 @@ public class FileOperations {
 //        fo.writeCells(cells);
 
 
-//        ResultCellController[] cells=fo.readCells();
-//        for(ResultCellController cell:cells){
-//            System.out.println(cell.getNick());
-//        }
+        ResultCellController[] cells=fo.readCells();
+        for(ResultCellController cell:cells){
+            System.out.println(cell.getNick()+" "+cell.getTime()+" "+cell.getLevel()+" "+cell.getAllSwap());
+        }
     }
 }

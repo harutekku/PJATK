@@ -8,16 +8,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class MenuPanelController {
     @FXML
@@ -46,35 +45,59 @@ public class MenuPanelController {
         gameModeBox.setItems(gameMode);
         gameModeBox.setValue(gameMode.get(0));
         fileChooser = new FileChooser();
-        image = new Image(String.valueOf(new File("GUI15projekt/kot.jpg")));
     }
 
     @FXML
     private void selectImage() {
-        Stage stage = new Stage();
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             image = new Image(file.toURI().toString());
-            System.out.println(file.toURI().toString());
+            if (image.isError()) {
+                image=null;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Musisz wybrać zdjęcie");
+                alert.initStyle(StageStyle.UTILITY);
+                alert.showAndWait();
+            }
         }
-        System.out.println(image.getHeight());
     }
 
     @FXML
     private void startGame(ActionEvent event) {
-        try {
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePanel.fxml"));
-            Parent root = fxmlLoader.load();
-            GamePanelController gamePanelController = fxmlLoader.getController();
-            gamePanelController.cropImages(image, gameModeBox.getValue());
-            gamePanelController.settings(allSwapBox.isSelected(), nickField.getText(),(byte)(gameModeBox.getValue().equals("Łatwy")?0:(gameModeBox.getValue().equals("Średni"))?1:2));
-            gamePanelController.setStage(stage);
-            Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
-            scene.setOnKeyPressed(gamePanelController::keyClicked);
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (nickField.getText().length() > 0) {
+            if(image==null){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Brak zdjęcia");
+                alert.setHeaderText(null);
+                alert.setContentText("Nie wybrano zdjęcia, kontynuować na domyślnym?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if(result.get()==ButtonType.CANCEL||result.get()==ButtonType.CLOSE)return;
+                image = new Image(String.valueOf(new File("GUI15projekt/kot.jpg")));
+            }
+            try {
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePanel.fxml"));
+                Parent root = fxmlLoader.load();
+                GamePanelController gamePanelController = fxmlLoader.getController();
+                gamePanelController.cropImages(image, gameModeBox.getValue());
+                gamePanelController.settings(allSwapBox.isSelected(), nickField.getText(), (byte) (gameModeBox.getValue().equals("Łatwy") ? 0 : (gameModeBox.getValue().equals("Średni")) ? 1 : 2));
+                gamePanelController.setStage(stage);
+                Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
+                scene.setOnKeyPressed(gamePanelController::keyClicked);
+                stage.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Nick");
+            alert.setHeaderText(null);
+            alert.setContentText("Musisz podać nick");
+            alert.initStyle(StageStyle.UTILITY);
+            alert.showAndWait();
+            nickField.requestFocus();
         }
 
     }
@@ -85,8 +108,10 @@ public class MenuPanelController {
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ResultsPanel.fxml"));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
+            Scene scene = new Scene(root, 200, 600);
             stage.setScene(scene);
+            stage.setMinWidth(200);
+            stage.setMinHeight(400);
         } catch (IOException e) {
             e.printStackTrace();
         }

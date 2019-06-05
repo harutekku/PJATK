@@ -39,7 +39,7 @@ public class GamePanelController {
     int[][] correctSetup;
     int[] actualBlank;
     boolean allSwap;
-    Thread game;
+    Thread game,resetGame;
     String nick;
     byte level;
     long startTime;
@@ -53,17 +53,16 @@ public class GamePanelController {
     public void initialize() {
         fo = new FileOperations();
         cells = fo.readCells();
-        game = new Thread(() -> {
+        game=resetGame = new Thread(() -> {
             startTime = System.currentTimeMillis();
-            while (stage.isShowing() && play) {
+            while (play) {
                 Platform.runLater(() -> {
                     timeLabel.setText("Twój czas: " + ((System.currentTimeMillis() - startTime) / 10) / 100.0);
+                    if (Arrays.deepEquals(actualSetup, correctSetup)) {
+                        stopTime = System.currentTimeMillis();
+                        win();
+                    }
                 });
-                if (Arrays.deepEquals(actualSetup, correctSetup)) {
-                    stopTime = System.currentTimeMillis();
-                    win();
-                    break;
-                }
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
@@ -71,6 +70,7 @@ public class GamePanelController {
                 }
             }
         });
+        game.setDaemon(true);
         loadResults();
     }
 
@@ -96,15 +96,18 @@ public class GamePanelController {
         while (list.size() > 10) list.remove(list.size() - 1);
         cells = list.toArray(cells);
         fo.writeCells(cells);
+        loadResults();
     }
 
     void stopGame() {
         play = false;
+        //game=resetGame;
+
         startButton.setDisable(true);
     }
 
     void loadResults() {
-        resultVBox.getChildren().removeAll();
+        resultVBox.getChildren().remove(0,resultVBox.getChildren().size());
         for (int i = 0; i < cells.length; i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultCell.fxml"));
             loader.setController(cells[i]);
