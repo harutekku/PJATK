@@ -26,19 +26,13 @@ public class MenuPanelController {
     @FXML
     private ChoiceBox<String> gameModeBox;
     @FXML
-    private Button imageSelect;
-    @FXML
-    private Button play;
-    @FXML
-    private Button results;
-    @FXML
     private FileChooser fileChooser;
     @FXML
     private CheckBox allSwapBox;
 
     private Image image;
 
-    Stage stage;
+    private Stage stage;
 
     @FXML
     private void initialize() {
@@ -53,7 +47,7 @@ public class MenuPanelController {
         if (file != null) {
             image = new Image(file.toURI().toString());
             if (image.isError()) {
-                image=null;
+                image = null;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
@@ -67,13 +61,13 @@ public class MenuPanelController {
     @FXML
     private void startGame(ActionEvent event) {
         if (nickField.getText().length() > 0) {
-            if(image==null){
+            if (image == null) {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Brak zdjęcia");
                 alert.setHeaderText(null);
                 alert.setContentText("Nie wybrano zdjęcia, kontynuować na domyślnym?");
                 Optional<ButtonType> result = alert.showAndWait();
-                if(result.get()==ButtonType.CANCEL||result.get()==ButtonType.CLOSE)return;
+                if (result.get() == ButtonType.CANCEL || result.get() == ButtonType.CLOSE) return;
                 image = new Image(String.valueOf(new File("GUI15projekt/kot.jpg")));
             }
             try {
@@ -81,9 +75,8 @@ public class MenuPanelController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePanel.fxml"));
                 Parent root = fxmlLoader.load();
                 GamePanelController gamePanelController = fxmlLoader.getController();
-                gamePanelController.cropImages(image, gameModeBox.getValue());
-                gamePanelController.settings(allSwapBox.isSelected(), nickField.getText(), (byte) (gameModeBox.getValue().equals("Łatwy") ? 0 : (gameModeBox.getValue().equals("Średni")) ? 1 : 2));
-                gamePanelController.setStage(stage);
+                gamePanelController.settings(allSwapBox.isSelected(), nickField.getText(), (byte) (gameMode.indexOf(gameModeBox.getValue())),stage);
+                gamePanelController.cropImages(image);
                 Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
                 scene.setOnKeyPressed(gamePanelController::keyClicked);
                 stage.setScene(scene);
@@ -99,7 +92,6 @@ public class MenuPanelController {
             alert.showAndWait();
             nickField.requestFocus();
         }
-
     }
 
     @FXML

@@ -37,8 +37,8 @@ public class FileOperations {
             }
             Arrays.sort(cells);
             return cells;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Nie znaleziono pliku");
         }
         return new ResultCellController[0];
     }

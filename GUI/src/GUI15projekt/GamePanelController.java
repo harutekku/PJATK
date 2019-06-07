@@ -1,10 +1,15 @@
 package GUI15projekt;
 
 
+import javafx.animation.Animation;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -16,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,56 +37,71 @@ public class GamePanelController {
     VBox resultVBox;
     @FXML
     GridPane Grid;
-    @FXML
-    ImageView imageView[][];
 
-    WritableImage[][] images;
-    int[][] actualSetup;
-    int[][] correctSetup;
-    int[] actualBlank;
-    boolean allSwap;
-    Thread game,resetGame;
-    String nick;
-    byte level;
-    long startTime;
-    long stopTime;
-    Stage stage;
-    boolean play = false;
-    ResultCellController[] cells;
-    FileOperations fo;
+    private ImageView[][] imageView;
+    private Image image;
+    private WritableImage[][] images;
+    private int[][] actualSetup;
+    private int[][] correctSetup;
+    private int[] actualBlank;
+    private boolean allSwap;
+    private Thread thread;
+    private String nick;
+    private byte level;
+    private long startTime;
+    private long stopTime;
+    private Stage stage;
+    private boolean play = false, replay = false;
+    private ResultCellController[] cells;
+    private FileOperations fo;
 
     @FXML
     public void initialize() {
         fo = new FileOperations();
         cells = fo.readCells();
-        game=resetGame = new Thread(() -> {
-            startTime = System.currentTimeMillis();
-            while (play) {
-                Platform.runLater(() -> {
-                    timeLabel.setText("Twój czas: " + ((System.currentTimeMillis() - startTime) / 10) / 100.0);
+        Task game = new Task() {
+            @Override
+            protected String call() throws Exception {
+                startTime = System.currentTimeMillis();
+                while (play) {
+                    updateMessage("Twój czas: " + ((System.currentTimeMillis() - startTime) / 10) / 100.0);
                     if (Arrays.deepEquals(actualSetup, correctSetup)) {
                         stopTime = System.currentTimeMillis();
-                        win();
+                        Platform.runLater(() -> win());
                     }
-                });
-                try {
                     Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+                return null;
             }
-        });
-        game.setDaemon(true);
+        };
+        timeLabel.textProperty().bind(game.messageProperty());
+        thread = new Thread(game);
+        thread.setDaemon(true);
         loadResults();
     }
 
     @FXML
     void startGame(ActionEvent actionEvent) {
-        if (!game.isAlive()) {
-            shuffle();
-            play = true;
-            game.start();
-            startButton.setText("Stop");
+        if (!thread.isAlive()) {
+            if (!replay) {
+                shuffle();
+                play = true;
+                startButton.setText("Stop");
+                thread.start();
+            } else {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePanel.fxml"));
+                    Parent root = fxmlLoader.load();
+                    GamePanelController gpm = fxmlLoader.getController();
+                    gpm.settings(allSwap, nick, level, stage);
+                    gpm.cropImages(image);
+                    Scene scene = new Scene(root, stage.getWidth(), stage.getHeight());
+                    scene.setOnKeyPressed(gpm::keyClicked);
+                    stage.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         } else {
             stopTime = System.currentTimeMillis();
             stopGame();
@@ -89,7 +110,7 @@ public class GamePanelController {
 
     void win() {
         stopGame();
-        ResultCellController you = new ResultCellController(nick, stopTime - startTime,level,allSwap);
+        ResultCellController you = new ResultCellController(nick, stopTime - startTime, level, allSwap);
         ArrayList<ResultCellController> list = new ArrayList<ResultCellController>(Arrays.asList(cells));
         list.add(you);
         list.sort(ResultCellController::compareTo);
@@ -101,13 +122,12 @@ public class GamePanelController {
 
     void stopGame() {
         play = false;
-        //game=resetGame;
-
-        startButton.setDisable(true);
+        replay = true;
+        startButton.setText("Restart");
     }
 
     void loadResults() {
-        resultVBox.getChildren().remove(0,resultVBox.getChildren().size());
+        resultVBox.getChildren().remove(0, resultVBox.getChildren().size());
         for (int i = 0; i < cells.length; i++) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ResultCell.fxml"));
             loader.setController(cells[i]);
@@ -120,68 +140,40 @@ public class GamePanelController {
         }
     }
 
-    void setStage(Stage stage) {
+    void settings(boolean allSwap, String nick, byte level, Stage stage) {
+        this.allSwap = allSwap;
+        this.nick = nick;
+        this.level = level;
         this.stage = stage;
     }
 
-    void settings(boolean allSwap, String nick, byte level) {
-        this.allSwap = allSwap;
-        this.nick = nick;
-    }
-
-    void cropImages(Image image, String difficultLevel) {
+    void cropImages(Image image) {
+        this.image = image;
         PixelReader pixelReader = image.getPixelReader();
-        int columns, rows, widthOfCroped, heightOfCroped;
-        switch (difficultLevel) {
-            case "Łatwy":
-                columns = 3;
-                rows = 3;
-                break;
-            case "Średni":
-                columns = 4;
-                rows = 4;
-                break;
-            case "Trudny":
-                columns = 5;
-                rows = 5;
-                break;
-            default:
-                columns = 1;
-                rows = 1;
-                System.out.println("Błąd");
-                System.exit(1);
-                break;
-        }
-        widthOfCroped = (int) (image.getWidth() / columns);
-        heightOfCroped = (int) (image.getHeight() / rows);
+        int columns=3 + level, rows=3 + level, widthOfCroped, heightOfCroped;
         images = new WritableImage[columns][rows];
         imageView = new ImageView[columns][rows];
         correctSetup = new int[columns][rows];
         actualSetup = new int[columns][rows];
+        widthOfCroped = (int) (image.getWidth() / columns);
+        heightOfCroped = (int) (image.getHeight() / rows);
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-
                 correctSetup[column][row] = actualSetup[column][row] = row * columns + column + 1;
                 images[column][row] = new WritableImage(pixelReader, column * widthOfCroped, row * heightOfCroped, widthOfCroped, heightOfCroped);
-
-                if (row == rows - 1 && column == columns - 1) { //nadpisuje ostatni element zerem i pustym planem
+                if (row == rows - 1 && column == columns - 1) {
                     correctSetup[column][row] = actualSetup[column][row] = 0;
                     images[column][row] = new WritableImage(widthOfCroped, heightOfCroped);
                     actualBlank = new int[]{column, row};
                 }
-
                 imageView[column][row] = new ImageView();
                 imageView[column][row].setImage(images[column][row]);
                 int finalColumn = column, finalRow = row;
                 imageView[column][row].setOnMouseClicked(event -> mouseClicked(finalColumn, finalRow));
-
-
-                imageView[column][row].setFitWidth(widthOfCroped);
+                imageView[column][row].setFitWidth(600 / rows);
                 imageView[column][row].setFitHeight(heightOfCroped);
                 imageView[column][row].setPickOnBounds(true);
                 imageView[column][row].setPreserveRatio(true);
-                imageView[column][row].setFitWidth(600 / rows);
-
                 Grid.add(imageView[column][row], column, row);
             }
         }
@@ -189,7 +181,10 @@ public class GamePanelController {
 
     void mouseClicked(int columnA, int rowA) {
         if (allSwap) swap(columnA, rowA, actualBlank[0], actualBlank[1]);
-        else if (columnA == 0) {
+        else if(Math.abs(columnA-actualBlank[0])<=1&&Math.abs(rowA-actualBlank[1])<=1&&Math.abs(columnA-actualBlank[0])!=Math.abs(rowA-actualBlank[1])){
+            swap(columnA,rowA,actualBlank[0],actualBlank[1]);
+        }
+        /*else if (columnA == 0) { //TAK, CAŁE GO GUNWO UDAŁO MI SIĘ ZASTĄPIĆ JEDNĄ CHOLERNĄ LINIJKĄ, JESTEM DEBILEM
             if (rowA == 0) {
                 if (actualSetup[columnA + 1][rowA] == 0) swap(columnA, rowA, columnA + 1, rowA);
                 else if (actualSetup[columnA][rowA + 1] == 0) swap(columnA, rowA, columnA, rowA + 1);
@@ -228,19 +223,19 @@ public class GamePanelController {
                 else if (actualSetup[columnA][rowA - 1] == 0) swap(columnA, rowA, columnA, rowA - 1);
                 else if (actualSetup[columnA + 1][rowA] == 0) swap(columnA, rowA, columnA + 1, rowA);
             }
-        }
+        }*/
     }
 
     void swap(int columnA, int rowA, int columnB, int rowB) {
-        int inttmp = actualSetup[columnA][rowA]; //zmieniam oznaczenie pustego elementu
+        int inttmp = actualSetup[columnA][rowA];
         actualSetup[columnA][rowA] = actualSetup[columnB][rowB];
         actualSetup[columnB][rowB] = inttmp;
         actualBlank[0] = columnA;
         actualBlank[1] = rowA;
-        WritableImage tmp = images[columnA][rowA]; //zamieniam obrazy w tablicy
+        WritableImage tmp = images[columnA][rowA];
         images[columnA][rowA] = images[columnB][rowB];
         images[columnB][rowB] = tmp;
-        int indexA = Grid.getChildren().indexOf(imageView[columnA][rowA]); //podmieniam na nowy obraz
+        int indexA = Grid.getChildren().indexOf(imageView[columnA][rowA]);
         int indexB = Grid.getChildren().indexOf(imageView[columnB][rowB]);
         ((ImageView) Grid.getChildren().get(indexA)).setImage((images[columnA][rowA]));
         ((ImageView) Grid.getChildren().get(indexB)).setImage((images[columnB][rowB]));
@@ -248,7 +243,7 @@ public class GamePanelController {
 
     void shuffle() {
         Random rand = new Random();
-        for (int i = 0; i < ((actualSetup.length < 5) ? 100 : 500); i++) {
+        for (int i = 0; i < ((actualSetup.length < 5) ? 500 : 5000); i++) {
             arrowMove(rand.nextInt(4));
         }
     }
