@@ -43,7 +43,7 @@ public class FileOperations {
         return new ResultCellController[0];
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //ten main sluzy tylko do testowania operacji zapisu i odczytu
         FileOperations fo=new FileOperations();
 //        ResultCellController[] cells=new ResultCellController[3];
 //        cells[0]=new ResultCellController("Maciek",53342,(byte)0,false);
