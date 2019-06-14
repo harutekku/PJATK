@@ -9,12 +9,12 @@
     <Counters>
         <Counter>
             <Name>table</Name>
-            <Value>9</Value>
+            <Value>10</Value>
             <Prefix>t</Prefix>
         </Counter>
         <Counter>
             <Name>column</Name>
-            <Value>45</Value>
+            <Value>48</Value>
             <Prefix>c</Prefix>
         </Counter>
         <Counter>
@@ -24,7 +24,7 @@
         </Counter>
         <Counter>
             <Name>reference</Name>
-            <Value>15</Value>
+            <Value>16</Value>
             <Prefix>r</Prefix>
         </Counter>
         <Counter>
@@ -44,7 +44,7 @@
         </Counter>
         <Counter>
             <Name>note</Name>
-            <Value>0</Value>
+            <Value>12</Value>
             <Prefix>n</Prefix>
         </Counter>
         <Counter>
@@ -69,7 +69,7 @@
         </Counter>
         <Counter>
             <Name>tableDisplay</Name>
-            <Value>9</Value>
+            <Value>10</Value>
             <Prefix>td</Prefix>
         </Counter>
         <Counter>
@@ -79,7 +79,7 @@
         </Counter>
         <Counter>
             <Name>referenceDisplay</Name>
-            <Value>15</Value>
+            <Value>16</Value>
             <Prefix>rd</Prefix>
         </Counter>
     </Counters>
@@ -210,17 +210,8 @@
                     <Properties/>
                 </Column>
                 <Column Id="c14">
-                    <Name>rokWydania</Name>
-                    <Type>integer</Type>
-                    <Description></Description>
-                    <Nullable>false</Nullable>
-                    <DefaultValue></DefaultValue>
-                    <CheckExpression></CheckExpression>
-                    <Properties/>
-                </Column>
-                <Column Id="c16">
-                    <Name>wersjaWydania</Name>
-                    <Type>integer</Type>
+                    <Name>dataWydania</Name>
+                    <Type>date</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -272,9 +263,9 @@
                     <CheckExpression></CheckExpression>
                     <Properties/>
                 </Column>
-                <Column Id="c8">
-                    <Name>kategoriaKsiazki</Name>
-                    <Type>varchar2(20)</Type>
+                <Column Id="c48">
+                    <Name>Kategoria_idKategorii</Name>
+                    <Type>integer</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -571,7 +562,7 @@
                 </Column>
                 <Column Id="c33">
                     <Name>PESEL</Name>
-                    <Type>integer</Type>
+                    <Type>char(11)</Type>
                     <Description></Description>
                     <Nullable>false</Nullable>
                     <DefaultValue></DefaultValue>
@@ -592,6 +583,42 @@
                 <Name></Name>
                 <Columns>
                     <Column>c30</Column>
+                </Columns>
+            </PrimaryKey>
+            <AlternateKeys/>
+            <Indexes/>
+            <TableChecks/>
+            <AdditionalSQLBefore></AdditionalSQLBefore>
+            <AdditionalSQLAfter></AdditionalSQLAfter>
+            <Properties/>
+        </Table>
+        <Table Id="t10">
+            <Name>Kategoria</Name>
+            <Description></Description>
+            <Columns>
+                <Column Id="c46">
+                    <Name>idKategorii</Name>
+                    <Type>integer</Type>
+                    <Description></Description>
+                    <Nullable>false</Nullable>
+                    <DefaultValue></DefaultValue>
+                    <CheckExpression></CheckExpression>
+                    <Properties/>
+                </Column>
+                <Column Id="c47">
+                    <Name>nazwaKategorii</Name>
+                    <Type>varchar2(15)</Type>
+                    <Description></Description>
+                    <Nullable>false</Nullable>
+                    <DefaultValue></DefaultValue>
+                    <CheckExpression></CheckExpression>
+                    <Properties/>
+                </Column>
+            </Columns>
+            <PrimaryKey>
+                <Name></Name>
+                <Columns>
+                    <Column>c46</Column>
                 </Columns>
             </PrimaryKey>
             <AlternateKeys/>
@@ -756,6 +783,25 @@
             <OnDeleteAction>None</OnDeleteAction>
             <Properties/>
         </Reference>
+        <Reference Id="r16">
+            <Name>Ksiazka_Kategoria</Name>
+            <Description></Description>
+            <PKTable>t10</PKTable>
+            <FKTable>t4</FKTable>
+            <PKRole></PKRole>
+            <FKRole></FKRole>
+            <ReferenceColumns>
+                <ReferenceColumn>
+                    <PKColumn>c46</PKColumn>
+                    <FKColumn>c48</FKColumn>
+                </ReferenceColumn>
+            </ReferenceColumns>
+            <Cardinality>0..*</Cardinality>
+            <Mandatory>true</Mandatory>
+            <OnUpdateAction>None</OnUpdateAction>
+            <OnDeleteAction>None</OnDeleteAction>
+            <Properties/>
+        </Reference>
     </References>
     <Sequences/>
     <Notes/>
@@ -783,8 +829,8 @@
             <FixedSize>false</FixedSize>
         </TableDisplay>
         <TableDisplay Id="td3">
-            <X>6745.5</X>
-            <Y>6868.5</Y>
+            <X>6770.5</X>
+            <Y>6837.5</Y>
             <Width>295.0</Width>
             <Height>116.0</Height>
             <LineColor>#000000</LineColor>
@@ -795,7 +841,7 @@
         <TableDisplay Id="td4">
             <X>6487.5</X>
             <Y>6837.5</Y>
-            <Width>206.0</Width>
+            <Width>230.0</Width>
             <Height>102.0</Height>
             <LineColor>#000000</LineColor>
             <FillColor>#ffffff</FillColor>
@@ -823,8 +869,8 @@
             <FixedSize>false</FixedSize>
         </TableDisplay>
         <TableDisplay Id="td7">
-            <X>7154.5</X>
-            <Y>6826.5</Y>
+            <X>7138.5</X>
+            <Y>6841.5</Y>
             <Width>205.0</Width>
             <Height>102.0</Height>
             <LineColor>#000000</LineColor>
@@ -852,6 +898,16 @@
             <Table>t9</Table>
             <FixedSize>false</FixedSize>
         </TableDisplay>
+        <TableDisplay Id="td10">
+            <X>6511.5</X>
+            <Y>7057.5</Y>
+            <Width>191.0</Width>
+            <Height>60.0</Height>
+            <LineColor>#000000</LineColor>
+            <FillColor>#ffffff</FillColor>
+            <Table>t10</Table>
+            <FixedSize>false</FixedSize>
+        </TableDisplay>
     </TableDisplays>
     <ViewDisplays/>
     <ReferenceDisplays>
@@ -869,11 +925,11 @@
                 </ControlPoint>
                 <ControlPoint>
                     <X>6844.5</X>
-                    <Y>6905.5</Y>
+                    <Y>6874.5</Y>
                 </ControlPoint>
                 <ControlPoint>
-                    <X>6816.5</X>
-                    <Y>6905.5</Y>
+                    <X>6841.5</X>
+                    <Y>6874.5</Y>
                 </ControlPoint>
             </ControlPoints>
             <PkTableDisplay>td2</PkTableDisplay>
@@ -890,7 +946,7 @@
                 </ControlPoint>
                 <ControlPoint>
                     <X>7270.5</X>
-                    <Y>6866.5</Y>
+                    <Y>6881.5</Y>
                 </ControlPoint>
             </ControlPoints>
             <PkTableDisplay>td8</PkTableDisplay>
@@ -902,11 +958,11 @@
             <Type>Vertical_2CP</Type>
             <ControlPoints>
                 <ControlPoint>
-                    <X>6868.5</X>
-                    <Y>6932.5</Y>
+                    <X>6871.5</X>
+                    <Y>6901.5</Y>
                 </ControlPoint>
                 <ControlPoint>
-                    <X>6868.5</X>
+                    <X>6871.5</X>
                     <Y>7161.5</Y>
                 </ControlPoint>
             </ControlPoints>
@@ -940,7 +996,7 @@
                     <Y>6907.5</Y>
                 </ControlPoint>
                 <ControlPoint>
-                    <X>6828.5</X>
+                    <X>6853.5</X>
                     <Y>6907.5</Y>
                 </ControlPoint>
             </ControlPoints>
@@ -971,7 +1027,7 @@
             <ControlPoints>
                 <ControlPoint>
                     <X>7264.5</X>
-                    <Y>6881.5</Y>
+                    <Y>6896.5</Y>
                 </ControlPoint>
                 <ControlPoint>
                     <X>7264.5</X>
@@ -998,6 +1054,23 @@
             <PkTableDisplay>td9</PkTableDisplay>
             <FkTableDisplay>td5</FkTableDisplay>
             <Reference>r15</Reference>
+        </ReferenceDisplay>
+        <ReferenceDisplay Id="rd16">
+            <Color>#000000</Color>
+            <Type>Vertical_2CP</Type>
+            <ControlPoints>
+                <ControlPoint>
+                    <X>6600.5</X>
+                    <Y>7087.5</Y>
+                </ControlPoint>
+                <ControlPoint>
+                    <X>6600.5</X>
+                    <Y>6887.5</Y>
+                </ControlPoint>
+            </ControlPoints>
+            <PkTableDisplay>td10</PkTableDisplay>
+            <FkTableDisplay>td4</FkTableDisplay>
+            <Reference>r16</Reference>
         </ReferenceDisplay>
     </ReferenceDisplays>
     <Properties>
