@@ -66,6 +66,11 @@ class CountryTable {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+            public Class<?> getColumnClass(int columnIndex){
+                if(getColumnName(columnIndex).equals("Population(k)"))return Integer.class;
+                else if(getColumnName(columnIndex).equals("Flag"))return ImageIcon.class;
+                return Object.class;
+            }
         };
         jTable.setRowHeight(35);
         jTable.getColumn("Flag").setMaxWidth(50);
@@ -74,7 +79,6 @@ class CountryTable {
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 File file = new File("data/flag_icons/" + value + ".png");
                 BufferedImage image;
-
                 try {
                     image = ImageIO.read(file);
                 } catch (IOException e) {
