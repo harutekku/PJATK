@@ -20,18 +20,8 @@ public class Main {
   }
 
   public List<Integer> test1(List<Integer> src) {
-    Selector sel = new Selector<Integer>() {
-      @Override
-      public boolean sel(Integer integer) {
-        return integer<10;
-      }
-    };/*<-- definicja selektora; bez lambda-wyrażeń; nazwa zmiennej sel */
-    Mapper map = new Mapper<Integer,Integer>() {
-      @Override
-      public Integer map(Integer integer) {
-        return integer+10;
-      }
-    };/*<-- definicja mappera; bez lambda-wyrażeń; nazwa zmiennej map */
+    Selector sel =(Selector<Integer>)integer->integer<10;/*<-- definicja selektora; bez lambda-wyrażeń; nazwa zmiennej sel */
+    Mapper map =(Mapper<Integer,Integer>)integer->integer+10;/*<-- definicja mappera; bez lambda-wyrażeń; nazwa zmiennej map */
     return   /*<-- zwrot wyniku
       uzyskanego przez wywołanie statycznej metody klasy ListCreator:
      */  ListCreator.collectFrom(src).when(sel).mapEvery(map);
