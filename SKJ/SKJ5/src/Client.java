@@ -29,7 +29,7 @@ public class Client {
         InetAddress destAdress=InetAddress.getByName("172.22.132.255");
         int destPort = 5000;
         DatagramPacket packetToSend =
-                new DatagramPacket(ascii.getBytes(), ascii.getBytes().length,destAdress,destPort);
+                new DatagramPacket(textToSend.getBytes(), textToSend.getBytes().length,destAdress,destPort);
 
         log("Packet sending");
         socket.send(packetToSend);

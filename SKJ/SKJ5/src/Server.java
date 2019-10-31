@@ -12,9 +12,14 @@ public class Server {
     private static int socketCounter=0;
 
     public static void main(String[] args) throws IOException {
-        while (true){
-            socket();
-        }
+        Thread th=new Thread(()->{
+            try {
+                while(true)socket();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        th.start();
     }
     public static void socket() throws IOException {
         log("Start");
