@@ -10,7 +10,7 @@ public class InputConverter<T>{
 	public InputConverter(String address){
 		try{
 			BufferedReader br=new BufferedReader(new FileReader(new File(address)));
-			list=new ArrayList<String>();
+			list=new ArrayList<>();
 			String line;
 			while((line=br.readLine())!=null){
 				list.add(line);
@@ -19,8 +19,14 @@ public class InputConverter<T>{
 			e.printStackTrace();
 		}
 	}
+	public InputConverter(List<String> list){
+		this.list=list;
+	}
 
 	public <S>S convertBy(Function... func){
+		for(Function f:func){
+			f.apply(this.list);
+		}
 		return null;
 	}
 }

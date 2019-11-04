@@ -7,6 +7,7 @@
 package zad1;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -33,7 +34,23 @@ public class Main {
       }
       return sb.toString();
     };
+    Function<String,List<Integer>> collectInts=(line)->{
+      line.toLowerCase().replace("qwertyuiopasdfghjklzxcvbnm,."," ");
+      String[] array=line.split(" ");
+      List<Integer> list = new ArrayList<>();
+      for(int i=0;i<array.length;i++){
+        list.add(Integer.parseInt(array[i]));
+      }
 
+      return list;
+    };
+    Function<List<Integer>,Integer> sum=(list)->{
+      Integer suma=new Integer(0);
+      for(Integer i:list){
+        suma+=i;
+      }
+      return suma;
+    };
 
 
     String fname = System.getProperty("user.home") + "/LamComFile.txt";
