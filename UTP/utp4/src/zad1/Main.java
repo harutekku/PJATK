@@ -6,11 +6,12 @@
 
 package zad1;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*<--
  *  niezbędne importy
@@ -24,9 +25,7 @@ public class Main {
      *  - collectInts - zwraca listę liczb całkowitych zawartych w napisie
      *  - sum - zwraca sumę elmentów listy liczb całkowitych
      */
-    Function<List<String>,List<String>> flines=(lines) ->{
-      return lines;
-    };
+    Function<List<String>,List<String>> flines=(lines) ->lines;
     Function<List<String>,String> join=(lines)->{
       StringBuilder sb=new StringBuilder();
       for(int i=0;i<lines.size();i++){
@@ -35,17 +34,16 @@ public class Main {
       return sb.toString();
     };
     Function<String,List<Integer>> collectInts=(line)->{
-      line.toLowerCase().replace("qwertyuiopasdfghjklzxcvbnm,."," ");
-      String[] array=line.split(" ");
+      Pattern pattern = Pattern.compile("[0-9]+");
+      Matcher matcher = pattern.matcher(line);
       List<Integer> list = new ArrayList<>();
-      for(int i=0;i<array.length;i++){
-        list.add(Integer.parseInt(array[i]));
+      while(matcher.find()){
+        list.add(Integer.parseInt(matcher.group()));
       }
-
       return list;
     };
     Function<List<Integer>,Integer> sum=(list)->{
-      Integer suma=new Integer(0);
+      Integer suma=0;
       for(Integer i:list){
         suma+=i;
       }
