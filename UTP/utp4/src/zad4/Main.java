@@ -11,7 +11,7 @@ public class Main {
 
   public static void test() {
     // Metoda of(...)
-    String s = "aaa";    
+    String s = "aaa";
     Maybe<String> m1 = Maybe.of(s);
     System.out.println(m1);
     s = null;
@@ -32,7 +32,7 @@ public class Main {
     m5.ifPresent(System.out::println);
 
     // Metoda map()
-    Maybe<Integer> m6 = m5.map( n -> n +10 ); 
+    Maybe<Integer> m6 = m5.map( n -> n +10 );
     System.out.println(m6);
 
     // Metoda get()
@@ -52,7 +52,7 @@ public class Main {
 
     //MOŻNA NAPISAĆ
     String res = Maybe.of(num).map(n -> "Wartość wynosi: "+n)
-                      .orElse("Wartość niedostępna");
+            .orElse("Wartość niedostępna");
     System.out.println(res);
 
     // I filter(...)
@@ -69,8 +69,8 @@ public class Main {
 
     //MOŻNA NAPISAĆ
     msg = Maybe.of(txt)
-               .filter(t -> t.length() > 0)
-               .orElse("Txt is null or empty"); 
+            .filter(t -> t.length() > 0)
+            .orElse("Txt is null or empty");
     System.out.println(msg);
   }
 

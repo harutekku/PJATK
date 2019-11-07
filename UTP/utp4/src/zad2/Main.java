@@ -59,21 +59,21 @@ public class Main{
 			return suma;
 		};
 
-		String fname=System.getProperty("user.home")+"/LamComFile.txt";
-		InputConverter<String> fileConv=new InputConverter<>(fname);
-		List<String> lines=fileConv.convertBy(flines);
-		String text=fileConv.convertBy(flines,join);
-		List<Integer> ints=fileConv.convertBy(flines,join,collectInts);
-		Integer sumints=fileConv.convertBy(flines,join,collectInts,sum);
+		String fname = System.getProperty("user.home") + "/LamComFile.txt";
+		InputConverter<String> fileConv = new InputConverter<>(fname);
+		List<String> lines = fileConv.convertBy(flines);
+		String text = fileConv.convertBy(flines, join);
+		List<Integer> ints = fileConv.convertBy(flines, join, collectInts);
+		Integer sumints = fileConv.convertBy(flines, join, collectInts, sum);
 
 		System.out.println(lines);
 		System.out.println(text);
 		System.out.println(ints);
 		System.out.println(sumints);
 
-		List<String> arglist=Arrays.asList(args);
-		InputConverter<List<String>> slistConv=new InputConverter<>(arglist);
-		sumints=slistConv.convertBy(join,collectInts,sum);
+		List<String> arglist = Arrays.asList(args);
+		InputConverter<List<String>> slistConv = new InputConverter<>(arglist);
+		sumints = slistConv.convertBy(join, collectInts, sum);
 		System.out.println(sumints);
 
 		// Zadania badawcze:

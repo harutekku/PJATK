@@ -17,7 +17,7 @@ import java.util.*;
 
 public class Main {
   public static void main(String[] args) {
-    // Pewne dodatkowe zestawy danych
+    /*// Pewne dodatkowe zestawy danych
     Integer[] ints = { 100, 200, 300 };
     Set<Integer> set = new HashSet<>(Arrays.asList(3, 4, 5));
 
@@ -89,7 +89,7 @@ public class Main {
     lmod.forEachWithIndex( (e, i) -> { if (i % 2 == 0) lmod.remove(e); } );
     System.out.println(lmod);
     lmod.forEachWithIndex( (e, i) -> { if (i % 2 == 0) lmod.remove(i); } );
-    System.out.println(lmod); // Pytanie: dlaczego mamy taki efekt? 
+    System.out.println(lmod); // Pytanie: dlaczego mamy taki efekt? */
 
   }
 }
