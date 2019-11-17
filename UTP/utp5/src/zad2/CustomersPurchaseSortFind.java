@@ -26,22 +26,23 @@ public class CustomersPurchaseSortFind{
 	}
 
 	public void showSortedBy(String column){
+		List<Purchase> copy=new ArrayList<>(list);
 		if(column.equals("Nazwiska")){
-			this.list.sort((Purchase p1,Purchase p2)->{
+			copy.sort((Purchase p1,Purchase p2)->{
 				if(p1.getName().equals(p2.getName())) return p1.getIdClient().compareTo(p2.getIdClient());
 				else return p1.getName().compareTo(p2.getName());
 			});
 			System.out.println("Nazwiska");
-			for(Purchase p: list){
+			for(Purchase p: copy){
 				System.out.println(p);
 			}
 		}else if(column.equals("Koszty")){
-			this.list.sort((Purchase p1,Purchase p2)->{
+			copy.sort((Purchase p1,Purchase p2)->{
 				if(p1.getSum().equals(p2.getSum())) return p1.getIdClient().compareTo(p2.getIdClient());
 				else return p2.getSum().compareTo(p1.getSum());
 			});
 			System.out.println("Koszty");
-			for(Purchase p: list){
+			for(Purchase p: copy){
 				System.out.println(p.toStringWithKoszty());
 			}
 		}

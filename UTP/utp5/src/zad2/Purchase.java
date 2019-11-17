@@ -32,18 +32,6 @@ public class Purchase {
 		return name;
 	}
 
-	public String getArticle(){
-		return article;
-	}
-
-	public Double getPrice(){
-		return price;
-	}
-
-	public Double getQuantity(){
-		return quantity;
-	}
-
 	public Double getSum(){
 		return sum;
 	}

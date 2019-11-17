@@ -37,7 +37,7 @@ public class Main {
     } catch (Exception exc) {
       System.out.println(exc);
     }
-    /*System.out.println("@4 Programiści posortowani wg liczby języków:");
+    System.out.println("@4 Programiści posortowani wg liczby języków:");
     try {
       pl.getProgsMapSortedByNumOfLangs()
         .forEach((k,v)->System.out.println(k+ " = " + v));
@@ -68,7 +68,7 @@ public class Main {
       pl.getProgsMap().forEach((k,v)->System.out.println(k+ " = " + v));
     } catch (Exception exc) {
       System.out.println(exc);
-    }*/
+    }
   }
 
 }

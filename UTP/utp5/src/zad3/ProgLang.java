@@ -3,7 +3,7 @@ package zad3;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 public class ProgLang{
 	List<String> list;
@@ -60,24 +60,39 @@ public class ProgLang{
 		return map;
 	}
 
+	public static <T, K> Map<T,K> sorted(Map<T,K> map, Comparator<Map.Entry<T,K>> comparator) {
+		LinkedHashMap<T,K> sortedMap = new LinkedHashMap<>();
+		map.entrySet().stream()
+				.sorted(comparator)
+				.forEach(entry -> sortedMap.put(entry.getKey(), entry.getValue()));
+
+		return sortedMap;
+	}
+
+	public static <T, K> Map<T, K> filtered(Map<T, K> map, Predicate<Map.Entry<T, K>> predicate) {
+		LinkedHashMap<T, K> filteredMap = new LinkedHashMap<>();
+		map.entrySet().stream()
+				.filter(predicate)
+				.forEach(entry -> filteredMap.put(entry.getKey(), entry.getValue()));
+
+		return filteredMap;
+	}
+
 	public Map<String, List<String>> getLangsMapSortedByNumOfProgs(){
-		Map<String,List<String>> map=getLangsMap();
-		Map<String, List<String>> result = map.entrySet()
-				.stream()
-				.sorted(Map.Entry.comparingByValue(Comparator.compa))
-				.collect(Collectors.toMap(
-						Map.Entry::getKey,
-						Map.Entry::getValue,
-						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
-
-		return map;
+		return sorted(getLangsMap(),(l1, l2) ->{
+			int result=Integer.compare(l2.getValue().size(),l1.getValue().size());
+			return result!=0?result:l1.getKey().compareTo(l2.getKey());
+		});
 	}
 
-	public Iterable<Object> getProgsMapSortedByNumOfLangs(){
-		return null;
+	public Map<String, List<String>> getProgsMapSortedByNumOfLangs(){
+		return sorted(getProgsMap(),(p1, p2) ->{
+			int result=Integer.compare(p2.getValue().size(),p1.getValue().size());
+			return result!=0?result:p1.getKey().compareTo(p2.getKey());
+		});
 	}
 
-	public Iterable<Object> getProgsMapForNumOfLangsGreaterThan(int i){
-		return null;
+	public Map<String,List<String>> getProgsMapForNumOfLangsGreaterThan(int i){
+		return filtered(getProgsMap(),(p1)->p1.getValue().size()>i);
 	}
 }
