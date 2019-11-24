@@ -1,33 +1,80 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
+#include <string>
 
 using namespace std;
+
+//-------------------------- bazowe struktury
 struct node {
-    char key;
+    char key = '|';
     shared_ptr<node> left_child = nullptr;
     shared_ptr<node> right_child = nullptr;
     shared_ptr<node> father = nullptr;
 };
 
 struct list {
-    shared_ptr<node> value;
+    shared_ptr<node> value = nullptr;
     shared_ptr<list> next = nullptr;
+
+    list() {}
+
+    list(shared_ptr<node> nod) : value(nod) {}
 };
 
-void addtoList(shared_ptr<list> list, shared_ptr<node> nod) {
-    shared_ptr<struct::list> actual = list;
-    while (actual->next != nullptr)actual = actual->next;
-    actual->next = shared_ptr<struct::list>(new struct::list);
-    actual->next->value = nod;
-}
-void showList(shared_ptr<list> list){
-    shared_ptr<struct::list> actual = list;
-    while(actual->next!= nullptr){
-        cout<<actual->value->key<<" ";
-        actual=actual->next;
+//-------------------------- bazowe operacje na listach i nodach
+shared_ptr<list> addtoList(shared_ptr<list> list, shared_ptr<node> nod) {
+    if (list->value == nullptr) {
+        list->value = nod;
+        return list;
+    } else {
+        shared_ptr<struct ::list> actual(new struct::list(nod));
+        actual->next = list;
+        return actual;
     }
 }
+
+void showList(shared_ptr<list> list) {
+    shared_ptr<struct ::list> actual = list;
+    while (actual != nullptr) {
+        cout << actual->value->key << " ";
+        actual = actual->next;
+    }
+    cout << endl;
+}
+
+bool ifLeaves(shared_ptr<node> node) {
+    return node->left_child == nullptr && node->right_child == nullptr;
+}
+
+shared_ptr<list> cutListToLeaves(shared_ptr<list> list) {
+    shared_ptr<struct ::list> leaves(new struct::list);
+    shared_ptr<struct ::list> actual = list;
+    while (actual != nullptr) {
+        if (ifLeaves(actual->value)) {
+            leaves = addtoList(leaves, actual->value);
+        }
+        actual = actual->next;
+    }
+    return leaves;
+}
+
+string getKey(shared_ptr<node> node) {
+    return string(1, node->key);
+}
+
+string getWord(shared_ptr<node> node) {
+    if (node->father == nullptr)return getKey(node);
+    return getKey(node) + getWord(node->father);
+}
+
+shared_ptr<node> compareWords(shared_ptr<node> one, shared_ptr<node> two) {
+    string w1 = getWord(one), w2 = getWord(two);
+    if (w1.compare(w2) > 0) return one;
+    else return two;
+}
+
+//--------------------------- bardziej zaawansowane operacje
 
 shared_ptr<node> addKey(shared_ptr<node> root, char value, string road) {
     shared_ptr<node> actual = root;
@@ -51,52 +98,51 @@ shared_ptr<node> addKey(shared_ptr<node> root, char value, string road) {
     return actual;
 }
 
-string getKey(shared_ptr<node> node) {
-    return string(1, node->key);
-}
-
-string getWord(shared_ptr<node> node) {
-    if (node->father == nullptr)return getKey(node);
-    return getKey(node) + getWord(node->father);
-}
-
-shared_ptr<node> compareWords(shared_ptr<node> one, shared_ptr<node> two) {
-    string w1 = getWord(one), w2 = getWord(two);
-    cout << w1 << " " << w2 << endl;
-    if (w1.compare(w2) > 0) return one;
-    else return two;
-}
-
-shared_ptr<node> searchLastLeave(shared_ptr<list> list_root) {
-    shared_ptr<list> actual = list_root;
-    shared_ptr<node> last = actual->value;
+shared_ptr<node> searchLastWord(shared_ptr<list> leaves) {
+    shared_ptr<list> actual = leaves;
+    shared_ptr<node> lastWord = actual->value;
     while (actual->next != nullptr) {
         actual = actual->next;
-        if (compareWords(last, actual->value) < 0)last = actual->value;
-        cout<<actual->value->key<<endl;
+        lastWord = compareWords(lastWord, actual->value);
     }
-    return last;
+    return lastWord;
 }
 
-int main(int args, char **argv) {
+void orajPlik(string filename) {
     ifstream file;
-    file.open(argv[1]);
+    file.open(filename);
     if (file.is_open()) {
-        shared_ptr<node> root(new node);
-        shared_ptr<list> list(new struct::list);
+        shared_ptr<node> root(new struct::node);
+        shared_ptr<struct ::list> list(new struct::list);
         while (!file.eof()) {
             string line = "";
             getline(file, line);
-            shared_ptr<node> nod = addKey(root, line[0], line.substr(2));
-            cout<<nod->key<<" ";
-            addtoList(list, nod);
+            if (line != "") {
+                shared_ptr<node> nod = addKey(root, line[0], line.substr(2));
+                list = addtoList(list, nod);
+            }
         }
-        showList(list);
-        shared_ptr<node> last = searchLastLeave(list);
-        cout << getWord(last);
+        //showList(list);
+        shared_ptr<struct ::list> leaves = cutListToLeaves(list);
+        //showList(leaves);
+        shared_ptr<node> last = searchLastWord(leaves);
+        cout << getWord(last) << endl;
         file.close();
-
     } else cerr << "Unable to open the file" << endl;
+}
 
+int main(int args, char **argv) {
+    string file = argv[1];
+    orajPlik(file);
+    //orajPlik("f1.txt");
+    //orajPlik("f2.txt");
+    //orajPlik("f3.txt");
+    //orajPlik("f4.txt");
+    //orajPlik("input1");
+    //orajPlik("input2");
+    //orajPlik("input3");
+    //orajPlik("input4");
+    //orajPlik("input5");
+    //orajPlik("input6");
     return 0;
 }
