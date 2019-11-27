@@ -1,93 +1,112 @@
-import com.sun.security.ntlm.Server;
-
 import java.io.*;
 import java.net.*;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Proxy{
-	private final static String ACK = "ACK";
 	private static int socketCounter=0;
+	private static byte[] endl="\r\n".getBytes();
 
 	public static void main(String[] args){
-		Thread th=new Thread(()->{
-			try {
-				while(true)socket();
-			} catch (IOException e) {
-				e.printStackTrace();
+		try{
+			ServerSocket serverSocket=new ServerSocket(8080);
+			log("Server created");
+			while(true){
+				Socket socket=serverSocket.accept();
+				Thread th=new Thread(()->{
+					try{
+						socket(socket);
+					}catch(Exception e){
+						//e.printStackTrace();
+					}
+				});
+				th.start();
 			}
-		});
-		th.start();
+
+
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	}
 
-	public static void socket() throws IOException {
-		log("Socket created");
-		ServerSocket welcomeSocket = new ServerSocket(8080);
-		Socket clientSocket = welcomeSocket.accept();
-		InetAddress clientIp = clientSocket.getInetAddress();
-		int clientPort = clientSocket.getPort();
-		log("Client connected from: " + clientIp + " : " + clientPort);
-		BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-		String line=br.readLine(),message="";
-		while(!line.equals("")){
-			message+=line;
-			line=br.readLine();
-		}
-		bw.write(answer);
-		bw.newLine();
-		bw.flush();
-
-		log("Waiting for password");
-		String password = br.readLine();
-		log("Password received: " + password);
-		if (USER_PASS.compareTo(password) == 0) {
-			log("Sending answer");
-			bw.write(ACK);
-			bw.newLine();
-			bw.flush();
-
-			SESSIONID = (int) (Math.random() * 10000);
-			log("SESSION ID: " + SESSIONID);
-			log("Sending SESSIONID");
-			bw.write(SESSIONID);
-			bw.flush();
-
-			log("Waiting for message");
-			String message = br.readLine();
-			while (message.compareTo(String.valueOf(SESSIONID))!=0) {
-				log("Message received: " + message);
-				log("Sending answer");
-				bw.write(message.toUpperCase() + "\n");
-				bw.flush();
-				message = br.readLine();
-			}
-
-			log("Logout succesful");
-			SESSIONID = 0;
-			bw.write("Logout succesful\n");
-			bw.flush();
-
-		} else {
-			bw.write(NAK + "\n");
-			bw.flush();
-		}
-
-
-		log("Client socket closing");
-		clientSocket.close();
-
-		log("Client socked closed");
-
-		log("Server socket closing");
-		welcomeSocket.close();
-
-		log("Server socked closed");
-
-		log("Finished");
+	public static void socket(Socket socket) throws Exception{
 		socketCounter++;
+		InetAddress clientIp=socket.getInetAddress();
+		int clientPort=socket.getPort();
+		log("Client connected from: "+clientIp+":"+clientPort);
+		InputStream is=socket.getInputStream();
+		BufferedReader br=new BufferedReader(new InputStreamReader(is));
+		OutputStream os=socket.getOutputStream();
+
+		List<String> message=new ArrayList<>();
+		String line;
+		while((line=br.readLine())!=null&&!line.isEmpty()){
+			//System.out.println(line);
+			if(!line.startsWith("Proxy-Connection:")) message.add(line);
+		}
+		if(!message.isEmpty()){
+			log(message.get(0));
+			Socket server;
+			int port;
+			if(message.get(0).startsWith("CONNECT")){
+				port=(Integer.parseInt(message.get(0).split(" ")[1].split(":")[1])!=0)?Integer.parseInt(message.get(0).split(" ")[1].split(":")[1]):443;
+				server=new Socket(message.get(1).split(" ")[1].split(":")[0],port);
+
+				os.write("HTTP/1.1 200 OK".getBytes());
+				os.write(endl);
+				os.write(endl);
+				os.flush();
+
+			}else{
+				server=new Socket(message.get(1).split(" ")[1].split(":")[0],80);
+			}
+			InputStream isS=server.getInputStream();
+			OutputStream osS=server.getOutputStream();
+
+			if(!message.get(0).startsWith("CONNECT")){
+				for(int i=0;i<message.size();i++){
+					byte[] tab=(message.get(i)).getBytes();
+					osS.write(tab);
+					osS.write(endl);
+				}
+				osS.write(endl);
+				osS.flush();
+			}
+
+			Thread income=new Thread(()->{
+				try{
+					byte[] bytes=new byte[4096];
+					while(true){
+						int size=isS.read(bytes);
+						if(size==-1) break;
+						os.write(bytes,0,size);
+					}
+				}catch(IOException e){
+					//e.printStackTrace();
+				}
+				log("Finished");
+			});
+			income.start();
+			//Thread outcome=new Thread(()->{
+				try{
+					byte[] bytes=new byte[4096];
+					while(true){
+						int size=is.read(bytes);
+						if(size==-1) break;
+						osS.write(bytes,0,size);
+					}
+				}catch(IOException e){
+					//e.printStackTrace();
+				}
+			//});
+			//outcome.start();
+			log("Finished");
+		}
 	}
-	public static void log(String message) {
-		System.out.println("[S]["+socketCounter+"] : " + LocalTime.now() + " : " + message);
+
+	public static void log(String message){
+		System.out.println("[S]["+socketCounter+"] : "+LocalTime.now()+" : "+message);
 	}
 
 
