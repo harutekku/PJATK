@@ -1,0 +1,48 @@
+
+
+
+//Jakub Pawłowicz s18688
+
+//z1
+SELECT * FROM Pacjent WHERE idPacjenta in (
+	SELECT idPacjenta FROM Wizyty WHERE Data like"%2016%" and idLekarza = (
+		SELECT idLekarza FROM Lekarz WHERE Specjalizacja="Neurolog"));
+
+//z2
+SELECT Imie, Nazwisko FROM Lekarz WHERE specjalizacja <> "ortopeda" AND pensja BETWEEN 4000 AND 5000;
+
+//z3
+
+//z4
+SELECT imie, nazwisko, count(1) FROM Pacjent GROUP BY imie, nazwisko, having count(1)>1;
+
+//z5
+SELECT imie, nazwisko FROM Lekarz WHERE idLekarza=(
+	SELECT IdLekarza FROM Wizyty WHERE AVG(Cena)>= ALL(
+		SELECT AVG(Cena) FROM Wizyty GROUP BY IdLekarza))
+	GROUP BY IdLekarza;
+	
+//z6
+SELECT Lekarz.Imie, Lekarz.nazwisko, Pacjent.Imie, Pacjent.Nazwisko FROM Lekarz join Wizyty on idLekarza=
+	(SELECT IdLekarza, count(Data) FROM Wizyty GROUP BY IdLekarza, IdPacjenta)
+	join Pacjent on idPacjenta=
+		(SELECT IdPacjenta, count(Data) FROM Wizyty GROUP BY IdLekarza, IdPacjenta);
+		
+//z7
+UPDATE Wizyty SET Cena = 0.93*Cena WHERE idLekarza=(
+	SELECT IdLekarza FROM Lekarz WHERE Specjalizacja="Okulista"); 
+
+//z8
+DELETE FROM Wizyty WHERE idLekarza=(
+	SELECT IdLekarza FROM Lekarz WHERE Specjalizacja="Ortopeda");
+DELETE FROM Lekarz WHERE Specjalizacja="Ortopeda";
+
+//z9
+SELECT imie, nazwisko FROM Pacjent WHERE idPacjenta=(
+	SELECT IdPacjenta FROM Wizyty WHERE Cena=(
+		SELECT MAX(Cena) FROM Wizyty));
+
+//z10
+SELECT Specjalizacja, Count(1), SUM(Pensja*12) FROM Lekarz GROUP BY Specjalizacja;
+
+

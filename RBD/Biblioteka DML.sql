@@ -5,16 +5,16 @@ insert into rola values ('3','Bibliotekarz','2500','Wypozyczanie ksiazek');
 insert into pracownik values ('1','Miron','Sawicki','1','500');
 insert into pracownik values ('2','Kazia','Kucharska','2','300');
 insert into pracownik values ('3','Oliwia','Walczak','3','0');
-insert into pracownik values ('4','Kuba','Jasiñski','2','100');
-insert into pracownik values ('5','Tekla','WoŸniak','3','100');
+insert into pracownik values ('4','Kuba','JasiÃ±ski','2','100');
+insert into pracownik values ('5','Tekla','WoÅºniak','3','100');
 insert into pracownik values ('6','Hieronim','Kalinowski','3','0');
 insert into pracownik values ('7','Renard','Kaczmarek','3','300');
 
 insert into Czytelnik values ('1','Oskar','Borkowski','56031918973','Lwowska 80 42-400 Zawiercie');
-insert into Czytelnik values ('2','Urjasz','Paw³owski','87052478070','Alpejska 95 85-790 Bydgoszcz');
-insert into Czytelnik values ('3','Tytus','Ostrowski','40021803877','Biskupiñska 43 60-463 Poznañ');
-insert into Czytelnik values ('4','Sylwia','Kwiatkowska','81071786769','Wawelska 9 80-034 Gdañsk');
-insert into Czytelnik values ('5','Józefa','Kowalczyk','57040300245','Szronowa 73 60-375 Poznañ');
+insert into Czytelnik values ('2','Urjasz','PawÅ‚owski','87052478070','Alpejska 95 85-790 Bydgoszcz');
+insert into Czytelnik values ('3','Tytus','Ostrowski','40021803877','BiskupiÅ„ska 43 60-463 PoznaÅ„');
+insert into Czytelnik values ('4','Sylwia','Kwiatkowska','81071786769','Wawelska 9 80-034 GdaÅ„sk');
+insert into Czytelnik values ('5','JÃ³zefa','Kowalczyk','57040300245','Szronowa 73 60-375 PoznaÅ„');
 
 insert into kategoria values ('1','Obyczajowe');
 insert into kategoria values ('2','Nauka');
@@ -23,28 +23,28 @@ insert into kategoria values ('4','Przygodowe');
 insert into kategoria values ('5','Poezja');
 
 insert into autor values ('1','Nicholas','Sparks');
-insert into autor values ('2','Aleksander','Kamiñski');
+insert into autor values ('2','Aleksander','KamiÅ„ski');
 insert into autor values ('3','Henryk','Sienkiewicz');
 insert into autor values ('4','Bruce','Cameron');
 insert into autor values ('5','Diana','Setterfield');
 insert into autor values ('6','Diana','Gabaldon');
 
-insert into ksiazka values ('1','List w butelce','1','1','Smutna historia o znalezionym liœcie');
-insert into ksiazka values ('2','Szczêœciarz','1','1','Opowieœæ o podró¿y ¿o³nierza do ukochanej');
-insert into ksiazka values ('3','Kamienie na szaniec','2','3','Opowieœæ o bohaterach szarych szeregów');
-insert into ksiazka values ('4','Latarnik','3','4','Opowieœæ o ¿yciu latarnika');
-insert into ksiazka values ('5','Ogniem i mieczem','3','3','Opowieœæ o historii Polski');
-insert into ksiazka values ('6','By³ sobie pies','4','4','Przygodowa o piesku');
-insert into ksiazka values ('7','Trzynasta opowieœæ','5','1','Opowieœæ o dwóch przyjació³kach');
-insert into ksiazka values ('8','Podró¿niczka','5','4','Opowieœæ o kobiecie która uciek³a podczas wojny');
+insert into ksiazka values ('1','List w butelce','1','1','Smutna historia o znalezionym liÅ›cie');
+insert into ksiazka values ('2','SzczÄ™Å›ciarz','1','1','OpowieÅ›Ä‡ o podrÃ³Å¼y Å¼oÅ‚nierza do ukochanej');
+insert into ksiazka values ('3','Kamienie na szaniec','2','3','OpowieÅ›Ä‡ o bohaterach szarych szeregÃ³w');
+insert into ksiazka values ('4','Latarnik','3','4','OpowieÅ›Ä‡ o Å¼yciu latarnika');
+insert into ksiazka values ('5','Ogniem i mieczem','3','3','OpowieÅ›Ä‡ o historii Polski');
+insert into ksiazka values ('6','ByÅ‚ sobie pies','4','4','Przygodowa o piesku');
+insert into ksiazka values ('7','Trzynasta opowieÅ›Ä‡','5','1','OpowieÅ›Ä‡ o dwÃ³ch przyjaciÃ³Å‚kach');
+insert into ksiazka values ('8','PodrÃ³Å¼niczka','5','4','OpowieÅ›Ä‡ o kobiecie ktÃ³ra uciekÅ‚a podczas wojny');
 
 insert into wydawnictwo values ('1','Albatros');
-insert into wydawnictwo values ('2','Nasza ksiêgarnia');
-insert into wydawnictwo values ('3','Pañstwowe Zak³ady Wydawnictw Szkolnych');
+insert into wydawnictwo values ('2','Nasza ksiÄ™garnia');
+insert into wydawnictwo values ('3','PaÅ„stwowe ZakÅ‚ady Wydawnictw Szkolnych');
 insert into wydawnictwo values ('4','Zielona Sowa');
 insert into wydawnictwo values ('5','Wydawnictwo Kobiece');
 insert into wydawnictwo values ('6','Amber');
-insert into wydawnictwo values ('7','Œwiat Ksi¹¿ki');
+insert into wydawnictwo values ('7','Åšwiat KsiÄ…Å¼ki');
 
 insert into wydanie values ('1','9788379856770','1','1','2015/11/23');
 insert into wydanie values ('2','9788379856794','1','2','2015/12/24');
