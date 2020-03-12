@@ -9,18 +9,19 @@ namespace cw2
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            String urli = "z:\\PJATK\\apbd\\cw2\\dane.csv";
-            String urlo = "C:\\Users\\Jan\\Desktop\\wynik.xml";
+            String urli = @"..\..\..\dane.csv";
+            String urlo = @"wynik.xml";
             String format = "xml";
             var lines = File.ReadLines(urli);
-            System.IO.StreamWriter error = new System.IO.StreamWriter(@"z:\PJATK\APBD\cw2\log.txt", false);
-            var hash = new HashSet<Student>();
+            StreamWriter error = new StreamWriter(@"..\..\..\log.txt", false);
+            HashSet<Student> hash = new HashSet<Student>(new OwnComparator());
             foreach (var line in lines)
             {
                 string[] splits=line.Split(',');
                 if (splits.Length != 9)
                 {
                     error.WriteLine("Error in line:\t\t" + line);
+                    //Console.WriteLine("Maslo123");
                 }
                 else
                 {
@@ -39,16 +40,30 @@ namespace cw2
                     if (!st.poprawnosc())
                     {
                         error.WriteLine("maslo");//todo
+                        //Console.WriteLine("maslo222");
                     }
                     else
                     {
                         if (!hash.Add(st))
                         {
                             error.WriteLine(st.get());
+                            Console.WriteLine("dupa");
                         }
+                        else
+                        {
+                            Console.WriteLine($"{st.GetHashCode()}{st}");
+                        }
+                        
                     }
                 }
             }
+            foreach (var stud in hash)
+            {
+                //Console.WriteLine(stud.GetHashCode());
+            }
+            Console.WriteLine(hash.Count);
+            error.Dispose();
+            error.Close();
         }
     }
 }

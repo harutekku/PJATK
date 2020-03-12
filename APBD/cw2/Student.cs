@@ -1,6 +1,5 @@
 ﻿namespace cw2
 {
-    [System.Serializable]
     public class Student
     {
         public string Imie { get; set; }
@@ -20,5 +19,13 @@
         {
             return "getuje";
         }
+        public override string ToString()
+        {
+            return Imie + " " + Nazwisko + " " + Eska;
+        }
+        /*public override int GetHashCode()
+        {
+            return System.StringComparer.CurrentCultureIgnoreCase.GetHashCode($"{Imie}{Nazwisko}{Eska}");
+        }*/
     }
 }
