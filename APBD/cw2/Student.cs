@@ -23,9 +23,5 @@
         {
             return Imie + " " + Nazwisko + " " + Eska;
         }
-        /*public override int GetHashCode()
-        {
-            return System.StringComparer.CurrentCultureIgnoreCase.GetHashCode($"{Imie}{Nazwisko}{Eska}");
-        }*/
     }
 }

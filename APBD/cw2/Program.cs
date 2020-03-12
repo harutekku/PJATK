@@ -12,7 +12,16 @@ namespace cw2
             String urli = @"..\..\..\dane.csv";
             String urlo = @"wynik.xml";
             String format = "xml";
-            var lines = File.ReadLines(urli);
+            IEnumerable<string> lines;
+            try
+            {
+                lines = File.ReadLines(urli);
+            }catch(FileNotFoundException e)
+            {
+                Console.Error.WriteLine(e.Message);
+                return;
+            }
+            
             StreamWriter error = new StreamWriter(@"..\..\..\log.txt", false);
             HashSet<Student> hash = new HashSet<Student>(new OwnComparator());
             foreach (var line in lines)
@@ -20,8 +29,7 @@ namespace cw2
                 string[] splits=line.Split(',');
                 if (splits.Length != 9)
                 {
-                    error.WriteLine("Error in line:\t\t" + line);
-                    //Console.WriteLine("Maslo123");
+                    error.WriteLine("Less or more than 9 columns:\t\t" + line);
                 }
                 else
                 {
@@ -39,19 +47,17 @@ namespace cw2
                     };
                     if (!st.poprawnosc())
                     {
-                        error.WriteLine("maslo");//todo
-                        //Console.WriteLine("maslo222");
+                        error.WriteLine("One of column is blank:\t\t"+line);
                     }
                     else
                     {
                         if (!hash.Add(st))
                         {
-                            error.WriteLine(st.get());
-                            Console.WriteLine("dupa");
+                            error.WriteLine("Student already added:\t\t"+line);
                         }
                         else
                         {
-                            Console.WriteLine($"{st.GetHashCode()}{st}");
+                            //Console.WriteLine($"{st.GetHashCode()}{st}");
                         }
                         
                     }

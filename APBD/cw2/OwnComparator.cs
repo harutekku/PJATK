@@ -8,12 +8,12 @@ namespace cw2
     {
         public bool Equals(Student x, Student y)
         {
-            return StringComparer.InvariantCultureIgnoreCase.Equals($"{x.Imie}{x.Nazwisko}{x.Eska},{y.Imie}{y.Nazwisko}{y.Eska}");
+            return StringComparer.InvariantCultureIgnoreCase.Equals($"{x.Imie} {x.Nazwisko} {x.Eska}",$"{y.Imie} {y.Nazwisko} {y.Eska}");
         }
 
         public int GetHashCode(Student x)
         {
-            return StringComparer.CurrentCultureIgnoreCase.GetHashCode($"{x.Imie}{x.Nazwisko}{x.Eska}");
+            return StringComparer.CurrentCultureIgnoreCase.GetHashCode($"{x.Imie} {x.Nazwisko} {x.Eska}");
         }
     }
 }
