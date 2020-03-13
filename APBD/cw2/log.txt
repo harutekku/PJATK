@@ -1,47 +1,45 @@
-Less or more than 9 columns:		Pawe�,Nowak1,Informatyka dzienne,Dzienne,459,2000-02-12,1@pjwstk.edu.plAlina,Adam
-Student already added:		Pawe�,Nowak1,Informatyka doktoranckie,Dzienne,459,2000-02-12,1@pjwstk.edu.pl,Alina,Adam
-Student already added:		Justyna,Kowalski30,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4749,2000-02-12,30@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Nowak31,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4432,2000-02-12,31@pjwstk.edu.pl,Alina,Adam
-One of column is blank:		Zbigniew,Kowalski35,Sztuka Nowych Medi�w dzienne,,4450,2000-02-12,35@pjwstk.edu.pl,Alina,Adam
-One of column is blank:		Karolina,Nowak36,Sztuka Nowych Medi�w dzienne,,4455,2000-02-12,36@pjwstk.edu.pl,Alina,Adam
-Student already added:		Joanna,Brz�czyszczykiewicz37,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4799,2000-02-12,37@pjwstk.edu.pl,Alina,Adam
-Student already added:		Irena,Maciejewski38,Sztuka Nowych Medi�w zaoczne,Zaoczne,4626,2000-02-12,38@pjwstk.edu.pl,Alina,Adam
-Student already added:		Kacper,Kowalski40,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4396,2000-02-12,40@pjwstk.edu.pl,Alina,Adam
-Student already added:		Pawe�,Nowak41,Sztuka Nowych Medi�w zaoczne,Zaoczne,4902,2000-02-12,41@pjwstk.edu.pl,Alina,Adam
-One of column is blank:		Aleksandra,,Sztuka Nowych Medi�w dzienne,Dzienne,4434,2000-02-12,42@pjwstk.edu.pl,Alina,Adam
-Student already added:		Aleksandra,Brz�czyszczykiewicz42,Sztuka Nowych Medi�w zaoczne 6 sem.,Zaoczne,4434,2000-02-12,42@pjwstk.edu.pl,Alina,Adam
-Student already added:		Jan,Nowak46,Sztuka Nowych Medi�w zaoczne 6 sem.,Zaoczne,4842,2000-02-12,46@pjwstk.edu.pl,Alina,Adam
-Student already added:		Jakub,Jankowski49,Sztuka Nowych Medi�w zaoczne,Zaoczne,4789,2000-02-12,49@pjwstk.edu.pl,Alina,Adam
-Student already added:		Sabina,Brz�czyszczykiewicz52,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4513,2000-02-12,52@pjwstk.edu.pl,Alina,Adam
-Student already added:		Jan,Nowak56,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4649,2000-02-12,56@pjwstk.edu.pl,Alina,Adam
-Student already added:		Jakub,Brz�czyszczykiewicz57,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4755,2000-02-12,57@pjwstk.edu.pl,Alina,Adam
-Student already added:		Karolina,Jankowski64,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4423,2000-02-12,64@pjwstk.edu.pl,Alina,Adam
-Student already added:		Magdalena,Nowak66,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4629,2000-02-12,66@pjwstk.edu.pl,Alina,Adam
-Student already added:		Pawe�,Jankowski69,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4478,2000-02-12,69@pjwstk.edu.pl,Alina,Adam
-Student already added:		Kamil,Nowak71,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4741,2000-02-12,71@pjwstk.edu.pl,Alina,Adam
-Student already added:		Sandra,Brz�czyszczykiewicz77,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4800,2000-02-12,77@pjwstk.edu.pl,Alina,Adam
-Student already added:		Ma�gorzata,Maciejewski78,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4429,2000-02-12,78@pjwstk.edu.pl,Alina,Adam
-Student already added:		Klaudia,Jankowski84,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4849,2000-02-12,84@pjwstk.edu.pl,Alina,Adam
-Student already added:		Tomasz,Kowalski95,Sztuka Nowych Medi�w dzienne,Dzienne,3374,2000-02-12,95@pjwstk.edu.pl,Alina,Adam
-One of column is blank:		Jolanta,Nowak96,Sztuka Nowych Medi�w uzupe�niaj�ce magisterskie,Dzienne,4756,2000-02-12,96@pjwstk.edu.pl,,
-Student already added:		Pawe�,Brz�czyszczykiewicz252,Informatyka magisterskie 3 sem,Dzienne,4412,2000-02-12,252@pjwstk.edu.pl,Alina,Adam
+Student already added:		Paweł,Nowak1,Informatyka magisterskie 4 sem,Dzienne,459,2000-02-12,1@pjwstk.edu.pl,Alina,Adam
+Student already added:		Paweł,Nowak1,Informatyka doktoranckie,Dzienne,459,2000-02-12,1@pjwstk.edu.pl,Alina,Adam
+Student already added:		Justyna,Kowalski30,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4749,2000-02-12,30@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Nowak31,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4432,2000-02-12,31@pjwstk.edu.pl,Alina,Adam
+Student already added:		Joanna,Brzęczyszczykiewicz37,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4799,2000-02-12,37@pjwstk.edu.pl,Alina,Adam
+Student already added:		Irena,Maciejewski38,Sztuka Nowych Mediów zaoczne,Zaoczne,4626,2000-02-12,38@pjwstk.edu.pl,Alina,Adam
+Student already added:		Kacper,Kowalski40,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4396,2000-02-12,40@pjwstk.edu.pl,Alina,Adam
+Student already added:		Paweł,Nowak41,Sztuka Nowych Mediów zaoczne,Zaoczne,4902,2000-02-12,41@pjwstk.edu.pl,Alina,Adam
+One of column is blank:		Aleksandra,,Sztuka Nowych Mediów dzienne,Dzienne,4434,2000-02-12,42@pjwstk.edu.pl,Alina,Adam
+Student already added:		Aleksandra,Brzęczyszczykiewicz42,Sztuka Nowych Mediów zaoczne 6 sem.,Zaoczne,4434,2000-02-12,42@pjwstk.edu.pl,Alina,Adam
+Student already added:		Jan,Nowak46,Sztuka Nowych Mediów zaoczne 6 sem.,Zaoczne,4842,2000-02-12,46@pjwstk.edu.pl,Alina,Adam
+Student already added:		Jakub,Jankowski49,Sztuka Nowych Mediów zaoczne,Zaoczne,4789,2000-02-12,49@pjwstk.edu.pl,Alina,Adam
+Student already added:		Sabina,Brzęczyszczykiewicz52,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4513,2000-02-12,52@pjwstk.edu.pl,Alina,Adam
+Student already added:		Jan,Nowak56,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4649,2000-02-12,56@pjwstk.edu.pl,Alina,Adam
+Student already added:		Jakub,Brzęczyszczykiewicz57,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4755,2000-02-12,57@pjwstk.edu.pl,Alina,Adam
+Student already added:		Karolina,Jankowski64,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4423,2000-02-12,64@pjwstk.edu.pl,Alina,Adam
+Student already added:		Magdalena,Nowak66,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4629,2000-02-12,66@pjwstk.edu.pl,Alina,Adam
+Student already added:		Paweł,Jankowski69,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4478,2000-02-12,69@pjwstk.edu.pl,Alina,Adam
+Student already added:		Kamil,Nowak71,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4741,2000-02-12,71@pjwstk.edu.pl,Alina,Adam
+Student already added:		Sandra,Brzęczyszczykiewicz77,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4800,2000-02-12,77@pjwstk.edu.pl,Alina,Adam
+Student already added:		Małgorzata,Maciejewski78,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4429,2000-02-12,78@pjwstk.edu.pl,Alina,Adam
+Student already added:		Klaudia,Jankowski84,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4849,2000-02-12,84@pjwstk.edu.pl,Alina,Adam
+Student already added:		Tomasz,Kowalski95,Sztuka Nowych Mediów dzienne,Dzienne,3374,2000-02-12,95@pjwstk.edu.pl,Alina,Adam
+One of column is blank:		Jolanta,Nowak96,Sztuka Nowych Mediów uzupełniające magisterskie,Dzienne,4756,2000-02-12,96@pjwstk.edu.pl,,
+Student already added:		Paweł,Brzęczyszczykiewicz252,Informatyka magisterskie 3 sem,Dzienne,4412,2000-02-12,252@pjwstk.edu.pl,Alina,Adam
 Student already added:		Kamil,Jankowski254,Informatyka zaoczne,Zaoczne,4836,2000-02-12,254@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Brz�czyszczykiewicz257,Informatyka magisterskie 3 sem,Dzienne,4454,2000-02-12,257@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Brzęczyszczykiewicz257,Informatyka magisterskie 3 sem,Dzienne,4454,2000-02-12,257@pjwstk.edu.pl,Alina,Adam
 Student already added:		Patryk,Maciejewski258,Informatyka dzienne po angielsku,Dzienne,4443,2000-02-12,258@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Kowalski260,Informatyka zaoczne,Zaoczne,4579,2000-02-12,260@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Kowalski260,Informatyka zaoczne,Zaoczne,4579,2000-02-12,260@pjwstk.edu.pl,Alina,Adam
 Student already added:		Zuzanna,Jankowski264,Informatyka dzienne po angielsku,Dzienne,4413,2000-02-12,264@pjwstk.edu.pl,Alina,Adam
 Student already added:		Wojciech,Nowak266,Informatyka magisterskie 3 sem,Dzienne,4554,2000-02-12,266@pjwstk.edu.pl,Alina,Adam
 Student already added:		Jakub,Kowalski270,Informatyka internetowe,Internetowe,4711,2000-02-12,270@pjwstk.edu.pl,Alina,Adam
 Student already added:		Jakub,Kowalski270,Informatyka magisterskie 3 sem,Dzienne,4711,2000-02-12,270@pjwstk.edu.pl,Alina,Adam
-Student already added:		Aleksandra,Brz�czyszczykiewicz272,Informatyka dzienne po angielsku,Dzienne,4549,2000-02-12,272@pjwstk.edu.pl,Alina,Adam
-Student already added:		Aleksandra,Brz�czyszczykiewicz272,Informatyka magisterskie 3 sem,Dzienne,4549,2000-02-12,272@pjwstk.edu.pl,Alina,Adam
+Student already added:		Aleksandra,Brzęczyszczykiewicz272,Informatyka dzienne po angielsku,Dzienne,4549,2000-02-12,272@pjwstk.edu.pl,Alina,Adam
+Student already added:		Aleksandra,Brzęczyszczykiewicz272,Informatyka magisterskie 3 sem,Dzienne,4549,2000-02-12,272@pjwstk.edu.pl,Alina,Adam
 Student already added:		Piotr,Maciejewski273,Informatyka magisterskie 3 sem,Dzienne,4618,2000-02-12,273@pjwstk.edu.pl,Alina,Adam
 Student already added:		Adrian,Jankowski274,Informatyka zaoczne,Zaoczne,4530,2000-02-12,274@pjwstk.edu.pl,Alina,Adam
 Student already added:		Andrzej,Kowalski275,Informatyka zaoczne,Zaoczne,4607,2000-02-12,275@pjwstk.edu.pl,Alina,Adam
 Student already added:		Wojciech,Nowak276,Informatyka zaoczne,Zaoczne,4459,2000-02-12,276@pjwstk.edu.pl,Alina,Adam
 Student already added:		Agata,Nowak281,Informatyka zaoczne,Zaoczne,4589,2000-02-12,281@pjwstk.edu.pl,Alina,Adam
 Student already added:		Agata,Nowak281,Informatyka internetowe,Internetowe,4589,2000-02-12,281@pjwstk.edu.pl,Alina,Adam
-Student already added:		Piotr,Maciejewski283,Informatyka magisterskie uzupe�niaj�ce zaoczne,Zaoczne,4556,2000-02-12,283@pjwstk.edu.pl,Alina,Adam
+Student already added:		Piotr,Maciejewski283,Informatyka magisterskie uzupełniające zaoczne,Zaoczne,4556,2000-02-12,283@pjwstk.edu.pl,Alina,Adam
 Student already added:		Grzegorz,Jankowski284,Informatyka magisterskie 3 sem,Dzienne,4504,2000-02-12,284@pjwstk.edu.pl,Alina,Adam
 Student already added:		Sebastian,Kowalski285,Informatyka magisterskie 3 sem,Dzienne,4505,2000-02-12,285@pjwstk.edu.pl,Alina,Adam
 Student already added:		Filip,Nowak286,Informatyka zaoczne,Zaoczne,4105,2000-02-12,286@pjwstk.edu.pl,Alina,Adam
@@ -50,10 +48,10 @@ Student already added:		Artur,Maciejewski288,Informatyka magisterskie 3 sem,Dzie
 Student already added:		Piotr,Jankowski289,Informatyka zaoczne,Zaoczne,4471,2000-02-12,289@pjwstk.edu.pl,Alina,Adam
 Student already added:		Piotr,Jankowski289,Informatyka dzienne po angielsku,Dzienne,4471,2000-02-12,289@pjwstk.edu.pl,Alina,Adam
 Student already added:		Tomasz,Jankowski294,Informatyka magisterskie 3 sem,Dzienne,4724,2000-02-12,294@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Nowak296,Informatyka zaoczne,Zaoczne,4769,2000-02-12,296@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Nowak296,Informatyka zaoczne,Zaoczne,4769,2000-02-12,296@pjwstk.edu.pl,Alina,Adam
 Student already added:		Jakub,Maciejewski298,Informatyka internetowe,Internetowe,4733,2000-02-12,298@pjwstk.edu.pl,Alina,Adam
 Student already added:		Kasper,Jankowski299,Informatyka magisterskie 3 sem,Dzienne,4584,2000-02-12,299@pjwstk.edu.pl,Alina,Adam
-Student already added:		Krzysztof,Kowalski300,Informatyka magisterskie uzupe�niaj�ce zaoczne,Zaoczne,4514,2000-02-12,300@pjwstk.edu.pl,Alina,Adam
+Student already added:		Krzysztof,Kowalski300,Informatyka magisterskie uzupełniające zaoczne,Zaoczne,4514,2000-02-12,300@pjwstk.edu.pl,Alina,Adam
 Student already added:		Katarzyna,Maciejewski303,Informatyka magisterskie 3 sem,Dzienne,4935,2000-02-12,303@pjwstk.edu.pl,Alina,Adam
 Student already added:		Piotr,Kowalski305,Informatyka magisterskie 3 sem,Dzienne,4456,2000-02-12,305@pjwstk.edu.pl,Alina,Adam
 Student already added:		Jan,Nowak306,Informatyka internetowe,Internetowe,4107,2000-02-12,306@pjwstk.edu.pl,Alina,Adam
@@ -61,43 +59,43 @@ Student already added:		Jan,Nowak306,Informatyka jednolite magisterskie,Dzienne,
 Student already added:		Jan,Nowak306,Informatyka jednolite magisterskie po angielsku,Dzienne,4107,2000-02-12,306@pjwstk.edu.pl,Alina,Adam
 Student already added:		Kacper,Maciejewski308,Informatyka magisterskie 3 sem,Dzienne,4817,2000-02-12,308@pjwstk.edu.pl,Alina,Adam
 Student already added:		Lech,Kowalski310,Informatyka dzienne po angielsku,Dzienne,4387,2000-02-12,310@pjwstk.edu.pl,Alina,Adam
-Student already added:		B�a�ej,Nowak311,Informatyka magisterskie uzupe�niaj�ce zaoczne,Zaoczne,4509,2000-02-12,311@pjwstk.edu.pl,Alina,Adam
-Student already added:		Pawe�,Maciejewski313,Informatyka zaoczne,Zaoczne,4481,2000-02-12,313@pjwstk.edu.pl,Alina,Adam
+Student already added:		Błażej,Nowak311,Informatyka magisterskie uzupełniające zaoczne,Zaoczne,4509,2000-02-12,311@pjwstk.edu.pl,Alina,Adam
+Student already added:		Paweł,Maciejewski313,Informatyka zaoczne,Zaoczne,4481,2000-02-12,313@pjwstk.edu.pl,Alina,Adam
 Student already added:		Wojciech,Jankowski314,Informatyka magisterskie 3 sem,Dzienne,4512,2000-02-12,314@pjwstk.edu.pl,Alina,Adam
-Student already added:		Maciej,Kowalski315,Informatyka Spo�eczna,Dzienne,4782,2000-02-12,315@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Kowalski320,Informatyka dzienne po angielsku,Dzienne,4627,2000-02-12,320@pjwstk.edu.pl,Alina,Adam
+Student already added:		Maciej,Kowalski315,Informatyka Społeczna,Dzienne,4782,2000-02-12,315@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Kowalski320,Informatyka dzienne po angielsku,Dzienne,4627,2000-02-12,320@pjwstk.edu.pl,Alina,Adam
 Student already added:		Krzysztof,Nowak321,Informatyka zaoczne,Zaoczne,4830,2000-02-12,321@pjwstk.edu.pl,Alina,Adam
 Student already added:		Mariusz,Maciejewski323,Informatyka magisterskie 3 sem,Dzienne,4447,2000-02-12,323@pjwstk.edu.pl,Alina,Adam
 Student already added:		Bartosz,Jankowski324,Informatyka magisterskie 3 sem,Dzienne,4580,2000-02-12,324@pjwstk.edu.pl,Alina,Adam
-Student already added:		Piotr,Kowalski325,Sztuka Nowych Medi�w zaoczne,Zaoczne,4284,2000-02-12,325@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Nowak326,Informatyka magisterskie 3 sem,Dzienne,4440,2000-02-12,326@pjwstk.edu.pl,Alina,Adam
-Student already added:		Pawe�,Jankowski329,Informatyka magisterskie 3 sem,Dzienne,4796,2000-02-12,329@pjwstk.edu.pl,Alina,Adam
-Student already added:		Nakul,Brz�czyszczykiewicz332,Informatyka magisterskie 3 sem,Dzienne,4942,2000-02-12,332@pjwstk.edu.pl,Alina,Adam
+Student already added:		Piotr,Kowalski325,Sztuka Nowych Mediów zaoczne,Zaoczne,4284,2000-02-12,325@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Nowak326,Informatyka magisterskie 3 sem,Dzienne,4440,2000-02-12,326@pjwstk.edu.pl,Alina,Adam
+Student already added:		Paweł,Jankowski329,Informatyka magisterskie 3 sem,Dzienne,4796,2000-02-12,329@pjwstk.edu.pl,Alina,Adam
+Student already added:		Nakul,Brzęczyszczykiewicz332,Informatyka magisterskie 3 sem,Dzienne,4942,2000-02-12,332@pjwstk.edu.pl,Alina,Adam
 Student already added:		Tomoto,Maciejewski333,Informatyka zaoczne,Zaoczne,4614,2000-02-12,333@pjwstk.edu.pl,Alina,Adam
 Student already added:		Adam,Kowalski335,Informatyka magisterskie 3 sem,Dzienne,4433,2000-02-12,335@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Maciejewski338,Informatyka magisterskie 3 sem,Dzienne,4419,2000-02-12,338@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Maciejewski338,Informatyka doktoranckie,Dzienne,4419,2000-02-12,338@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Maciejewski338,Informatyka magisterskie 3 sem,Dzienne,4419,2000-02-12,338@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Maciejewski338,Informatyka doktoranckie,Dzienne,4419,2000-02-12,338@pjwstk.edu.pl,Alina,Adam
 Student already added:		Adrian,Nowak341,Informatyka wieczorowe,Wieczorowe,4058,2000-02-12,341@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Brz�czyszczykiewicz342,Informatyka magisterskie 3 sem,Dzienne,4524,2000-02-12,342@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Brzęczyszczykiewicz342,Informatyka magisterskie 3 sem,Dzienne,4524,2000-02-12,342@pjwstk.edu.pl,Alina,Adam
 Student already added:		Jagoda,Maciejewski348,Informatyka magisterskie 3 sem,Dzienne,4532,2000-02-12,348@pjwstk.edu.pl,Alina,Adam
 Student already added:		Tomasz,Jankowski349,Informatyka magisterskie 3 sem,Dzienne,4480,2000-02-12,349@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Nowak351,Informatyka magisterskie 3 sem,Dzienne,4523,2000-02-12,351@pjwstk.edu.pl,Alina,Adam
-Student already added:		Bartosz,Brz�czyszczykiewicz352,Informatyka internetowe,Internetowe,4766,2000-02-12,352@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Nowak351,Informatyka magisterskie 3 sem,Dzienne,4523,2000-02-12,351@pjwstk.edu.pl,Alina,Adam
+Student already added:		Bartosz,Brzęczyszczykiewicz352,Informatyka internetowe,Internetowe,4766,2000-02-12,352@pjwstk.edu.pl,Alina,Adam
 Student already added:		Yuriy,Nowak356,Informatyka magisterskie 3 sem,Dzienne,4422,2000-02-12,356@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Brz�czyszczykiewicz357,Informatyka magisterskie 3 sem,Dzienne,4660,2000-02-12,357@pjwstk.edu.pl,Alina,Adam
-Student already added:		Miko�aj,Kowalski360,Informatyka jednolite magisterskie,Dzienne,3081,2000-02-12,360@pjwstk.edu.pl,Alina,Adam
-Student already added:		Miko�aj,Kowalski360,Informatyka jednolite magisterskie po angielsku,Dzienne,3081,2000-02-12,360@pjwstk.edu.pl,Alina,Adam
-Student already added:		Anna,Brz�czyszczykiewicz362,Informatyka internetowe,Internetowe,4385,2000-02-12,362@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Jankowski364,Informatyka dzienne po angielsku,Dzienne,4522,2000-02-12,364@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Brzęczyszczykiewicz357,Informatyka magisterskie 3 sem,Dzienne,4660,2000-02-12,357@pjwstk.edu.pl,Alina,Adam
+Student already added:		Mikołaj,Kowalski360,Informatyka jednolite magisterskie,Dzienne,3081,2000-02-12,360@pjwstk.edu.pl,Alina,Adam
+Student already added:		Mikołaj,Kowalski360,Informatyka jednolite magisterskie po angielsku,Dzienne,3081,2000-02-12,360@pjwstk.edu.pl,Alina,Adam
+Student already added:		Anna,Brzęczyszczykiewicz362,Informatyka internetowe,Internetowe,4385,2000-02-12,362@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Jankowski364,Informatyka dzienne po angielsku,Dzienne,4522,2000-02-12,364@pjwstk.edu.pl,Alina,Adam
 Student already added:		Karol,Nowak366,Informatyka magisterskie 3 sem,Dzienne,4518,2000-02-12,366@pjwstk.edu.pl,Alina,Adam
-Student already added:		Adrian,Brz�czyszczykiewicz367,Informatyka zaoczne,Zaoczne,4384,2000-02-12,367@pjwstk.edu.pl,Alina,Adam
-Student already added:		Adrian,Brz�czyszczykiewicz367,Informatyka internetowe,Internetowe,4384,2000-02-12,367@pjwstk.edu.pl,Alina,Adam
-Student already added:		�ukasz,Maciejewski368,Informatyka Spo�eczna,Dzienne,4496,2000-02-12,368@pjwstk.edu.pl,Alina,Adam
+Student already added:		Adrian,Brzęczyszczykiewicz367,Informatyka zaoczne,Zaoczne,4384,2000-02-12,367@pjwstk.edu.pl,Alina,Adam
+Student already added:		Adrian,Brzęczyszczykiewicz367,Informatyka internetowe,Internetowe,4384,2000-02-12,367@pjwstk.edu.pl,Alina,Adam
+Student already added:		Łukasz,Maciejewski368,Informatyka Społeczna,Dzienne,4496,2000-02-12,368@pjwstk.edu.pl,Alina,Adam
 Student already added:		Adam,Jankowski369,Informatyka zaoczne,Zaoczne,4750,2000-02-12,369@pjwstk.edu.pl,Alina,Adam
 Student already added:		Adam,Jankowski369,Informatyka internetowe,Internetowe,4750,2000-02-12,369@pjwstk.edu.pl,Alina,Adam
-Student already added:		Micha�,Brz�czyszczykiewicz372,Informatyka magisterskie 3 sem,Dzienne,4483,2000-02-12,372@pjwstk.edu.pl,Alina,Adam
+Student already added:		Michał,Brzęczyszczykiewicz372,Informatyka magisterskie 3 sem,Dzienne,4483,2000-02-12,372@pjwstk.edu.pl,Alina,Adam
 Student already added:		Tomasz,Maciejewski373,Informatyka magisterskie 3 sem,Dzienne,4751,2000-02-12,373@pjwstk.edu.pl,Alina,Adam
-Student already added:		Tomasz,Maciejewski373,MBA dla bran�y IT,Zaoczne,4751,2000-02-12,373@pjwstk.edu.pl,Alina,Adam
-Student already added:		Rados�aw,Jankowski374,Informatyka magisterskie 3 sem,Dzienne,4528,2000-02-12,374@pjwstk.edu.pl,Alina,Adam
-Student already added:		Przemys�aw,Nowak376,Informatyka zaoczne,Zaoczne,4814,2000-02-12,376@pjwstk.edu.pl,Alina,Adam
-Student already added:		Rafa�,Nowak381,Informatyka magisterskie 3 sem,Dzienne,4616,2000-02-12,381@pjwstk.edu.pl,Alina,Adam
+Student already added:		Tomasz,Maciejewski373,MBA dla branży IT,Zaoczne,4751,2000-02-12,373@pjwstk.edu.pl,Alina,Adam
+Student already added:		Radosław,Jankowski374,Informatyka magisterskie 3 sem,Dzienne,4528,2000-02-12,374@pjwstk.edu.pl,Alina,Adam
+Student already added:		Przemysław,Nowak376,Informatyka zaoczne,Zaoczne,4814,2000-02-12,376@pjwstk.edu.pl,Alina,Adam
+Student already added:		Rafał,Nowak381,Informatyka magisterskie 3 sem,Dzienne,4616,2000-02-12,381@pjwstk.edu.pl,Alina,Adam
