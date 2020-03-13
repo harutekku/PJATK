@@ -8,26 +8,27 @@ namespace cw2
     public class Student
     {
         [XmlElement(ElementName = "fname")]
-        [JsonProperty("fname")]
+        [JsonProperty("fname", Order = 2)]
         public string Imie { get; set; }
         [XmlElement(ElementName = "lname")]
-        [JsonProperty("lname")]
+        [JsonProperty("lname", Order = 3)]
         public string Nazwisko { get; set; }
         [XmlAttribute(AttributeName = "indexNumber")]
-        [JsonProperty("indexNumber")]
+        [JsonProperty("indexNumber",Order = 1)]
         public string Eska { get; set; }
         [XmlElement(ElementName = "birthdate")]
-        [JsonProperty("birthdate")]
+        [JsonProperty("birthdate", Order = 4)]
         public string DataUr { get; set; }
         [XmlElement(ElementName = "email")]
-        [JsonProperty("email")]
+        [JsonProperty("email", Order = 5)]
         public string Mail { get; set; }
         [XmlElement(ElementName = "mothersName")]
-        [JsonProperty("mothersName")]
+        [JsonProperty("mothersName", Order = 6)]
         public string ImieMatki { get; set; }
         [XmlElement(ElementName = "fathersName")]
-        [JsonProperty("fathersName")]
+        [JsonProperty("fathersName", Order = 7)]
         public string ImieOjca { get; set; }
+        [JsonProperty(Order = 8)]
         public Studies Studies { get; set; }
         public bool poprawnosc()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -40,7 +41,7 @@ namespace cw2
                 return;
             }
 
-            XMLBox box = new XMLBox
+            Box box = new Box
             {
                 createdAt = DateTime.Today.ToString("dd.MM.yyyy"),
                 author = "Jakub Pawłowicz"
@@ -93,11 +94,21 @@ namespace cw2
                 studiesList.Add(new NumberOfStudents { name = item.Key, numberOfStudents = item.Value });
             }
             box.activeStudents = studiesList;
-            FileStream writer = new FileStream(urlo, FileMode.Create);
-            XmlSerializer serializer = new XmlSerializer(typeof(XMLBox), new XmlRootAttribute("uczelnia"));
-            var XmlSerializerNamespaces = new XmlSerializerNamespaces();
-            XmlSerializerNamespaces.Add("", "");
-            serializer.Serialize(writer, box, XmlSerializerNamespaces);
+
+            if (format == "xml")
+            {
+                FileStream writer = new FileStream(urlo, FileMode.Create);
+                XmlSerializer serializer = new XmlSerializer(typeof(Box), new XmlRootAttribute("uczelnia"));
+                var XmlSerializerNamespaces = new XmlSerializerNamespaces();
+                XmlSerializerNamespaces.Add("", "");
+                serializer.Serialize(writer, box, XmlSerializerNamespaces);
+            }
+            else
+            {
+                var result = JsonConvert.SerializeObject(box, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(urlo, result);
+            }
+            
 
         }
     }

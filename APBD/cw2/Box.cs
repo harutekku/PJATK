@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace cw2
 {
     [Serializable]
-    public class XMLBox
+    public class Box
     {
         [XmlAttribute]
         [JsonProperty(Order = 1)]
