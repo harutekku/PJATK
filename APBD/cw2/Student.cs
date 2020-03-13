@@ -33,11 +33,7 @@ namespace cw2
         {
             return Imie.Length > 0 & Nazwisko.Length > 0 & Eska.Length > 0 & DataUr.Length > 0 & Mail.Length > 0 & ImieMatki.Length > 0 & ImieOjca.Length > 0;
         }
-        public string get()
-        {
-            return "getuje";
-        }
-        public override string ToString()
+        public override string ToString() //do testowania
         {
             return Imie + " " + Nazwisko + " " + Eska;
         }

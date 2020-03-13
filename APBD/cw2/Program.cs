@@ -81,7 +81,6 @@ namespace cw2
                 }
             }
             error.Dispose();
-            Console.WriteLine(box.studenci.Count);
             var studiesMap = new Dictionary<string, int>();
             foreach (var st in box.studenci)
             {
@@ -91,7 +90,6 @@ namespace cw2
             var studiesList = new List<NumberOfStudents>();
             foreach (var item in studiesMap)
             {
-                Console.WriteLine(item.Key + " " + item.Value);
                 studiesList.Add(new NumberOfStudents { name = item.Key, numberOfStudents = item.Value });
             }
             box.activeStudents = studiesList;
