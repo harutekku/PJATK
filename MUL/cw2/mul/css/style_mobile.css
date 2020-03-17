@@ -1,0 +1,13 @@
+#links, #search{
+    display: none;
+}
+#container, #lewakolumna, #prawakolumna{
+    width: 100%;
+}
+
+body{
+    font-size: 15px;;
+}
+#fota1{
+    max-width: 50%;
+}
