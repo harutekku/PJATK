@@ -8,6 +8,6 @@ namespace cw3.Services
 {
     public interface IDbService
     {
-        public IEnumerable<Student>
+        public IEnumerable<Student> GetStudents();
     }
 }
