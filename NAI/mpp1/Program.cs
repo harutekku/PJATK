@@ -15,10 +15,7 @@ namespace mpp1
             {
                 SCP p = new SCP(line);
                 list.Add(p);
-                if (keys.Add(p.type))
-                {
-                    Console.WriteLine("Dodano dopasowanie " + p.type);
-                }
+                keys.Add(p.type);
             }
             //Console.WriteLine("\nPodaj k");
             //int k = int.Parse(Console.ReadLine());
@@ -67,19 +64,14 @@ namespace mpp1
                             }
                         }
                     }
-                    foreach (double item in nearestDistance) Console.Write(item + " ");
-                    Console.WriteLine();
+                    //foreach (double item in nearestDistance) Console.Write(string.Format("{0:N2}", item) + " ");Console.WriteLine();
                     Dictionary<string, int> counter = new Dictionary<string, int>();
                     foreach (var item in nearestPoints)
                     {
                         if (counter.ContainsKey(item.type))
-                        {
                             counter[item.type]++;
-                        }
                         else
-                        {
                             counter.Add(item.type, 1);
-                        }
                     }
                     string mostPopularType = "";
                     int mostPopularNumber = 0;
@@ -97,9 +89,9 @@ namespace mpp1
                 }
                 Console.WriteLine("k= "+k+" " + correctAnswers);
             }
-            //for(int i = 0; i < 120; i++)
+            for(int i = 0; i < 120; i++)
             {
-                licz(2);
+                licz(i);
             }
 
         }
