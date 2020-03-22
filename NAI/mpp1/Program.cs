@@ -6,119 +6,92 @@ namespace mpp1
 {
     class Program
     {
+        public static Random rd = new Random(DateTime.Now.Millisecond);
         static void Main(string[] args)
         {
             List<SCP> list = new List<SCP>();
-            HashSet<string> keys = new HashSet<string>();
             string[] lines = File.ReadAllLines("..\\..\\..\\iris_training.txt");
             foreach (string line in lines)
             {
-                SCP p = new SCP(line);
+                SCP p = new SCP(line, true);
                 list.Add(p);
-                keys.Add(p.type);
             }
-            //Console.WriteLine("\nPodaj k");
-            //int k = int.Parse(Console.ReadLine());
-            void licz(int k)
+            Console.WriteLine("\nPodaj k");
+            int k = int.Parse(Console.ReadLine());
+            string[] newPoints = File.ReadAllLines("..\\..\\..\\iris_test.txt");
+            void przeliczDlaK(int k)
             {
-                int n = keys.Count;
                 int pointCounter = 0;
                 int correctAnswers = 0;
-
-                string[] newPoints = File.ReadAllLines("..\\..\\..\\iris_test.txt");
                 foreach (string line in newPoints)
                 {
-                    SCP point = new SCP(line);
-                    double[] nearestDistance = new double[k];
-                    for (int i = 0; i < k; i++) nearestDistance[i] = double.MaxValue;
-                    SCP[] nearestPoints = new SCP[k];
-                    double distance;
-                    foreach (var point2 in list)
-                    {
-                        distance = SCP.distance(point, point2);
-                        //Console.WriteLine("Dystans " + distance);
-                        /*for (int i = 0; i < k; i++)
-                        {
-                            if (distance < nearestDistance[i])
-                            {
-                                for (int j = k - 1; j > i; j--)
-                                {
-                                    nearestDistance[j] = nearestDistance[j - 1];
-                                    nearestPoints[j] = nearestPoints[j - i];
-                                }
-                                nearestDistance[i] = distance;
-                                nearestPoints[i] = point2;
-                            }
-                        }*/
-                        for (int i = k - 1; i >= 0; i--)
-                        {
-                            if (distance < nearestDistance[i])
-                            {
-                                if (i != k - 1)
-                                {
-                                    nearestDistance[i + 1] = nearestDistance[i];
-                                    nearestPoints[i + 1] = nearestPoints[i];
-                                }
-                                nearestDistance[i] = distance;
-                                nearestPoints[i] = point2;
-                            }
-                        }
-                    }
-                    //foreach (double item in nearestDistance) Console.Write(string.Format("{0:N2}", item) + " ");Console.WriteLine();
-                    Dictionary<string, int> counter = new Dictionary<string, int>();
-                    foreach (var item in nearestPoints)
-                    {
-                        if (counter.ContainsKey(item.type))
-                            counter[item.type]++;
-                        else
-                            counter.Add(item.type, 1);
-                    }
-                    string mostPopularType = "";
-                    int mostPopularNumber = 0;
-                    foreach (var item in counter)
-                    {
-                        if (mostPopularNumber < item.Value)
-                        {
-                            mostPopularNumber = item.Value;
-                            mostPopularType = item.Key;
-                        }
-                    }
-                    //Console.WriteLine("Wybrano typ " + mostPopularType + " a prawidłowym jest " + point.type);
+                    SCP point = new SCP(line, true);
+                    if (point.Nearest(list, k) == point.type) correctAnswers++;
                     pointCounter++;
-                    if (mostPopularType == point.type) correctAnswers++;
                 }
-                Console.WriteLine("k= "+k+" " + correctAnswers);
+                Console.WriteLine(string.Format("dla k: {0,3}, prawidłowo zakwalifikowano {1,2} czyli {2:N2}%", k, correctAnswers, correctAnswers / (double)pointCounter * 100));
             }
-            for(int i = 0; i < 120; i++)
+            //for(int i = 1; i <= list.Count; i++)przeliczDlaK(i);
+            przeliczDlaK(k);
+            while (true)
             {
-                licz(i);
+                Console.WriteLine("\nPodaj punkty ('z' dla wyjscia)");
+                try
+                {
+                    SCP myPoint = new SCP(Console.ReadLine(), false);
+                    Console.WriteLine("Wybrano typ: " + myPoint.Nearest(list, k));
+                }
+                catch (FormatException e) { return; }
             }
-
         }
     }
     public class SCP
     {
-        public double[] points;
+        public double[] points { get; set; }
         public string type;
-        public SCP(string line)
+        public SCP(string line, bool ifTest)
         {
-            char[] splits = new char[] { ' ', '\t' };
-            string[] element = line.Split(splits, StringSplitOptions.RemoveEmptyEntries);
-            points = new double[element.Length - 1];
-            for (int i = 0; i < element.Length - 1; i++)
-            {
-                points[i] = double.Parse(element[i]);
-            }
-            type = element[element.Length - 1];
+            string[] element = line.Split(new char[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+            int len;
+            if (ifTest) len = element.Length - 1;
+            else len = element.Length;
+            points = new double[len];
+            for (int i = 0; i < len; i++)points[i] = double.Parse(element[i]);
+            if (ifTest) type = element[element.Length - 1];
         }
-        public static double distance(SCP s1, SCP s2)
+        public double Distance(SCP s2)
         {
             double power = 0;
-            for (int i = 0; i < s1.points.Length; i++)
-            {
-                power += Math.Pow(s1.points[i] - s2.points[i], 2);
-            }
+            for (int i = 0; i < points.Length; i++) power += Math.Pow(points[i] - s2.points[i], 2);
             return power;
         }
+        public string Nearest(List<SCP> list, int k)
+        {
+            List<Tuple<SCP, double>> distance = new List<Tuple<SCP, double>>();
+            foreach (SCP Scp in list)
+            {
+                double dst = Distance(Scp);
+                distance.Add(new Tuple<SCP, double>(Scp, Distance(Scp)));
+            }
+            distance.Sort(new OwnComparator());
+            //foreach (Tuple<SCP,double> tuple in distance)Console.WriteLine(tuple.Item1.type + " " + tuple.Item2);
+            Dictionary<string, int> counter = new Dictionary<string, int>();
+            foreach (Tuple<SCP, double> tuple in distance.GetRange(0, k))
+            {
+                if (counter.ContainsKey(tuple.Item1.type)) counter[tuple.Item1.type]++;
+                else counter.Add(tuple.Item1.type, 1);
+            }
+            //foreach (var item in counter) Console.WriteLine(item.Key + " " + item.Value);Console.WriteLine();
+            int mostPopularNumber = 0;
+            foreach (var item in counter) if (mostPopularNumber < item.Value) mostPopularNumber = item.Value;
+            List<String> result = new List<string>();
+            foreach (var item in counter) if (mostPopularNumber == item.Value) result.Add(item.Key);
+            //foreach (var item in result)Console.WriteLine(item);
+            {
+                return result[Program.rd.Next(0, result.Count)];
+            }
+        }
     }
+    public class OwnComparator : IComparer<Tuple<SCP, double>>
+    {int IComparer<Tuple<SCP, double>>.Compare(Tuple<SCP, double> x, Tuple<SCP, double> y) { return (int)Math.Ceiling(x.Item2 - y.Item2); }}
 }
