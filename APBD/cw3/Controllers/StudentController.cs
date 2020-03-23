@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using cw3.Models;
@@ -20,6 +21,10 @@ namespace cw3.Controllers
         [HttpGet]
         public IActionResult getStudent(String orderby)
         {
+            using(var client=new SqlConnection("[Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True]"))
+            {
+
+            }
             return Ok(_dbService.GetStudents());
         }
         [HttpGet("{id}")]
@@ -34,6 +39,9 @@ namespace cw3.Controllers
                 return NotFound("nie znaleziono");
             }
         }
+
+
+
         [HttpPut("{id}")]
         public IActionResult PutStudent(int id)
         {
