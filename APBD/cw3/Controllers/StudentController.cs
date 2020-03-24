@@ -21,23 +21,59 @@ namespace cw3.Controllers
         [HttpGet]
         public IActionResult getStudent(String orderby)
         {
-            using(var client=new SqlConnection("[Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True]"))
+            var list = new List<Student>();
+            using (var client = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"))
+            using (var command = new SqlCommand())
             {
+                command.Connection = client;
+                command.CommandText = "select indexnumber, firstname, lastname, birthdate, name, semester from student s left join enrollment e on s.idenrollment=e.idenrollment left join studies st on e.idstudy=st.idstudy;";
+                client.Open();
+                var dr = command.ExecuteReader();
+                while (dr.Read())
+                {
+                    var st = new Student()
+                    {
+                        IndexNumber = dr["indexnumber"].ToString(),
+                        FirstName = dr["Firstname"].ToString(),
+                        LastName = dr["lastname"].ToString(),
+                        BirthDate = dr["birthdate"].ToString(),
+                        StudiesName = dr["name"].ToString(),
+                        Semester = dr["semester"].ToString()
+                    };
+                    list.Add(st);
+                }
 
             }
-            return Ok(_dbService.GetStudents());
+            return Ok(list);
         }
         [HttpGet("{id}")]
-        public IActionResult GetStudent(int id)
+        public IActionResult GetStudent(string id)
         {
-            if (id == 1)
+            var list = new List<Student>();
+            using (var client = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"))
+            using (var command = new SqlCommand())
             {
-                return Ok("Kowalski");
+                command.Connection = client;
+                command.CommandText = "select indexnumber, firstname, lastname, birthdate, name, semester from student s left join enrollment e on s.idenrollment=e.idenrollment left join studies st on e.idstudy=st.idstudy where indexNumber=@id;";
+                command.Parameters.AddWithValue("id", id);
+                client.Open();
+                var dr = command.ExecuteReader();
+                while (dr.Read())
+                {
+                    var st = new Student()
+                    {
+                        IndexNumber = dr["indexNumber"].ToString(),
+                        FirstName = dr["Firstname"].ToString(),
+                        LastName = dr["lastname"].ToString(),
+                        BirthDate = dr["birthdate"].ToString(),
+                        StudiesName = dr["name"].ToString(),
+                        Semester = dr["semester"].ToString()
+                    };
+                    list.Add(st);
+                }
+
             }
-            else
-            {
-                return NotFound("nie znaleziono");
-            }
+            return Ok(list);
         }
 
 

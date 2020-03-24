@@ -13,10 +13,10 @@ namespace cw3.Services
         {
             _students = new List<Student>
             {
-                new Student{IdStudent=1,FirstName="Jan",LastName="Man",IndexNumber="s1000" },
-                new Student{IdStudent=2,FirstName="Dzban",LastName="Cham",IndexNumber="s1001" },
-                new Student{IdStudent=3,FirstName="Kan",LastName="Ram",IndexNumber="s1002" },
-                new Student{IdStudent=4,FirstName="Lan",LastName="Pam",IndexNumber="s1003" }
+                new Student{FirstName="Jan",LastName="Man",IndexNumber="s1000" },
+                new Student{FirstName="Dzban",LastName="Cham",IndexNumber="s1001" },
+                new Student{FirstName="Kan",LastName="Ram",IndexNumber="s1002" },
+                new Student{FirstName="Lan",LastName="Pam",IndexNumber="s1003" }
             };
         }
 
