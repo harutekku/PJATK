@@ -9,7 +9,8 @@ namespace MPP2
         static void Main(string[] args)
         {
             List<SCP> trainingList = new List<SCP>(), testList = new List<SCP>(); ;
-            string[] trainingLines = File.ReadAllLines("..\\..\\..\\iris_training.txt"), testLines = File.ReadAllLines("..\\..\\..\\iris_test.txt"); ;
+            string[] trainingLines = File.ReadAllLines("..\\..\\..\\iris_training.txt"), testLines = File.ReadAllLines("..\\..\\..\\iris_test.txt");
+            //string[] testLines = File.ReadAllLines("..\\..\\..\\iris_training.txt"), trainingLines = File.ReadAllLines("..\\..\\..\\iris_test.txt");
             foreach (string line in trainingLines) { SCP p = new SCP(line, true); trainingList.Add(p); }
             foreach (string line in testLines) { SCP p = new SCP(line, true); testList.Add(p); }
             Perceptron magic = new Perceptron(trainingList[0].points.Length, "Iris-setosa", 0.5);
@@ -20,9 +21,8 @@ namespace MPP2
     {
         int input;
         double[] weight;
-        double theta;
+        double theta, learningConst;
         string type;
-        double learningConst;
         public Perceptron(int input, string type, double learningConst)
         {
             this.input = input;
@@ -57,11 +57,13 @@ namespace MPP2
         }
         public Perceptron test(List<SCP> list)
         {
+            //foreach(var waga in weight)Console.WriteLine(waga);
+            
             int correct = 0, all = 0, other = 0, allother = 0;
             foreach (SCP scp in list)
             {
-                if (calculateSum(scp) == 1) { if (scp.type == type) correct++; all++; }
-                else { if (scp.type != type) other++; allother++; }
+                if (scp.type == type) all++; else allother++;
+                if (calculateSum(scp) == 1) correct++; else other++;
             }
             Console.WriteLine(string.Format("Prawidłowo znaleziono {0,2} Iris-setosa czyli {1:N2}% wszystkich\nPrawidłowo odrzucono {2,3} innych czyli {3,11:N2}% wszystkich", correct, (double)correct / all * 100, other, (double)other / allother * 100));
             return this;
