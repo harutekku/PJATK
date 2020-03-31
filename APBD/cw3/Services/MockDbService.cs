@@ -1,4 +1,5 @@
-﻿using cw3.Models;
+﻿using cw3.DTOs.Requests;
+using cw3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,19 @@ namespace cw3.Services
             };
         }
 
+        public void EnrollStudent(EnrollStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
 
         public IEnumerable<Student> GetStudents()
         {
             return _students;
+        }
+
+        public void PromoteStudents(int semester, string studies)
+        {
+            throw new NotImplementedException();
         }
     }
 }

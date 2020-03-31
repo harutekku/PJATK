@@ -19,7 +19,7 @@ namespace cw3.Controllers
             _dbService = dbService;
         }
         [HttpGet]
-        public IActionResult getStudent(String orderby)
+        public IActionResult getStudent()
         {
             var list = new List<Student>();
             using (var client = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"))
@@ -36,14 +36,13 @@ namespace cw3.Controllers
                         IndexNumber = dr["indexnumber"].ToString(),
                         FirstName = dr["Firstname"].ToString(),
                         LastName = dr["lastname"].ToString(),
-                        BirthDate = dr["birthdate"].ToString(),
-                        StudiesName = dr["name"].ToString(),
-                        Semester = dr["semester"].ToString()
+                        BirthDate = DateTime.Parse(dr["birthdate"].ToString()),
+                        Studies = dr["name"].ToString()
                     };
                     list.Add(st);
                 }
 
-            }
+            }   
             return Ok(list);
         }
         [HttpGet("{id}")]
@@ -62,12 +61,11 @@ namespace cw3.Controllers
                 {
                     var st = new Student()
                     {
-                        IndexNumber = dr["indexNumber"].ToString(),
+                        IndexNumber = dr["indexnumber"].ToString(),
                         FirstName = dr["Firstname"].ToString(),
                         LastName = dr["lastname"].ToString(),
-                        BirthDate = dr["birthdate"].ToString(),
-                        StudiesName = dr["name"].ToString(),
-                        Semester = dr["semester"].ToString()
+                        BirthDate = DateTime.Parse(dr["birthdate"].ToString()),
+                        Studies = dr["name"].ToString()
                     };
                     list.Add(st);
                 }
