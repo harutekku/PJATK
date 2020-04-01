@@ -25,5 +25,10 @@ namespace cw3.Controllers
             var response=_service.EnrollStudent(request);
             return response;
         }
+        [HttpPost("promotions")]
+        public IActionResult PromoteStudents(PromotionRequest promotionRequest)
+        {
+            return _service.PromoteStudents(promotionRequest);
+        }
     }
 }

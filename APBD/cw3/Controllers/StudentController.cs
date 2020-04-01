@@ -21,6 +21,8 @@ namespace cw3.Controllers
         [HttpGet]
         public IActionResult getStudent()
         {
+            return Ok(_dbService.GetStudents());
+            /*
             var list = new List<Student>();
             using (var client = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"))
             using (var command = new SqlCommand())
@@ -44,6 +46,7 @@ namespace cw3.Controllers
 
             }   
             return Ok(list);
+            */
         }
         [HttpGet("{id}")]
         public IActionResult GetStudent(string id)

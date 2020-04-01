@@ -32,7 +32,7 @@ namespace cw3.Services
             return _students;
         }
 
-        public IActionResult PromoteStudents(int semester, string studies)
+        public IActionResult PromoteStudents(PromotionRequest request)
         {
             throw new NotImplementedException();
         }

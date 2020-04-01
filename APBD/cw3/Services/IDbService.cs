@@ -10,8 +10,8 @@ namespace cw3.Services
 {
     public interface IDbService
     {
-        public IEnumerable<Student> GetStudents();
+        IEnumerable<Student> GetStudents();
         IActionResult EnrollStudent(EnrollStudentRequest request);
-        IActionResult PromoteStudents(int semester, string studies);
+        IActionResult PromoteStudents(PromotionRequest request);
     }
 }

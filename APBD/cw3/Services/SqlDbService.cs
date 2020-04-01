@@ -1,5 +1,6 @@
 ﻿using cw3.Controllers;
 using cw3.DTOs.Requests;
+using cw3.DTOs.Responses;
 using cw3.Models;
 //using Microsoft.AspNetCore.Mvc;
 //using System.Net;
@@ -21,15 +22,6 @@ namespace cw3.Services
     {
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
-            var st = new Student()
-            {
-                IndexNumber = request.IndexNumber,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                BirthDate = request.Birthdate,
-                Studies = request.Studies
-            };
-            //string com = "select IdEnrollment, semester, s.IdStudy, s.IdStudy from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1";
             string com = "select IdStudy, Name from Studies where name=@name";
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
             {
@@ -50,10 +42,11 @@ namespace cw3.Services
                         int idstudies = (int)dr["IdStudy"];
                         dr.Close();
 
-                        command.CommandText = "select IdEnrollment, semester, s.IdStudy from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1";
+                        command.CommandText = "select IdEnrollment, semester, s.IdStudy, StartDate from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1;";
                         //command.Parameters.AddWithValue("name", request.Studies);
                         dr = command.ExecuteReader();
                         int idEnr;
+                        DateTime date;
                         if (!dr.Read())
                         {
                             dr.Close();
@@ -61,17 +54,19 @@ namespace cw3.Services
                             dr = command.ExecuteReader();
                             if (!dr.Read()) idEnr = 0;
                             else idEnr = (int)dr["max"];
+                            date = DateTime.Today;
                             dr.Close();
                             command.CommandText = "INSERT INTO Enrollment VALUES(@Id, @Semester, @IdStudy, @Sdate);";
                             command.Parameters.AddWithValue("Id", idEnr);
                             command.Parameters.AddWithValue("Semester", 1);
                             command.Parameters.AddWithValue("IdStudy", idstudies);
-                            command.Parameters.AddWithValue("Sdate", DateTime.Today);
+                            command.Parameters.AddWithValue("Sdate", date);
                             command.ExecuteNonQuery();
                         }
                         else
                         {
                             idEnr = (int)dr["IdEnrollment"];
+                            date = (DateTime)dr["StartDate"];
                             dr.Close();
                         }
                         command.CommandText = "SELECT IndexNumber from Student where IndexNumber=@index;";
@@ -95,10 +90,9 @@ namespace cw3.Services
                         {
                             LastName = request.LastName,
                             Semester = 1,
-                            StartDate = DateTime.Today
+                            StartDate = date
                         };
                         return Created("nie wiem co tu wpisać ale w postmanie dziala", response);
-                        return StatusCode(201, response);
 
                     }
                     catch (SqlException exc)
@@ -111,15 +105,52 @@ namespace cw3.Services
 
             }
         }
+        public IActionResult PromoteStudents(PromotionRequest request)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("", connection))
+            {
+                connection.Open();
+                command.CommandText = "select * from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=@semester;";
+                command.Parameters.AddWithValue("name", request.Studies);
+                command.Parameters.AddWithValue("semester", request.Semester);
+                var dr = command.ExecuteReader();
+                if (!dr.Read())
+                {
+                    dr.Close();
+                    return NotFound("Nie ma takiego semestru na podanych studiach");
+                }
+                dr.Close();
+                command.CommandText = "exec promote @name, @semester";
+                dr=command.ExecuteReader();
+                dr.Read();
+                var enrollment = new PromotionResponse()
+                {
+                    IdEnrollment = (int)dr["IdEnrollment"],
+                    Semester = (int)dr["Semester"],
+                    IdStudy = (int)dr["IdEnrollment"],
+                    StartDate = (DateTime)dr["StartDate"]
+                };
+                return Created("", enrollment);
 
+            }
+        }
         public IEnumerable<Student> GetStudents()
         {
-            throw new NotImplementedException();
-        }
-
-        public IActionResult PromoteStudents(int semester, string studies)
-        {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("SELECT * FROM Student", connection))
+            {
+                connection.Open();
+                var dr = command.ExecuteReader();
+                var list = new List<Student>();
+                while (dr.Read())
+                {
+                    var st = new Student(dr);
+                    list.Add(st);
+                }
+                dr.Close();
+                return list;
+            }
         }
     }
 }
