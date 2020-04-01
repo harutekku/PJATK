@@ -1,5 +1,6 @@
 ﻿using cw3.DTOs.Requests;
 using cw3.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace cw3.Services
             };
         }
 
-        public void EnrollStudent(EnrollStudentRequest request)
+        public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
             throw new NotImplementedException();
         }
@@ -31,7 +32,7 @@ namespace cw3.Services
             return _students;
         }
 
-        public void PromoteStudents(int semester, string studies)
+        public IActionResult PromoteStudents(int semester, string studies)
         {
             throw new NotImplementedException();
         }

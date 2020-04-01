@@ -22,14 +22,8 @@ namespace cw3.Controllers
         [HttpPost]
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
-            _service.EnrollStudent(request);
-            var response = new EnrollStudentResponse()
-            {
-                LastName = request.LastName,
-                Semester = 1,
-                StartDate = DateTime.Today
-            };
-            return Ok(response);
+            var response=_service.EnrollStudent(request);
+            return response;
         }
     }
 }

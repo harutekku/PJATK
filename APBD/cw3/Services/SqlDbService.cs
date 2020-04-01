@@ -1,59 +1,114 @@
-﻿using cw3.DTOs.Requests;
+﻿using cw3.Controllers;
+using cw3.DTOs.Requests;
 using cw3.Models;
+//using Microsoft.AspNetCore.Mvc;
+//using System.Net;
+//using System;
+//using System.Collections.Generic;
+//using System.Data.SqlClient;
+//using System.Linq;
+//using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace cw3.Services
 {
-    public class SqlDbService : IDbService
+    public class SqlDbService : Controller, IDbService
     {
-        public void EnrollStudent(EnrollStudentRequest request)
+        public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
             var st = new Student()
             {
                 IndexNumber = request.IndexNumber,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                BirthDate =  request.Birthdate,
+                BirthDate = request.Birthdate,
                 Studies = request.Studies
             };
-            using (var con = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"))
-            using (var com = new SqlCommand())
+            //string com = "select IdEnrollment, semester, s.IdStudy, s.IdStudy from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1";
+            string com = "select IdStudy, Name from Studies where name=@name";
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
             {
-                com.Connection = con;
-                con.Open();
-                SqlTransaction tran = con.BeginTransaction();
-                try
+                connection.Open();
+                using (var tran = connection.BeginTransaction())
+                using (var command = new SqlCommand(com, connection, tran))
                 {
-                    //1. Czy studia istnieja?
-                    com.CommandText = "select IdEnrollment, semester, s.IdStudy, s.IdStudy from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1";
-                    com.Parameters.AddWithValue("name", request.Studies);
-                    var dr = com.ExecuteReader();
-                    if (!dr.Read())
+                    try
+                    {
+                        command.Parameters.AddWithValue("name", request.Studies);
+                        var dr = command.ExecuteReader();
+                        if (!dr.Read())
+                        {
+                            dr.Close();
+                            tran.Rollback();
+                            return BadRequest("Studia nie istnieja");
+                        }
+                        int idstudies = (int)dr["IdStudy"];
+                        dr.Close();
+
+                        command.CommandText = "select IdEnrollment, semester, s.IdStudy from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1";
+                        //command.Parameters.AddWithValue("name", request.Studies);
+                        dr = command.ExecuteReader();
+                        int idEnr;
+                        if (!dr.Read())
+                        {
+                            dr.Close();
+                            command.CommandText = "select MAX(IdEnrollment)+1 as max from Enrollment;";
+                            dr = command.ExecuteReader();
+                            if (!dr.Read()) idEnr = 0;
+                            else idEnr = (int)dr["max"];
+                            dr.Close();
+                            command.CommandText = "INSERT INTO Enrollment VALUES(@Id, @Semester, @IdStudy, @Sdate);";
+                            command.Parameters.AddWithValue("Id", idEnr);
+                            command.Parameters.AddWithValue("Semester", 1);
+                            command.Parameters.AddWithValue("IdStudy", idstudies);
+                            command.Parameters.AddWithValue("Sdate", DateTime.Today);
+                            command.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            idEnr = (int)dr["IdEnrollment"];
+                            dr.Close();
+                        }
+                        command.CommandText = "SELECT IndexNumber from Student where IndexNumber=@index;";
+                        command.Parameters.AddWithValue("index", request.IndexNumber);
+                        dr = command.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            dr.Close();
+                            tran.Rollback();
+                            return BadRequest("Student index sie powtarza");
+                        }
+                        dr.Close();
+                        command.CommandText = "INSERT INTO Student VALUES(@Index, @Fname, @Lname, @Bdate, @Istudies);";
+                        command.Parameters.AddWithValue("Fname", request.FirstName);
+                        command.Parameters.AddWithValue("Lname", request.LastName);
+                        command.Parameters.AddWithValue("Bdate", request.Birthdate);
+                        command.Parameters.AddWithValue("Istudies", idEnr);
+                        command.ExecuteNonQuery();
+                        tran.Commit();
+                        var response = new EnrollStudentResponse()
+                        {
+                            LastName = request.LastName,
+                            Semester = 1,
+                            StartDate = DateTime.Today
+                        };
+                        return Created("nie wiem co tu wpisać ale w postmanie dziala", response);
+                        return StatusCode(201, response);
+
+                    }
+                    catch (SqlException exc)
                     {
                         tran.Rollback();
-                        // TODO dodawac nowe enrollmenty z dzisiejszą datą
-                        //return BadRequest("Studia nie istnieja");
+                        return BadRequest("Cos poszlo nie tak");
                     }
-                    int idstudies = (int)dr["IdStudy"];
-                    dr.Close();
-                    com.CommandText = "INSERT INTO Student VALUES(@Index, @Fname, @Lname, @Bdate, @Istudies)";
-                    com.Parameters.AddWithValue("index", request.IndexNumber);
-                    com.Parameters.AddWithValue("Fname", request.FirstName);
-                    com.Parameters.AddWithValue("Lname", request.LastName);
-                    com.Parameters.AddWithValue("Bdate", request.Birthdate.ToString());
-                    com.Parameters.AddWithValue("Istudies", idstudies);
-                    com.ExecuteNonQuery();
-                    tran.Commit();
+
                 }
-                catch (SqlException exc)
-                {
-                    tran.Rollback();
-                    Console.Error.WriteLine(exc.Message);
-                }
+
             }
         }
 
@@ -62,7 +117,7 @@ namespace cw3.Services
             throw new NotImplementedException();
         }
 
-        public void PromoteStudents(int semester, string studies)
+        public IActionResult PromoteStudents(int semester, string studies)
         {
             throw new NotImplementedException();
         }
