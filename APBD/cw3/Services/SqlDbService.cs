@@ -2,14 +2,6 @@
 using cw3.DTOs.Requests;
 using cw3.DTOs.Responses;
 using cw3.Models;
-//using Microsoft.AspNetCore.Mvc;
-//using System.Net;
-//using System;
-//using System.Collections.Generic;
-//using System.Data.SqlClient;
-//using System.Linq;
-//using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -43,7 +35,6 @@ namespace cw3.Services
                         dr.Close();
 
                         command.CommandText = "select IdEnrollment, semester, s.IdStudy, StartDate from Enrollment e left join Studies s on e.IdStudy=s.IdStudy where name=@name and semester=1;";
-                        //command.Parameters.AddWithValue("name", request.Studies);
                         dr = command.ExecuteReader();
                         int idEnr;
                         DateTime date;

@@ -22,8 +22,7 @@ namespace cw3.Controllers
         [HttpPost]
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
-            var response=_service.EnrollStudent(request);
-            return response;
+            return _service.EnrollStudent(request);
         }
         [HttpPost("promotions")]
         public IActionResult PromoteStudents(PromotionRequest promotionRequest)
