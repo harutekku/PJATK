@@ -28,7 +28,7 @@ public class Time {
         } catch (DateTimeParseException e) {
             return "*** " + e;
         }
-        days = DAYS.between(fromD, tod);
+        days = DAYS.between(fromD.toLocalDate(), tod.toLocalDate());
         String formatDay = days == 1 ? " dzień" : " dni";
         weeks = (double) days / 7 % 1 == 0 ? (int) days / 7 : (double) days / 7;
         Double weekCountRounded = BigDecimal.valueOf(weeks).setScale(2, RoundingMode.HALF_UP)
