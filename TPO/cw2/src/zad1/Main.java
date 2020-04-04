@@ -24,6 +24,7 @@ public class Main{
 		JPanel jPanel1=new JPanel(), jPanel2=new JPanel(new GridLayout(3,1));
 		JTextArea jTextArea1=new JTextArea("Weather: "+weatherJson), jTextArea2=new JTextArea("Rate: "+rate1.toString()), jTextArea3=new JTextArea("NBP rate:"+rate2.toString());
 		jTextArea1.setEditable(false);
+		jTextArea1.setLineWrap(true);
 		jTextArea2.setEditable(false);
 		jTextArea3.setEditable(false);
 		JFXPanel jfxPanel=new JFXPanel();

@@ -35,9 +35,10 @@ public class Service{
 		try{
 			this.city=city;
 			String all=JsonToString(new URL("https://api.openweathermap.org/data/2.5/weather?q="+city+","+this.code+"&appid=c19989cd8c67fcc28b5812fc46ffce4e"));
-			String description=new JSONObject(all).getJSONArray("weather").getJSONObject(0).getString("description");
-			String temperature=String.valueOf(new JSONObject(all).getJSONObject("main").getDouble("temp")-272.15);
-			return "Description: "+description+", Temperature: "+temperature;
+			//String description=new JSONObject(all).getJSONArray("weather").getJSONObject(0).getString("description");
+			//String temperature=String.valueOf(new JSONObject(all).getJSONObject("main").getDouble("temp")-272.15);
+			//return "Description: "+description+", Temperature: "+temperature;
+			return all;
 		}catch(IOException e){
 			System.err.println("Bad city");
 		}
