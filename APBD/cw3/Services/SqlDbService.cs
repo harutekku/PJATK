@@ -143,5 +143,24 @@ namespace cw3.Services
                 return list;
             }
         }
+
+        public bool checkIndex(string index)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("SELECT * FROM Student where IndexNumber=@index", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("index", index);
+                var dr = command.ExecuteReader();
+                if (!dr.Read())
+                {
+                    dr.Close();
+                    return false;
+                }
+                dr.Close();
+                return true;
+
+            }
+        }
     }
 }

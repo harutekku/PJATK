@@ -22,6 +22,11 @@ namespace cw3.Services
             };
         }
 
+        public bool checkIndex(string index)
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
             throw new NotImplementedException();

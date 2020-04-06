@@ -13,5 +13,7 @@ namespace cw3.Services
         IEnumerable<Student> GetStudents();
         IActionResult EnrollStudent(EnrollStudentRequest request);
         IActionResult PromoteStudents(PromotionRequest request);
+
+        bool checkIndex(string index);
     }
 }
