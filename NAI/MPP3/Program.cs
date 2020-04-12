@@ -9,7 +9,8 @@ namespace MPP3
     {
         static void Main(string[] args)
         {
-            string[] allfiles = Directory.GetFiles("..\\..\\..\\lang", "*.txt*", SearchOption.AllDirectories);
+            Console.OutputEncoding = Encoding.ASCII;
+            //string[] allfiles = Directory.GetFiles("..\\..\\..\\lang", "*.txt*", SearchOption.AllDirectories);
             string[] dirs = Directory.GetDirectories("..\\..\\..\\lang");
             List<Lang> langs = new List<Lang>();
             //Lang[] langs = new Lang[dirs.Length];
@@ -27,10 +28,9 @@ namespace MPP3
             Perceptron[] perceptrons = new Perceptron[dirs.Length];
             for (int i = 0; i < perceptrons.Length; i++)
             {
-                perceptrons[i] = new Perceptron(dirs[i], 0.5);
+                perceptrons[i] = new Perceptron(dirs[i], 0.001);
                 perceptrons[i].learn(langs);
             }
-
             while (true)
             {
                 Console.WriteLine("\nPodaj tekst (ctrl c dla wyjscia)");
@@ -56,7 +56,8 @@ namespace MPP3
         public LangSample[] langSamples { get; set; }
         public Lang(string lang)
         {
-            this.lang = lang;
+            string[] l = lang.Split('\\');
+            this.lang = l[l.Length-1];
             this.samples = Directory.GetFiles(lang, "*.txt");
             langSamples = new LangSample[this.samples.Length];
             for (int i = 0; i < samples.Length; i++)
@@ -80,21 +81,31 @@ namespace MPP3
     }
     public class LangSample
     {
-        public int[] letters { get; set; }
+        public double[] letters { get; set; }
         public LangSample(string text)
         {
-            letters = new int['z' - 'a' + 1];
+            text = text.ToLower();
+            letters = new double['z' - 'a' + 1];
+            int counter = 0;
             for (int i = 0; i < letters.Length; i++)
             {
                 letters[i] = 0;
             }
-            foreach (char charek in text.ToLower())
+            foreach (char charek in text)
             {
                 if (charek >= 'a' && charek <= 'z')
                 {
                     letters[charek - 'a']++;
+                    counter++;
                 }
             }
+            for (int i = 0; i < letters.Length; i++)
+            {
+                letters[i] /= counter;
+                letters[i] *= 100;
+                //Console.Write(string.Format("{0:N2}", letters[i]) + " ");
+            }
+            //Console.WriteLine();
         }
     }
     public class Perceptron
@@ -106,10 +117,11 @@ namespace MPP3
         public Perceptron(string lang, double learningConst)
         {
             this.input = 'Z' - 'A';
-            this.lang = lang;
+            string[] l = lang.Split('\\');
+            this.lang = l[l.Length - 1];
             this.weight = new double[input];
             this.theta = 1;
-            this.learningConst = learningConst <= 0 ? 0.5 : learningConst > 10 ? 0.5 : learningConst;
+            this.learningConst = learningConst <= 0 ? 0.5 : learningConst > 1 ? 0.5 : learningConst;
             Random random = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i < this.input; i++) weight[i] = random.Next(1);
         }
@@ -132,12 +144,14 @@ namespace MPP3
                         for (int k = 0; k < input; k++) weight[k] = weight[k] + learningConst * list[i].langSamples[j].letters[k] * (equal ? (1 - sum) : sum * -1);
                         theta += (1 - sum) * learningConst;
                         sum = calculateSum(list[i].langSamples[j]);
-                        Console.Write(lang+" "+j+" ");
+
+                        /*Console.Write(lang + " " + j + " " + theta + " ");
                         foreach (var item in weight)
                         {
-                            Console.Write(item + " ");
+                            Console.Write(string.Format("{0:N1}", item) + " ");
                         }
-                        Console.WriteLine();
+                        Console.WriteLine();*/
+
                     }
                     //for (int k = 0; k < j; k++) if ((list[j].lang == lang && calculateSum(list[j].langSamples[k]) == 0) || (list[j].lang != lang && calculateSum(list[j].langSamples[k]) == 1)) j = 0;
                 }
