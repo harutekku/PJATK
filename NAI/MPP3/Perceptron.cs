@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System;
 using System.Collections.Generic;
 
 namespace MPP3
@@ -25,36 +26,41 @@ namespace MPP3
         {
             double sum = 0;
             for (int i = 0; i < input; i++) sum += lang.letters[i] * weight[i];
-            return sum > theta ? 1 : 0;
+            return sum;
         }
         public Perceptron learn(List<LangSample> list)
         {
             for (int i = 0; i < list.Count; i++)
             {
-                double sum = calculateSum(list[i]);
                 bool equal = list[i].lang == lang;
-                //Console.WriteLine(list[i].lang == lang);
-                while (sum == (equal ? 0 : 1))
-                //do
+                double sum = calculateSum(list[i]);
+                bool pctResponse = sum >= theta;
+                while (pctResponse != equal)
                 {
-                    for (int k = 0; k < input; k++) weight[k] = weight[k] + learningConst * list[i].letters[k] * (equal ? (1 - sum) : sum * -1);
-                    theta += (1 - sum) * learningConst;
+                    for (int k = 0; k < input; k++) weight[k] += learningConst * list[i].letters[k] * ((equal ? 1 : 0) - (pctResponse ? 1 : 0));
+                    theta += learningConst * ((equal ? 1 : 0) - (pctResponse ? 1 : 0));
+                    pctResponse = sum >= theta;
                     sum = calculateSum(list[i]);
-
-                    //Console.WriteLine(string.Format("{0,10} eq: {1,5} sum: {2} sample: {3}", lang, equal, sum, i));
-                    //foreach (var item in weight) Console.Write(string.Format("{0:N2}", item) + " ");
-                    //Console.WriteLine();
-                    //} while (sum == (equal ? 0 : 1));
+                    //Console.WriteLine(string.Format("{0,10}\tsample: {3,2},\tprobka: {1,10}\twynik z probki: {2,5}\ttheta: {4,5:N3}", lang, list[i].lang, pctResponse, i, theta));
+                    //foreach (var item in weight) Console.Write(string.Format("{0,5:N2}", item) + " ");
+                    //Console.WriteLine("\n");    
                 }
-                int error = 0;
-                for (int k = 0; k < i; k++) if ((list[i].lang == lang && calculateSum(list[i]) == 0) || (list[i].lang != lang && calculateSum(list[i]) == 1)) i = 0;
-                //Console.WriteLine(error);
+
+                for (int k = 0; k < i; k++) if ((list[i].lang == lang && calculateSum(list[i]) == 0) || (list[i].lang != lang && calculateSum(list[i]) == 1))
+                    {
+                        Console.WriteLine("Back");
+                        i = 0;
+                    }
             }
             return this;
         }
-        public bool testOne(string text)
+        public bool testOne(LangSample test)
         {
-            return calculateSum(new LangSample(text, "test")) == 1;
+            return calculateSum(test) >= theta;
+        }
+        public double getSum(LangSample test)
+        {
+            return calculateSum(test);
         }
     }
 }
