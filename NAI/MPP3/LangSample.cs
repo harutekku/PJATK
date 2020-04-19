@@ -26,9 +26,10 @@ namespace MPP3
             double euklides = 0;
             for (int i = 0; i < length; i++)
             {
-                euklides += letters[i]*letters[i];
+                euklides += letters[i] * letters[i];
             }
-                for (int i = 0; i < length; i++)
+            //euklides = Math.Sqrt(euklides);
+            for (int i = 0; i < length; i++)
             {
                 letters[i] /= counter;
                 //letters[i] *= 10.0;
