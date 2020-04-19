@@ -23,10 +23,16 @@ namespace MPP3
                 }
             }
             //Console.WriteLine();
+            double euklides = 0;
             for (int i = 0; i < length; i++)
             {
+                euklides += letters[i]*letters[i];
+            }
+                for (int i = 0; i < length; i++)
+            {
                 letters[i] /= counter;
-                letters[i] *= 10.0;
+                //letters[i] *= 10.0;
+                letters[i] *= euklides;
             }
         }
     }
