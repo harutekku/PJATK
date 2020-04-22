@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace cw3.Services
@@ -13,7 +14,8 @@ namespace cw3.Services
         IEnumerable<Student> GetStudents();
         IActionResult EnrollStudent(EnrollStudentRequest request);
         IActionResult PromoteStudents(PromotionRequest request);
-
         bool checkIndex(string index);
+        bool checkCredentials(string index, string password);
+        IEnumerable<Claim> GetClaims(string index);
     }
 }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Net;
+using System.Security.Claims;
 
 namespace cw3.Services
 {
@@ -47,7 +48,7 @@ namespace cw3.Services
                             else idEnr = (int)dr["max"];
                             date = DateTime.Today;
                             dr.Close();
-                            command.CommandText = "INSERT INTO Enrollment VALUES(@Id, @Semester, @IdStudy, @Sdate);";
+                            command.CommandText = "INSERT INTO Enrollment (IdEnrollment, Semester, IdStudy, StartDate) VALUES(@Id, @Semester, @IdStudy, @Sdate);";
                             command.Parameters.AddWithValue("Id", idEnr);
                             command.Parameters.AddWithValue("Semester", 1);
                             command.Parameters.AddWithValue("IdStudy", idstudies);
@@ -70,7 +71,7 @@ namespace cw3.Services
                             return BadRequest("Student index sie powtarza");
                         }
                         dr.Close();
-                        command.CommandText = "INSERT INTO Student VALUES(@Index, @Fname, @Lname, @Bdate, @Istudies);";
+                        command.CommandText = "INSERT INTO Student (IndexNumber, FirstName, LastName, BirthDate, IdEnrollment) VALUES(@Index, @Fname, @Lname, @Bdate, @Istudies);";
                         command.Parameters.AddWithValue("Fname", request.FirstName);
                         command.Parameters.AddWithValue("Lname", request.LastName);
                         command.Parameters.AddWithValue("Bdate", request.Birthdate);
@@ -160,6 +161,41 @@ namespace cw3.Services
                 dr.Close();
                 return true;
 
+            }
+        }
+
+        public bool checkCredentials(string index, string password)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("SELECT * FROM Student where IndexNumber=@index and password=@password", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("index", index);
+                command.Parameters.AddWithValue("password", password);
+                var dr = command.ExecuteReader();
+                bool result = dr.Read();
+                dr.Close();
+                return result;
+            }
+        }
+
+        public IEnumerable<Claim> GetClaims(string index)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("select Role from student s left join StudentRoles sr on s.IndexNumber=sr.IndexNumber left join roles r on sr.idRole=r.IdRole where IndexNumber=@index;", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("index", index);
+                var dr = command.ExecuteReader();
+                var list = new List<Claim>();
+                list.Add(new Claim(ClaimTypes.Name, index));
+                while (dr.Read())
+                {
+                    var claim = new Claim(ClaimTypes.Role, dr["Role"].ToString());
+                    list.Add(claim);
+                }
+                dr.Close();
+                return list;
             }
         }
     }

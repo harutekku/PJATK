@@ -25,3 +25,62 @@ New request: poniedziałek, 6 kwietnia 2020	11:32:40
 		laslo
 	QueryString:
 		?jakies=query&maslo=hehe
+New request: środa, 22 kwietnia 2020	14:50:23
+	Method: GET
+	Route: /api/enrollments
+	Body:
+		maslo
+		spaslo
+		laslo
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:52:14
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1010",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:53:24
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1010",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:55:06
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:56:03
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		

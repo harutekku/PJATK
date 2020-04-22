@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace cw3.Services
@@ -22,12 +23,22 @@ namespace cw3.Services
             };
         }
 
+        public bool checkCredentials(string index, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool checkIndex(string index)
         {
             throw new NotImplementedException();
         }
 
         public IActionResult EnrollStudent(EnrollStudentRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Claim> GetClaims(string index)
         {
             throw new NotImplementedException();
         }
