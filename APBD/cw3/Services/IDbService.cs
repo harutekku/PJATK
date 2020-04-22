@@ -17,5 +17,7 @@ namespace cw3.Services
         bool checkIndex(string index);
         bool checkCredentials(string index, string password);
         IEnumerable<Claim> GetClaims(string index);
+        IEnumerable<Claim> CheckTokenGiveClaims(string token);
+        void saveToken(Guid token, string indexNumber);
     }
 }

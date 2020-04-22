@@ -48,3 +48,11 @@ insert into StudentRoles (IndexNumber,idRole) values ('s1000',1),('s1000',2),('s
 insert into StudentRoles (IndexNumber,idRole) values ('s1000',4);
 
 select * from student s left join StudentRoles sr on s.IndexNumber=sr.IndexNumber left join roles r on sr.idRole=r.IdRole;
+
+create table Tokens (
+    IdToken int not null primary key,
+    TokenValue nvarchar(36) not null,
+    IndexNumber nvarchar(100) foreign key references Student(IndexNumber)
+    );
+
+select * from Tokens;

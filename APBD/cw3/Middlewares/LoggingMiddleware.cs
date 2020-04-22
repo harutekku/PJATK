@@ -17,6 +17,7 @@ namespace cw3.Middlewares
         }
         public async Task InvokeAsync(HttpContext httpContext)
         {
+            httpContext.Request.EnableBuffering();
             using (StreamWriter streamWriter = File.AppendText("Middlewares\\log.txt"))
             {
                 var bodyStream = new StringBuilder();
@@ -33,6 +34,7 @@ namespace cw3.Middlewares
                 streamWriter.Write($"\tMethod: {httpContext.Request.Method}\n\tRoute: {httpContext.Request.Path}\n\tBody:\n{bodyStream}");
                 streamWriter.Write($"\tQueryString:\n\t\t{httpContext.Request.QueryString.ToString()}\n");
             }
+            httpContext.Request.Body.Seek(0, SeekOrigin.Begin);
             await _next(httpContext);
         }
 

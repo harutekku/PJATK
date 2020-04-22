@@ -33,6 +33,11 @@ namespace cw3.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Claim> CheckTokenGiveClaims(string token)
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
             throw new NotImplementedException();
@@ -49,6 +54,11 @@ namespace cw3.Services
         }
 
         public IActionResult PromoteStudents(PromotionRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void saveToken(Guid token, string IndexNumber)
         {
             throw new NotImplementedException();
         }

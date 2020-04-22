@@ -182,7 +182,7 @@ namespace cw3.Services
         public IEnumerable<Claim> GetClaims(string index)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
-            using (var command = new SqlCommand("select Role from student s left join StudentRoles sr on s.IndexNumber=sr.IndexNumber left join roles r on sr.idRole=r.IdRole where IndexNumber=@index;", connection))
+            using (var command = new SqlCommand("select * from student s left join StudentRoles sr on s.IndexNumber=sr.IndexNumber left join roles r on sr.idRole=r.IdRole where s.IndexNumber=@index;", connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("index", index);
@@ -196,6 +196,23 @@ namespace cw3.Services
                 }
                 dr.Close();
                 return list;
+            }
+        }
+
+        public IEnumerable<Claim> CheckTokenGiveClaims(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void saveToken(Guid token, string IndexNumber)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("insert into Tokens(IdToken,TokenValue,IndexNumber) values ((select isnull(max(IdToken)+1,1) from Tokens),@token,@index);", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("index", IndexNumber);
+                command.Parameters.AddWithValue("token", token);
+                command.ExecuteNonQuery();
             }
         }
     }
