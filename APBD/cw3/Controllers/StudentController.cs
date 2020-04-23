@@ -52,8 +52,6 @@ namespace cw3.Controllers
             return Ok(list);
         }
 
-
-
         [HttpPut("{id}")]
         public IActionResult PutStudent(int id)
         {

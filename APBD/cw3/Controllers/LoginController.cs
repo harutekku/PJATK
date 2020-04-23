@@ -47,23 +47,31 @@ namespace cw3.Controllers
                 refreshToken
             });
         }
-        [HttpPost("refresh/{token}")]
+        [HttpPost("refresh/{refreshtoken}")]
         public IActionResult RefreshToken(string refreshToken)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(
-                issuer: "kubbit",
-                audience: "Students",
-                //claims: claims,
-                expires: DateTime.Now.AddMinutes(100),
-                signingCredentials: creds
-            );
-            return Ok(new
+            try
             {
-                accesstoken = new JwtSecurityTokenHandler().WriteToken(token),
-                refreshToken = Guid.NewGuid()
-            });
+                var claims = _service.CheckTokenGiveClaims(refreshToken);
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                var token = new JwtSecurityToken(
+                    issuer: "kubbit",
+                    audience: "Students",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(100),
+                    signingCredentials: creds
+                );
+                return Ok(new
+                {
+                    accesstoken = new JwtSecurityTokenHandler().WriteToken(token),
+                    refreshToken
+                });
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized("Fake refresh token");
+            }
         }
     }
 }

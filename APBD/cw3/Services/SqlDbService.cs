@@ -87,7 +87,7 @@ namespace cw3.Services
                         return Created("nie wiem co tu wpisać ale w postmanie dziala", response);
 
                     }
-                    catch (SqlException exc)
+                    catch (SqlException)
                     {
                         tran.Rollback();
                         return BadRequest("Cos poszlo nie tak");
@@ -201,7 +201,28 @@ namespace cw3.Services
 
         public IEnumerable<Claim> CheckTokenGiveClaims(string token)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("select * from Tokens where TokenValue=@token order by IdToken desc;", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("token", token);
+                var dr = command.ExecuteReader();
+                if (!dr.Read()) throw new UnauthorizedAccessException();
+                string index = dr["IndexNumber"].ToString();
+                dr.Close();
+                command.CommandText = "select * from student s left join StudentRoles sr on s.IndexNumber=sr.IndexNumber left join roles r on sr.idRole=r.IdRole where s.IndexNumber=@index;";
+                command.Parameters.AddWithValue("index", index);
+                var list = new List<Claim>();
+                list.Add(new Claim(ClaimTypes.Name, index));
+                dr = command.ExecuteReader();
+                while (dr.Read())
+                {
+                    var claim = new Claim(ClaimTypes.Role, dr["Role"].ToString());
+                    list.Add(claim);
+                }
+                dr.Close();
+                return list;
+            }
         }
 
         public void saveToken(Guid token, string IndexNumber)

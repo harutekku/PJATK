@@ -729,3 +729,126 @@ New request: czwartek, 23 kwietnia 2020	00:15:27
 		
 	QueryString:
 		
+New request: czwartek, 23 kwietnia 2020	08:58:02
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:59:21
+	Method: GET
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:59:43
+	Method: GET
+	Route: /api/login/refresh/
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:59:50
+	Method: GET
+	Route: /api/login/refresh/asd
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:00:10
+	Method: POST
+	Route: /api/login/refresh/asd
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:00:29
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:32
+	Method: POST
+	Route: /api/login/refresh/aedb819-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:36
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:45
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:46
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:46
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:47
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:47
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:48
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:49
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:49
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:51
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
