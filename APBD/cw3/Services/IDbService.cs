@@ -19,5 +19,6 @@ namespace cw3.Services
         IEnumerable<Claim> GetClaims(string index);
         IEnumerable<Claim> CheckTokenGiveClaims(string token);
         void saveToken(Guid token, string indexNumber);
+        void passwordToHash(string index, string password, string salt, string hash);
     }
 }

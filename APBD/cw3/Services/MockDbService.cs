@@ -53,6 +53,11 @@ namespace cw3.Services
             return _students;
         }
 
+        public void passwordToHash(string index, string password, string salt, string hash)
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult PromoteStudents(PromotionRequest request)
         {
             throw new NotImplementedException();

@@ -852,3 +852,143 @@ New request: czwartek, 23 kwietnia 2020	09:01:51
 		
 	QueryString:
 		
+New request: czwartek, 23 kwietnia 2020	10:36:38
+	Method: GET
+	Route: /api/login/resetPassword
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:36:49
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:37:17
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		----------------------------136208916239454252998827
+		Content-Disposition: form-data; name="index"
+		
+		s1000
+		----------------------------136208916239454252998827
+		Content-Disposition: form-data; name="password"
+		
+		maslo
+		----------------------------136208916239454252998827--
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:37:49
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:20
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:32
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:37
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:45
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:05:59
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:06:36
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:07:13
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:07:20
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"masloo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:07:24
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		

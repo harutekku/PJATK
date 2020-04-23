@@ -114,7 +114,7 @@ namespace cw3.Services
                 }
                 dr.Close();
                 command.CommandText = "exec promote @name, @semester";
-                dr=command.ExecuteReader();
+                dr = command.ExecuteReader();
                 dr.Read();
                 var enrollment = new PromotionResponse()
                 {
@@ -167,13 +167,15 @@ namespace cw3.Services
         public bool checkCredentials(string index, string password)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
-            using (var command = new SqlCommand("SELECT * FROM Student where IndexNumber=@index and password=@password", connection))
+            using (var command = new SqlCommand("SELECT * FROM Student where IndexNumber=@index;", connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("index", index);
-                command.Parameters.AddWithValue("password", password);
                 var dr = command.ExecuteReader();
-                bool result = dr.Read();
+                if (!dr.Read()) throw new UnauthorizedAccessException();
+                string salt = dr["salt"].ToString();
+                string hash = LoginController.CreatePassHash(password, salt);
+                bool result = dr["password"].ToString() == hash;
                 dr.Close();
                 return result;
             }
@@ -233,6 +235,24 @@ namespace cw3.Services
                 connection.Open();
                 command.Parameters.AddWithValue("index", IndexNumber);
                 command.Parameters.AddWithValue("token", token);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void passwordToHash(string index, string password, string salt, string hash)
+        {
+            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
+            using (var command = new SqlCommand("SELECT * FROM Student where IndexNumber=@index;", connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("index", index);
+                var dr = command.ExecuteReader();
+                if (!dr.Read()) throw new UnauthorizedAccessException();
+                if (dr["password"].ToString() != password) throw new UnauthorizedAccessException();
+                dr.Close();
+                command.CommandText = "update Student set password=@password, salt=@salt where IndexNumber=@index;";
+                command.Parameters.AddWithValue("password", hash);
+                command.Parameters.AddWithValue("salt", salt);
                 command.ExecuteNonQuery();
             }
         }
