@@ -67,18 +67,21 @@ class buttonPanel extends JPanel{
         setLayout(new GridLayout(4,4));
 
         Map<String,String> destination=new TreeMap<>();
-        destination.put("Anime","F:\\Fajne\\Anime");
-        destination.put("Chore","F:\\Fajne\\Chore");
-        destination.put("Ciekawe","F:\\Fajne\\Ciekawe");
-        destination.put("Kotki","F:\\Fajne\\Kotki pieski");
-        destination.put("Laski","F:\\Fajne\\Laski");
-        destination.put("Memy","F:\\Fajne\\Memy");
-        destination.put("Prywatne","F:\\Fajne\\Moje i znajomi");
-        destination.put("Porno","F:\\Fajne\\Porno");
-        destination.put("Tapety","F:\\Fajne\\Tapety");
-        destination.put("Reakcje","F:\\Fajne\\Reakcje memowe");
-        destination.put("Różne","F:\\Fajne");
-        destination.put("Usuń","F:\\Fajne\\smieci");
+        destination.put("Bajtawka","F:\\Fajne\\Bajtawka");
+        destination.put("Memy insajdowe","F:\\Fajne\\Memy insajdowe");
+        destination.put("Memy","F:\\Fajne\\Memy ogólne");
+        destination.put("Memy IT","F:\\Fajne\\Memy IT");
+        destination.put("Memy reakcyjne","F:\\Fajne\\Memy reakcje");
+        destination.put("Grafiki","F:\\Fajne\\Fajne grafiki");
+        destination.put("Do nauki","F:\\Fajne\\Naukowe");
+        destination.put("Porno","F:\\Fajne\\Porno filmy");
+        destination.put("Porno zdjęcia","F:\\Fajne\\Porno fotki gify i filmiki");
+        destination.put("Prywatne","F:\\Fajne\\Prywatne");
+        destination.put("Różne","F:\\Fajne\\Różne rzeczy");
+        destination.put("Screeny prywatne","F:\\Fajne\\Screeny ze znajomymi");
+        destination.put("Do usunięcia","F:\\Fajne\\Śmieci");
+        destination.put("Zwierzaki","F:\\Fajne\\Zwierzaki");
+        destination.put("Feelsowe","F:\\Fajne\\Feelsowe");
 
         JButton open=new JButton("Otworz nastepny");
         open.addActionListener(e->{
