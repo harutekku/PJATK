@@ -8,7 +8,7 @@ import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 public class Grafical extends JFrame {
-    private static String obecnyPath="F:\\Z telefonu\\Facebook";
+    private static String obecnyPath="F:\\Z telefonu\\JBZD";
     static File[] files=new File(obecnyPath).listFiles();
     static int indexOfFile=0;
 
@@ -44,6 +44,7 @@ public class Grafical extends JFrame {
             case "mp4":
             case "avi":
             case "webm":
+            case "3gp":
                 Runtime.getRuntime().exec("taskkill /F /IM mpc-hc64.exe");
                 break;
             default:
