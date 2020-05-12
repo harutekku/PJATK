@@ -2,116 +2,122 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Grafical extends JFrame {
-    private static String obecnyPath="F:\\Z telefonu\\JBZD";
-    static File[] files=new File(obecnyPath).listFiles();
+public class Grafical extends JFrame{
+    static List<File> source;
+    static Map<String,String> destinations;
     static int indexOfFile=0;
 
-    private Grafical() {
+    public static void main(String[] args){
+        SwingUtilities.invokeLater(()->{
+            Grafical frame=new Grafical();
+        });
+    }
+    private Grafical(){
+        String obecnyPath="F:\\Z telefonu\\JBZD";
+        String docelowyPath="F:\\Fajne\\";
+        config(obecnyPath,docelowyPath);
         setTitle("Sortownik");
-        add(new buttonPanel());
+        add(new buttonPanel(source,destinations));
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    static void obrobPlik(File f, String url){
-        if(f.renameTo(new File(url +"\\"+ f.getName()))){
-            System.out.println(f.getName()+" przeniesiono do "+url);
-        }else{
-            System.out.println("Wystapil problem z plikiem!");
-            System.exit(1);
+
+    static void config(String from, String to){
+        ArrayList<File> fromDirs=new ArrayList<>(Arrays.asList(Objects.requireNonNull(new File(from).listFiles((x)->!x.isFile()))));
+        for(int i=0;i<fromDirs.size();i++)
+            if(!fromDirs.get(i).isFile())
+                fromDirs.addAll(Arrays.asList(Objects.requireNonNull(fromDirs.get(i).listFiles((x)->!x.isFile()))));
+        source=new ArrayList<>();
+        source.addAll(Arrays.asList(Objects.requireNonNull(new File(from).listFiles(File::isFile))));
+        for(File dir: fromDirs){
+            source.addAll(Arrays.asList(Objects.requireNonNull(dir.listFiles(File::isFile))));
         }
+
+        ArrayList<File> toDirs=new ArrayList<>(Arrays.asList(Objects.requireNonNull(new File(to).listFiles((x)->!x.isFile()))));
+        for(int i=0;i<toDirs.size();i++)
+            if(!toDirs.get(i).isFile())
+                toDirs.addAll(Arrays.asList(Objects.requireNonNull(toDirs.get(i).listFiles((x)->!x.isFile()))));
+        destinations=new TreeMap<>();
+        for(File f: toDirs) destinations.put(f.getName(),f.getAbsolutePath());
     }
 
-    static void kill(File f) throws IOException {
-        String typ="";
-        int i = f.getName().lastIndexOf('.');
-        if (i > 0) {
-            typ=f.getName().substring(i+1);
-        }
-        switch (typ){
-            case "jpg":
-            case "png":
-            case "jpeg":
-            case "gif":
-                Runtime.getRuntime().exec("taskkill /F /IM microsoft.photos.exe");
-                break;
-            case "mp4":
-            case "avi":
-            case "webm":
-            case "3gp":
-                Runtime.getRuntime().exec("taskkill /F /IM mpc-hc64.exe");
-                break;
-            default:
-                System.out.println("Nie rozpoznano typu");
-                System.exit(0);
-                break;
-        }
-    }
+	static void obrobPlik(File f,String url){
+		if(f.renameTo(new File(url+"\\"+f.getName()))){
+			System.out.println(f.getName()+" przeniesiono do "+url);
+		}else{
+			System.out.println("Wystapil problem z plikiem!");
+			System.exit(1);
+		}
+	}
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Grafical frame = new Grafical();
-        });
-    }
+	static void kill(File f) throws IOException{
+		String typ="";
+		int i=f.getName().lastIndexOf('.');
+		if(i>0) typ=f.getName().substring(i+1);
+
+		switch(typ){
+			case "jpg":
+			case "png":
+			case "jpeg":
+			case "gif":
+				Runtime.getRuntime().exec("taskkill /F /IM microsoft.photos.exe");
+				break;
+			case "mp4":
+			case "avi":
+			case "webm":
+			case "3gp":
+				Runtime.getRuntime().exec("taskkill /F /IM mpc-hc64.exe");
+				break;
+			default:
+				System.out.println("Nie rozpoznano typu");
+				break;
+		}
+	}
 
 }
-
 class buttonPanel extends JPanel{
-    buttonPanel(){
-        setPreferredSize(new Dimension(600,400));
-        setLayout(new GridLayout(4,4));
 
-        Map<String,String> destination=new TreeMap<>();
-        destination.put("Bajtawka","F:\\Fajne\\Bajtawka");
-        destination.put("Memy insajdowe","F:\\Fajne\\Memy insajdowe");
-        destination.put("Memy","F:\\Fajne\\Memy ogólne");
-        destination.put("Memy IT","F:\\Fajne\\Memy IT");
-        destination.put("Memy reakcyjne","F:\\Fajne\\Memy reakcje");
-        destination.put("Grafiki","F:\\Fajne\\Fajne grafiki");
-        destination.put("Do nauki","F:\\Fajne\\Naukowe");
-        destination.put("Porno","F:\\Fajne\\Porno filmy");
-        destination.put("Porno zdjęcia","F:\\Fajne\\Porno fotki gify i filmiki");
-        destination.put("Prywatne","F:\\Fajne\\Prywatne");
-        destination.put("Różne","F:\\Fajne\\Różne rzeczy");
-        destination.put("Screeny prywatne","F:\\Fajne\\Screeny ze znajomymi");
-        destination.put("Do usunięcia","F:\\Fajne\\Śmieci");
-        destination.put("Zwierzaki","F:\\Fajne\\Zwierzaki");
-        destination.put("Feelsowe","F:\\Fajne\\Feelsowe");
-
+	buttonPanel(List<File> sources, Map<String,String> destinations){
+		int sqr=(int)Math.ceil(Math.sqrt(destinations.size()+1));
+		setLayout(new GridLayout(sqr,Math.min(sqr,4)));
+		setPreferredSize(new Dimension(sqr*140,sqr*120));
         JButton open=new JButton("Otworz nastepny");
         open.addActionListener(e->{
-            try {
-                Desktop.getDesktop().open(Grafical.files[Grafical.indexOfFile]);
-            } catch (IOException e1) {
+            try{
+                Desktop.getDesktop().open(sources.get(Grafical.indexOfFile));
+            }catch(IOException e1){
                 e1.printStackTrace();
             }
         });
         add(open);
-
-        JButton[] buttons=new JButton[destination.size()];
-        Set<Map.Entry<String,String>> entries=destination.entrySet();
-        int i=0;
-        for(Map.Entry<String,String> thisEntry:entries){
-            buttons[i]=new JButton(thisEntry.getKey());
-            buttons[i].addActionListener(e->{
-                try {
-                    Grafical.kill(Grafical.files[Grafical.indexOfFile]);
-                    TimeUnit.MILLISECONDS.sleep(300);
-                    Grafical.obrobPlik(Grafical.files[Grafical.indexOfFile],thisEntry.getValue());
+		JButton[] buttons=new JButton[destinations.size()];
+		Set<Map.Entry<String,String>> entries=destinations.entrySet();
+		int i=0;
+		for(Map.Entry<String,String> thisEntry: entries){
+			buttons[i]=new JButton(thisEntry.getKey());
+			buttons[i].addActionListener(e->{
+				try{
+					Grafical.kill(sources.get(Grafical.indexOfFile));
+					TimeUnit.MILLISECONDS.sleep(300);
+					Grafical.obrobPlik(sources.get(Grafical.indexOfFile),thisEntry.getValue());
                     Grafical.indexOfFile++;
-                    Desktop.getDesktop().open(Grafical.files[Grafical.indexOfFile]);
-                } catch (IOException | InterruptedException e1) {
-                    e1.printStackTrace();
-                    System.exit(0);
-                }
-            });
-            add(buttons[i]);
-        }
-    }
+					if(Grafical.indexOfFile >= sources.size()){
+						System.out.println("Koniec danego folderu");
+						System.exit(0);
+					}
+					Desktop.getDesktop().open(sources.get(Grafical.indexOfFile));
+                    System.err.println("Przeniesiono "+Grafical.indexOfFile+" z "+sources.size());
+				}catch(IOException|InterruptedException e1){
+					e1.printStackTrace();
+					System.exit(0);
+				}
+			});
+			add(buttons[i]);
+		}
+	}
 }
