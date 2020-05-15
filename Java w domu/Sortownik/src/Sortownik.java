@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 public class Sortownik extends JFrame{
 	String fromPath="F:\\Z telefonu\\memy", toPath="F:\\Fajne\\";
-	final Set<String> blackList=Set.of("pdf","ini","exe","java","webm","doc","docx","xls","xlsx","mp4","apk");
+	final Set<String> blackList=Set.of("pdf","ini","exe","java","doc","docx","xls","xlsx","apk");
 	final Set<String> whiteList=Set.of("gif","jpg","jpeg");
-	boolean useWhite=true;
+	boolean useWhite=false;
 	//Edytowac tylko zmienne powyzej
 
 	List<File> source;
@@ -32,7 +32,7 @@ public class Sortownik extends JFrame{
 	private Sortownik(){
 		config();
 		setTitle("Program redystrybujący internet");
-		int sqr=(int)Math.ceil(Math.sqrt(destinations.size()+1));
+		int sqr=(int)Math.ceil(Math.sqrt(destinations.size()+3));
 		add(new JPanel(){
 			{
 				int rows=sqr<=4?sqr:(sqr*sqr)/4, cols=Math.min(sqr,4);
@@ -46,20 +46,20 @@ public class Sortownik extends JFrame{
 					}catch(IOException|InterruptedException ignored){
 					}
 				});
-				reset.addActionListener(e->{
-					try{
-						if(indexOfFile>=0)kill(source.get(indexOfFile));
-						config();
-						indexOfFile=-1;
-					}catch(IOException|InterruptedException ignored){
-					}
-				});
 				back.addActionListener(e->{
 					try{
 						if(indexOfFile>0){
 							kill(source.get(indexOfFile));
 							Desktop.getDesktop().open(source.get(--indexOfFile));
 						}
+					}catch(IOException|InterruptedException ignored){
+					}
+				});
+				reset.addActionListener(e->{
+					try{
+						if(indexOfFile>=0)kill(source.get(indexOfFile));
+						config();
+						indexOfFile=-1;
 					}catch(IOException|InterruptedException ignored){
 					}
 				});
@@ -71,8 +71,8 @@ public class Sortownik extends JFrame{
 					button.addActionListener(e->{
 						try{
 							kill(source.get(indexOfFile));
-							moveFile(source.get(indexOfFile),thisEntry.getValue());
-							System.err.println("Przeniesiono "+ ++indexOfFile+" z "+source.size());
+							moveFile(source.get(indexOfFile),thisEntry.getValue(),0);
+							System.out.println("Przeniesiono "+ ++indexOfFile+" z "+source.size());
 							Thread.sleep(20);
 							if(indexOfFile >= source.size()){
 								System.out.println("Rescan folderu");
@@ -121,10 +121,14 @@ public class Sortownik extends JFrame{
 		for(File f: toDirs) destinations.put(f.getName(),f.getAbsolutePath());
 	}
 
-	void moveFile(File f,String url){
+	void moveFile(File f,String url,int numberOfTry) throws InterruptedException{
 		if(f.renameTo(new File(url+"\\"+f.getName()))){
 			System.out.println(f.getName()+" przeniesiono do "+url);
 			source.set(indexOfFile,new File(url,f.getName()));
+		}
+		else if(numberOfTry<5){
+			TimeUnit.MILLISECONDS.sleep(100);
+			moveFile(f,url,++numberOfTry);
 		}
 		else System.err.println("Wystapil problem z "+f.getAbsolutePath());
 	}
@@ -135,19 +139,16 @@ public class Sortownik extends JFrame{
 			case "jpg":
 			case "png":
 			case "jpeg":
-				Runtime.getRuntime().exec("taskkill /F /IM microsoft.photos.exe");
-				TimeUnit.MILLISECONDS.sleep(200);
-				break;
 			case "gif":
 				Runtime.getRuntime().exec("taskkill /F /IM microsoft.photos.exe");
-				TimeUnit.MILLISECONDS.sleep(400);
+				TimeUnit.MILLISECONDS.sleep(100);
 				break;
 			case "mp4":
 			case "avi":
 			case "webm":
 			case "3gp":
 				Runtime.getRuntime().exec("taskkill /F /IM mpc-hc64.exe");
-				TimeUnit.MILLISECONDS.sleep(300);
+				TimeUnit.MILLISECONDS.sleep(200);
 				break;
 			default:
 				System.out.println("Nie rozpoznano typu");
