@@ -1,4 +1,4 @@
-﻿using cw3.Controllers;
+﻿/*using cw3.Controllers;
 using cw3.DTOs.Requests;
 using cw3.DTOs.Responses;
 using cw3.Models;
@@ -127,24 +127,6 @@ namespace cw3.Services
 
             }
         }
-        public IEnumerable<Student> GetStudents()
-        {
-            using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
-            using (var command = new SqlCommand("SELECT * FROM Student", connection))
-            {
-                connection.Open();
-                var dr = command.ExecuteReader();
-                var list = new List<Student>();
-                while (dr.Read())
-                {
-                    var st = new Student(dr);
-                    list.Add(st);
-                }
-                dr.Close();
-                return list;
-            }
-        }
-
         public bool checkIndex(string index)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
@@ -163,7 +145,6 @@ namespace cw3.Services
 
             }
         }
-
         public bool checkCredentials(string index, string password)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
@@ -180,7 +161,6 @@ namespace cw3.Services
                 return result;
             }
         }
-
         public IEnumerable<Claim> GetClaims(string index)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
@@ -200,7 +180,6 @@ namespace cw3.Services
                 return list;
             }
         }
-
         public IEnumerable<Claim> CheckTokenGiveClaims(string token)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
@@ -226,7 +205,6 @@ namespace cw3.Services
                 return list;
             }
         }
-
         public void saveToken(Guid token, string IndexNumber)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
@@ -238,7 +216,6 @@ namespace cw3.Services
                 command.ExecuteNonQuery();
             }
         }
-
         public void passwordToHash(string index, string password, string salt, string hash)
         {
             using (var connection = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True;"))
@@ -256,5 +233,18 @@ namespace cw3.Services
                 command.ExecuteNonQuery();
             }
         }
+        public IEnumerable<Student> GetStudents()
+        {
+            throw new NotImplementedException();
+        }
+        public void updateStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
+        public void deleteStudent(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+*/

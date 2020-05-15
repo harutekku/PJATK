@@ -1,4 +1,4 @@
-﻿using cw3.DTOs.Requests;
+﻿/*using cw3.DTOs.Requests;
 using cw3.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,15 +11,15 @@ namespace cw3.Services
 {
     public class MockDbService : IDbService
     {
-        private static IEnumerable<Student> _students;
+        private static IEnumerable<StudentOldClass> _students;
         static MockDbService()
         {
-            _students = new List<Student>
+            _students = new List<StudentOldClass>
             {
-                new Student{FirstName="Jan",LastName="Man",IndexNumber="s1000" },
-                new Student{FirstName="Dzban",LastName="Cham",IndexNumber="s1001" },
-                new Student{FirstName="Kan",LastName="Ram",IndexNumber="s1002" },
-                new Student{FirstName="Lan",LastName="Pam",IndexNumber="s1003" }
+                new StudentOldClass{FirstName="Jan",LastName="Man",IndexNumber="s1000" },
+                new StudentOldClass{FirstName="Dzban",LastName="Cham",IndexNumber="s1001" },
+                new StudentOldClass{FirstName="Kan",LastName="Ram",IndexNumber="s1002" },
+                new StudentOldClass{FirstName="Lan",LastName="Pam",IndexNumber="s1003" }
             };
         }
 
@@ -38,6 +38,11 @@ namespace cw3.Services
             throw new NotImplementedException();
         }
 
+        public void deleteStudent(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
             throw new NotImplementedException();
@@ -48,7 +53,7 @@ namespace cw3.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Student> GetStudents()
+        public void GetStudents()
         {
             return _students;
         }
@@ -67,5 +72,11 @@ namespace cw3.Services
         {
             throw new NotImplementedException();
         }
+
+        public void updateStudent(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+*/

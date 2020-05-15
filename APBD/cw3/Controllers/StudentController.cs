@@ -19,14 +19,16 @@ namespace cw3.Controllers
             _dbService = dbService;
         }
         [HttpGet]
+
         public IActionResult getStudent()
         {
+
             return Ok(_dbService.GetStudents());
         }
         [HttpGet("{id}")]
         public IActionResult GetStudent(string id)
         {
-            var list = new List<Student>();
+            var list = new List<StudentOldClass>();
             using (var client = new SqlConnection("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"))
             using (var command = new SqlCommand())
             {
@@ -37,7 +39,7 @@ namespace cw3.Controllers
                 var dr = command.ExecuteReader();
                 while (dr.Read())
                 {
-                    var st = new Student()
+                    var st = new StudentOldClass()
                     {
                         IndexNumber = dr["indexnumber"].ToString(),
                         FirstName = dr["Firstname"].ToString(),
@@ -63,7 +65,7 @@ namespace cw3.Controllers
             return Ok("Usunięto " + id);
         }
         [HttpPost]
-        public IActionResult CreateStudent(Student student)
+        public IActionResult CreateStudent(StudentOldClass student)
         {
             student.IndexNumber = $"s{new Random().Next(1, 20000)}";
             return Ok(student);

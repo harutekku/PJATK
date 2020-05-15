@@ -992,3 +992,623 @@ New request: czwartek, 23 kwietnia 2020	11:07:24
 		
 	QueryString:
 		
+New request: piątek, 15 maja 2020	22:29:01
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:29:30
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:31:15
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:32:55
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:43
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:45
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:46
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:47
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:47
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:48
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:41:25
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:43:55
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "indexNumber": "s1011",
+		    "firstName": "Dupsko",
+		    "lastName": "Malewski",
+		    "birthDate": "1993-03-30T00:00:00",
+		    "idEnrollment": 4,
+		    "password": null,
+		    "salt": null,
+		    "idEnrollmentNavigation": null,
+		    "tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:45:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1011",
+		"firstName": "Dupsko",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30T00:00:00",
+		"idEnrollment": 4,
+		"password": null,
+		"salt": null,
+		"idEnrollmentNavigation": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:46:00
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1011",
+		"firstName": "Dupsko",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 4,
+		"password": null,
+		"salt": null,
+		"idEnrollmentNavigation": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:47:46
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:48:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1011",
+		"firstName": "Dupsko",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 4
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:49:09
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Kazio",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:50:51
+	Method: PUT
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:51:16
+	Method: PUT
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:51:36
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:51:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:52:15
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:52:28
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:52:51
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:53:34
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:53:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "30-03-1993",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:53:53
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "30.03.1993",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:54:22
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30",
+		        "idEnrollment": 8,
+		        "password": "dupa",
+		        "salt": "rogal",
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:54:27
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30",
+		        "idEnrollment": 8,
+		        "password": "dupa",
+		        "salt": "rogal",
+		        "idEnrollmentNavigation": 2,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:55:26
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null,
+		"idEnrollmentNavigation": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:55:57
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:56:04
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:56:14
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek"
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:56:47
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:57:00
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"IndexNumber": "s1009",
+		"FirstName": "Tomek",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"IdEnrollment": 8,
+		"Password": null,
+		"Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:58:09
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		    "Index": "s1000",
+		    "Password": "maslo"
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:58:21
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:59:49
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:59:54
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:06
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:21
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:41
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:46
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:01:37
+	Method: DELETE
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:01:53
+	Method: DELETE
+	Route: /api/cw10/s1009
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:02:06
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:10:39
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:13:22
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:14:10
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:14:11
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:14:28
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		

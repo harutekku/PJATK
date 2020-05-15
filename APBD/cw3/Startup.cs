@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cw3.Middlewares;
+using cw3.Models;
 using cw3.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -42,7 +44,12 @@ namespace cw3
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"]))
                 };
             });
-            services.AddTransient<IDbService, SqlDbService>();
+            //services.AddTransient<IDbService, SqlDbService>();
+            services.AddScoped<IDbService, EFDbService>();
+            services.AddDbContext<kubbitContext>(options =>
+            {
+                options.UseSqlServer("Data source=db-mssql;Initial Catalog=kubbit;Integrated Security=True");
+            });
             services.AddControllers();
         }
 

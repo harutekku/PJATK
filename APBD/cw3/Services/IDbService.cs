@@ -11,14 +11,16 @@ namespace cw3.Services
 {
     public interface IDbService
     {
-        IEnumerable<Student> GetStudents();
-        IActionResult EnrollStudent(EnrollStudentRequest request);
-        IActionResult PromoteStudents(PromotionRequest request);
+        void EnrollStudent(Student request);
+        void PromoteStudents(Enrollment request);
         bool checkIndex(string index);
         bool checkCredentials(string index, string password);
         IEnumerable<Claim> GetClaims(string index);
         IEnumerable<Claim> CheckTokenGiveClaims(string token);
         void saveToken(Guid token, string indexNumber);
         void passwordToHash(string index, string password, string salt, string hash);
+        IEnumerable<Student> GetStudents();
+        void updateStudent(Student student);
+        void deleteStudent(string id);
     }
 }

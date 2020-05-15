@@ -29,13 +29,15 @@ namespace cw3.Controllers
         [HttpPost]
         public IActionResult EnrollStudent(EnrollStudentRequest request)
         {
-            return _service.EnrollStudent(request);
+            //return _service.EnrollStudent(request);
+            throw new NotImplementedException();
         }
 
         [HttpPost("promotions")]
         public IActionResult PromoteStudents(PromotionRequest promotionRequest)
         {
-            return _service.PromoteStudents(promotionRequest);
+            throw new NotImplementedException();
+            //return _service.PromoteStudents(promotionRequest);
         }
     }
 }
