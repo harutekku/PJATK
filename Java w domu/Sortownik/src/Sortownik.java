@@ -9,10 +9,10 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Sortownik extends JFrame{
-	String fromPath="F:\\Z telefonu\\memy", toPath="F:\\Fajne\\";
+	final String fromPath="F:\\Z telefonu\\memy", toPath="F:\\Fajne\\";
 	final Set<String> blackList=Set.of("pdf","ini","exe","java","doc","docx","xls","xlsx","apk");
-	final Set<String> whiteList=Set.of("gif","jpg","jpeg");
-	boolean useWhite=false;
+	final Set<String> whiteList=Set.of("gif","jpg","jpeg","webm","png");
+	final boolean useWhite=false;
 	//Edytowac tylko zmienne powyzej
 
 	List<File> source;
@@ -37,7 +37,7 @@ public class Sortownik extends JFrame{
 			{
 				int rows=sqr<=4?sqr:(sqr*sqr)/4, cols=Math.min(sqr,4);
 				setLayout(new GridLayout(rows,cols));
-				setPreferredSize(new Dimension(cols*170,rows*80));
+				setPreferredSize(new Dimension(cols*170,rows*50));
 				JButton open=new JButton("Otwórz następny"),reset=new JButton("Reset"),back=new JButton("Cofnij");
 				open.addActionListener(e->{
 					try{
@@ -102,7 +102,7 @@ public class Sortownik extends JFrame{
 					fromDirs.addAll(Arrays.asList(Objects.requireNonNull(fromDirs.get(i).listFiles((x)->!x.isFile()))));
 			source=Arrays.stream(Objects.requireNonNull(new File(fromPath).listFiles())).filter(filePredicate).collect(Collectors.toList());
 			for(File dir: fromDirs){
-				source.addAll(Arrays.stream(Objects.requireNonNull(dir.listFiles())).filter(filePredicate).collect(Collectors.toList()));
+				source.addAll(Arrays.stream(Objects.requireNonNull(dir.listFiles())).filter(filePredicate).sorted(Comparator.comparing(File::getName)).collect(Collectors.toList()));
 			}
 		}catch(NullPointerException e){
 			System.err.println("Sciezka nie istnieje");
@@ -126,8 +126,8 @@ public class Sortownik extends JFrame{
 			System.out.println(f.getName()+" przeniesiono do "+url);
 			source.set(indexOfFile,new File(url,f.getName()));
 		}
-		else if(numberOfTry<5){
-			TimeUnit.MILLISECONDS.sleep(100);
+		else if(numberOfTry<10){
+			TimeUnit.MILLISECONDS.sleep(numberOfTry*50);
 			moveFile(f,url,++numberOfTry);
 		}
 		else System.err.println("Wystapil problem z "+f.getAbsolutePath());
