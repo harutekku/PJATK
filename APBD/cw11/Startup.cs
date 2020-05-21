@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using cw11.Models;
+using cw11.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace cw11
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ClinicDbContext>(options => options.UseSqlServer("Data Source=db-mssql;Initial Catalog=kubbit;Integrated Security=True"));
+            services.AddTransient<IClinicDbService, SqlClinicDbService>();
             services.AddControllers();
         }
 
