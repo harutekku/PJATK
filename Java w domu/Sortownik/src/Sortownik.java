@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Sortownik extends JFrame{
-	final String fromPath="F:\\Z telefonu\\memy", toPath="F:\\Fajne\\";
+	final String fromPath="F:\\Z telefonu\\Reddit", toPath="F:\\Fajne\\";
 	final Set<String> blackList=Set.of("pdf","ini","exe","java","doc","docx","xls","xlsx","apk");
 	final Set<String> whiteList=Set.of("gif","jpg","jpeg","webm","png");
 	final boolean useWhite=false;
@@ -17,13 +17,14 @@ public class Sortownik extends JFrame{
 
 	List<File> source;
 	Map<String,String> destinations;
-	int indexOfFile=-1;
+	int indexOfFile;
 	Predicate<File> filePredicate=f->{
 		if(!f.isFile()) return false;
 		String[] tab=f.getName().split("[.]");
 		if(tab.length==1) return false;
 		return useWhite?whiteList.contains(tab[tab.length-1]):!blackList.contains(tab[tab.length-1]);
 	};
+	JTextPane fileStatus=new JTextPane(), counter=new JTextPane();
 
 	public static void main(String[] args){
 		SwingUtilities.invokeLater(Sortownik::new);
@@ -38,10 +39,11 @@ public class Sortownik extends JFrame{
 				int rows=sqr<=4?sqr:(sqr*sqr)/4, cols=Math.min(sqr,4);
 				setLayout(new GridLayout(rows,cols));
 				setPreferredSize(new Dimension(cols*170,rows*50));
-				JButton open=new JButton("Otwórz następny"),reset=new JButton("Reset"),back=new JButton("Cofnij");
+				JButton open=new JButton("Otwórz następny"), reset=new JButton("Reset"), back=new JButton("Cofnij");
 				open.addActionListener(e->{
 					try{
-						if(indexOfFile>=0)kill(source.get(indexOfFile));
+						if(indexOfFile >= 0) kill(source.get(indexOfFile));
+						Thread.sleep(20);
 						Desktop.getDesktop().open(source.get(++indexOfFile));
 					}catch(IOException|InterruptedException ignored){
 					}
@@ -50,6 +52,7 @@ public class Sortownik extends JFrame{
 					try{
 						if(indexOfFile>0){
 							kill(source.get(indexOfFile));
+							Thread.sleep(20);
 							Desktop.getDesktop().open(source.get(--indexOfFile));
 						}
 					}catch(IOException|InterruptedException ignored){
@@ -57,7 +60,7 @@ public class Sortownik extends JFrame{
 				});
 				reset.addActionListener(e->{
 					try{
-						if(indexOfFile>=0)kill(source.get(indexOfFile));
+						if(indexOfFile >= 0) kill(source.get(indexOfFile));
 						config();
 						indexOfFile=-1;
 					}catch(IOException|InterruptedException ignored){
@@ -70,15 +73,15 @@ public class Sortownik extends JFrame{
 					JButton button=new JButton(thisEntry.getKey());
 					button.addActionListener(e->{
 						try{
-							kill(source.get(indexOfFile));
-							moveFile(source.get(indexOfFile),thisEntry.getValue(),0);
-							System.out.println("Przeniesiono "+ ++indexOfFile+" z "+source.size());
-							Thread.sleep(20);
-							if(indexOfFile >= source.size()){
-								System.out.println("Rescan folderu");
-								config();
+							if(indexOfFile >= 0){
+								kill(source.get(indexOfFile));
+								moveFile(source.get(indexOfFile),thisEntry.getValue(),0);
+								counter.setText(++indexOfFile+" of "+source.size());
+								Thread.sleep(20);
+								if(indexOfFile >= source.size()){
+									config();
+								}else Desktop.getDesktop().open(source.get(indexOfFile));
 							}
-							Desktop.getDesktop().open(source.get(indexOfFile));
 						}catch(IOException|InterruptedException e1){
 							e1.printStackTrace();
 							System.exit(0);
@@ -87,7 +90,15 @@ public class Sortownik extends JFrame{
 					add(button);
 				}
 			}
-		});
+		},BorderLayout.CENTER);
+
+		add(new JPanel(){
+			{
+				add(counter,BorderLayout.WEST);
+				add(fileStatus,BorderLayout.CENTER);
+			}
+		},BorderLayout.SOUTH);
+
 		pack();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
@@ -105,14 +116,15 @@ public class Sortownik extends JFrame{
 				source.addAll(Arrays.stream(Objects.requireNonNull(dir.listFiles())).filter(filePredicate).sorted(Comparator.comparing(File::getName)).collect(Collectors.toList()));
 			}
 		}catch(NullPointerException e){
-			System.err.println("Sciezka nie istnieje");
+			JOptionPane.showMessageDialog(this,"Directory not found");
 			System.exit(0);
 		}
-		System.out.println("Znaleziono "+source.size()+" plikow");
-		if(indexOfFile >= source.size()){
-			System.err.println("Folder jest pusty");
+		if(source.size()==0){
+			JOptionPane.showMessageDialog(this,"Directory is empty");
 			System.exit(0);
 		}
+		indexOfFile=-1;
+		counter.setText("Found: "+source.size());
 		ArrayList<File> toDirs=new ArrayList<>(Arrays.asList(Objects.requireNonNull(new File(toPath).listFiles((x)->!x.isFile()))));
 		for(int i=0;i<toDirs.size();i++)
 			if(!toDirs.get(i).isFile())
@@ -123,25 +135,25 @@ public class Sortownik extends JFrame{
 
 	void moveFile(File f,String url,int numberOfTry) throws InterruptedException{
 		if(f.renameTo(new File(url+"\\"+f.getName()))){
-			System.out.println(f.getName()+" przeniesiono do "+url);
+			fileStatus.setText(f.getName()+" przeniesiono do "+url);
 			source.set(indexOfFile,new File(url,f.getName()));
-		}
-		else if(numberOfTry<10){
+		}else if(numberOfTry<10){
 			TimeUnit.MILLISECONDS.sleep(numberOfTry*50);
 			moveFile(f,url,++numberOfTry);
+		}else{
+			fileStatus.setText("Wystapil problem z "+f.getAbsolutePath());
 		}
-		else System.err.println("Wystapil problem z "+f.getAbsolutePath());
 	}
 
 	void kill(File f) throws IOException, InterruptedException{
 		String[] tab=f.getName().split("[.]");
-		switch(tab[tab.length-1]){
+		switch(tab[tab.length-1].toLowerCase()){
 			case "jpg":
 			case "png":
 			case "jpeg":
 			case "gif":
 				Runtime.getRuntime().exec("taskkill /F /IM microsoft.photos.exe");
-				TimeUnit.MILLISECONDS.sleep(100);
+				TimeUnit.MILLISECONDS.sleep(150);
 				break;
 			case "mp4":
 			case "avi":
@@ -151,7 +163,7 @@ public class Sortownik extends JFrame{
 				TimeUnit.MILLISECONDS.sleep(200);
 				break;
 			default:
-				System.out.println("Nie rozpoznano typu");
+				//System.out.println("Nie rozpoznano typu");
 				break;
 		}
 	}
