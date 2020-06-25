@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using kolos2.DTOs;
 using kolos2.Models;
 using kolos2.Services;
 using Microsoft.AspNetCore.Http;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace kolos2.Controllers
 {
-    [Route("api/")]
+    [Route("api/championships")]
     [ApiController]
     public class ChampionshipController : ControllerBase
     {
@@ -20,32 +21,15 @@ namespace kolos2.Controllers
             this.championshipService = championshipService;
         }
 
-        [HttpGet("championships/{idChampionship}/teams}")]
+        [HttpGet("{idChampionship}/teams")]
         public IActionResult GetTeams(int IdChampionship)
         {
-            try
+            var result = championshipService.getTeamsByChampionship(IdChampionship);
+            if (result == null || !result.Any())
             {
-                return Ok(championshipService.getTeamsByChampionship(IdChampionship));
+                return NotFound("Teams in championships not found");
             }
-            catch (Exception e)
-            {
-                return NotFound(e);
-            }
-        }
-        //powinienem mieć dwa oddzielne kontrolery ale nie zdąże już :C
-
-        [HttpPost("teams/{IdTeam}/players")]
-        public IActionResult CreateOrder(int IdTeam, Player player)
-        {
-            try
-            {
-                championshipService.addPlayerToTeam(player, IdTeam);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e);
-            }
+            return Ok(result);
         }
     }
 }

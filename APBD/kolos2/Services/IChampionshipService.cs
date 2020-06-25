@@ -1,4 +1,5 @@
-﻿using kolos2.Models;
+﻿using kolos2.DTOs;
+using kolos2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace kolos2.Services
     public interface IChampionshipService
     {
         public IEnumerable<Object> getTeamsByChampionship(int IdChampionship);
-        public void addPlayerToTeam(Player player, int team);
+        public void addPlayerToTeam(AddPlayerRequest addPlayerRequest, int team);
     }
 }
