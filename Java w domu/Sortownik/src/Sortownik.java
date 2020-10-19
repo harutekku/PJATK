@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class Sortownik extends JFrame{
 	final String fromPath="F:\\Z telefonu", toPath="F:\\Fajne\\";
 	final Set<String> blackList=Set.of("pdf","ini","exe","java","doc","docx","xls","xlsx","apk");
-	final Set<String> whiteList=Set.of("gif","jpg","jpeg","webm","png");
-	final boolean useWhite=false;
+	final Set<String> whiteList=Set.of("gif","jpg","jpeg","webm","png","mp4");
+	final boolean useWhite=true;
 	//Edytowac tylko zmienne powyzej
 
 	List<File> source;

@@ -1,0 +1,120 @@
+<script type="text/javascript">console.log('Hello world!');</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
+<script>
+function setup() {
+createCanvas(800,600);
+//noLoop();
+frameRate(25);
+}
+
+
+/*
+function draw() {  
+//background(100);
+//textFont("courier", 24);  
+//text("Hello world!",20,20);
+//noprotect
+for(y=0; y<height; y+=2) //jest mniej bo strasznie lagowało
+   for(x=0; x<width; x+=2) {
+   	set(x, y, color(255,0,255));
+    updatePixels();
+  }
+}
+*/
+/*function draw() {  
+//noprotect
+	for(y=0; y<height; y++) {
+  		for(x=0; x<width; x++) {
+   			set(x, y, color(x/width*256));
+  		}
+  		updatePixels();
+	}
+
+}*/
+
+/*function draw() {  
+//noprotect
+	for(y=0; y<height; y++) {
+  		for(x=0; x<width; x++) {
+        	dx=width/2-x;
+            dy=height/2-y;
+            d=sqrt(dx*dx+dy*dy)
+   			set(x, y, color(255-d,d,(x+y)/(width+height)*256));
+  		}
+  		updatePixels();
+	}
+
+}*/
+
+/* 
+function draw() {  
+//noprotect
+	for(y=0; y<height; y++) {
+  		for(x=0; x<width; x++) {
+        	if(y<400)set(x, y, color(135, 206, 235));
+            else set(x, y, color(96, 128, 56));
+            if(x>=200&&x<=width-200&&y>=200&&y<=height-200)set(x, y, color(101, 67, 33));
+  		}
+	}
+    for(z=0; z<1000;z++){
+    	x=floor(random(0,width));
+        y=floor(random(400,height));
+        set(x, y, color(floor(random(0,255)), floor(random(0,255), floor(random(0,255)))));
+    }
+    for(var y=50,w=0; y<200; y++,w+=2){
+    	for(x=0;x<w;x++){
+        	set(x+width/2, y, color(255,192,203));
+            set(width/2-x, y, color(255,192,203));
+        }
+    	
+    }
+    updatePixels();
+}
+ */
+
+function draw() { 
+	//noprotect
+	/* var x1=50+floor(random(-50,50)),y1=600-50+floor(random(-50,50)),
+  	x2=800-50+floor(random(-50,50)),y2=600-50+floor(random(-50,50)),
+	  x3=800/2+floor(random(-50,50)),y3=50+floor(random(-50,50)); */
+	var x1=50,y1=600-50,
+  	x2=800-50,y2=600-50,
+  	x3=800/2,y3=50;
+	background(0);
+	stroke(color('white'));
+  	point(x1,y1);
+  	point(x2,y2);
+  	point(x3,y3);
+  	var Cx=x1,Cy=y1;
+  
+  
+  for(x=0;x<=3000;x++){
+  	var tmp=floor(random(0,3));
+    switch(tmp){
+    	case 0:
+      		Cx=(Cx+x1)/2;
+        	Cy=(Cy+y1)/2;
+        	set(Cx,Cy);
+        	break;
+      	case 1:
+	      	Cx=(Cx+x2)/2;
+        	Cy=(Cy+y2)/2;
+        	set(Cx,Cy);
+        	break;
+      	default:
+     		Cx=(Cx+x3)/2;
+        	Cy=(Cy+y3)/2;
+        	set(Cx,Cy);
+        	break;
+	}
+	
+  }
+
+  
+  updatePixels();
+}
+
+
+
+
+</script>
