@@ -1,0 +1,1614 @@
+New request: poniedziałek, 6 kwietnia 2020	11:32:08
+	Method: GET
+	Route: /api/students
+	Body:
+		maslo
+		spaslo
+		laslo
+	QueryString:
+		?jakies=query&maslo=hehe
+New request: poniedziałek, 6 kwietnia 2020	11:32:34
+	Method: GET
+	Route: /api/students
+	Body:
+		maslo
+		spaslo
+		laslo
+	QueryString:
+		?jakies=query&maslo=hehe
+New request: poniedziałek, 6 kwietnia 2020	11:32:40
+	Method: GET
+	Route: /api/students
+	Body:
+		maslo
+		spaslo
+		laslo
+	QueryString:
+		?jakies=query&maslo=hehe
+New request: środa, 22 kwietnia 2020	14:50:23
+	Method: GET
+	Route: /api/enrollments
+	Body:
+		maslo
+		spaslo
+		laslo
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:52:14
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1010",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:53:24
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1010",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:55:06
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	14:56:03
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:40:27
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1010",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:40:43
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:40:51
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:42:12
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:45:06
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:46:06
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:46:39
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:47:46
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Login":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	21:59:21
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:04:59
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:05:10
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:07:15
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:14:16
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:15:24
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:15:25
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:16:49
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:19:11
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:19:59
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:13
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:15
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:16
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:16
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:17
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:18
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:18
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:18
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:19
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:19
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:20
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:20
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:21
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:21
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:22
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:22
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:23
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:23
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:27:59
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1011",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	22:29:19
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1011",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:11:41
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:11:46
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"masl"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:11:54
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:12:02
+	Method: POST
+	Route: /api/enrollments/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:12:37
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1011",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:12:47
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1011",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:12:54
+	Method: POST
+	Route: /api/enrollments
+	Body:
+		{
+		"IndexNumber": "s1012",
+		"FirstName": "Kazio",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"Studies": "IT"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:21:38
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:57:14
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:37
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:39
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:39
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:40
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:41
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:42
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: środa, 22 kwietnia 2020	23:58:43
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	00:13:55
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	00:14:39
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	00:15:27
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:58:02
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:59:21
+	Method: GET
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:59:43
+	Method: GET
+	Route: /api/login/refresh/
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	08:59:50
+	Method: GET
+	Route: /api/login/refresh/asd
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:00:10
+	Method: POST
+	Route: /api/login/refresh/asd
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:00:29
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:32
+	Method: POST
+	Route: /api/login/refresh/aedb819-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:36
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:45
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:46
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:46
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:47
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:47
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:48
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:49
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:49
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	09:01:51
+	Method: POST
+	Route: /api/login/refresh/aedb8194-8a76-459c-81fe-48132687ab90
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:36:38
+	Method: GET
+	Route: /api/login/resetPassword
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:36:49
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:37:17
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		----------------------------136208916239454252998827
+		Content-Disposition: form-data; name="index"
+		
+		s1000
+		----------------------------136208916239454252998827
+		Content-Disposition: form-data; name="password"
+		
+		maslo
+		----------------------------136208916239454252998827--
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:37:49
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:20
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:32
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:37
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	10:39:45
+	Method: POST
+	Route: /api/login/resetPassword
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:05:59
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:06:36
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:07:13
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:07:20
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"masloo"
+		}
+		
+	QueryString:
+		
+New request: czwartek, 23 kwietnia 2020	11:07:24
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		"Index":"s1000",
+		"Password":"maslo"
+		}
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:29:01
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:29:30
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:31:15
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:32:55
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:43
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:45
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:46
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:47
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:47
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:33:48
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:41:25
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:43:55
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "indexNumber": "s1011",
+		    "firstName": "Dupsko",
+		    "lastName": "Malewski",
+		    "birthDate": "1993-03-30T00:00:00",
+		    "idEnrollment": 4,
+		    "password": null,
+		    "salt": null,
+		    "idEnrollmentNavigation": null,
+		    "tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:45:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1011",
+		"firstName": "Dupsko",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30T00:00:00",
+		"idEnrollment": 4,
+		"password": null,
+		"salt": null,
+		"idEnrollmentNavigation": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:46:00
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1011",
+		"firstName": "Dupsko",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 4,
+		"password": null,
+		"salt": null,
+		"idEnrollmentNavigation": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:47:46
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:48:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1011",
+		"firstName": "Dupsko",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 4
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:49:09
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Kazio",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:50:51
+	Method: PUT
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:51:16
+	Method: PUT
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:51:36
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:51:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:52:15
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Masło",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:52:28
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:52:51
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30T00:00:00",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:53:34
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:53:45
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "30-03-1993",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:53:53
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "30.03.1993",
+		        "idEnrollment": 8,
+		        "password": null,
+		        "salt": null,
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:54:22
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30",
+		        "idEnrollment": 8,
+		        "password": "dupa",
+		        "salt": "rogal",
+		        "idEnrollmentNavigation": null,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:54:27
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		        "indexNumber": "s1009",
+		        "firstName": "Tomek",
+		        "lastName": "Malewski",
+		        "birthDate": "1993-03-30",
+		        "idEnrollment": 8,
+		        "password": "dupa",
+		        "salt": "rogal",
+		        "idEnrollmentNavigation": 2,
+		        "tokens": []
+		    }
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:55:26
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null,
+		"idEnrollmentNavigation": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:55:57
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null,
+		"tokens": []
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:56:04
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:56:14
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek"
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:56:47
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"indexNumber": "s1009",
+		"firstName": "Tomek",
+		"lastName": "Malewski",
+		"birthDate": "1993-03-30",
+		"idEnrollment": 8,
+		"password": null,
+		"salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:57:00
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		"IndexNumber": "s1009",
+		"FirstName": "Tomek",
+		"LastName": "Malewski",
+		"BirthDate": "1993-03-30",
+		"IdEnrollment": 8,
+		"Password": null,
+		"Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:58:09
+	Method: POST
+	Route: /api/login
+	Body:
+		{
+		    "Index": "s1000",
+		    "Password": "maslo"
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:58:21
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:59:49
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	22:59:54
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:06
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:21
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:41
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:00:46
+	Method: POST
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		    "FirstName": "Tomek",
+		    "LastName": "Malewski",
+		    "BirthDate": "1993-03-30",
+		    "IdEnrollment": 8,
+		    "Password": null,
+		    "Salt": null
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:01:37
+	Method: DELETE
+	Route: /api/cw10
+	Body:
+		{
+		    "IndexNumber": "s1009",
+		}
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:01:53
+	Method: DELETE
+	Route: /api/cw10/s1009
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:02:06
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:10:39
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:13:22
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:14:10
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:14:11
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		
+New request: piątek, 15 maja 2020	23:14:28
+	Method: GET
+	Route: /api/cw10
+	Body:
+		
+	QueryString:
+		

@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "cw2": {
+      "commandName": "Project",
+      "commandLineArgs": "\"..\\..\\..\\dane.csv\" \"..\\..\\..\\result.xml\" \"xml\""
+    },
+    "json": {
+      "commandName": "Project",
+      "commandLineArgs": "\"..\\..\\..\\dane.csv\" \"..\\..\\..\\result.json\" \"json\""
+    },
+    "blad": {
+      "commandName": "Project",
+      "commandLineArgs": "\"..\\..\\..\\dane.csv\" \"..\\..\\..\\result.json\" \"maslo\""
+    }
+  }
+}
