@@ -12,6 +12,9 @@ namespace mpp6
             int setNum = new Random().Next(1, 15);
             var dataLines = File.ReadAllLines("..\\..\\..\\plecak.txt");
             var length = int.Parse(dataLines[0].Split(" ")[2].Split(",")[0]);
+            length--;
+            length--;
+            length--;
             var capacity = int.Parse(dataLines[0].Split(" ")[4]);
             var dataName = dataLines[setNum * 4 - 3];
             var sizeLine = dataLines[setNum * 4 - 2].Split("{")[1].Split("}")[0].Replace(',', ' ');
