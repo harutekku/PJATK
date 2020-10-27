@@ -1,0 +1,63 @@
+--1
+
+DECLARE zad1 CURSOR FOR SELECT IdRokAkademicki, Data_rozp FROM RokAkademicki;
+DECLARE @ID VARCHAR(10), @DATAROZ DATE;
+OPEN zad1;
+FETCH NEXT FROM zad1 INTO @ID, @DATAROZ;
+DECLARE @COUNT INT;
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	SELECT @COUNT = ISNULL(COUNT(NrGrupy), 1) FROM Grupa where IdRokAkademicki like @ID group by IdRokAkademicki;
+	PRINT 'w roku akademickim '+CAST(YEAR(LEFT(@ID, 4)) AS VARCHAR)+' by³o '+CAST(@COUNT AS VARCHAR)+' grup';
+
+	FETCH NEXT FROM zad1 INTO @ID, @DATAROZ;
+END;	
+CLOSE zad1;
+DEALLOCATE zad1;
+
+go;
+--2
+CREATE TABLE PRACADYPLOMOWA (IdPraca Int IDENTITY(1,1) PRIMARY KEY, IdOsoba Int FOREIGN KEY REFERENCES DYDAKTYK(IdOsoba) NOT NULL, DataRozpoczecia date NOT NULL, Tytul varchar(255) NOT NULL);
+CREATE UNIQUE INDEX uq_pracadyplomowa ON pracadyplomowa(IdOsoba, Tytul);
+
+go;
+--3
+--CREATE PROCEDURE zad3 @tytul VARCHAR(255), @imie VARCHAR(30), @nazwisko VARCHAR(30)
+ALTER PROCEDURE zad3 @tytul VARCHAR(255), @imie VARCHAR(30), @nazwisko VARCHAR(30)
+AS
+BEGIN
+	IF EXISTS (SELECT IDOSOBA FROM Osoba WHERE imie = @imie and nazwisko = @nazwisko) 
+	BEGIN
+		DECLARE @IDOSOBA INT = (SELECT IDOSOBA FROM Osoba WHERE imie = @imie and nazwisko = @nazwisko);
+		IF EXISTS (SELECT 1 FROM Dydaktyk d join Stopnietytuly s on d.IdStopien=s.IdStopien WHERE Idosoba = @IDOSOBA and (s.stopien='Doktor' or s.stopien='Doktor habilitowany'))
+		BEGIN
+			INSERT INTO PRACADYPLOMOWA (IdOsoba, DataRozpoczecia, Tytul) values (@IDOSOBA, GETDATE(), @tytul);
+		END;
+		ELSE
+		BEGIN
+		    Raiserror ('Osoba nie posiada odpowiednich uprawnien',1,1);
+		END
+	END
+	ELSE
+	BEGIN
+	    Raiserror ('Nie ma takiego dydaktyka',1,1);
+	END
+END;
+EXEC zad3 'O Ciastach2','Domicella','Dynia';
+
+go;
+--4
+ALTER TABLE Dydaktyk ADD LPD int;
+go;
+--CREATE TRIGGER Upd_LPD
+ALTER TRIGGER Upd_LPD
+ON PRACADYPLOMOWA
+FOR INSERT
+AS
+BEGIN
+	UPDATE Dydaktyk set LPD = (SELECT COUNT(*) FROM PRACADYPLOMOWA group by IdOsoba having IdOsoba=(SELECT IdOsoba from Inserted)) where IdOsoba=(SELECT IdOsoba from Inserted)
+END;		
+
+select * from pracadyplomowa;
+select * from dydaktyk;
+EXEC zad3 'O Ciastach4','Domicella','Dynia';
