@@ -16,53 +16,50 @@
     <nav>
         <ul>
             <li><a href="../index.html">Strona główna</a></li>
-            <li><a href="przedmioty_list.html" class="active">Przedmioty</a></li>
-            <li><a href="studenci_list.html">Studenci</a></li>
+            <li><a href="przedmioty_list.html">Przedmioty</a></li>
+            <li><a href="studenci_list.html" class="active">Studenci</a></li>
             <li><a href="oceny_list.html">Oceny</a></li>
         </ul>
     </nav>
     <main>
-        <h2>Szczegóły przedmiotu</h2>
+        <h2>Szczegóły studenta</h2>
         <form class="form">
             <div class="form-group">
-                <label for="name">Nazwa:<sup>*</sup></label>
-                <input type="text" name="name" value="Podstawy programowania w Javie" id="name" disabled>
+                <label for="name">Imię:<sup>*</sup></label>
+                <input type="text" name="name" value="Jan" id="name" disabled>
             </div>
             <div class="form-group">
-                <label for="shortcut">Skrót:<sup>*</sup></label>
-                <input type="text" name="shortcut" value="PPJ" id="shortcut" disabled>
+                <label for="lastname">Nazwisko:<sup>*</sup></label>
+                <input type="text" name="lastname" value="Pazio" id="lastname" disabled>
             </div>
             <div class="form-group">
-                <label for="department">Katedra:<sup>*</sup></label>
-                <input type="text" name="department" value="Katedra metod programowania" id="department" disabled>
+                <label for="date">Data urodzenia:<sup>*</sup></label>
+                <input type="date" name="date" value="1999-05-13" id="date" disabled>
             </div>
             <div class="form-buttons">
-                <a href="przedmioty_edit.html" class="list-actions-button-edit">Edytuj</a>
+                <a href="studenci_edit.html" class="list-actions-button-edit">Edytuj</a>
             </div>
         </form>
-        <h2>Lista studentów</h2>
+        <h2>Lista przedmiotów</h2>
         <table class="table-list">
             <thead>
                 <tr>
-                    <th>Imie</th>
-                    <th>Nazwisko</th>
+                    <th>Skrót</th>
                     <th>Ocena</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Jan</td>
-                    <td>Pazio</td>
+                    <td>PPJ</td>
                     <td>4</td>
                 </tr>
                 <tr>
-                    <td>Robert</td>
-                    <td>Śmigłowiec</td>
+                    <td>GUI</td>
                     <td>3</td>
                 </tr>
             </tbody>
         </table>
-        <p><a href="przedmioty_list.html" class="list-actions-button-details">Powrót</a></p>
+        <p><a href="studenci_list.html" class="list-actions-button-details">Powrót</a></p>
     </main>
     <footer>
         Jakub, Pawłowicz, s18688

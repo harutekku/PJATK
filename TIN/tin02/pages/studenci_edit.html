@@ -16,32 +16,31 @@
     <nav>
         <ul>
             <li><a href="../index.html">Strona główna</a></li>
-            <li><a href="przedmioty_list.html" class="active">Przedmioty</a></li>
-            <li><a href="studenci_list.html">Studenci</a></li>
+            <li><a href="przedmioty_list.html">Przedmioty</a></li>
+            <li><a href="studenci_list.html" class="active">Studenci</a></li>
             <li><a href="oceny_list.html">Oceny</a></li>
         </ul>
     </nav>
     <main>
-        <h2>Dodaj nowy przedmiot</h2>
-        <form class="form" method="POST" action="przedmioty_list.html">
+        <h2>Szczegóły studenta</h2>
+        <form class="form" method="POST" action="studenci_list.html">
             <div class="form-group">
-                <label for="name">Nazwa:<sup>*</sup></label>
-                <input type="text" name="name" id="name">
+                <label for="name">Imię:<sup>*</sup></label>
+                <input type="text" name="name" value="Jan" id="name">
             </div>
             <div class="form-group">
-                <label for="shortcut">Skrót:<sup>*</sup></label>
-                <input type="text" name="shortcut" id="shortcut">
+                <label for="lastname">Nazwisko:<sup>*</sup></label>
+                <input type="text" name="lastname" value="Pazio" id="lastname">
             </div>
             <div class="form-group">
-                <label for="department">Katedra:<sup>*</sup></label>
-                <input type="text" name="department" id="department">
+                <label for="date">Data urodzenia:<sup>*</sup></label>
+                <input type="date" name="date" value="1999-05-13" id="date">
             </div>
             <div class="form-buttons">
-                <input type="submit" class="form-button-submit" value="Dodaj">
-                <a href="przedmioty_list.html" class="form-button-cancel">Anuluj</a>
+                <input type="submit" class="form-button-submit" value="Zapisz">
+                <a href="studenci_list.html" class="form-button-cancel">Anuluj</a>
             </div>
         </form>
-
     </main>
     <footer>
         Jakub, Pawłowicz, s18688
