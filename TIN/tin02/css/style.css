@@ -16,7 +16,7 @@ header, main, footer, nav {
 }
 
 header, footer {
-    background-color: #34495e;
+    background-color: #056674;
     color: white;
     padding: 2rem;
 }
@@ -34,7 +34,7 @@ header img {
 }
 
 nav {
-    background-color: #bdc3c7;
+    background-color: #e0ece4;
     align-items: center;
 }
 
@@ -56,12 +56,13 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #d35400;
-    color: #ecf0f1;
+    background-color: #bdc3c7;
+    //color: #ecf0f1;
+    
 }
 
 nav ul li a.active {
-    background-color: #95a5a6;
+    background-color: #66bfbf;
     color: #ecf0f1;
 }
 
@@ -82,6 +83,7 @@ main h2 {
     border-collapse: collapse;
     color: #2c3e50;
     width: 100%;
+    
 }
 
 .table-list, .table-list th, .table-list td {
@@ -90,6 +92,9 @@ main h2 {
 
 .table-list th, .table-list td {
     padding: 0.5rem;
+}
+.table-list td{
+    text-align: right;
 }
 
 .table-list th, .table-list tbody tr:nth-child(even) {
@@ -127,27 +132,31 @@ main h2 {
 }
 
 .list-actions-button-details {
-    background-color: #2980b9;
+    background-color: #4385b1;
 }
 
 .list-actions-button-details:hover {
-    background-color: #3498db;
+    filter: brightness(120%);
+    //background-color: #3498db;
 }
 
 .list-actions-button-edit {
-    background-color: #f39c12;
+    background-color: #bb8a3b;
 }
 
 .list-actions-button-edit:hover {
-    background-color: #f1c40f;
+    filter: brightness(120%);
+    //background-color: #f1c40f;
+    
 }
 
 .form-button-cancel, .list-actions-button-delete {
-    background-color: #c0392b;
+    background-color: #a33024;
 }
 
 .form-button-cancel:hover, .list-actions-button-delete:hover {
-    background-color: #e74c3c;
+    filter: brightness(120%);
+    //background-color: #e74c3c;
 }
 
 .button-add, .form-button-submit, .form-button-cancel {
@@ -159,7 +168,8 @@ main h2 {
 }
 
 .button-add:hover, .form-button-submit:hover {
-    background-color: #2ecc71;
+    filter: brightness(120%);
+    //background-color: #2ecc71;
 }
 
 button, input, select, textarea {
