@@ -42,14 +42,45 @@
 		pixels[idx + 3] = 255;
 	}
 	function draw_line() {
-		var dx = x1 - x0;
-		var dy = y1 - y0;
-		var a = dy / dx;
-		var b = y0 - a * x0;
-		console.log(dx, dy, a, b);
-		//for (let i = Math.round(x0); i != x1; i += dx > 0 ? 1 : -1) set_pixel(i, Math.round(a * i + b), 100);
+		var dx = abs(x1 - x0);
+		var dy = abs(y1 - y0);
+		var change=dy>dx?true:false;
+		if(change){
+			var tmp=dx;
+			dx=dy;
+			dy=tmp;
+			tmp=x0;
+			x0=y0;
+			y0=tmp;
+			tmp=x1;
+			x1=y1;
+			y1=tmp;
+		}
+		//var a = dy / dx;
+		//var b = y0 - a * x0;
+		var dp = 2 * dy - dx;
+		var deq = 2 * dy;
+		var dinc = 2 * dy - 2 * dx;
+		//console.log(dx, dy, a, b);
 
-		for (let x = 0; x < width; x++) for (let y = 0; y < height; y++) set_pixel(x, y, (dy / dx) * (x - x0) - (y - y0));
+		var d = dp;
+		var y = y0;
+		//for (let i = Math.round(x0); i != x1; i += dx > 0 ? 1 : -1) {
+		//set_pixel(i, Math.round(a * i + b), 100);
+		//}
+		for (let x = x0; x != x1; x+=x<x1?1:-1) {
+			if(change)set_pixel(y, x, 100);
+			else set_pixel(x, y, 100);
+			if (d < 0) d += deq;
+			else {
+				d += dinc;
+				y += y<y1?1:-1;
+			}
+		}
+		//for (let x = 0; x < width; x++) for (let y = 0; y < height; y++) {
+		//set_pixel(x, y, (dy / dx) * (x - x0) - (y - y0));
+		//set_pixel(x, y, (dy * 2) * (x - x0) - 2 * dx * (y - y0));
+		//}
 	}
 
 
