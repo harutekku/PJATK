@@ -28,19 +28,25 @@
             <select name="name" id="name" disabled>
                 <option value="Jan Pazio">Jan Pazio</option>
             </select>
+            <span id="errorName" class="errors-text"></span>
             <label for="subject">Przedmiot:<sup>*</sup></label>
             <select name="subject" id="subject" disabled>
                 <option value="PPJ">PPJ</option>
             </select>
+            <span id="errorSubject" class="errors-text"></span>
             <label for="teacher">Prowadzący:<sup>*</sup></label>
             <select name="teacher" id="teacher" disabled>
                 <option value="Maślak">Maślak</option>
             </select>
+            <span id="errorTeacher" class="errors-text"></span>
             <label for="date">Data wystawienia:<sup>*</sup></label>
             <input type="date" name="date" id="date" value="2020-12-12" disabled>
+            <span id="errorDate" class="errors-text"></span>
             <label for="mark">Ocena:<sup>*</sup></label>
             <input type="number" name="mark" id="mark" value="4" disabled>
+            <span id="errorMark" class="errors-text"></span>
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <a href="oceny_edit.html" class="list-actions-button-edit">Edytuj</a>
                 <a href="przedmioty_list.html" class="list-actions-button-details">Powrót</a>
             </div>

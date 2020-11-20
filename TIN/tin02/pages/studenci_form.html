@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uczelnia</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationStudForm.js"></script>
 </head>
 
 <body>
@@ -23,14 +25,18 @@
     </nav>
     <main>
         <h2>Dodaj nowego studenta</h2>
-        <form class="form" method="POST" action="studenci_list.html">
-            <label for="name">Imię:<sup>*</sup></label>
-            <input type="text" name="name" id="name">
-            <label for="lastname">Nazwisko:<sup>*</sup></label>
-            <input type="text" name="lastname" id="lastname">
+        <form class="form" method="POST" action="studenci_list.html" onsubmit="return validateForm();" novalidate>
+            <label for="firstName">Imię:<sup>*</sup></label>
+            <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków">
+            <span id="errorFirstName" class="errors-text"></span>
+            <label for="lastName">Nazwisko:<sup>*</sup></label>
+            <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków">
+            <span id="errorLastName" class="errors-text"></span>
             <label for="date">Data urodzenia:<sup>*</sup></label>
             <input type="date" name="date" id="date">
+            <span id="errorDate" class="errors-text"></span>
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <input type="submit" class="form-button-submit" value="Dodaj">
                 <a href="studenci_list.html" class="form-button-cancel">Anuluj</a>
             </div>

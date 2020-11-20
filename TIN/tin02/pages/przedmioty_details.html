@@ -26,11 +26,15 @@
         <form class="form">
             <label for="name">Nazwa:<sup>*</sup></label>
             <input type="text" name="name" value="Podstawy programowania w Javie" id="name" disabled>
+            <span id="errorName" class="errors-text"></span>
             <label for="shortcut">Skrót:<sup>*</sup></label>
             <input type="text" name="shortcut" value="PPJ" id="shortcut" disabled>
+            <span id="errorShortcut" class="errors-text"></span>
             <label for="department">Katedra:<sup>*</sup></label>
             <input type="text" name="department" value="Katedra metod programowania" id="department" disabled>
+            <span id="errorDepartment" class="errors-text"></span>
             <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
                 <a href="przedmioty_edit.html" class="list-actions-button-edit">Edytuj</a>
             </div>
         </form>
