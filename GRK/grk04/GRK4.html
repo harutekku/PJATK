@@ -1,0 +1,114 @@
+<style>
+    body {
+        background-color: #ccc;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
+
+<body>
+    <script type="text/javascript">
+        var imgA;
+        var imgB;
+        function makeIdentity() {
+            return [[1, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1]];
+        }
+        function makeTranslate(x, y) {
+            return [[1, 0, x],
+            [0, 1, y],
+            [0, 0, 1]];
+        }
+        function makeScale(x, y) {
+            return [[x, 0, 0],
+            [0, y, 0],
+            [0, 0, 1]];
+        }
+        function makeRotate(deg) {
+            return [[Math.cos((deg / 180) * Math.PI), Math.sin((deg / 180) * Math.PI) * -1, 0],
+            [Math.sin((deg / 180) * Math.PI), Math.cos((deg / 180) * Math.PI), 0],
+            [0, 0, 1]];
+        }
+        function makeShear(x, y) {
+            return [[1, x, 0],
+            [y, 1, 0],
+            [0, 0, 1]];
+        }
+        function setup() {
+            createCanvas(512, 512);
+            background(255);
+            imgA = createImage(512, 512);
+            imgB = createImage(512, 512);
+            imgA.loadPixels();
+            imgB.loadPixels();
+            var d = pixelDensity();
+            for (var i = 0; i < 512 * 512 * 4 * d; i += 4) {
+                imgA.pixels[i] = 240;
+                imgA.pixels[i + 1] = 250;
+                imgA.pixels[i + 2] = 240;
+                imgA.pixels[i + 3] = 255;
+                imgB.pixels[i] = 240;
+                imgB.pixels[i + 1] = 240;
+                imgB.pixels[i + 2] = 250;
+                imgB.pixels[i + 3] = 255;
+            }
+            imgA.updatePixels();
+            imgB.updatePixels();
+        }
+        function draw() {
+            if (!keyIsDown(32)) {
+                image(imgA, 0, 0);
+                text('Image A', 10, 20);
+            } else {
+                image(imgB, 0, 0);
+                text('Image B', 10, 20);
+            }
+        }
+        function makeVector(x, y) {
+            return [x, y, 1];
+        }
+        function drawVector(img, vec) {
+            img.set(vec[0], vec[1], color('black'));
+            img.updatePixels();
+        }
+        function mouseDragged() {
+            var vec = makeVector(mouseX, mouseY);
+            drawVector(imgA, multiple(vec, sec1));
+            drawVector(imgB, multiple(vec, sec2));
+        }
+        var sec1 = makeIdentity();
+        sec1 = matrixMultiple(sec1, makeTranslate(5, 5));
+        sec1 = matrixMultiple(sec1, makeRotate(45));
+        sec1 = matrixMultiple(sec1, makeScale(2, 1));
+        var sec2 = makeIdentity();
+        sec2 = matrixMultiple(sec2, makeScale(2, 1));
+        sec2 = matrixMultiple(sec2, makeTranslate(5, 5));
+        sec2 = matrixMultiple(sec2, makeRotate(45));
+        function multiple(vec, matrix) {
+            var ret = [0, 0, 0];
+            for (var i = 0; i < ret.length; i++) {
+                var sum = 0;
+                for (var j = 0; j < ret.length; j++) {
+                    sum += matrix[i][j] * vec[j];
+                }
+                ret[i] = sum;
+            }
+            return ret;
+        }
+        function matrixMultiple(matrixA, matrixB) {
+            var ret = new Array(matrixA.length);
+            for (var i = 0; i < ret.length; i++) {
+                ret[i] = new Array(matrixB[0].length);
+                for (var j = 0; j < ret[0].length; j++) {
+                    var sum = 0;
+                    for (var k = 0; k < matrixA[0].length; k++) {
+                        sum += matrixA[i][k] * matrixB[k][j];
+                    }
+                    ret[i][j] = sum;
+                }
+            }
+            return ret;
+        }
+
+    </script>
+</body>
