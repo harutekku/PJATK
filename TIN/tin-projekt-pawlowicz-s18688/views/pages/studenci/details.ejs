@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uczelnia</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Uczelnia</h1>
+        <img src="../images/logo.png" alt="PJATK logo">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Strona główna</a></li>
+            <li><a href="przedmioty_list.html">Przedmioty</a></li>
+            <li><a href="studenci_list.html" class="active">Studenci</a></li>
+            <li><a href="oceny_list.html">Oceny</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Szczegóły studenta</h2>
+        <form class="form">
+                <label for="name">Imię:<sup>*</sup></label>
+                <input type="text" name="name" value="Jan" id="name" disabled>
+                <span id="errorFirstName" class="errors-text"></span>
+                <label for="lastname">Nazwisko:<sup>*</sup></label>
+                <input type="text" name="lastname" value="Pazio" id="lastname" disabled>
+                <span id="errorLastName" class="errors-text"></span>
+                <label for="date">Data urodzenia:<sup>*</sup></label>
+                <input type="date" name="date" value="1999-05-13" id="date" disabled>
+                <span id="errorDate" class="errors-text"></span>
+            <div class="form-buttons">
+                <a href="studenci_edit.html" class="list-actions-button-edit">Edytuj</a>
+            </div>
+        </form>
+        <h2>Lista przedmiotów</h2>
+        <table class="table-list">
+            <thead>
+                <tr>
+                    <th>Skrót</th>
+                    <th>Ocena</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PPJ</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>GUI</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a href="studenci_list.html" class="list-actions-button-details">Powrót</a></p>
+    </main>
+    <footer>
+        Jakub, Pawłowicz, s18688
+    </footer>
+</body>
+
+</html>

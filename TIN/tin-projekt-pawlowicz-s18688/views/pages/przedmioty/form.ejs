@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uczelnia</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script type="application/javascript" src="../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../js/validationPrzedForm.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Uczelnia</h1>
+        <img src="../images/logo.png" alt="PJATK logo">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Strona główna</a></li>
+            <li><a href="przedmioty_list.html" class="active">Przedmioty</a></li>
+            <li><a href="studenci_list.html">Studenci</a></li>
+            <li><a href="oceny_list.html">Oceny</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Dodaj nowy przedmiot</h2>
+        <form class="form" method="POST" action="przedmioty_list.html" onsubmit="return validateForm();" novalidate>
+            <label for="name">Nazwa:<sup>*</sup></label>
+            <input type="text" name="name" id="name" placeholder="2-60 znaków">
+            <span id="errorName" class="errors-text"></span>
+            <label for="shortcut">Skrót:<sup>*</sup></label>
+            <input type="text" name="shortcut" id="shortcut" placeholder="3 znaki">
+            <span id="errorShortcut" class="errors-text"></span>
+            <label for="department">Katedra:<sup>*</sup></label>
+            <input type="text" name="department" id="department" placeholder="2-60 znaków">
+            <span id="errorDepartment" class="errors-text"></span>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <input type="submit" class="form-button-submit" value="Dodaj">
+                <a href="przedmioty_list.html" class="form-button-cancel">Anuluj</a>
+            </div>
+        </form>
+
+    </main>
+    <footer>
+        Jakub, Pawłowicz, s18688
+    </footer>
+</body>
+
+</html>

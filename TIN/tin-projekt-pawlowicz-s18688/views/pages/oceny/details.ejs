@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uczelnia</title>
+    <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Uczelnia</h1>
+        <img src="../images/logo.png" alt="PJATK logo">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="../index.html">Strona główna</a></li>
+            <li><a href="przedmioty_list.html">Przedmioty</a></li>
+            <li><a href="studenci_list.html">Studenci</a></li>
+            <li><a href="oceny_list.html" class="active">Oceny</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Szczegóły Oceny</h2>
+        <form class="form">
+            <label for="name">Imię i nazwisko:<sup>*</sup></label>
+            <select name="name" id="name" disabled>
+                <option value="Jan Pazio">Jan Pazio</option>
+            </select>
+            <span id="errorName" class="errors-text"></span>
+            <label for="subject">Przedmiot:<sup>*</sup></label>
+            <select name="subject" id="subject" disabled>
+                <option value="PPJ">PPJ</option>
+            </select>
+            <span id="errorSubject" class="errors-text"></span>
+            <label for="teacher">Prowadzący:<sup>*</sup></label>
+            <select name="teacher" id="teacher" disabled>
+                <option value="Maślak">Maślak</option>
+            </select>
+            <span id="errorTeacher" class="errors-text"></span>
+            <label for="date">Data wystawienia:<sup>*</sup></label>
+            <input type="date" name="date" id="date" value="2020-12-12" disabled>
+            <span id="errorDate" class="errors-text"></span>
+            <label for="mark">Ocena:<sup>*</sup></label>
+            <input type="number" name="mark" id="mark" value="4" disabled>
+            <span id="errorMark" class="errors-text"></span>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <a href="oceny_edit.html" class="list-actions-button-edit">Edytuj</a>
+                <a href="przedmioty_list.html" class="list-actions-button-details">Powrót</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+        Jakub, Pawłowicz, s18688
+    </footer>
+</body>
+
+</html>
