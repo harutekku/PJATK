@@ -1,4 +1,65 @@
-<!DOCTYPE html>
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationPrzedForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form id="myform" class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="_id" value="<%= przed._id %>">
+
+        <label for="name">Nazwa:<sup>*</sup></label>
+        <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= przed.name %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorName" class="errors-text"></span>
+
+        <label for="shortcut">Skrót:<sup>*</sup></label>
+        <input type="text" name="shortcut" id="shortcut" placeholder="2-4 znaków" value="<%= przed.shortcut %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorShortcut" class="errors-text"></span>
+
+        <label for="department">Katedra:<sup>*</sup></label>
+        <input type="text" name="department" id="department" placeholder="2-60 znaków" value="<%= przed.department %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorDepartament" class="errors-text"></span>
+
+        <% if (formMode == 'showDetails') { %>
+        <div class="section-buttons">
+            <a href="/przedmioty/edit/<%= przed._id %>" class="list-actions-button-edit">Edytuj</a>
+        </div>
+        <% } %>
+    </form>
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+    <h2> Lista studentów </h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Imię i nazwisko</th>
+                <th>Ocena</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let o of przed.ocena) { %>
+            <tr>
+                <td><a href="/studenci/details/<%= o.student._id %>"><%= o.student.firstName+" "+o.student.lastName %></a></td>
+                <td><%= o.mark %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <% } %>
+    <div class="form-buttons">
+        <p id="errorsSummary" class="errors-text"></p>
+        <% if (formMode != 'showDetails') { %>
+        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
+        <a class="form-button-cancel" href="/przedmioty">Anuluj</a>
+        <% } else { %>
+        <a class="form-button-cancel" href="/przedmioty">Powrót</a>
+        <% } %>
+    </div>
+</main>
+<%- include('../../fragments/footer.ejs') %>
+
+
+<!-- <!DOCTYPE html>
 <html lang="pl-PL">
 
 <head>
@@ -48,4 +109,4 @@
     </footer>
 </body>
 
-</html>
+</html> -->

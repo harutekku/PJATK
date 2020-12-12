@@ -1,42 +1,32 @@
 <%- include('../../fragments/header.ejs') %>
-    <main>
-        <h2>Lista studentów</h2>
-        <table class="table-list">
-            <thead>
-                <tr>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
-                    <th>Data urodzenia</th>
-                    <th>Akcje</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jan</td>
-                    <td>Pazio</td>
-                    <td>13.05.1999</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="studenci_details.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="studenci_edit.html" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Robert</td>
-                    <td>Śmigłowiec</td>
-                    <td>12.08.1999</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p><a href="studenci_form.html" class="button-add">Dodaj nowego studenta</a></p>
-    </main>
-    <%- include('../../fragments/footer.ejs') %>
+<main>
+    <h2>Lista studentów</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Data urodzenia</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let stud of studs) { %>
+            <tr>
+                <td><%= stud.firstName %></td>
+                <td><%= stud.lastName %></td>
+                <td><%= stud.dateOfBirth.toISOString().split('T')[0] %></td>
+                <td>
+                    <ul class="table-list-actions">
+                        <li><a href="/studenci/details/<%=stud._id%>" class="list-actions-button-details">Szczegóły</a></li>
+                        <li><a href="/studenci/edit/<%=stud._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                        <li><a href="/studenci/delete/<%=stud._id%>" class="list-actions-button-delete">Usuń</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <p><a href="/studenci/add" class="button-add">Dodaj nowego studenta</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

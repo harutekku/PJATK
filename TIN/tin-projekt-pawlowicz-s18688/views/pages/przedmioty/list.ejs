@@ -1,54 +1,32 @@
 <%- include('../../fragments/header.ejs') %>
-    <main>
-        <h2>Lista przedmiotów</h2>
-        <table class="table-list">
-            <thead>
-                <tr>
-                    <th>Nazwa</th>
-                    <th>Skrót</th>
-                    <th>Katedra</th>
-                    <th>Akcje</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Podstawy programowania w Javie</td>
-                    <td>PPJ</td>
-                    <td>Katedra metod programowania</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="przedmioty_details.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="przedmioty_edit.html" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Programowanie obiektowe i GUI</td>
-                    <td>GUI</td>
-                    <td>Katedra metod programowania</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Język angielski</td>
-                    <td>ANG</td>
-                    <td>Studium języków obcych</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p><a href="przedmioty_form.html" class="button-add">Dodaj nowy przedmiot</a></p>
-    </main>
-    <%- include('../../fragments/footer.ejs') %>
+<main>
+    <h2>Lista przedmiotów</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Skrót</th>
+                <th>Katedra</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let przed of przeds) { %>
+            <tr>
+                <td><%= przed.name %></td>
+                <td><%= przed.shortcut %></td>
+                <td><%= przed.department %></td>
+                <td>
+                    <ul class="table-list-actions">
+                        <li><a href="/przedmioty/details/<%=przed._id%>" class="list-actions-button-details">Szczegóły</a></li>
+                        <li><a href="/przedmioty/edit/<%=przed._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                        <li><a href="/przedmioty/delete/<%=przed._id%>" class="list-actions-button-delete">Usuń</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <p><a href="/przedmioty/add" class="button-add">Dodaj nowy przedmiot</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

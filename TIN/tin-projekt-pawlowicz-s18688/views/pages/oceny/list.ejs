@@ -1,66 +1,37 @@
 <%- include('../../fragments/header.ejs') %>
-    <main>
-        <h2>Lista ocen</h2>
-        <table class="table-list">
-            <thead>
-                <tr>
-                    <th>Skrót przedmiotu</th>
-                    <th>Imię studenta</th>
-                    <th>Nazwisko studenta</th>
-                    <th>Nazwisko prowadzącego</th>
-                    <th>Data wystawienia</th>
-                    <th>Ocena</th>
-                    <th>Akcje</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>PPJ</td>
-                    <td>Jan</td>
-                    <td>Pazio</td>
-                    <td>Maślak</td>
-                    <td>12-12-2019</td>
-                    <td>4</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="oceny_details.html" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="oceny_edit.html" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>GUI</td>
-                    <td>Jan</td>
-                    <td>Pazio</td>
-                    <td>Maślak</td>
-                    <td>12-12-2019</td>
-                    <td>5</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>PPJ</td>
-                    <td>Robert</td>
-                    <td>Śmigłowiec</td>
-                    <td>Maślak</td>
-                    <td>12-12-2019</td>
-                    <td>3</td>
-                    <td>
-                        <ul class="table-list-actions">
-                            <li><a href="" class="list-actions-button-details">Szczegóły</a></li>
-                            <li><a href="" class="list-actions-button-edit">Edytuj</a></li>
-                            <li><a href="" class="list-actions-button-delete">Usuń</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p><a href="oceny_form.html" class="button-add">Dodaj nową ocenę</a></p>
-    </main>
-    <%- include('../../fragments/footer.ejs') %>
+<main>
+    <h2>Lista ocen</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Id przedmiotu</th>
+                <th>Id studenta</th>
+                <th>Imię i nazwisko prowadzącego</th>
+                <th>Data wystawienia</th>
+                <th>Ocena</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let ocena of oceny) { %>
+            <tr>
+                <td><%= ocena.przedmiot_id %></td>
+                <td><%= ocena.student_id %></td>
+                <td><%= ocena.teacher %></td>
+                <td><%= ocena.date.toISOString().split('T')[0] %></td>
+                <td><%= ocena.mark %></td>
+                <td>
+                    <ul class="table-list-actions">
+                        <li><a href="/oceny/details/<%=ocena._id%>" class="list-actions-button-details">Szczegóły</a></li>
+                        <li><a href="/oceny/edit/<%=ocena._id%>" class="list-actions-button-edit">Edytuj</a></li>
+                        <li><a href="/oceny/delete/<%=ocena._id%>" class="list-actions-button-delete">Usuń</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <% } %>
+
+        </tbody>
+    </table>
+    <p><a href="/oceny/add" class="button-add">Dodaj nową ocenę</a></p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

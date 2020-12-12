@@ -112,7 +112,7 @@ main h2 {
     text-decoration: none;
     text-align: center;
     font-size: 0.8rem;
-    margin: 0 0.5rem;
+    /* margin: 0 0.5rem; */
 }
 
 .list-actions-button-details {

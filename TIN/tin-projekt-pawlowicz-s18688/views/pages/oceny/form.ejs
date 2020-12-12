@@ -1,4 +1,67 @@
-<!DOCTYPE html>
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationOcenForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form id="myform" class="form" method="POST" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="_id" value="<%= ocena._id %>">
+
+        <label for="name">Imię i nazwisko:<sup>*</sup></label>
+        <select name="name" id="name" required <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%>>
+            <option value="" selected>--- Wybierz studenta ---</option>
+            <% for (let i=0; i<allStuds.length; i++) { let stud = allStuds[i]; %>
+            <option value="<%= stud._id %>" label="<%= stud.firstName + ' ' + stud.lastName %>" <%= (ocena._id && stud._id.toString() == ocena.student._id.toString()) ? 'selected' : ''%>></option>
+            <% } %>
+        </select>
+        <span id="errorName" class="errors-text"></span>
+
+        <label for="subject">Przedmiot:<sup>*</sup></label>
+        <select name="subject" id="subject" required <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%>>
+            <option value="">--- Wybierz przedmiot ---</option>
+            <% for (let i=0; i<allPrzeds.length; i++) { let przed = allPrzeds[i]; %>
+            <option value="<%= przed._id %>" label="<%= przed.name %>"<%= (ocena._id && przed._id.toString() == ocena.przedmiot._id.toString()) ? 'selected' : ''%>></option>
+            <% } %>
+        </select>
+        <span id="errorSubject" class="errors-text"></span>
+
+        <label for="teacher">Prowadzący:<sup>*</sup></label>
+        <select name="teacher" id="teacher" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+            <option value="">--- Wybierz prowadzącego ---</option>
+            <option value="Marcin Bożydar" label="Marcin Bożydar" <%= (ocena.teacher == "Marcin Bożydar") ? 'selected' : ''%>></option>
+            <option value="Robert Makłowicz" label="Robert Makłowicz" <%= (ocena.teacher == "Robert Makłowicz") ? 'selected' : ''%>></option>
+        </select>
+        <span id="errorTeacher" class="errors-text"></span>
+
+        <label for="date">Data wystawienia:<sup>*</sup></label>
+        <input type="date" name="date" id="date" value="<%= ocena.date ? ocena.date.toISOString().split('T')[0]:'' %>"<%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorDate" class="errors-text"></span>
+
+        <label for="mark">Ocena:<sup>*</sup></label>
+        <input type="number" name="mark" id="mark" value="<%= ocena.mark %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorMark" class="errors-text"></span>
+
+        <% if (formMode == 'showDetails') { %>
+        <div class="section-buttons">
+            <a href="/oceny/edit/<%= ocena._id %>" class="list-actions-button-edit">Edytuj</a>
+        </div>
+        <% } %>
+    </form>
+    <div class="form-buttons">
+        <p id="errorsSummary" class="errors-text"></p>
+        <% if (formMode != 'showDetails') { %>
+        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
+        <a class="form-button-cancel" href="/oceny">Anuluj</a>
+        <% } else { %>
+        <a class="form-button-cancel" href="/oceny">Powrót</a>
+        <% } %>
+    </div>
+
+</main>
+
+<%- include('../../fragments/footer.ejs') %>
+
+
+<!-- <!DOCTYPE html>
 <html lang="pl-PL">
 
 <head>
@@ -64,4 +127,4 @@
     </footer>
 </body>
 
-</html>
+</html> -->

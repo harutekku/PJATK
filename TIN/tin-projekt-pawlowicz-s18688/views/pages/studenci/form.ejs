@@ -1,51 +1,65 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationStudForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form id="myform" class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+        <input type="hidden" name="_id" value="<%= stud._id %>">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uczelnia</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script type="application/javascript" src="../js/validationCommon.js"></script>
-    <script type="application/javascript" src="../js/validationStudForm.js"></script>
-</head>
+        <label for="firstName">Imię:<sup>*</sup></label>
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= stud.firstName %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorFirstName" class="errors-text"></span>
 
-<body>
-    <header>
-        <h1>Uczelnia</h1>
-        <img src="../images/logo.png" alt="PJATK logo">
-    </header>
-    <nav>
-        <ul>
-            <li><a href="../index.html">Strona główna</a></li>
-            <li><a href="przedmioty_list.html">Przedmioty</a></li>
-            <li><a href="studenci_list.html" class="active">Studenci</a></li>
-            <li><a href="oceny_list.html">Oceny</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h2>Dodaj nowego studenta</h2>
-        <form class="form" method="POST" action="studenci_list.html" onsubmit="return validateForm();" novalidate>
-            <label for="firstName">Imię:<sup>*</sup></label>
-            <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków">
-            <span id="errorFirstName" class="errors-text"></span>
-            <label for="lastName">Nazwisko:<sup>*</sup></label>
-            <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków">
-            <span id="errorLastName" class="errors-text"></span>
-            <label for="date">Data urodzenia:<sup>*</sup></label>
-            <input type="date" name="date" id="date">
-            <span id="errorDate" class="errors-text"></span>
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text"></p>
-                <input type="submit" class="form-button-submit" value="Dodaj">
-                <a href="studenci_list.html" class="form-button-cancel">Anuluj</a>
-            </div>
-        </form>
+        <label for="lastName">Nazwisko:<sup>*</sup></label>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= stud.lastName %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorLastName" class="errors-text"></span>
 
-    </main>
-    <footer>
-        Jakub, Pawłowicz, s18688
-    </footer>
-</body>
+        <label for="date">Data urodzenia:<sup>*</sup></label>
+        <input type="date" name="date" id="date"
+            value="<%= stud.dateOfBirth ? stud.dateOfBirth.toISOString().split('T')[0]:'' %>"
+            <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+        <span id="errorDate" class="errors-text"></span>
 
-</html>
+        <% if (formMode == 'showDetails') { %>
+        <div class="section-buttons">
+            <a href="/studenci/edit/<%= stud._id %>" class="list-actions-button-edit">Edytuj</a>
+        </div>
+        <% } %>
+    </form>
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+    <h2> Lista przedmiotów </h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Skrót</th>
+                <th>Ocena</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let o of stud.ocena) { %>
+            <tr>
+                <td><a href="/przedmioty/details/<%= o.przedmiot._id %>"><%= o.przedmiot.shortcut %></a></td>
+                <td><%= o.mark %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <% } %>
+    <div class="form-buttons">
+        <p id="errorsSummary" class="errors-text"></p>
+        <% if (formMode != 'showDetails') { %>
+        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
+        <a class="form-button-cancel" href="/studenci">Anuluj</a>
+        <% } else { %>
+        <a class="form-button-cancel" href="/studenci">Powrót</a>
+        <% } %>
+    </div>
+
+</main>
+
+
+
+
+<%- include('../../fragments/footer.ejs') %>
