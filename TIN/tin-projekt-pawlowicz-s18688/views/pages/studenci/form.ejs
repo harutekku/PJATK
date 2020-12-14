@@ -16,11 +16,11 @@
             <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
         <span id="errorLastName" class="errors-text"></span>
 
-        <label for="date">Data urodzenia:<sup>*</sup></label>
-        <input type="date" name="date" id="date"
+        <label for="dateOfBirth">Data urodzenia:<sup>*</sup></label>
+        <input type="date" name="dateOfBirth" id="dateOfBirth"
             value="<%= stud.dateOfBirth ? stud.dateOfBirth.toISOString().split('T')[0]:'' %>"
             <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
-        <span id="errorDate" class="errors-text"></span>
+        <span id="errorDateOfBirth" class="errors-text"></span>
 
         <% if (formMode == 'showDetails') { %>
         <div class="section-buttons">

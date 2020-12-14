@@ -6,23 +6,23 @@
     <form id="myform" class="form" method="POST" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="_id" value="<%= ocena._id %>">
 
-        <label for="name">Imię i nazwisko:<sup>*</sup></label>
-        <select name="name" id="name" required <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%>>
+        <label for="student_id">Imię i nazwisko:<sup>*</sup></label>
+        <select name="student_id" id="student_id" required <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%>>
             <option value="" selected>--- Wybierz studenta ---</option>
             <% for (let i=0; i<allStuds.length; i++) { let stud = allStuds[i]; %>
             <option value="<%= stud._id %>" label="<%= stud.firstName + ' ' + stud.lastName %>" <%= (ocena._id && stud._id.toString() == ocena.student._id.toString()) ? 'selected' : ''%>></option>
             <% } %>
         </select>
-        <span id="errorName" class="errors-text"></span>
+        <span id="errorStudent_id" class="errors-text"></span>
 
-        <label for="subject">Przedmiot:<sup>*</sup></label>
-        <select name="subject" id="subject" required <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%>>
+        <label for="przedmiot_id">Przedmiot:<sup>*</sup></label>
+        <select name="przedmiot_id" id="przedmiot_id" required <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%>>
             <option value="">--- Wybierz przedmiot ---</option>
             <% for (let i=0; i<allPrzeds.length; i++) { let przed = allPrzeds[i]; %>
             <option value="<%= przed._id %>" label="<%= przed.name %>"<%= (ocena._id && przed._id.toString() == ocena.przedmiot._id.toString()) ? 'selected' : ''%>></option>
             <% } %>
         </select>
-        <span id="errorSubject" class="errors-text"></span>
+        <span id="errorPrzedmiot_id" class="errors-text"></span>
 
         <label for="teacher">Prowadzący:<sup>*</sup></label>
         <select name="teacher" id="teacher" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
@@ -59,72 +59,3 @@
 </main>
 
 <%- include('../../fragments/footer.ejs') %>
-
-
-<!-- <!DOCTYPE html>
-<html lang="pl-PL">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uczelnia</title>
-    <link rel="stylesheet" href="../css/style.css" />
-    <script type="application/javascript" src="../js/validationCommon.js"></script>
-    <script type="application/javascript" src="../js/validationOcenForm.js"></script>
-</head>
-
-<body>
-    <header>
-        <h1>Uczelnia</h1>
-        <img src="../images/logo.png" alt="PJATK logo">
-    </header>
-    <nav>
-        <ul>
-            <li><a href="../index.html">Strona główna</a></li>
-            <li><a href="przedmioty_list.html">Przedmioty</a></li>
-            <li><a href="studenci_list.html">Studenci</a></li>
-            <li><a href="oceny_list.html" class="active">Oceny</a></li>
-        </ul>
-    </nav>
-    <main>
-        <h2>Dodaj nową ocenę</h2>
-        <form class="form" method="POST" action="oceny_list.html" onsubmit="return validateForm();" novalidate>
-            <label for="name">Imię i nazwisko:<sup>*</sup></label>
-            <select name="name" id="name">
-                <option value="Jan Pazio">Jan Pazio</option>
-                <option value="Robert Śmigłowiec">Robert Śmigłowiec</option>
-            </select>
-            <span id="errorName" class="errors-text"></span>
-            <label for="subject">Przedmiot:<sup>*</sup></label>
-            <select name="subject" id="subject">
-                <option value="PPJ">PPJ</option>
-                <option value="GUI">GUI</option>
-                <option value="ANG">ANG</option>
-            </select>
-            <span id="errorSubject" class="errors-text"></span>
-            <label for="teacher">Prowadzący:<sup>*</sup></label>
-            <select name="teacher" id="teacher">
-                <option value="Maślak">Maślak</option>
-                <option value="Stasiak">Stasiak</option>
-            </select>
-            <span id="errorTeacher" class="errors-text"></span>
-            <label for="date">Data wystawienia:<sup>*</sup></label>
-            <input type="date" name="date" id="date">
-            <span id="errorDate" class="errors-text"></span>
-            <label for="mark">Ocena:<sup>*</sup></label>
-            <input type="number" name="mark" id="mark">
-            <span id="errorMark" class="errors-text"></span>
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text"></p>
-                <input type="submit" class="form-button-submit" value="Dodaj">
-                <a href="oceny_list.html" class="form-button-cancel">Anuluj</a>
-            </div>
-        </form>
-
-    </main>
-    <footer>
-        Jakub, Pawłowicz, s18688
-    </footer>
-</body>
-
-</html> -->

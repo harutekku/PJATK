@@ -34,7 +34,7 @@ exports.getOcenaById = (ocenaId) => {
 };
 
 exports.createOcena = (data) => {
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
 
     return Ocena.create({
         przedmiot_id: data.przedmiot_id,
