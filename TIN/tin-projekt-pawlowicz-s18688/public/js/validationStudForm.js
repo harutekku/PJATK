@@ -1,18 +1,17 @@
 function validateForm() {
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
-    const dataInput = document.getElementById('date');
+    const dataInput = document.getElementById('dateOfBirth');
 
     const errorFirstName = document.getElementById('errorFirstName');
     const errorLastName = document.getElementById('errorLastName');
-    const errorData = document.getElementById('errorDate');
+    const errorDateOfBirth = document.getElementById('errorDateOfBirth');
     const errorsSummary = document.getElementById('errorsSummary');
 
 
-    resetErrors([firstNameInput, lastNameInput, dataInput], [errorFirstName, errorLastName, errorData], errorsSummary);
+    resetErrors([firstNameInput, lastNameInput, dataInput], [errorFirstName, errorLastName, errorDateOfBirth], errorsSummary);
 
     let valid = true;
-
 
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
@@ -37,11 +36,11 @@ function validateForm() {
     if (!checkRequired(dataInput.value)) {
         valid = false;
         dataInput.classList.add("error-input");
-        errorData.innerText = "Pole jest wymagane";
+        errorDateOfBirth.innerText = "Pole jest wymagane";
     } else if (!checkDate(new Date(dataInput.value), new Date(1900 - 01 - 01), new Date())) {
         valid = false;
         dataInput.classList.add("error-input");
-        errorData.innerText = "Proszę wpisać prawidłową datę";
+        errorDateOfBirth.innerText = "Proszę wpisać prawidłową datę";
     }
 
     if (!valid) {

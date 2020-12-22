@@ -1,12 +1,12 @@
 function validateForm() {
-    const nameInput = document.getElementById('name');
-    const subjectInput = document.getElementById('subject');
+    const nameInput = document.getElementById('student_id');
+    const subjectInput = document.getElementById('przedmiot_id');
     const teacherInput = document.getElementById('teacher');
     const dataInput = document.getElementById('date');
     const markInput = document.getElementById('mark');
 
-    const errorName = document.getElementById('errorName');
-    const errorSubject = document.getElementById('errorSubject');
+    const errorName = document.getElementById('errorStudent_id');
+    const errorSubject = document.getElementById('errorPrzedmiot_id');
     const errorTeacher = document.getElementById('errorTeacher');
     const errorData = document.getElementById('errorDate');
     const errorMark = document.getElementById('errorMark');
@@ -15,7 +15,7 @@ function validateForm() {
     resetErrors([nameInput, subjectInput, teacherInput, dataInput, markInput], [errorName, errorSubject, errorTeacher, errorData, errorMark], errorsSummary);
 
     let valid = true;
-
+return true;
 
     if (!checkRequired(nameInput.value)) {
         valid = false;

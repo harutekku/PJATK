@@ -29,6 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/favicon.ico', express.static('./public/images/logo.png'));
 app.use('/', indexRouter);
 app.use('/przedmioty', przedmiotyRouter);
 app.use('/studenci', studenciRouter);

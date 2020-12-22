@@ -39,7 +39,8 @@ exports.showAddOcenaForm = (req, res, next) => {
                 formMode: 'createNew',
                 btnLabel: 'Dodaj ocenę',
                 formAction: '/oceny/add',
-                navLocation: 'oceny'
+                navLocation: 'oceny',
+                validationErrors: ''
             });
         });
 }
@@ -63,7 +64,8 @@ exports.showEditOcenaForm = (req, res, next) => {
                         pageTitle: 'Edycja oceny',
                         btnLabel: 'Edytuj ocene',
                         formAction: '/oceny/edit',
-                        navLocation: 'oceny'
+                        navLocation: 'oceny',
+                        validationErrors: ''
                     });
                 });
         });
@@ -87,7 +89,8 @@ exports.showOcenaDetails = (req, res, next) => {
                         formMode: 'showDetails',
                         pageTitle: 'Szczegóły oceny',
                         formAction: '',
-                        navLocation: 'oceny'
+                        navLocation: 'oceny',
+                        validationErrors: ''
                     });
                 });
         });
@@ -97,6 +100,28 @@ exports.addOcena = (req, res, next) => {
     OcenyRepository.createOcena(ocenaData)
         .then(result => {
             res.redirect('/oceny');
+        })
+        .catch(err => {
+            let allStuds, allPrzeds;
+            StudenciRepository.getStudenci()
+                .then(studs => {
+                    allStuds = studs;
+                    return PrzedmiotyRepository.getPrzedmioty();
+                })
+                .then(przeds => {
+                    allPrzeds = przeds;
+                    res.render('pages/oceny/form', {
+                        ocena: ocenaData,
+                        allStuds: allStuds,
+                        allPrzeds: allPrzeds,
+                        pageTitle: 'Nowa ocena',
+                        formMode: 'createNew',
+                        btnLabel: 'Dodaj ocenę',
+                        formAction: '/oceny/add',
+                        navLocation: 'oceny',
+                        validationErrors: err.errors
+                    });
+                });
         });
 };
 
@@ -106,6 +131,27 @@ exports.updateOcena = (req, res, next) => {
     OcenyRepository.updateOcena(ocenaId, ocenaData)
         .then(result => {
             res.redirect('/oceny');
+        }).catch(err => {
+            let allStuds, allPrzeds;
+            StudenciRepository.getStudenci()
+                .then(studs => {
+                    allStuds = studs;
+                    return PrzedmiotyRepository.getPrzedmioty();
+                })
+                .then(przeds => {
+                    allPrzeds = przeds;
+                    res.render('pages/oceny/form', {
+                        ocena: ocenaData,
+                        allStuds: allStuds,
+                        allPrzeds: allPrzeds,
+                        formMode: 'edit',
+                        pageTitle: 'Edycja oceny',
+                        btnLabel: 'Edytuj ocene',
+                        formAction: '/oceny/edit',
+                        navLocation: 'oceny',
+                        validationErrors: err.errors
+                    });
+                });
         });
 };
 

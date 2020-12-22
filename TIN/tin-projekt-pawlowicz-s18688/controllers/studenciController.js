@@ -15,7 +15,8 @@ exports.showAddStudentForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj studenta',
         formAction: '/studenci/add',
-        navLocation: 'studenci'
+        navLocation: 'studenci',
+        validationErrors: ''
     });
 }
 exports.showEditStudentForm = (req, res, next) => {
@@ -28,7 +29,8 @@ exports.showEditStudentForm = (req, res, next) => {
                 pageTitle: 'Edycja studenta',
                 btnLabel: 'Edytuj studenta',
                 formAction: '/studenci/edit',
-                navLocation: 'studenci'
+                navLocation: 'studenci',
+                validationErrors: ''
             });
         });
 };
@@ -41,7 +43,8 @@ exports.showStudentDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły studenta',
                 formAction: '',
-                navLocation: 'studenci'
+                navLocation: 'studenci',
+                validationErrors: ''
             });
         });
 }
@@ -50,6 +53,17 @@ exports.addStudent = (req, res, next) => {
     StudenciRepository.createStudent(studData)
         .then(result => {
             res.redirect('/studenci');
+        })
+        .catch(err => {
+            res.render('pages/studenci/form', {
+                stud: studData,
+                pageTitle: 'Nowy student',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj studenta',
+                formAction: '/studenci/add',
+                navLocation: 'studenci',
+                validationErrors: err.errors
+            });
         });
 };
 
@@ -59,6 +73,16 @@ exports.updateStudent = (req, res, next) => {
     StudenciRepository.updateStudent(studId, studData)
         .then(result => {
             res.redirect('/studenci');
+        }).catch(err => {
+            res.render('pages/studenci/form', {
+                stud: studData,
+                pageTitle: 'Nowy student',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj studenta',
+                formAction: '/studenci/add',
+                navLocation: 'studenci',
+                validationErrors: err.errors
+            });
         });
 };
 
