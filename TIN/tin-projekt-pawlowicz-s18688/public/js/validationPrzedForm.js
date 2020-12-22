@@ -13,7 +13,6 @@ function validateForm() {
 
     let valid = true;
 
-
     if (!checkRequired(NameInput.value)) {
         valid = false;
         NameInput.classList.add("error-input");
@@ -28,10 +27,10 @@ function validateForm() {
         valid = false;
         shortcutInput.classList.add("error-input");
         errorShortcut.innerText = "Pole jest wymagane";
-    } else if (!checkTextLengthRange(shortcutInput.value, 3, 3)) {
+    } else if (!checkTextLengthRange(shortcutInput.value, 2, 4)) {
         valid = false;
         shortcutInput.classList.add("error-input");
-        errorShortcut.innerText = "Pole powinno zawierać 3 znaki";
+        errorShortcut.innerText = "Pole powinno zawierać od 2 do 4 znaków";
     }
 
     if (!checkRequired(departmentInput.value)) {

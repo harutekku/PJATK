@@ -55,20 +55,21 @@ exports.showEditOcenaForm = (req, res, next) => {
         .then(przeds => {
             allPrzeds = przeds;
             return OcenyRepository.getOcenaById(ocenaId)
-                .then(ocena => {
-                    res.render('pages/oceny/form', {
-                        ocena: ocena,
-                        allStuds: allStuds,
-                        allPrzeds: allPrzeds,
-                        formMode: 'edit',
-                        pageTitle: 'Edycja oceny',
-                        btnLabel: 'Edytuj ocene',
-                        formAction: '/oceny/edit',
-                        navLocation: 'oceny',
-                        validationErrors: ''
-                    });
-                });
+        })
+        .then(ocena => {
+            res.render('pages/oceny/form', {
+                ocena: ocena,
+                allStuds: allStuds,
+                allPrzeds: allPrzeds,
+                formMode: 'edit',
+                pageTitle: 'Edycja oceny',
+                btnLabel: 'Edytuj ocene',
+                formAction: '/oceny/edit',
+                navLocation: 'oceny',
+                validationErrors: ''
+            });
         });
+
 }
 exports.showOcenaDetails = (req, res, next) => {
     const ocenaId = req.params.ocenaId;
@@ -81,18 +82,19 @@ exports.showOcenaDetails = (req, res, next) => {
         .then(przeds => {
             allPrzeds = przeds;
             return OcenyRepository.getOcenaById(ocenaId)
-                .then(ocena => {
-                    res.render('pages/oceny/form', {
-                        ocena: ocena,
-                        allStuds: allStuds,
-                        allPrzeds: allPrzeds,
-                        formMode: 'showDetails',
-                        pageTitle: 'Szczegóły oceny',
-                        formAction: '',
-                        navLocation: 'oceny',
-                        validationErrors: ''
-                    });
-                });
+        })
+        .then(ocena => {
+            res.render('pages/oceny/form', {
+                ocena: ocena,
+                allStuds: allStuds,
+                allPrzeds: allPrzeds,
+                formMode: 'showDetails',
+                pageTitle: 'Szczegóły oceny',
+                formAction: '',
+                navLocation: 'oceny',
+                validationErrors: ''
+            });
+
         });
 }
 exports.addOcena = (req, res, next) => {
@@ -102,7 +104,13 @@ exports.addOcena = (req, res, next) => {
             res.redirect('/oceny');
         })
         .catch(err => {
-            let allStuds, allPrzeds;
+            let allStuds, allPrzeds, thisOcena = {
+                student: { _id: ocenaData.student_id },
+                przedmiot: { _id: ocenaData.przedmiot_id },
+                date: ocenaData.date,
+                mark: ocenaData.mark,
+                teacher: ocenaData.teacher
+            };
             StudenciRepository.getStudenci()
                 .then(studs => {
                     allStuds = studs;
@@ -111,7 +119,7 @@ exports.addOcena = (req, res, next) => {
                 .then(przeds => {
                     allPrzeds = przeds;
                     res.render('pages/oceny/form', {
-                        ocena: ocenaData,
+                        ocena: thisOcena,
                         allStuds: allStuds,
                         allPrzeds: allPrzeds,
                         pageTitle: 'Nowa ocena',
@@ -132,8 +140,15 @@ exports.updateOcena = (req, res, next) => {
         .then(result => {
             res.redirect('/oceny');
         }).catch(err => {
-            let allStuds, allPrzeds;
-            StudenciRepository.getStudenci()
+            let allStuds, allPrzeds, thisOcena;
+            OcenyRepository.getOcenaById(ocenaId)
+                .then(ocena => {
+                    ocena.date = ocenaData.date;
+                    ocena.mark = ocenaData.mark;
+                    ocena.teacher = ocenaData.teacher;
+                    thisOcena = ocena;
+                    return StudenciRepository.getStudenci()
+                })
                 .then(studs => {
                     allStuds = studs;
                     return PrzedmiotyRepository.getPrzedmioty();
@@ -141,7 +156,7 @@ exports.updateOcena = (req, res, next) => {
                 .then(przeds => {
                     allPrzeds = przeds;
                     res.render('pages/oceny/form', {
-                        ocena: ocenaData,
+                        ocena: thisOcena,
                         allStuds: allStuds,
                         allPrzeds: allPrzeds,
                         formMode: 'edit',

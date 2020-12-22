@@ -15,7 +15,6 @@ function validateForm() {
     resetErrors([nameInput, subjectInput, teacherInput, dataInput, markInput], [errorName, errorSubject, errorTeacher, errorData, errorMark], errorsSummary);
 
     let valid = true;
-return true;
 
     if (!checkRequired(nameInput.value)) {
         valid = false;

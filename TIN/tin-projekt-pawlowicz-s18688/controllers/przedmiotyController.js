@@ -11,11 +11,12 @@ exports.showPrzedmiotyList = (req, res, next) => {
 exports.showAddPrzedmiotForm = (req, res, next) => {
     res.render('pages/przedmioty/form', {
         przed: {},
-        pageTitle: 'Nowy Przedmiot',
+        pageTitle: 'Nowy przedmiot',
         formMode: 'createNew',
         btnLabel: 'Dodaj przedmiot',
         formAction: '/przedmioty/add',
-        navLocation: 'przedmioty'
+        navLocation: 'przedmioty',
+        validationErrors: ''
     });
 }
 exports.showEditPrzedmiotForm = (req, res, next) => {
@@ -28,7 +29,8 @@ exports.showEditPrzedmiotForm = (req, res, next) => {
                 pageTitle: 'Edycja przedmiotu',
                 btnLabel: 'Edytuj przedmiot',
                 formAction: '/przedmioty/edit',
-                navLocation: 'przedmioty'
+                navLocation: 'przedmioty',
+                validationErrors: ''
             });
         });
 };
@@ -41,7 +43,8 @@ exports.showPrzedmiotDetails = (req, res, next) => {
                 formMode: 'showDetails',
                 pageTitle: 'Szczegóły przedmiotu',
                 formAction: '',
-                navLocation: 'przedmioty'
+                navLocation: 'przedmioty',
+                validationErrors: ''
             });
         });
 }
@@ -50,7 +53,18 @@ exports.addPrzedmiot = (req, res, next) => {
     PrzedmiotyRepository.createPrzedmiot(przedData)
         .then(result => {
             res.redirect('/przedmioty');
-        });
+        })
+        .catch(err => {
+            res.render('pages/przedmioty/form', {
+                przed: przedData,
+                pageTitle: 'Nowy przedmiot',
+                formMode: 'createNew',
+                btnLabel: 'Dodaj przedmiot',
+                formAction: '/przedmioty/add',
+                navLocation: 'przedmioty',
+                validationErrors: err.errors
+            })
+        })
 };
 
 exports.updatePrzedmiot = (req, res, next) => {
@@ -59,7 +73,17 @@ exports.updatePrzedmiot = (req, res, next) => {
     PrzedmiotyRepository.updatePrzedmiot(przedId, przedData)
         .then(result => {
             res.redirect('/przedmioty');
-        });
+        }).catch(err => {
+            res.render('pages/przedmioty/form', {
+                przed: przedData,
+                formMode: 'edit',
+                pageTitle: 'Edycja przedmiotu',
+                btnLabel: 'Edytuj przedmiot',
+                formAction: '/przedmioty/edit',
+                navLocation: 'przedmioty',
+                validationErrors: err.errors
+            })
+        })
 };
 
 exports.deletePrzedmiot = (req, res, next) => {

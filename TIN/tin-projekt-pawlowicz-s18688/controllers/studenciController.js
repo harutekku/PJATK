@@ -76,10 +76,10 @@ exports.updateStudent = (req, res, next) => {
         }).catch(err => {
             res.render('pages/studenci/form', {
                 stud: studData,
-                pageTitle: 'Nowy student',
-                formMode: 'createNew',
-                btnLabel: 'Dodaj studenta',
-                formAction: '/studenci/add',
+                formMode: 'edit',
+                pageTitle: 'Edycja studenta',
+                btnLabel: 'Edytuj studenta',
+                formAction: '/studenci/edit',
                 navLocation: 'studenci',
                 validationErrors: err.errors
             });
