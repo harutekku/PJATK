@@ -1,0 +1,3 @@
+Jest to aplikacja node.js z wykorzystaniem frameworku express z szablonem ejs.
+Używam dockera do hostowania 3 maszyn -> mysql server, phpmyadmin i mongodb (dwie ostatnie nie są wymagane do uruchomienia aplikacji, ale są w celach przyszłej rozbudowy i debugowania bazy danych)
+Używane są biblioteki sequalize i mysql2

@@ -1,0 +1,5 @@
+Wystarczy uruchomić terminal i po przejściu do folderu "docker" uruchomić komendę
+
+docker-compose up
+
+Baza skonfiguruje się automatycznie wraz z uruchomieniem aplikacji.

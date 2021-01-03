@@ -1,0 +1,84 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+CREATE DATABASE IF NOT EXISTS `tin-mpp2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `tin-mpp2`;
+
+DROP TABLE IF EXISTS `Ocenas`;
+CREATE TABLE `Ocenas` (
+  `_id` int NOT NULL,
+  `mark` decimal(1,0) NOT NULL,
+  `date` datetime NOT NULL,
+  `teacher` varchar(255) NOT NULL,
+  `student_id` int NOT NULL,
+  `przedmiot_id` int NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `Ocenas` (`_id`, `mark`, `date`, `teacher`, `student_id`, `przedmiot_id`, `createdAt`, `updatedAt`) VALUES
+(1, '5', '2020-12-07 00:00:00', 'Robert Makłowicz', 1, 1, '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(2, '4', '2020-12-07 00:00:00', 'Robert Makłowicz', 2, 2, '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(3, '3', '2020-12-07 00:00:00', 'Robert Makłowicz', 3, 3, '2020-12-22 22:59:36', '2020-12-22 22:59:36');
+
+DROP TABLE IF EXISTS `Przedmiots`;
+CREATE TABLE `Przedmiots` (
+  `_id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `shortcut` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `Przedmiots` (`_id`, `name`, `shortcut`, `department`, `createdAt`, `updatedAt`) VALUES
+(1, 'Podstawy programowania w Javie', 'PPJ', 'Katedra metod programowania', '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(2, 'Programowanie obiektowe i GUI', 'GUI', 'Katedra metod programowania', '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(3, 'Wstęp do systemów informatycznych', 'WSI', 'Katedra baz danych', '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(4, 'Wstęp do zarządzania', 'WDZ', 'Katedra Ekonomii i Zarządzania', '2020-12-22 22:59:36', '2020-12-22 22:59:36');
+
+DROP TABLE IF EXISTS `Students`;
+CREATE TABLE `Students` (
+  `_id` int NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
+  `dateOfBirth` datetime NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `Students` (`_id`, `firstName`, `lastName`, `dateOfBirth`, `createdAt`, `updatedAt`) VALUES
+(1, 'Jan', 'Kowalski', '1998-01-01 00:00:00', '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(2, 'Staś', 'Bruno', '1999-02-02 00:00:00', '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(3, 'Asia', 'Wabik', '2000-03-03 00:00:00', '2020-12-22 22:59:36', '2020-12-22 22:59:36'),
+(4, 'Marysia', 'Manio', '2001-04-04 00:00:00', '2020-12-22 22:59:36', '2020-12-22 22:59:36');
+
+
+ALTER TABLE `Ocenas`
+  ADD PRIMARY KEY (`_id`),
+  ADD KEY `student_id` (`student_id`),
+  ADD KEY `przedmiot_id` (`przedmiot_id`);
+
+ALTER TABLE `Przedmiots`
+  ADD PRIMARY KEY (`_id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `shortcut` (`shortcut`);
+
+ALTER TABLE `Students`
+  ADD PRIMARY KEY (`_id`);
+
+
+ALTER TABLE `Ocenas`
+  MODIFY `_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `Przedmiots`
+  MODIFY `_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `Students`
+  MODIFY `_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+
+ALTER TABLE `Ocenas`
+  ADD CONSTRAINT `Ocenas_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `Students` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Ocenas_ibfk_2` FOREIGN KEY (`przedmiot_id`) REFERENCES `Przedmiots` (`_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;

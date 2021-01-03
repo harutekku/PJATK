@@ -1,0 +1,5 @@
+Po uruchomieniu bazy danych należy uruchomić terminal, przejść do folderu domowego aplikacji i uruchomić ją poleceniem 
+
+npm start
+
+Po chwili aplikacja powinna utworzyć wymagane tabelki w bazie danych oraz wypełnić je wstępnymi danymi.
