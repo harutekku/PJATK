@@ -17,7 +17,7 @@
                     <option value="" selected>--- Wybierz studenta ---</option>
                     <% for (let i=0; i<allStuds.length; i++) { let stud=allStuds[i]; %>
                         <option value="<%= stud._id %>"
-                            label="<%= stud.firstName + ' ' + stud.lastName + ' ' + stud._id.toString()%>"
+                            label="<%= stud.firstName + ' ' + stud.lastName%>"
                             <%=(ocena.student && stud._id.toString()==ocena.student._id.toString()) ? 'selected' : '' %>
                             ></option>
                         <% } %>

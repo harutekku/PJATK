@@ -69,7 +69,9 @@
             </table>
             <% } %>
                 <div class="form-buttons">
-                    <p id="errorsSummary" class="errors-text"><%= validationErrors?"Formularz zawiera błędy":'' %></p>
+                    <p id="errorsSummary" class="errors-text">
+                        <%= validationErrors?"Formularz zawiera błędy":'' %>
+                    </p>
                     <% if (formMode !='showDetails' ) { %>
                         <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
                         <a class="form-button-cancel" href="/studenci">Anuluj</a>

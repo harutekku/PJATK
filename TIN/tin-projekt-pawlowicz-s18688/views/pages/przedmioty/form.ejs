@@ -36,7 +36,7 @@
                         value="<%= przed.department %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                     class="<%= validationErrors && validationErrors.find(e=> e.path.includes('department')) ?
                         'error-input' : '' %>" />
-                        <span id="errorDepartament" class="errors-text">
+                        <span id="errorDepartment" class="errors-text">
                             <% if (validationErrors) if (validationErrors.find(e=> e.path.includes('department'))) { %>
                                 <%= validationErrors.find(e=> e.path.includes('department')).message %>
                                     <% } %>
@@ -68,7 +68,9 @@
             </table>
             <% } %>
                 <div class=" form-buttons">
-                    <p id="errorsSummary" class="errors-text"></p>
+                    <p id="errorsSummary" class="errors-text">
+                        <%= validationErrors?"Formularz zawiera błędy":'' %>
+                    </p>
                     <% if (formMode !='showDetails' ) { %>
                         <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
                         <a class="form-button-cancel" href="/przedmioty">Anuluj</a>
