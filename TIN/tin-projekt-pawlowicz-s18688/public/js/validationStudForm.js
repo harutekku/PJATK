@@ -12,7 +12,7 @@ function validateForm() {
     resetErrors([firstNameInput, lastNameInput, dataInput], [errorFirstName, errorLastName, errorDateOfBirth], errorsSummary);
 
     let valid = true;
-
+    
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");

@@ -10,7 +10,7 @@
             <input type="hidden" name="_id" id="_id" value="<%= ocena._id %>">
 
             <label for="student_id">Imię i nazwisko:<sup>*</sup></label>
-            <select name="student_id" id="student_id" required <%=(formMode=='showDetails' || formMode=='edit' )
+            <select name="student_id" id="student_id" required <%=(formMode=='showDetails' )
                 ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('student_id')) ? 'error-input'
                     : '' %>" >
@@ -29,7 +29,7 @@
             </span>
 
             <label for="przedmiot_id">Przedmiot:<sup>*</sup></label>
-            <select name="przedmiot_id" id="przedmiot_id" required <%=(formMode=='showDetails' || formMode=='edit' )
+            <select name="przedmiot_id" id="przedmiot_id" required <%=(formMode=='showDetails' )
                 ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('przedmiot_id')) ?
                     'error-input' : '' %>" >
