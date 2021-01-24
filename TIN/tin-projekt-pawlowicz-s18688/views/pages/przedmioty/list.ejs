@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Lista przedmiotów</h2>
+    <h2><%= __('przed.list.pageTitle') %></h2>
     <table class="table-list">
         <thead>
             <tr>
-                <th>Nazwa</th>
-                <th>Skrót</th>
-                <th>Katedra</th>
-                <th>Akcje</th>
+                <th><%= __('przed.fields.name') %></th>
+                <th><%= __('przed.fields.shortcut') %></th>
+                <th><%= __('przed.fields.department') %></th>
+                <th><%= __('list.actions.title') %></th>
             </tr>
         </thead>
         <tbody>
@@ -18,15 +18,15 @@
                 <td><%= przed.department %></td>
                 <td>
                     <ul class="table-list-actions">
-                        <li><a href="/przedmioty/details/<%=przed._id%>" class="list-actions-button-details">Szczegóły</a></li>
-                        <li><a href="/przedmioty/edit/<%=przed._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                        <li><a href="/przedmioty/delete/<%=przed._id%>" class="list-actions-button-delete">Usuń</a></li>
+                        <li><a href="/przedmioty/details/<%=przed._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
+                        <li><a href="/przedmioty/edit/<%=przed._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a></li>
+                        <li><a href="/przedmioty/delete/<%=przed._id%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a></li>
                     </ul>
                 </td>
             </tr>
             <% } %>
         </tbody>
     </table>
-    <p><a href="/przedmioty/add" class="button-add">Dodaj nowy przedmiot</a></p>
+    <p><a href="/przedmioty/add" class="button-add"><%= __('przed.list.addNew') %></a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

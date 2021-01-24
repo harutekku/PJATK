@@ -1,0 +1,154 @@
+{
+	"main-page": {
+		"university": "University",
+		"content": "Main Page"
+	},
+	"nav": {
+		"main-page": "Main Page",
+		"subjects": "Subjects",
+		"students": "Students",
+		"marks": "Marks"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel"
+		}
+	},
+	"login": {
+		"nav": "Login",
+		"shortcut": "Subject shortcut",
+		"pass": "Password",
+		"btnLogin": "Log in",
+		"span": "You are logged as",
+		"in": "in",
+		"logout": "Log out"
+	},
+	"przed": {
+		"fields": {
+			"name": "Subject name",
+			"shortcut": "Subject shortcut",
+			"department": "Department",
+			"password": "Password"
+		},
+		"list": {
+			"title": "Subjects",
+			"addNew": "Add new subject",
+			"noData": "No subjects in database",
+			"pageTitle": "List of subjects"
+		},
+		"form": {
+			"marks": "History of marks",
+			"add": {
+				"pageTitle": "Adding a new subject",
+				"btnLabel": "Add the subject",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new subject has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a subject",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The subject has been successfully updated"
+				}
+			},
+			"show": {
+				"pageTitle": "Details of subject"
+			}
+		}
+	},
+	"stud": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"dateOfBirth": "Date of birth"
+		},
+		"list": {
+			"title": "Students",
+			"addNew": "Add new student",
+			"noData": "No students in database",
+			"pageTitle": "List of students"
+		},
+		"form": {
+			"marks": "History of marks",
+			"add": {
+				"pageTitle": "Adding a new student",
+				"btnLabel": "Add the student",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new student has been successfully created"
+				}
+			},
+			"edit": {
+				"pageTitle": "Editing a student",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The student has been successfully updated"
+				}
+			},
+			"show": {
+				"pageTitle": "Details of student"
+			}
+		}
+	},
+	"ocen": {
+		"fields": {
+			"student": "Student name",
+			"mark": "Mark",
+			"date": "Date",
+			"teacher": "Teacher",
+			"shortcut": "Shortcut",
+			"subject": "Subject"
+		},
+		"list": {
+			"title": "Marks",
+			"addNew": "Add new mark",
+			"noData": "No marks in database",
+			"pageTitle": "List of marks"
+		},
+		"form": {
+			"marks": "History of marks",
+			"add": {
+				"pageTitle": "Adding a new mark",
+				"btnLabel": "Add the mark",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The new mark has been successfully created"
+				}
+			},
+			"select": "Select",
+			"edit": {
+				"pageTitle": "Editing a mark",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirmation",
+					"text": "The mark has been successfully updated"
+				}
+			},
+			"show": {
+				"pageTitle": "Details of mark"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Field is required",
+		"field2_60": "Field should contain from 2 to 60 characters",
+		"incorrectDate": "Date is incorrect",
+		"errors": "The form contains errors",
+		"field2_5": "Please enter a valid grade between 2-5",
+		"field2_4": "Field should contain from 2 to 4 characters"
+	}
+}

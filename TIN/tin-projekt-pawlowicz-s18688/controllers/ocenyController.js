@@ -35,9 +35,9 @@ exports.showAddOcenaForm = (req, res, next) => {
                 ocena: {},
                 allStuds: allStuds,
                 allPrzeds: allPrzeds,
-                pageTitle: 'Nowa ocena',
+                pageTitle: req.__('ocen.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj ocenę',
+                btnLabel: req.__('ocen.form.add.btnLabel'),
                 formAction: '/oceny/add',
                 navLocation: 'oceny',
                 validationErrors: ''
@@ -62,8 +62,8 @@ exports.showEditOcenaForm = (req, res, next) => {
                 allStuds: allStuds,
                 allPrzeds: allPrzeds,
                 formMode: 'edit',
-                pageTitle: 'Edycja oceny',
-                btnLabel: 'Edytuj ocene',
+                pageTitle: req.__('ocen.form.edit.pageTitle'),
+                btnLabel: req.__('ocen.form.edit.btnLabel'),
                 formAction: '/oceny/edit',
                 navLocation: 'oceny',
                 validationErrors: ''
@@ -89,7 +89,7 @@ exports.showOcenaDetails = (req, res, next) => {
                 allStuds: allStuds,
                 allPrzeds: allPrzeds,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły oceny',
+                pageTitle: req.__('ocen.form.show.pageTitle'),
                 formAction: '',
                 navLocation: 'oceny',
                 validationErrors: ''
@@ -122,9 +122,9 @@ exports.addOcena = (req, res, next) => {
                         ocena: thisOcena,
                         allStuds: allStuds,
                         allPrzeds: allPrzeds,
-                        pageTitle: 'Nowa ocena',
+                        pageTitle: req.__('ocen.form.add.pageTitle'),
                         formMode: 'createNew',
-                        btnLabel: 'Dodaj ocenę',
+                        btnLabel: req.__('ocen.form.add.btnLabel'),
                         formAction: '/oceny/add',
                         navLocation: 'oceny',
                         validationErrors: err.errors
@@ -140,15 +140,16 @@ exports.updateOcena = (req, res, next) => {
         .then(result => {
             res.redirect('/oceny');
         }).catch(err => {
-            let allStuds, allPrzeds, thisOcena;
-            OcenyRepository.getOcenaById(ocenaId)
-                .then(ocena => {
-                    ocena.date = ocenaData.date;
-                    ocena.mark = ocenaData.mark;
-                    ocena.teacher = ocenaData.teacher;
-                    thisOcena = ocena;
-                    return StudenciRepository.getStudenci()
-                })
+            let allStuds, allPrzeds, thisOcena = {
+                _id: ocenaData._id,
+                student: { _id: ocenaData.student_id },
+                przedmiot: { _id: ocenaData.przedmiot_id },
+                date: ocenaData.date,
+                mark: ocenaData.mark,
+                teacher: ocenaData.teacher
+            };
+            console.dir(thisOcena,3);
+            StudenciRepository.getStudenci()
                 .then(studs => {
                     allStuds = studs;
                     return PrzedmiotyRepository.getPrzedmioty();
@@ -160,8 +161,8 @@ exports.updateOcena = (req, res, next) => {
                         allStuds: allStuds,
                         allPrzeds: allPrzeds,
                         formMode: 'edit',
-                        pageTitle: 'Edycja oceny',
-                        btnLabel: 'Edytuj ocene',
+                        pageTitle: req.__('ocen.form.edit.pageTitle'),
+                        btnLabel: req.__('ocen.form.edit.btnLabel'),
                         formAction: '/oceny/edit',
                         navLocation: 'oceny',
                         validationErrors: err.errors

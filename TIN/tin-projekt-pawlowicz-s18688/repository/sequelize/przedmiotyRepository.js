@@ -1,6 +1,7 @@
 const Przedmiot = require("../../model/sequelize/przedmioty");
 const Student = require("../../model/sequelize/studenci");
 const Ocena = require("../../model/sequelize/oceny");
+const authUtil = require('../../util/authUtils');
 
 exports.getPrzedmioty = () => {
     return Przedmiot.findAll();
@@ -24,14 +25,13 @@ exports.createPrzedmiot = (newPrzedData) => {
     return Przedmiot.create({
         name: newPrzedData.name,
         shortcut: newPrzedData.shortcut,
-        department: newPrzedData.department
+        department: newPrzedData.department,
+        password: newPrzedData.password!=""?authUtil.hashPassword(newPrzedData.password):""
     });
 };
 
 exports.updatePrzedmiot = (przedId, przedData) => {
-    const name = przedData.name;
-    const shortcut = przedData.shortcut;
-    const department = przedData.department;
+    przedData.password=authUtil.hashPassword(przedData.password);
     return Przedmiot.update(przedData, {where: {_id: przedId }});
 };
 
@@ -41,3 +41,9 @@ exports.deletePrzedmiot = (przedId) => {
     });
 
 }; 
+
+exports.findByShortcut = (shortcut) => {
+    return Przedmiot.findOne({
+        where: {shortcut: shortcut}
+    });
+}

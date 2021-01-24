@@ -11,6 +11,7 @@ const Przedmiot = sequelize.define('Przedmiot', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate: {
             notEmpty: {
                 msg: "Pole jest wymagane"
@@ -19,25 +20,26 @@ const Przedmiot = sequelize.define('Przedmiot', {
                 args: [2,60],
                 msg: "Pole powinno zawierać od 2 do 60 znaków"
             },
-            isUnique: (value, next) => {
-                Przedmiot.findOne({
-                    where: {name: value}
-                })
-                    .then((user, error) => {
-                        if (error)
-                            return next(error);
+            // isUnique: (value, next) => {
+            //     Przedmiot.findOne({
+            //         where: {name: value}
+            //     })
+            //         .then((user, error) => {
+            //             if (error)
+            //                 return next(error);
 
-                        if (user)
-                            return next('Nazwa musi być unikalna');
+            //             if (user)
+            //                 return next('Nazwa musi być unikalna');
 
-                        next();
-                    });
-            }
+            //             next();
+            //         });
+            // }
         }
     },
     shortcut: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
         validate: {
             notEmpty: {
                 msg: "Pole jest wymagane"
@@ -46,20 +48,20 @@ const Przedmiot = sequelize.define('Przedmiot', {
                 args: [2,4],
                 msg: "Pole powinno zawierać od 2 do 4 znaków"
             },
-            isUnique: (value, next) => {
-                Przedmiot.findOne({
-                    where: {shortcut: value}
-                })
-                    .then((user, error) => {
-                        if (error)
-                            return next(error);
+            // isUnique: (value, next) => {
+            //     Przedmiot.findOne({
+            //         where: {shortcut: value}
+            //     })
+            //         .then((user, error) => {
+            //             if (error)
+            //                 return next(error);
 
-                        if (user)
-                            return next('Skrót musi być unikalny');
+            //             if (user)
+            //                 return next('Skrót musi być unikalny');
 
-                        next();
-                    });
-            }
+            //             next();
+            //         });
+            // }
         }
     },
     department: {
@@ -73,6 +75,15 @@ const Przedmiot = sequelize.define('Przedmiot', {
                 args: [2,60],
                 msg: "Pole powinno zawierać od 2 do 60 znaków"
             },
+        }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            }
         }
     }
 });

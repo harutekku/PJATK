@@ -4,6 +4,9 @@ const Przedmiot = require('../../model/sequelize/przedmioty');
 const Student = require('../../model/sequelize/studenci');
 const Ocena = require('../../model/sequelize/oceny');
 
+const authUtil = require('../../util/authUtils');
+
+
 module.exports = () => {
     Przedmiot.hasMany(Ocena, {as: 'ocena', foreignKey: {name: 'przedmiot_id', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
     Ocena.belongsTo(Przedmiot, {as: 'przedmiot', foreignKey: {name: 'przedmiot_id', allowNull: false} } );
@@ -19,10 +22,10 @@ module.exports = () => {
         .then(przed => {
             if( !przed || przed.length == 0 ) {
                 return Przedmiot.bulkCreate([
-                    {name: 'Podstawy programowania w Javie', shortcut: 'PPJ', department: 'Katedra metod programowania'},
-                    {name: 'Programowanie obiektowe i GUI', shortcut: 'GUI', department: 'Katedra metod programowania'},
-                    {name: 'Wstęp do systemów informatycznych', shortcut: 'WSI', department: 'Katedra baz danych'},
-                    {name: 'Wstęp do zarządzania', shortcut: 'WDZ', department: 'Katedra Ekonomii i Zarządzania'}
+                    {name: 'Podstawy programowania w Javie', shortcut: 'PPJ', department: 'Katedra metod programowania', password: authUtil.hashPassword('12345')},
+                    {name: 'Programowanie obiektowe i GUI', shortcut: 'GUI', department: 'Katedra metod programowania', password: authUtil.hashPassword('23456')},
+                    {name: 'Wstęp do systemów informatycznych', shortcut: 'WSI', department: 'Katedra baz danych', password: authUtil.hashPassword('34567')},
+                    {name: 'Wstęp do zarządzania', shortcut: 'WDZ', department: 'Katedra Ekonomii i Zarządzania', password: authUtil.hashPassword('45678')}
                 ])
                 .then( () => {
                     return Przedmiot.findAll();

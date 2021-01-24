@@ -1,0 +1,154 @@
+{
+	"main-page": {
+		"university": "Uczelnia",
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"subjects": "Przedmioty",
+		"students": "Studenci",
+		"marks": "Oceny"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj"
+		}
+	},
+	"login": {
+		"nav": "Logowanie",
+		"shortcut": "Skrót przedmiotu",
+		"pass": "Hasło",
+		"btnLogin": "Zaloguj się",
+		"span": "Jesteś zalogowany jako",
+		"in": "w",
+		"logout": "Wyloguj się"
+	},
+	"przed": {
+		"fields": {
+			"name": "Nazwa przedmiotu",
+			"shortcut": "Skrót przedmiotu",
+			"department": "Katedra",
+			"password": "Hasło"
+		},
+		"list": {
+			"title": "Przedmioty",
+			"addNew": "Dodaj nowy przedmiot",
+			"noData": "Brak przedmiotów w bazie",
+			"pageTitle": "Lista przedmiotów"
+		},
+		"form": {
+			"marks": "Historia ocen",
+			"add": {
+				"pageTitle": "Dodawanie przedmiotu",
+				"btnLabel": "Dodaj przedmiot",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano przedmiot"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja przedmiotu",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano przedmiot"
+				}
+			},
+			"show": {
+				"pageTitle": "Szczegóły przedmiotu"
+			}
+		}
+	},
+	"stud": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"dateOfBirth": "Data urodzenia"
+		},
+		"list": {
+			"title": "Studenci",
+			"addNew": "Dodaj nowego studenta",
+			"noData": "Brak studentów w bazie",
+			"pageTitle": "Lista studentów"
+		},
+		"form": {
+			"marks": "Historia ocen",
+			"add": {
+				"pageTitle": "Dodawanie studenta",
+				"btnLabel": "Dodaj studenta",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano studenta"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja studenta",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano studenta"
+				}
+			},
+			"show": {
+				"pageTitle": "Szczegóły studenta"
+			}
+		}
+	},
+	"ocen": {
+		"fields": {
+			"student": "Imię i nazwisko studenta",
+			"mark": "Ocena",
+			"date": "Data wystawienia",
+			"teacher": "Prowadzący",
+			"shortcut": "Skrót przedmiotu",
+			"subject": "Przedmiot"
+		},
+		"list": {
+			"title": "Oceny",
+			"addNew": "Dodaj nową ocenę",
+			"noData": "Brak ocen w bazie",
+			"pageTitle": "Lista ocen"
+		},
+		"form": {
+			"marks": "Historia ocen",
+			"add": {
+				"pageTitle": "Dodawanie oceny",
+				"btnLabel": "Dodaj ocene",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano ocenę"
+				}
+			},
+			"select": "Wybierz",
+			"edit": {
+				"pageTitle": "Edycja oceny",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano ocenę"
+				}
+			},
+			"show": {
+				"pageTitle": "Szczegóły oceny"
+			}
+		}
+	},
+	"validationMessage": {
+		"fieldRequired": "Pole jest wymagane",
+		"field2_60": "Pole powinno zawierać od 2 do 60 znaków",
+		"incorrectDate": "Proszę wpisać prawidłową datę",
+		"errors": "Formularz zawiera błędy",
+		"field2_4": "Pole powinno zawierać od 2 do 4 znaków",
+		"field2_5": "Proszę wpisać prawidłową ocenę z przedziału 2-5"
+	}
+}

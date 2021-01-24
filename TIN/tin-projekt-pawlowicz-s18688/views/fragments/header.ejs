@@ -4,20 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uczelnia</title>
+    <title>
+        <%= __('main-page.university') %>
+    </title>
     <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
     <header>
-        <h1>Uczelnia</h1>
+        <h1>
+            <%= __('main-page.university') %>
+        </h1>
         <img src="/images/logo.png" alt="PJATK logo">
     </header>
     <nav>
         <ul>
-            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona główna</a></li>
-            <li><a href="/przedmioty" class="<%= navLocation == 'przedmioty' ? 'active' : ''%>">Przedmioty</a></li>
-            <li><a href="/studenci" class="<%= navLocation == 'studenci' ? 'active' : ''%>">Studenci</a></li>
-            <li><a href="/oceny" class="<%= navLocation == 'oceny' ? 'active' : ''%>">Oceny</a></li>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">
+                    <%= __('main-page.content') %>
+                </a></li>
+            <% if(loggedUser) { %>
+                <li><a href="/przedmioty" class="<%= navLocation == 'przedmioty' ? 'active' : ''%>">
+                        <%= __('przed.list.title') %>
+                    </a></li>
+                <% } %>
+                    <li><a href="/studenci" class="<%= navLocation == 'studenci' ? 'active' : ''%>">
+                            <%= __('stud.list.title') %>
+                        </a></li>
+                    <li><a href="/oceny" class="<%= navLocation == 'oceny' ? 'active' : ''%>">
+                            <%= __('ocen.list.title') %>
+                        </a></li>
+                    <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+                    <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
         </ul>
     </nav>
+    <% if(!loggedUser) { %>
+        <div id="login">
+            <h5>
+                <%= __('login.nav') %>
+            </h5>
+            <form method="post" action="/login" novalidate>
+                <label for="loginShortcut">
+                    <%= __('login.shortcut') %>:
+                </label>
+                <input type="text" id="loginShortcut" name="shortcut">
+                <label for="loginPassword">
+                    <%= __('login.pass') %>:
+                </label>
+                <input type="password" id="loginPassword" name="password">
+                <input type="submit" value="<%= __('login.btnLogin') %>">
+                <span id="loginErrors">
+                    <%= loginError ? loginError : '' %>
+                </span>
+            </form>
+        </div>
+        <% } else { %>
+            <span>
+                <%= __('login.span') %>: <%=loggedUser.name + " " +__('login.in')+" " + loggedUser.department%></span>
+        <a href=" /logout">
+                        <%= __('login.logout') %></a>
+                            <% } %>

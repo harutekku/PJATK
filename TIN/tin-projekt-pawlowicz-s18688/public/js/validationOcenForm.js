@@ -11,51 +11,57 @@ function validateForm() {
     const errorData = document.getElementById('errorDate');
     const errorMark = document.getElementById('errorMark');
 
+    const eReqMessage = document.getElementById('errorMessage-required').innerText;
+    const e2_5Message = document.getElementById('errorMessage-2_5').innerText;
+    const eDateMessage = document.getElementById('errorMessage-date').innerText;
+    const eMessage = document.getElementById('errorMessage-errors').innerText;
+
 
     resetErrors([nameInput, subjectInput, teacherInput, dataInput, markInput], [errorName, errorSubject, errorTeacher, errorData, errorMark], errorsSummary);
 
     let valid = true;
 
+
     if (!checkRequired(nameInput.value)) {
         valid = false;
         nameInput.classList.add("error-input");
-        errorName.innerText = "Pole jest wymagane";
+        errorName.innerText = eReqMessage;
     }
 
     if (!checkRequired(subjectInput.value)) {
         valid = false;
         subjectInput.classList.add("error-input");
-        errorSubject.innerText = "Pole jest wymagane";
+        errorSubject.innerText = eReqMessage;
     }
 
     if (!checkRequired(teacherInput.value)) {
         valid = false;
         teacherInput.classList.add("error-input");
-        errorTeacher.innerText = "Pole jest wymagane";
+        errorTeacher.innerText = eReqMessage;
     }
 
     if (!checkRequired(dataInput.value)) {
         valid = false;
         dataInput.classList.add("error-input");
-        errorData.innerText = "Pole jest wymagane";
+        errorData.innerText = eReqMessage;
     } else if (!checkDate(new Date(dataInput.value), new Date(1900 - 01 - 01), new Date())) {
         valid = false;
         dataInput.classList.add("error-input");
-        errorData.innerText = "Proszę wpisać prawidłową datę";
+        errorData.innerText = eDateMessage;
     }
 
     if (!checkRequired(markInput.value)) {
         valid = false;
         markInput.classList.add("error-input");
-        errorMark.innerText = "Pole jest wymagane";
+        errorMark.innerText = eReqMessage;
     } else if (markInput.value < 2 || markInput.value > 5) {
         valid = false;
         markInput.classList.add("error-input");
-        errorMark.innerText = "Proszę wpisać prawidłową ocenę z przedziału 2-5";
+        errorMark.innerText = e2_5Message;
     }
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = eMessage;
     }
 
     return valid;

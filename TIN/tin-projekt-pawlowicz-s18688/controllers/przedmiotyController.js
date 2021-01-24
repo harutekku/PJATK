@@ -1,4 +1,6 @@
 const PrzedmiotyRepository = require('../repository/sequelize/przedmiotyRepository');
+
+
 exports.showPrzedmiotyList = (req, res, next) => {
     PrzedmiotyRepository.getPrzedmioty()
         .then(przeds => {
@@ -11,9 +13,9 @@ exports.showPrzedmiotyList = (req, res, next) => {
 exports.showAddPrzedmiotForm = (req, res, next) => {
     res.render('pages/przedmioty/form', {
         przed: {},
-        pageTitle: 'Nowy przedmiot',
+        pageTitle: req.__('przed.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj przedmiot',
+        btnLabel: req.__('przed.form.add.btnLabel'),
         formAction: '/przedmioty/add',
         navLocation: 'przedmioty',
         validationErrors: ''
@@ -26,8 +28,8 @@ exports.showEditPrzedmiotForm = (req, res, next) => {
             res.render('pages/przedmioty/form', {
                 przed: przed,
                 formMode: 'edit',
-                pageTitle: 'Edycja przedmiotu',
-                btnLabel: 'Edytuj przedmiot',
+                pageTitle: req.__('przed.form.edit.pageTitle'),
+                btnLabel: req.__('przed.form.edit.btnLabel'),
                 formAction: '/przedmioty/edit',
                 navLocation: 'przedmioty',
                 validationErrors: ''
@@ -41,7 +43,7 @@ exports.showPrzedmiotDetails = (req, res, next) => {
             res.render('pages/przedmioty/form', {
                 przed: przed,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły przedmiotu',
+                pageTitle: req.__('przed.form.show.pageTitle'),
                 formAction: '',
                 navLocation: 'przedmioty',
                 validationErrors: ''
@@ -57,9 +59,9 @@ exports.addPrzedmiot = (req, res, next) => {
         .catch(err => {
             res.render('pages/przedmioty/form', {
                 przed: przedData,
-                pageTitle: 'Nowy przedmiot',
+                pageTitle: req.__('przed.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj przedmiot',
+                btnLabel: req.__('przed.form.add.btnLabel'),
                 formAction: '/przedmioty/add',
                 navLocation: 'przedmioty',
                 validationErrors: err.errors
@@ -77,8 +79,8 @@ exports.updatePrzedmiot = (req, res, next) => {
             res.render('pages/przedmioty/form', {
                 przed: przedData,
                 formMode: 'edit',
-                pageTitle: 'Edycja przedmiotu',
-                btnLabel: 'Edytuj przedmiot',
+                pageTitle: req.__('przed.form.edit.pageTitle'),
+                btnLabel: req.__('przed.form.edit.btnLabel'),
                 formAction: '/przedmioty/edit',
                 navLocation: 'przedmioty',
                 validationErrors: err.errors

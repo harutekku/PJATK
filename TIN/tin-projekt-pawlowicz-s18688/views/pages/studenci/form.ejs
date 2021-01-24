@@ -9,8 +9,10 @@
             onsubmit="return validateForm();">
             <input type="hidden" name="_id" value="<%= stud._id %>">
 
-            <label for="firstName">Imię:<sup>*</sup></label>
-            <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= stud.firstName %>"
+            <label for="firstName">
+                <%= __('stud.fields.firstName') %>:<sup>*</sup>
+            </label>
+            <input type="text" name="firstName" id="firstName" placeholder="2-60" value="<%= stud.firstName %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
             class="<%= validationErrors && validationErrors.find(e=> e.path.includes('firstName')) ? 'error-input' : ''
                 %>" />
@@ -20,8 +22,10 @@
                             <% } %>
                 </span>
 
-                <label for="lastName">Nazwisko:<sup>*</sup></label>
-                <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= stud.lastName %>"
+                <label for="lastName">
+                    <%= __('stud.fields.lastName') %>:<sup>*</sup>
+                </label>
+                <input type="text" name="lastName" id="lastName" placeholder="2-60" value="<%= stud.lastName %>"
                     <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('lastName')) ? 'error-input' :
                     '' %>"/>
@@ -31,7 +35,9 @@
                                 <% } %>
                     </span>
 
-                    <label for="dateOfBirth">Data urodzenia:<sup>*</sup></label>
+                    <label for="dateOfBirth">
+                        <%= __('stud.fields.dateOfBirth') %>:<sup>*</sup>
+                    </label>
                     <input type="date" name="dateOfBirth" id="dateOfBirth"
                         value="<%= stud.dateOfBirth instanceof Date ? stud.dateOfBirth.toISOString().split('T')[0]:stud.dateOfBirth %>"
                         <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
@@ -45,42 +51,64 @@
 
                         <% if (formMode=='showDetails' ) { %>
                             <div class="section-buttons">
-                                <a href="/studenci/edit/<%= stud._id %>" class="list-actions-button-edit">Edytuj</a>
+                                <a href="/studenci/edit/<%= stud._id %>" class="list-actions-button-edit">
+                                    <%= __('form.actions.edit') %>
+                                </a>
                             </div>
                             <% } %>
         </form>
         <% if (formMode=='showDetails' ) { %>
-            <h2> Lista przedmiotów </h2>
+            <h2>
+                <%= __('ocen.list.pageTitle') %>
+            </h2>
             <table class="table-list">
                 <thead>
                     <tr>
-                        <th>Skrót</th>
-                        <th>Ocena</th>
+                        <th>
+                            <%= __('ocen.fields.shortcut') %>
+                        </th>
+                        <th>
+                            <%= __('ocen.fields.mark') %>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (let o of stud.ocena) { %>
                         <tr>
-                            <td><a href="/przedmioty/details/<%= o.przedmiot._id %>"> <%= o.przedmiot.shortcut %></a></td>
-                            <td><%= o.mark %></td>
+                            <td><a href="/przedmioty/details/<%= o.przedmiot._id %>">
+                                    <%= o.przedmiot.shortcut %>
+                                </a></td>
+                            <td>
+                                <%= o.mark %>
+                            </td>
                         </tr>
-                    <% } %>
+                        <% } %>
                 </tbody>
             </table>
             <% } %>
                 <div class="form-buttons">
                     <p id="errorsSummary" class="errors-text">
-                        <%= validationErrors?"Formularz zawiera błędy":'' %>
+                        <%= validationErrors?__('validationMessage.errors'):'' %>
                     </p>
                     <% if (formMode !='showDetails' ) { %>
                         <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
-                        <a class="form-button-cancel" href="/studenci">Anuluj</a>
-                    <% } else { %>
-                        <a class="form-button-cancel" href="/studenci">Powrót</a>
-                    <% } %>
+                        <a class="form-button-cancel" href="/studenci">
+                            <%= __('form.actions.cancel') %>
+                        </a>
+                        <% } else { %>
+                            <a class="form-button-cancel" href="/studenci">
+                                <%= __('form.actions.return') %>
+                            </a>
+                            <% } %>
                 </div>
 
     </main>
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-2_60"><%= __('validationMessage.field2_60') %></span>
+        <span id="errorMessage-date"><%= __('validationMessage.incorrectDate') %></span>
+        <span id="errorMessage-errors"><%= __('validationMessage.errors') %></span>
+    </div>
 
 
 

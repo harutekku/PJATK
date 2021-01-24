@@ -1,16 +1,16 @@
 <%- include('../../fragments/header.ejs') %>
 
 <main>
-    <h2>Lista ocen</h2>
+    <h2><%= __('ocen.list.pageTitle') %></h2>
     <table class="table-list">
         <thead>
             <tr>
-                <th>Nazwa przedmiotu</th>
-                <th>Imie i nazwisko studenta</th>
-                <th>Imię i nazwisko prowadzącego</th>
-                <th>Data wystawienia</th>
-                <th>Ocena</th>
-                <th>Akcje</th>
+                <th><%= __('ocen.fields.subject') %></th>
+                <th><%= __('ocen.fields.student') %></th>
+                <th><%= __('ocen.fields.teacher') %></th>
+                <th><%= __('ocen.fields.date') %></th>
+                <th><%= __('ocen.fields.mark') %></th>
+                <th><%= __('list.actions.title') %></th>
             </tr>
         </thead>
         <tbody>
@@ -23,9 +23,9 @@
                 <td><%= ocena.mark %></td>
                 <td>
                     <ul class="table-list-actions">
-                        <li><a href="/oceny/details/<%=ocena._id%>" class="list-actions-button-details">Szczegóły</a></li>
-                        <li><a href="/oceny/edit/<%=ocena._id%>" class="list-actions-button-edit">Edytuj</a></li>
-                        <li><a href="/oceny/delete/<%=ocena._id%>" class="list-actions-button-delete">Usuń</a></li>
+                        <li><a href="/oceny/details/<%=ocena._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a></li>
+                        <li><a href="/oceny/edit/<%=ocena._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a></li>
+                        <li><a href="/oceny/delete/<%=ocena._id%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a></li>
                     </ul>
                 </td>
             </tr>
@@ -33,6 +33,6 @@
 
         </tbody>
     </table>
-    <p><a href="/oceny/add" class="button-add">Dodaj nową ocenę</a></p>
+    <p><a href="/oceny/add" class="button-add"><%= __('ocen.list.addNew') %></a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

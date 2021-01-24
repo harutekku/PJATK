@@ -9,8 +9,10 @@
             onsubmit="return validateForm();">
             <input type="hidden" name="_id" value="<%= przed._id %>">
 
-            <label for="name">Nazwa:<sup>*</sup></label>
-            <input type="text" name="name" id="name" placeholder="2-60 znaków" value="<%= przed.name %>"
+            <label for="name">
+                <%= __('przed.fields.name') %>:<sup>*</sup>
+            </label>
+            <input type="text" name="name" id="name" placeholder="2-60" value="<%= przed.name %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
             class="<%= validationErrors && validationErrors.find(e=> e.path.includes('name')) ? 'error-input' : '' %>"
                 />
@@ -20,8 +22,10 @@
                             <% } %>
                 </span>
 
-                <label for="shortcut">Skrót:<sup>*</sup></label>
-                <input type="text" name="shortcut" id="shortcut" placeholder="2-4 znaków" value="<%= przed.shortcut %>"
+                <label for="shortcut">
+                    <%= __('przed.fields.shortcut') %>:<sup>*</sup>
+                </label>
+                <input type="text" name="shortcut" id="shortcut" placeholder="2-4" value="<%= przed.shortcut %>"
                     <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('shortcut')) ? 'error-input' :
                     '' %>" />
@@ -31,8 +35,10 @@
                                 <% } %>
                     </span>
 
-                    <label for="department">Katedra:<sup>*</sup></label>
-                    <input type="text" name="department" id="department" placeholder="2-60 znaków"
+                    <label for="department">
+                        <%= __('przed.fields.department') %>:<sup>*</sup>
+                    </label>
+                    <input type="text" name="department" id="department" placeholder="2-60"
                         value="<%= przed.department %>" <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                     class="<%= validationErrors && validationErrors.find(e=> e.path.includes('department')) ?
                         'error-input' : '' %>" />
@@ -42,25 +48,51 @@
                                     <% } %>
                         </span>
 
-                        <% if (formMode=='showDetails' ) { %>
-                            <div class="section-buttons">
-                                <a href="/przedmioty/edit/<%= przed._id %>" class="list-actions-button-edit">Edytuj</a>
-                            </div>
-                            <% } %>
+                        <% if (formMode!='showDetails' ) { %>
+                            <label for="password">
+                                <%= __('przed.fields.password') %>:<sup>*</sup>
+                            </label>
+                            <input type="password" name="password" id="password" <%=(formMode=='showDetails' )
+                                ? 'disabled' : '' %>
+                            class="<%= validationErrors && validationErrors.find(e=> e.path.includes('password')) ?
+                                'error-input' : '' %>" />
+                                <span id="errorPassword" class="errors-text">
+                                    <% if (validationErrors) if (validationErrors.find(e=> e.path.includes('password')))
+                                        { %>
+                                        <%= validationErrors.find(e=> e.path.includes('password')).message %>
+                                            <% } %>
+                                </span>
+                                <% } %>
+
+                                    <% if (formMode=='showDetails' ) { %>
+                                        <div class="section-buttons">
+                                            <a href="/przedmioty/edit/<%= przed._id %>"
+                                                class="list-actions-button-edit">
+                                                <%= __('form.actions.edit') %>
+                                            </a>
+                                        </div>
+                                        <% } %>
         </form>
         <% if (formMode=='showDetails' ) { %>
-            <h2> Lista studentów </h2>
+            <h2>
+                <%= __('stud.list.pageTitle') %>
+            </h2>
             <table class="table-list">
                 <thead>
                     <tr>
-                        <th>Imię i nazwisko</th>
-                        <th>Ocena</th>
+                        <th>
+                            <%= __('ocen.fields.student') %>
+                        </th>
+                        <th>
+                            <%= __('ocen.fields.mark') %>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for (let o of przed.ocena) { %>
                         <tr>
-                            <td><a href="/studenci/details/<%= o.student._id %>"> <%= o.student.firstName+" "+o.student.lastName %></a></td>
+                            <td><a href="/studenci/details/<%= o.student._id %>">
+                                    <%= o.student.firstName+" "+o.student.lastName %></a></td>
                             <td><%= o.mark %></td>
                         </tr>
                     <% } %>
@@ -68,15 +100,26 @@
             </table>
             <% } %>
                 <div class=" form-buttons">
-                    <p id="errorsSummary" class="errors-text">
-                        <%= validationErrors?"Formularz zawiera błędy":'' %>
-                    </p>
-                    <% if (formMode !='showDetails' ) { %>
-                        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
-                        <a class="form-button-cancel" href="/przedmioty">Anuluj</a>
-                    <% } else { %>
-                        <a class="form-button-cancel" href="/przedmioty">Powrót</a>
-                    <% } %>
-                </div>
+                                        <p id="errorsSummary" class="errors-text">
+                                            <%= validationErrors?__('validationMessage.errors'):'' %>
+                                        </p>
+                                        <% if (formMode !='showDetails' ) { %>
+                                            <input class="form-button-submit" type="submit" value="<%=btnLabel%>"
+                                                form="myform" />
+                                            <a class="form-button-cancel" href="/przedmioty">
+                                                <%= __('form.actions.cancel') %>
+                                            </a>
+                                            <% } else { %>
+                                                <a class="form-button-cancel" href="/przedmioty">
+                                                    <%= __('form.actions.return') %>
+                                                </a>
+                                                <% } %>
+                                                    </div>
     </main>
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-2_60"><%= __('validationMessage.field2_60') %></span>
+        <span id="errorMessage-2_4"><%= __('validationMessage.field2_4') %></span>
+        <span id="errorMessage-errors"><%= __('validationMessage.errors') %></span>
+    </div>
     <%- include('../../fragments/footer.ejs') %>

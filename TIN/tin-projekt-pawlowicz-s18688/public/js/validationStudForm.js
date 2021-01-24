@@ -8,43 +8,49 @@ function validateForm() {
     const errorDateOfBirth = document.getElementById('errorDateOfBirth');
     const errorsSummary = document.getElementById('errorsSummary');
 
+    const eReqMessage = document.getElementById('errorMessage-required').innerText;
+    const e2_60Message = document.getElementById('errorMessage-2_60').innerText;
+    const eDateMessage = document.getElementById('errorMessage-date').innerText;
+    const eMessage = document.getElementById('errorMessage-errors').innerText;
+
 
     resetErrors([firstNameInput, lastNameInput, dataInput], [errorFirstName, errorLastName, errorDateOfBirth], errorsSummary);
 
     let valid = true;
     
+    
     if (!checkRequired(firstNameInput.value)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole jest wymagane";
+        errorFirstName.innerText = eReqMessage;
     } else if (!checkTextLengthRange(firstNameInput.value, 2, 60)) {
         valid = false;
         firstNameInput.classList.add("error-input");
-        errorFirstName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorFirstName.innerText = e2_60Message;
     }
 
     if (!checkRequired(lastNameInput.value)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "Pole jest wymagane";
+        errorLastName.innerText = eReqMessage;
     } else if (!checkTextLengthRange(lastNameInput.value, 2, 60)) {
         valid = false;
         lastNameInput.classList.add("error-input");
-        errorLastName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
+        errorLastName.innerText = e2_60Message;
     }
 
     if (!checkRequired(dataInput.value)) {
         valid = false;
         dataInput.classList.add("error-input");
-        errorDateOfBirth.innerText = "Pole jest wymagane";
+        errorDateOfBirth.innerText = eReqMessage;
     } else if (!checkDate(new Date(dataInput.value), new Date(1900 - 01 - 01), new Date())) {
         valid = false;
         dataInput.classList.add("error-input");
-        errorDateOfBirth.innerText = "Proszę wpisać prawidłową datę";
+        errorDateOfBirth.innerText = eDateMessage;
     }
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = eMessage;
     }
 
     return valid;

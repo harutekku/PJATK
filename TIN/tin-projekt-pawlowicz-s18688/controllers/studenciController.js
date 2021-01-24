@@ -11,9 +11,9 @@ exports.showStudenciList = (req, res, next) => {
 exports.showAddStudentForm = (req, res, next) => {
     res.render('pages/studenci/form', {
         stud: {},
-        pageTitle: 'Nowy student',
+        pageTitle: req.__('stud.form.add.pageTitle'),
         formMode: 'createNew',
-        btnLabel: 'Dodaj studenta',
+        btnLabel: req.__('stud.form.add.btnLabel'),
         formAction: '/studenci/add',
         navLocation: 'studenci',
         validationErrors: ''
@@ -26,8 +26,8 @@ exports.showEditStudentForm = (req, res, next) => {
             res.render('pages/studenci/form', {
                 stud: stud,
                 formMode: 'edit',
-                pageTitle: 'Edycja studenta',
-                btnLabel: 'Edytuj studenta',
+                pageTitle: req.__('stud.form.edit.pageTitle'),
+                btnLabel: req.__('stud.form.edit.btnLabel'),
                 formAction: '/studenci/edit',
                 navLocation: 'studenci',
                 validationErrors: ''
@@ -41,7 +41,7 @@ exports.showStudentDetails = (req, res, next) => {
             res.render('pages/studenci/form', {
                 stud: stud,
                 formMode: 'showDetails',
-                pageTitle: 'Szczegóły studenta',
+                pageTitle: req.__('stud.form.show.pageTitle'),
                 formAction: '',
                 navLocation: 'studenci',
                 validationErrors: ''
@@ -57,9 +57,9 @@ exports.addStudent = (req, res, next) => {
         .catch(err => {
             res.render('pages/studenci/form', {
                 stud: studData,
-                pageTitle: 'Nowy student',
+                pageTitle: req.__('stud.form.add.pageTitle'),
                 formMode: 'createNew',
-                btnLabel: 'Dodaj studenta',
+                btnLabel: req.__('stud.form.add.btnLabel'),
                 formAction: '/studenci/add',
                 navLocation: 'studenci',
                 validationErrors: err.errors
@@ -77,8 +77,8 @@ exports.updateStudent = (req, res, next) => {
             res.render('pages/studenci/form', {
                 stud: studData,
                 formMode: 'edit',
-                pageTitle: 'Edycja studenta',
-                btnLabel: 'Edytuj studenta',
+                pageTitle: req.__('stud.form.edit.pageTitle'),
+                btnLabel: req.__('stud.form.edit.btnLabel'),
                 formAction: '/studenci/edit',
                 navLocation: 'studenci',
                 validationErrors: err.errors

@@ -9,12 +9,12 @@
             onsubmit="return validateForm();">
             <input type="hidden" name="_id" id="_id" value="<%= ocena._id %>">
 
-            <label for="student_id">Imię i nazwisko:<sup>*</sup></label>
+            <label for="student_id"><%= __('ocen.fields.student') %>:<sup>*</sup></label>
             <select name="student_id" id="student_id" required <%=(formMode=='showDetails' )
                 ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('student_id')) ? 'error-input'
                     : '' %>" >
-                    <option value="" selected>--- Wybierz studenta ---</option>
+                    <option value="" selected>--- <%= __('ocen.form.select') %> ---</option>
                     <% for (let i=0; i<allStuds.length; i++) { let stud=allStuds[i]; %>
                         <option value="<%= stud._id %>"
                             label="<%= stud.firstName + ' ' + stud.lastName%>"
@@ -28,12 +28,12 @@
                         <% } %>
             </span>
 
-            <label for="przedmiot_id">Przedmiot:<sup>*</sup></label>
+            <label for="przedmiot_id"><%= __('ocen.fields.subject') %>:<sup>*</sup></label>
             <select name="przedmiot_id" id="przedmiot_id" required <%=(formMode=='showDetails' )
                 ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('przedmiot_id')) ?
                     'error-input' : '' %>" >
-                    <option value="">--- Wybierz przedmiot ---</option>
+                    <option value="">--- <%= __('ocen.form.select') %> ---</option>
                     <% for (let i=0; i<allPrzeds.length; i++) { let przed=allPrzeds[i]; %>
                         <option value="<%= przed._id %>" label="<%= przed.name %>" <%=(ocena.przedmiot &&
                             przed._id.toString()==ocena.przedmiot._id.toString()) ? 'selected' : '' %>></option>
@@ -45,11 +45,11 @@
                         <% } %>
             </span>
 
-            <label for="teacher">Prowadzący:<sup>*</sup></label>
+            <label for="teacher"><%= __('ocen.fields.teacher') %>:<sup>*</sup></label>
             <select name="teacher" id="teacher" required <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('teacher')) ? 'error-input' :
                     '' %>" >
-                    <option value="">--- Wybierz prowadzącego ---</option>
+                    <option value="">--- <%= __('ocen.form.select') %> ---</option>
                     <option value="Marcin Bożydar" label="Marcin Bożydar" <%=(ocena.teacher=="Marcin Bożydar" )
                         ? 'selected' : '' %>></option>
                     <option value="Robert Makłowicz" label="Robert Makłowicz" <%=(ocena.teacher=="Robert Makłowicz" )
@@ -61,7 +61,7 @@
                         <% } %>
             </span>
 
-            <label for="date">Data wystawienia:<sup>*</sup></label>
+            <label for="date"><%= __('ocen.fields.date') %>:<sup>*</sup></label>
             <input type="date" name="date" id="date"
                 value="<%= ocena.date instanceof Date ? ocena.date.toISOString().split('T')[0]:ocena.date %>"
                 <%=(formMode=='showDetails' ) ? 'disabled' : '' %>
@@ -73,7 +73,7 @@
                             <% } %>
                 </span>
 
-                <label for="mark">Ocena:<sup>*</sup></label>
+                <label for="mark"><%= __('ocen.fields.mark') %>:<sup>*</sup></label>
                 <input type="number" name="mark" id="mark" value="<%= ocena.mark %>" <%=(formMode=='showDetails' )
                     ? 'disabled' : '' %>
                 class="<%= validationErrors && validationErrors.find(e=> e.path.includes('mark')) ? 'error-input' : ''
@@ -86,22 +86,28 @@
 
                     <% if (formMode=='showDetails' ) { %>
                         <div class="section-buttons">
-                            <a href="/oceny/edit/<%= ocena._id %>" class="list-actions-button-edit">Edytuj</a>
+                            <a href="/oceny/edit/<%= ocena._id %>" class="list-actions-button-edit"><%= __('form.actions.edit') %></a>
                         </div>
                         <% } %>
         </form>
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text">
-                <%= validationErrors?"Formularz zawiera błędy":'' %>
+                <%= validationErrors?__('validationMessage.errors'):'' %>
             </p>
             <% if (formMode !='showDetails' ) { %>
                 <input class="form-button-submit" type="submit" value="<%=btnLabel%>" form="myform" />
-                <a class="form-button-cancel" href="/oceny">Anuluj</a>
+                <a class="form-button-cancel" href="/oceny"><%= __('form.actions.cancel') %></a>
                 <% } else { %>
-                    <a class="form-button-cancel" href="/oceny">Powrót</a>
+                    <a class="form-button-cancel" href="/oceny"><%= __('form.actions.return') %></a>
                     <% } %>
         </div>
 
     </main>
+    <div style="display: none">
+        <span id="errorMessage-required"><%= __('validationMessage.fieldRequired') %></span>
+        <span id="errorMessage-2_5"><%= __('validationMessage.field2_5') %></span>
+        <span id="errorMessage-date"><%= __('validationMessage.incorrectDate') %></span>
+        <span id="errorMessage-errors"><%= __('validationMessage.errors') %></span>
+    </div>
 
     <%- include('../../fragments/footer.ejs') %>
