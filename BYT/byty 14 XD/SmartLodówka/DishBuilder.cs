@@ -6,7 +6,7 @@ namespace SmartLodówka
 {
     interface DishBuilder
     {
-        void Prepare(string name);
+        void Prepare(Contents Contents, string name);
         void Pack();
         Dish GetDish();
     }

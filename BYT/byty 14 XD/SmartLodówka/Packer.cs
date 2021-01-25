@@ -13,9 +13,9 @@ namespace SmartLodówka
             dishBuilder = builder;
         }
 
-        public Dish createDish(string name)
+        public Dish createDish(Contents Contents, string name)
         {
-            dishBuilder.Prepare(name);
+            dishBuilder.Prepare(Contents, name);
             dishBuilder.Pack();
             return dishBuilder.GetDish();
         }
