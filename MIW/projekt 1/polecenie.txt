@@ -1,0 +1,17 @@
+
+
+
+Korzystając z biblioteki numpy i pandas, zaimplementuj wielowarstwową sieć neuronową, którą możemy uczyć za pomocą metody wstecznej propagacji.
+
+Skrypt powinien mieć następujące parametry:
+	-i --input: plik wejściowy dla sieci szkoleniowej
+	--test_split: Jaka część danych powinna zostać użyta do walidacji (domyślnie 0.3)
+	-e --learning_factor: współczynnik uczenia się
+	--bipolar: Jeśli ustawione, użyj funkcji bipolarnej, w przeciwnym razie unipolarnej
+	-h --hidden Rozmiar ukrytej warstwy
+	
+Skrypt powinien wypisać błąd dla każdej wartości uczącej i średni błąd absloute dla zestawu testowego.
+Powinieneś zwrócić swoją pracę zarówno jako plik .py, jak i .pdf (wydrukuj kod do pdf). NIE WYSYŁAJ ZAPAKOWANYCH PLIKÓW.
+
+Możesz użyć dowolnego zbioru danych (na przykład zbioru danych Iris).
+Sugerowane źródło zbioru danych to Kaggle.
