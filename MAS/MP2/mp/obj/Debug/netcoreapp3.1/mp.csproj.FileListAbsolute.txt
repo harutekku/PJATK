@@ -1,0 +1,13 @@
+D:\Projekty\PJATK master\MAS\MP2\mp\bin\Debug\netcoreapp3.1\mp.exe
+D:\Projekty\PJATK master\MAS\MP2\mp\bin\Debug\netcoreapp3.1\mp.deps.json
+D:\Projekty\PJATK master\MAS\MP2\mp\bin\Debug\netcoreapp3.1\mp.runtimeconfig.json
+D:\Projekty\PJATK master\MAS\MP2\mp\bin\Debug\netcoreapp3.1\mp.runtimeconfig.dev.json
+D:\Projekty\PJATK master\MAS\MP2\mp\bin\Debug\netcoreapp3.1\mp.dll
+D:\Projekty\PJATK master\MAS\MP2\mp\bin\Debug\netcoreapp3.1\mp.pdb
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.csprojAssemblyReference.cache
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.AssemblyInfoInputs.cache
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.AssemblyInfo.cs
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.csproj.CoreCompileInputs.cache
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.dll
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.pdb
+D:\Projekty\PJATK master\MAS\MP2\mp\obj\Debug\netcoreapp3.1\mp.genruntimeconfig.cache

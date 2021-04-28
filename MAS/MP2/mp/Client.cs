@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Text.Json;
 
-namespace mp1
+namespace mp
 {
     public class Client : Person
     {
@@ -43,7 +42,7 @@ namespace mp1
         }
         public override string ToString()
         {
-            return name + " " + surname + " " + age + " " + string.Join(", ",address) +" and have discount "+discount;
+            return name + " " + surname + (age.HasValue? " " + age + " old ": " ") + string.Join(", ", address) + " and have discount " + discount;
         }
         public static void showClients()
         {

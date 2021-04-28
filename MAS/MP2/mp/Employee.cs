@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace mp1
+namespace mp
 {
-    class Employee : Person
+    public class Employee : Person
     {
         DateTime dateOfEmployment;
         int EmploymentTime()

@@ -1,0 +1,2 @@
+Correctnes level on training dataset: 97.96%
+Correctnes level on test dataset: 80.50%

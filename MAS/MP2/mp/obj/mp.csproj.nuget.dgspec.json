@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projekty\\PJATK master\\MAS\\MP1\\mp1\\mp1.csproj": {}
+    "D:\\Projekty\\PJATK master\\MAS\\MP2\\mp\\mp.csproj": {}
   },
   "projects": {
-    "D:\\Projekty\\PJATK master\\MAS\\MP1\\mp1\\mp1.csproj": {
+    "D:\\Projekty\\PJATK master\\MAS\\MP2\\mp\\mp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projekty\\PJATK master\\MAS\\MP1\\mp1\\mp1.csproj",
-        "projectName": "mp1",
-        "projectPath": "D:\\Projekty\\PJATK master\\MAS\\MP1\\mp1\\mp1.csproj",
+        "projectUniqueName": "D:\\Projekty\\PJATK master\\MAS\\MP2\\mp\\mp.csproj",
+        "projectName": "mp",
+        "projectPath": "D:\\Projekty\\PJATK master\\MAS\\MP2\\mp\\mp.csproj",
         "packagesPath": "C:\\Users\\Kubbit\\.nuget\\packages\\",
-        "outputPath": "D:\\Projekty\\PJATK master\\MAS\\MP1\\mp1\\obj\\",
+        "outputPath": "D:\\Projekty\\PJATK master\\MAS\\MP2\\mp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kubbit\\AppData\\Roaming\\NuGet\\NuGet.Config",
