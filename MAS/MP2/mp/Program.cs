@@ -21,12 +21,14 @@ namespace mp
             //Console.WriteLine(Client.Extension);
             //Client.showClients();
 
+
             Warehouse warehouse = new Warehouse();
             warehouse.addLane();
             warehouse.addLane();
             Console.WriteLine(new LaneAssignment(storekeeper1, warehouse.GetLane(1), new DateTime(2021, 04, 25), new DateTime(2021, 04, 30)));
             new LaneAssignment(storekeeper2, warehouse.GetLane(2), new DateTime(2021, 05, 01), new DateTime(2021, 05, 10));
             Console.WriteLine(storekeeper2.GetLastLaneAssignment());
+            warehouse.removeLane(2);
 
 
 

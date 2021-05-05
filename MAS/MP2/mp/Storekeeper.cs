@@ -23,14 +23,17 @@ namespace mp
         {
             return base.ToString() + " and has license type " + license.LicenceType.ToString();
         }
-
+        public void setWarehouse(Warehouse warehouse) //tworzenie polaczenia zwrotnego, property set
+        {
+            this.Warehouse = warehouse;
+        }
         public void addLaneAssignment(LaneAssignment LaneAssignment)
         {
             LaneAssignments.Add(LaneAssignment);
         }
-        public void setWarehouse(Warehouse warehouse)
+        public void removeLaneAssignment(LaneAssignment laneAssignment)
         {
-            this.Warehouse = warehouse;
+            LaneAssignments.Remove(laneAssignment);
         }
         public LaneAssignment GetLastLaneAssignment()
         {

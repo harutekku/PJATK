@@ -6,17 +6,25 @@ namespace mp
 {
     public class Warehouse
     {
-        private Dictionary<int, Lane> Lanes;
+        private SortedDictionary<int, Lane> Lanes;
         private List<Storekeeper> Storekeepers;
 
         public Warehouse()
         {
-            Lanes = new Dictionary<int, Lane>();
+            Lanes = new SortedDictionary<int, Lane>();
             Storekeepers = new List<Storekeeper>();
         }
         public void addLane()
         {
-            Lanes.Add(Lanes.Count + 1, new Lane(this, Lanes.Count + 1));
+            Lanes.Add(Lanes.Count + 1, new Lane(this, Lanes.Count + 1)); //dwukierunkowa asocjacja
+        }
+        public void removeLane(int id)
+        {
+            foreach(LaneAssignment laneas in Lanes[id].LaneAssignment)
+            {
+                laneas.removeAssignment();
+            }
+            Lanes.Remove(id);
         }
         public Lane GetLane(int id)
         {
@@ -26,6 +34,11 @@ namespace mp
         {
             Storekeepers.Add(storekeeper);
             storekeeper.setWarehouse(this);
+        }
+        public void removeStorepeeker(Storekeeper storekeeper)
+        {
+            Storekeepers.Remove(storekeeper);
+            storekeeper.setWarehouse(null);
         }
     }
 }

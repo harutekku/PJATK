@@ -8,25 +8,35 @@ namespace mp
     {
         private int LaneId;
         private Dictionary<string, Item> Items;
+        private static HashSet<Item> ItemList = new HashSet<Item>();
         private Warehouse Warehouse;
-        private LaneAssignment LaneAssignment;
+        public List<LaneAssignment> LaneAssignment;
         public Lane(Warehouse warehouse, int id)
         {
             this.Warehouse = warehouse;
             Items = new Dictionary<string, Item>();
             this.LaneId = id;
+            this.LaneAssignment = new List<LaneAssignment>();
         }
         public void addItem(Item item)
         {
-            if (Items.ContainsKey(item.name))
+            if (ItemList.Contains(item))
             {
+                throw new Exception("Item already on lane");
+            }
+            else
+            {
+                ItemList.Add(item);
                 Items.Add(item.name, item);
-                item.setLine(this);
             }
         }
         public void setLaneAssignment(LaneAssignment LaneAssignment)
         {
-            this.LaneAssignment = LaneAssignment;
+            this.LaneAssignment.Add(LaneAssignment);
+        }
+        public void removeLaneAssignment(LaneAssignment laneAssignment)
+        {
+            LaneAssignment.Remove(laneAssignment);
         }
         public Warehouse GetWarehouse()
         {

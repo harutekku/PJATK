@@ -25,5 +25,10 @@ namespace mp
         {
             return storekeeper.surname + " have shift to " + dateTo + " on lane "+lane.getLaneId();
         }
+        public void removeAssignment()
+        {
+            storekeeper.removeLaneAssignment(this);
+            lane.removeLaneAssignment(this);
+        }
     }
 }
