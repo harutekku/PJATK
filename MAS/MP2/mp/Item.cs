@@ -6,10 +6,10 @@ namespace mp
 {
     public class Item
     {
-        public string name { get; }
-        float weight;
-        Decimal price;
-        Lane lane;
+        public string name { get; private set; }
+        private float weight;
+        private Decimal price;
+        private Lane lane;
         private Item(string name, float weight, Decimal price, Lane lane)
         {
             this.name = name;
@@ -17,19 +17,23 @@ namespace mp
             this.price = price;
             this.lane = lane;
         }
-        public static Item createItem(string name, float weight, Decimal price, Lane lane)
+        //kompozycja
+        public static Item createItem(string name, float weight, Decimal price, Warehouse warehouse, int lane)
         {
-            if(lane == null)
+            if (warehouse.ContainsLane(lane))
             {
-                throw new Exception("Lane missing");
+                Item item = new Item(name, weight, price, warehouse.GetLane(lane));
+                item.lane.addItem(item);
+                return item;
             }
-            Item item = new Item(name, weight, price, lane);
-            lane.addItem(item);
-            return item;
+            else
+            {
+                throw new Exception("No lane like that in this warehouse ");
+            }
         }
-        public void setLine(Lane lane)
+        public override string ToString()
         {
-            this.lane = lane;
+            return name + ", " + weight + ", " + price +" and is on line "+lane.getLaneId();
         }
     }
 }

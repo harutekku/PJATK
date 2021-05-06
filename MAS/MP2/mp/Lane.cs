@@ -10,14 +10,37 @@ namespace mp
         private Dictionary<string, Item> Items;
         private static HashSet<Item> ItemList = new HashSet<Item>();
         private Warehouse Warehouse;
-        public List<LaneAssignment> LaneAssignment;
-        public Lane(Warehouse warehouse, int id)
+        private List<LaneAssignment> LaneAssignments;
+        public Lane(int id)
         {
-            this.Warehouse = warehouse;
             Items = new Dictionary<string, Item>();
             this.LaneId = id;
-            this.LaneAssignment = new List<LaneAssignment>();
+            this.LaneAssignments = new List<LaneAssignment>();
         }
+
+        //z atrybutem
+        public void addLaneAssignment(LaneAssignment LaneAssignment)
+        {
+            if (!this.LaneAssignments.Contains(LaneAssignment))
+            {
+                this.LaneAssignments.Add(LaneAssignment);
+            }
+        }
+
+        //kwalifikowana
+        public void setWarehouse(Warehouse warehouse)
+        {
+            if (warehouse.GetLane(LaneId).Equals(this))
+            {
+                this.Warehouse = warehouse;
+            }
+            else
+            {
+                throw new Exception("Cant add a warehouse which that doesnt belong to");
+            }
+        }
+
+        //kompozycja
         public void addItem(Item item)
         {
             if (ItemList.Contains(item))
@@ -30,21 +53,36 @@ namespace mp
                 Items.Add(item.name, item);
             }
         }
-        public void setLaneAssignment(LaneAssignment LaneAssignment)
+        public Item getItem(String name)
         {
-            this.LaneAssignment.Add(LaneAssignment);
+            if (Items.ContainsKey(name))
+            {
+                return Items[name];
+            }
+            else throw new Exception("No item like this on that lane");
         }
-        public void removeLaneAssignment(LaneAssignment laneAssignment)
+        public void removeItem(String name)
         {
-            LaneAssignment.Remove(laneAssignment);
+            if (Items.ContainsKey(name))
+            {
+                Item item = getItem(name);
+                Items.Remove(name);
+                ItemList.Remove(item);
+                
+            }
+            else throw new Exception("No item like this on that lane");
         }
-        public Warehouse GetWarehouse()
-        {
-            return Warehouse;
-        }
+
+        
+        
         public int getLaneId()
         {
             return LaneId;
+        }
+
+        public override string ToString()
+        {
+            return "Lane id "+LaneId+" with " + Items.Count+" items";
         }
     }
 }

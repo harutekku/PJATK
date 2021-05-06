@@ -12,6 +12,10 @@ public class AggressiveAnimal extends Animal{
 	}
 
 	public void hunt(){
+		if(isSick()){
+			System.out.println("Cant hunt because is sick");
+			return;
+		}
 		int lilCounter=0;
 		for(int i=Animal.getMilds().size()-1;i >= 0;i--){
 			if(getHabitatType().equals(HabitatType.Water)){
@@ -43,6 +47,11 @@ public class AggressiveAnimal extends Animal{
 		}
 		killCounter+=lilCounter;
 		System.out.println("Hunt result: "+lilCounter);
+	}
+
+	public boolean isSick(){
+		if(super.getTemperature()<40) return true;
+		return false;
 	}
 
 	@Override

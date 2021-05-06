@@ -23,6 +23,7 @@ public class Animal{
 
 	private Point location;
 	private HabitatType habitatType;
+
 	private int temperature;
 	private LocalDate dateOfFinding;
 	private double weight;
@@ -61,6 +62,10 @@ public class Animal{
 
 	public HabitatType getHabitatType(){
 		return habitatType;
+	}
+
+	public int getTemperature(){
+		return temperature;
 	}
 
 	@Override

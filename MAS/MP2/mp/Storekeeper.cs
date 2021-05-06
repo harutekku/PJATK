@@ -5,35 +5,48 @@ namespace mp
 {
     public class Storekeeper : Employee
     {
-        License license;
-        Warehouse Warehouse;
-        List<LaneAssignment> LaneAssignments;
+        private License license;
+        private List<Warehouse> Warehouses;
+        private List<LaneAssignment> LaneAssignments;
         
         public Storekeeper(string name, string surname, DateTime dateOfEmployment, License license) : base(name, surname, dateOfEmployment)
         {
             this.license = license;
+            Warehouses = new List<Warehouse>();
             LaneAssignments = new List<LaneAssignment>();
         }
         public Storekeeper(string name, string surname, DateTime dateOfEmployment) : base(name, surname, dateOfEmployment)
         {
             this.license = new License();
+            Warehouses = new List<Warehouse>();
             LaneAssignments = new List<LaneAssignment>();
         }
-        public override string ToString()
+        
+        //zwykła asocjacja
+        public void addWarehouse(Warehouse warehouse)
         {
-            return base.ToString() + " and has license type " + license.LicenceType.ToString();
+            if (!Warehouses.Contains(warehouse))
+            {
+                Warehouses.Add(warehouse);
+                warehouse.addStorekeeper(this);
+            }
         }
-        public void setWarehouse(Warehouse warehouse) //tworzenie polaczenia zwrotnego, property set
+        public void removeWarehouse(Warehouse warehouse)
         {
-            this.Warehouse = warehouse;
+            if (Warehouses.Contains(warehouse))
+            {
+                Warehouses.Remove(warehouse);
+                warehouse.removeStorepeeker(this);
+            }
         }
+
+        //z atrybutem
         public void addLaneAssignment(LaneAssignment LaneAssignment)
         {
-            LaneAssignments.Add(LaneAssignment);
-        }
-        public void removeLaneAssignment(LaneAssignment laneAssignment)
-        {
-            LaneAssignments.Remove(laneAssignment);
+            if (!this.LaneAssignments.Contains(LaneAssignment))
+            {
+                this.LaneAssignments.Add(LaneAssignment);
+            }
         }
         public LaneAssignment GetLastLaneAssignment()
         {
@@ -42,5 +55,9 @@ namespace mp
 
 
 
+        public override string ToString()
+        {
+            return base.ToString() + " and has license type " + license.LicenceType.ToString();
+        }
     }
 }
