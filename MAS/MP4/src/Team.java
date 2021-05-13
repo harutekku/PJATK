@@ -35,7 +35,7 @@ public class Team{
 		this.members=new ArrayList<>();
 		this.hostMatches=new ArrayList<>();
 		this.guestMatches=new ArrayList<>();
-		sponsorSet=new TreeSet<>((o1,o2)->(int)(o1.getDate().until(o2.getDate(),ChronoUnit.MILLIS)));
+		sponsorSet=new TreeSet<>((o1,o2)->(int)(o2.getDate().until(o1.getDate(),ChronoUnit.MILLIS)));
 	}
 
 	public void addMember(Player player){
@@ -96,7 +96,7 @@ public class Team{
 
 	public String getSponsors(){
 		String result="";
-		for(Sponsor sponsor:sponsorSet){
+		for(Sponsor sponsor: sponsorSet){
 			result+=sponsor.toString()+'\n';
 		}
 		return result;

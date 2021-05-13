@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Sponsor{
@@ -18,9 +17,6 @@ public class Sponsor{
 
 	@Override
 	public String toString(){
-		return "Sponsor{"+
-				"name='"+name+'\''+
-				", date="+date+
-				'}';
+		return "Sponsor: name='"+name+'\''+", date="+date;
 	}
 }

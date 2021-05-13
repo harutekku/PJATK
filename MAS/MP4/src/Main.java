@@ -78,7 +78,7 @@ public class Main{
 
 		System.out.println(team1.getSponsors());
 
-		for(Participation participation:team1.getCaptain().getParticipations()){
+		for(Participation participation: team1.getCaptain().getParticipations()){
 			System.out.println(participation.getMatch());
 		}
 

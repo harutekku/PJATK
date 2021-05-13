@@ -4,9 +4,11 @@ import java.util.List;
 
 public class Player{
 	private final static int maxParticipations=3;
+
 	public static int getMaxParticipations(){
 		return maxParticipations;
 	}
+
 	private String name, surname;
 	private LocalDate dateOfBirth;
 	private Team teamMember;
@@ -31,12 +33,12 @@ public class Player{
 
 	public boolean checkParticipation(Match match){
 		int counter=0;
-		for(Participation participation:participations){
+		for(Participation participation: participations){
 			if(participation.getMatch().equals(match)){
 				counter++;
 			}
 		}
-		if(counter<maxParticipations)return false;
+		if(counter<maxParticipations) return false;
 		return true;
 	}
 

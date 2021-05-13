@@ -9,7 +9,8 @@ public class Participation{
 
 
 	public Participation(Player player,Match match,LocalTime timeOfEntry) throws Exception{
-		if(player.checkParticipation(match))throw new Exception("More than "+Player.getMaxParticipations()+" participations");
+		if(player.checkParticipation(match))
+			throw new Exception("More than "+Player.getMaxParticipations()+" participations");
 		this.player=player;
 		player.addParticipation(this);
 		this.match=match;
@@ -18,7 +19,8 @@ public class Participation{
 	}
 
 	public Participation(Player player,Match match,LocalTime timeOfEntry,LocalTime timeOfDescent) throws Exception{
-		if(player.checkParticipation(match))throw new Exception("More than "+Player.getMaxParticipations()+" participations");
+		if(player.checkParticipation(match))
+			throw new Exception("More than "+Player.getMaxParticipations()+" participations");
 		this.player=player;
 		player.addParticipation(this);
 		this.match=match;
@@ -30,9 +32,11 @@ public class Participation{
 	public Player getPlayer(){
 		return player;
 	}
+
 	public Match getMatch(){
 		return match;
 	}
+
 	public long lengthOfContest(){
 		return timeOfEntry.until(timeOfDescent,ChronoUnit.MINUTES);
 	}

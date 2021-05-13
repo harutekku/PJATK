@@ -10,8 +10,9 @@ public class Person{
 	}
 
 	public void setAccount(Account account) throws Exception{
-		account.setOwner(this);
+		if(this.account==account) return;
 		this.account=account;
+		if(account!=null) account.setOwner(this);
 	}
 
 	public Account getAccount(){
