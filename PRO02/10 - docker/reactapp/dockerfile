@@ -1,0 +1,11 @@
+FROM node:lts-alpine3.13
+RUN addgroup app && adduser -S -G app app
+USER app
+WORKDIR /app
+COPY package*.json .
+RUN npm install
+COPY . .
+#RUN npm install
+EXPOSE 3000
+
+ENTRYPOINT ["npm", "start"]
