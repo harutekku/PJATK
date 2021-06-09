@@ -41,9 +41,11 @@ public class Main{
 			List<Person> users=session.createQuery("from Person",Person.class).getResultList();
 			for(Person person:users){
 				System.out.println(person);
-				for(CreditCard card:person.getCreditCards()){
-					System.out.println(card);
-				}
+				System.out.println(person.checkPersonKind(PersonType.User));
+				System.out.println(person.checkPersonKind(PersonType.Editor));
+//				for(CreditCard card:person.getCreditCards()){
+//					System.out.println(card);
+//				}
 			}
 
 			session.getTransaction().commit();

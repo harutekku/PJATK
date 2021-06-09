@@ -48,7 +48,12 @@ public class Service{
 	public Double getRateFor(String currency){
 		if(this.currency.equals(currency)) return 1.0;
 		try{
-			String all=JsonToString(new URL("https://api.exchangeratesapi.io/latest?base="+currency+"&symbols="+this.currency));
+			String all=JsonToString(new URL("https://api.exchangerate.host/latest?base="+currency+"&symbols="+this.currency));
+			System.out.println(all);
+			System.out.println();
+			System.out.println(new JSONObject(all).getJSONObject("rates"));
+			System.out.println();
+			System.out.println(new JSONObject(all).getJSONObject("rates").getDouble(this.currency));
 			return new JSONObject(all).getJSONObject("rates").getDouble(this.currency);
 		}catch(IOException e){
 			System.err.println("Bad currency");

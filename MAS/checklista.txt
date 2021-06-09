@@ -1,0 +1,22 @@
+część stara:+
+	wymagania+
+	diagram przypadków użycia+
+	analityczny diagram klas+
+nowa:+
+	przypadki użycia:+
+		powielony diagram ze starej+
+		szczegółowy opis jednego nietrywialnego przypadku (odwołuje się do innego)+
+		scenariusz dla przypadku:+
+			język naturalny+
+			diagram aktywności+
+	projekt interfejsu w oparciu o nietrywialny przypadek użycia+
+	analiza dynamiczna dla tego przypadku użycia
+		diagram interakcji+
+		diagram aktywności+
+		diagram stanu+
+		-metody na diagramie klas+
+		-jawne omówienie skutków:+
+			nowe atrybuty/asocjacje/klasy wyróżnione na diagramie klas+
+	projektowy diagram klas:+
+		opis specyfikujący podjęte decyzje - zamienione konstrukcje na takie jakie występują w języku programowania+
+		ma metody wynikłe z analizy dynamicznej+
