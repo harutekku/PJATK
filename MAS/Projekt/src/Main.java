@@ -1,0 +1,67 @@
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import java.time.LocalDate;
+import java.util.logging.Level;
+
+public class Main{
+	public static void main(String[] args){
+		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
+		StandardServiceRegistry registry=null;
+		SessionFactory sessionFactory=null;
+		try{
+			registry=new StandardServiceRegistryBuilder().configure().build();
+			sessionFactory=new MetadataSources(registry).buildMetadata().buildSessionFactory();
+			Session session=sessionFactory.openSession();
+			session.beginTransaction();
+
+			Person user=Person.createUser("Andrzej","Jodłowski","727272727","bao@bao.pl","andrzejj","passXD");
+			Person user2=Person.createUser("Marysia","Jodłowska","727272727","bao@bao.pl","marysia","passXD");
+			session.save(user);
+			session.save(user2);
+			try{
+				//Person user3=Person.createUser("Marysia","Mirowska","727272727","bao@bao.pl","marysia","passXD");
+				//session.save(user3);
+			}catch(IllegalArgumentException e){
+				e.printStackTrace();
+			}
+			CreditCard card=CreditCard.addCardToPerson(user,"12345",LocalDate.of(2023,12,22),"123");
+			session.save(card);
+			Company company=Company.createCompany("Mcdonald","Żywność");
+			session.save(company);
+			Restaurant restaurant=Restaurant.createRestaurant("Jerozolimskie",22,"01-111","Warszawa",company,0.30);
+			GasStation gasStation=GasStation.createGasStation("Jerozolimskie",23,"01-112","Warszawa",company,0.20);
+			Local local=Local.createLocal("Jerozolimskie",23,"01-112","Warszawa",company);
+			session.save(restaurant);
+			session.save(gasStation);
+			session.save(local);
+
+			//session.remove(card);
+			//session.remove(user);
+
+
+			/*List<Person> users=session.createQuery("from Person",Person.class).getResultList();
+			for(Person person:users){
+				System.out.println(person);
+				System.out.println(person.checkPersonKind(PersonType.User));
+				System.out.println(person.checkPersonKind(PersonType.Editor));
+//				for(CreditCard card:person.getCreditCards()){
+//					System.out.println(card);
+//				}
+			}*/
+
+			session.getTransaction().commit();
+			session.close();
+		}catch(Exception e){
+			e.printStackTrace();
+			StandardServiceRegistryBuilder.destroy(registry);
+		}finally{
+			if(sessionFactory!=null){
+				sessionFactory.close();
+			}
+		}
+	}
+}

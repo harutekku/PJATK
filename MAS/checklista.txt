@@ -20,3 +20,9 @@ nowa:+
 	projektowy diagram klas:+
 		opis specyfikujący podjęte decyzje - zamienione konstrukcje na takie jakie występują w języku programowania+
 		ma metody wynikłe z analizy dynamicznej+
+		
+		
+za mało klas - zbyt trywialny projekt
+enum jako ograniczenie, nie jako klasa i linie kreskowe
+decyzje projektowe rozwinąć
+diagram interakcji do poprawy

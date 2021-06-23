@@ -1,0 +1,80 @@
+:- dynamic pozycja/1,na/2.
+
+%2
+miejsce(lozko, 'lozko').
+miejsce(drzwi, 'drzwi').
+miejsce(szafa, 'szafa').
+miejsce(mebloscianka, 'mebloscianka').
+miejsce(szafka, 'szafka przy lozku').
+miejsce(kosz, 'kosz').
+miejsce(szafka2, 'szafka przy biurku').
+miejsce(biurko, 'biurko').
+miejsce(stolik, 'stolik z lampka nocna').
+
+%3
+na(monitor,biurko).
+na(myszka,biurko).
+na(klawiatura,biurko).
+na(lampka,stolik).
+na(smieci,kosz).
+na(garnitur,szafa).
+na(tshirt,szafa).
+na(jeansy,szafa).
+na(poduszka,lozko).
+na(bluza,szafa).
+na(ksiazka,szafka).
+na(telefon,biurko).
+na(kwiatek,biurko).
+
+obok(X,Y) :- na(X,Z),na(Y,Z),X\=Y.
+
+%4
+poloz(Przedmiot) :- pozycja(Pozycja),na(Przedmiot,'reka'),retract(na(Przedmiot,'reka')),assert(na(Przedmiot,Pozycja)).
+podnies(Przedmiot) :- pozycja(Pozycja),na(Przedmiot,Pozycja),retract(na(Przedmiot,Pozycja)),assert(na(Przedmiot,'reka')).
+
+
+%5
+pozycja(kosz).
+idz(lozko,stolik,p).
+idz(lozko,drzwi,l).
+idz(drzwi,lozko,p).
+idz(drzwi,szafa,l).
+idz(szafa,drzwi,p).
+idz(szafa,mebloscianka,l).
+idz(mebloscianka,szafa,p).
+idz(mebloscianka,szafka,l).
+idz(szafka,mebloscianka,p).
+idz(szafka,kosz,l).
+idz(kosz,szafka,p).
+idz(kosz,szafka2,l).
+idz(szafka2,kosz,p).
+idz(szafka2,biurko,l).
+idz(biurko,szafka2,p).
+idz(biurko,stolik,l).
+idz(stolik,biurko,p).
+idz(stolik,lozko,l).
+pojdz(X) :- pozycja(Y),idz(Y,Z,X),retractall(pozycja(Y)),assert(pozycja(Z)).
+
+%dodatkowe
+trzymam :- write('Trzymam: '),nl,na(Przedmiot, 'reka'),write(Przedmiot),nl;nl.
+jestem :- write('Stoję przy: '),pozycja(Pozycja),write(Pozycja),nl.
+mogepodniesc :- write('Moge podniesc: '),pozycja(Pozycja),na(Przedmiot,Pozycja),write(Przedmiot),nl;nl.
+lokalizacja :- write('Moge podejsc do: '),pozycja(X),idz(X,Y,_),write(Y).
+
+lekkie(mysz).
+lekkie(klawiatura).
+lekkie(telefon).
+lekkie(ksiazka).
+ciezkie(monitor).
+ciezkie(lampka).
+ciezkie(kwiatek).
+ciezsze(X,Y) :- ciezkie(X),lekkie(Y).
+
+
+
+%kod do wywołania
+aggregate_all(count, (
+pojdz(l),pojdz(l),mogepodniesc;
+podnies(telefon),trzymam;
+pojdz(p),pojdz(p),pojdz(p),poloz(telefon),trzymam;
+mogepodniesc), Count).
