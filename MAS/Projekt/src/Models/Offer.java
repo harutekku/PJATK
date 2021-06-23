@@ -81,5 +81,14 @@ public class Offer{
 	}
 	private List<OfferItem> offerItems=new ArrayList<>();
 
+	protected Offer(){}
+	public Offer(LocalDateTime creationDate,LocalDateTime validityStart,LocalDateTime validityEnd,Person author, Local local){
+		this.creationDate=creationDate;
+		this.validityStart=validityStart;
+		this.validityEnd=validityEnd;
+		this.author=author;
+		this.local=local;
+	}
+
 }
 

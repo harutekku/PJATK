@@ -1,5 +1,7 @@
 package Models;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -134,7 +136,7 @@ public class Person{
 		this.ordersProduced=ordersProduced;
 	}
 	public void addOrderProduced(Order order) throws Exception{
-		if(personKind.contains(PersonType.Employee)){
+		if(personKind.contains(PersonType.Employee)||personKind.contains(PersonType.Operator)){
 			if(order.getProducer().equals(this)){
 				ordersProduced.add(order);
 			}else{
@@ -259,7 +261,7 @@ public class Person{
 		}
 		addLogin(login);
 		Person operator=new Person(firstName,lastName,phoneNumber,emailAddress,login,password);
-		operator.addPersonKind(PersonType.Employee);
+		//operator.addPersonKind(PersonType.Employee);
 		operator.addPersonKind(PersonType.Operator);
 		return operator;
 	}

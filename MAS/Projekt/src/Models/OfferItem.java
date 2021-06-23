@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -55,13 +56,10 @@ public class OfferItem{
 	private Set<Order> orders=new HashSet<Order>();
 
 	protected OfferItem(){}
-	private OfferItem(String name,BigDecimal price){
+	public OfferItem(String name,BigDecimal price,Offer offer){
 		this.name=name;
 		this.price=price;
-	}
-	public static OfferItem createOfferItem(String name,BigDecimal price){
-		OfferItem offerItem=new OfferItem(name,price);
-		return offerItem;
+		this.offer=offer;
 	}
 
 }
