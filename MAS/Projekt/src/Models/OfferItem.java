@@ -1,3 +1,5 @@
+package Models;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

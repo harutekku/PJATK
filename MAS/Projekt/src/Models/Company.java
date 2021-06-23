@@ -1,3 +1,5 @@
+package Models;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,7 @@ public class Company{
 		if(local.getOwner().equals(this)){
 			locals.add(local);
 		}else{
-			throw new Exception("Local is not owned by this company");
+			throw new Exception("Models.Local is not owned by this company");
 		}
 	}
 	private List<Local> locals=new ArrayList<>();

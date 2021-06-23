@@ -1,3 +1,5 @@
+package Models;
+
 import javax.persistence.*;
 
 @Entity(name="Review")

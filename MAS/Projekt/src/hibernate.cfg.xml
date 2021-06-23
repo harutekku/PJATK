@@ -23,15 +23,15 @@
         <!-- Enable Hibernate stats in the logs -->
         <property name="hibernate.generate_statistics">true</property>
         <!-- Full names of the annotated entity class -->
-        <mapping class="CreditCard"/>
-        <mapping class="Person"/>
-        <mapping class="Local"/>
-        <mapping class="Company"/>
-        <mapping class="Restaurant"/>
-        <mapping class="GasStation"/>
-        <mapping class="Review"/>
-        <mapping class="Offer"/>
-        <mapping class="OfferItem"/>
-        <mapping class="Order"/>
+        <mapping class="Models.CreditCard"/>
+        <mapping class="Models.Person"/>
+        <mapping class="Models.Local"/>
+        <mapping class="Models.Company"/>
+        <mapping class="Models.Restaurant"/>
+        <mapping class="Models.GasStation"/>
+        <mapping class="Models.Review"/>
+        <mapping class="Models.Offer"/>
+        <mapping class="Models.OfferItem"/>
+        <mapping class="Models.Order"/>
     </session-factory>
 </hibernate-configuration>

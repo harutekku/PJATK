@@ -1,3 +1,5 @@
+package Models;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -116,7 +118,7 @@ public class Person{
 			if(order.getUser().equals(this)){
 				orders.add(order);
 			}else{
-				throw new Exception("Order is not owned by this user");
+				throw new Exception("Models.Order is not owned by this user");
 			}
 		}else{
 			throw new Exception("This person cant have orders");
@@ -136,7 +138,7 @@ public class Person{
 			if(order.getProducer().equals(this)){
 				ordersProduced.add(order);
 			}else{
-				throw new Exception("Order is not produced by this user");
+				throw new Exception("Models.Order is not produced by this user");
 			}
 		}else{
 			throw new Exception("This person cant produced orders");
@@ -156,13 +158,62 @@ public class Person{
 			if(order.getOperator().equals(this)){
 				ordersOperated.add(order);
 			}else{
-				throw new Exception("Order is not operated by this user");
+				throw new Exception("Models.Order is not operated by this user");
 			}
 		}else{
 			throw new Exception("This person cant operate orders");
 		}
 	}
 	private List<Order> ordersOperated=new ArrayList<>();
+
+	@OneToMany(mappedBy="author", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<Offer> getOffers(){
+		return offers;
+	}
+	private void setOffers(List<Offer> offers){
+		this.offers=offers;
+	}
+	public void addOffer(Offer offer) throws Exception{
+		if(personKind.contains(PersonType.Editor)){
+			if(offer.getAuthor().equals(this)){
+				offers.add(offer);
+			}else{
+				throw new Exception("Models.Offer is not created by this author");
+			}
+		}else{
+			throw new Exception("This person cant create offer");
+		}
+	}
+	private List<Offer> offers=new ArrayList<>();
+
+	@OneToMany(mappedBy="reviewer", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<Review> getReviews(){
+		return reviews;
+	}
+	private void setReviews(List<Review> reviews){
+		this.reviews=reviews;
+	}
+	public void addReview(Review review) throws Exception{
+		if(personKind.contains(PersonType.User)){
+			if(review.getReviewer().equals(this)){
+				reviews.add(review);
+			}else{
+				throw new Exception("Models.Review is not created by this user");
+			}
+		}else{
+			throw new Exception("This person cant create reviews");
+		}
+	}
+	private List<Review> reviews=new ArrayList<>();
+
+	@ManyToOne
+	public Local getWork(){
+		return work;
+	}
+	public void setWork(Local local){
+		this.work=work;
+	}
+	private Local work;
 
 
 	protected Person(){}
@@ -215,7 +266,7 @@ public class Person{
 
 	@Override
 	public String toString(){
-		return "Person{"+
+		return "Models.Person{"+
 				"firstName='"+firstName+'\''+
 				", lastName='"+lastName+'\''+
 				", phoneNumber='"+phoneNumber+'\''+

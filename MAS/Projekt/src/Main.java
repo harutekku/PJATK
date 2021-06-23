@@ -1,3 +1,4 @@
+import Models.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -23,7 +24,7 @@ public class Main{
 			session.save(user);
 			session.save(user2);
 			try{
-				//Person user3=Person.createUser("Marysia","Mirowska","727272727","bao@bao.pl","marysia","passXD");
+				//Models.Person user3=Models.Person.createUser("Marysia","Mirowska","727272727","bao@bao.pl","marysia","passXD");
 				//session.save(user3);
 			}catch(IllegalArgumentException e){
 				e.printStackTrace();
@@ -43,12 +44,12 @@ public class Main{
 			//session.remove(user);
 
 
-			/*List<Person> users=session.createQuery("from Person",Person.class).getResultList();
-			for(Person person:users){
+			/*List<Models.Person> users=session.createQuery("from Models.Person",Models.Person.class).getResultList();
+			for(Models.Person person:users){
 				System.out.println(person);
-				System.out.println(person.checkPersonKind(PersonType.User));
-				System.out.println(person.checkPersonKind(PersonType.Editor));
-//				for(CreditCard card:person.getCreditCards()){
+				System.out.println(person.checkPersonKind(Models.PersonType.User));
+				System.out.println(person.checkPersonKind(Models.PersonType.Editor));
+//				for(Models.CreditCard card:person.getCreditCards()){
 //					System.out.println(card);
 //				}
 			}*/

@@ -1,3 +1,5 @@
+package Models;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -74,10 +76,58 @@ public class Local{
 		if(offer.getLocal().equals(this)){
 			offers.add(offer);
 		}else{
-			throw new Exception("Offer is not owned by this local");
+			throw new Exception("Models.Offer is not owned by this local");
 		}
 	}
 	private List<Offer> offers=new ArrayList<>();
+
+	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<Review> getReviews(){
+		return reviews;
+	}
+	private void setReviews(List<Review> reviews){
+		this.reviews=reviews;
+	}
+	public void addReview(Review review) throws Exception{
+		if(review.getLocal().equals(this)){
+			reviews.add(review);
+		}else{
+			throw new Exception("Models.Review is not created for this local");
+		}
+	}
+	private List<Review> reviews=new ArrayList<>();
+
+	@OneToMany(mappedBy="work", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<Person> getEmployees(){
+		return employees;
+	}
+	private void setEmployees(List<Person> employees){
+		this.employees=employees;
+	}
+	public void addEmployee(Person person) throws Exception{
+		if(person.getWork().equals(this)){
+			employees.add(person);
+		}else{
+			throw new Exception("Models.Person does not work here");
+		}
+	}
+	private List<Person> employees=new ArrayList<>();
+
+	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<Order> getOrders(){
+		return orders;
+	}
+	private void setOrders(List<Order> orders){
+		this.orders=orders;
+	}
+	public void addOrder(Order order) throws Exception{
+		if(order.getLocal().equals(this)){
+			orders.add(order);
+		}else{
+			throw new Exception("Models.Order does not apply to this local");
+		}
+	}
+	private List<Order> orders=new ArrayList<>();
 
 	protected Local(){}
 	protected Local(/*long id,*/String street,int number,String postalCode,String city,Company owner){

@@ -1,7 +1,11 @@
+package Models;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name="Offer")
 public class Offer{
@@ -60,6 +64,22 @@ public class Offer{
 		this.local=local;
 	}
 	private Local local;
+
+	@OneToMany(mappedBy="offer", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<OfferItem> getOfferItems(){
+		return offerItems;
+	}
+	private void setOfferItems(List<OfferItem> offerItems){
+		this.offerItems=offerItems;
+	}
+	public void addOfferItem(OfferItem offerItem) throws Exception{
+		if(offerItem.getOffer().equals(this)){
+			offerItems.add(offerItem);
+		}else{
+			throw new Exception("Models.Offer item is not created for this offer");
+		}
+	}
+	private List<OfferItem> offerItems=new ArrayList<>();
 
 }
 

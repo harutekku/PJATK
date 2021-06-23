@@ -1,3 +1,5 @@
+package Models;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
@@ -81,7 +83,7 @@ public class CreditCard{
 
 	@Override
 	public String toString(){
-		return "CreditCard{"+
+		return "Models.CreditCard{"+
 				"number='"+number+'\''+
 				", expiredDate="+expiredDate+
 				", owner="+owner.getLogin()+
