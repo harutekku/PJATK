@@ -5,18 +5,60 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.*;
 
-enum PersonType{Person,User,Employee,Editor,Operator};
+/**
+ * The enum Person type.
+ */
+enum PersonType{
+	/**
+	 * Person person type.
+	 */
+	Person,
+	/**
+	 * User person type.
+	 */
+	User,
+	/**
+	 * Employee person type.
+	 */
+	Employee,
+	/**
+	 * Editor person type.
+	 */
+	Editor,
+	/**
+	 * Operator person type.
+	 */
+	Operator};
 
+/**
+ * The type Person.
+ */
 @Entity(name="Person")
 public class Person{
 	private static Set<String> logins=new TreeSet<>();
+	/**
+	 * Check login boolean.
+	 *
+	 * @param login the login
+	 * @return the boolean
+	 */
 	public static boolean checkLogin(String login){
 		return logins.contains(login);
 	}
+	/**
+	 * Add login.
+	 *
+	 * @param login the login
+	 */
 	public static void addLogin(String login){
 		logins.add(login);
 	}
 
+	/**
+	 * Get login string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	@Id
 	public String getLogin(){
@@ -27,6 +69,11 @@ public class Person{
 	}
 	private String login;
 
+	/**
+	 * Get first name string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getFirstName(){
 		return firstName;
@@ -36,6 +83,11 @@ public class Person{
 	}
 	private String firstName;
 
+	/**
+	 * Get last name string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getLastName(){
 		return lastName;
@@ -45,6 +97,11 @@ public class Person{
 	}
 	private String lastName;
 
+	/**
+	 * Get phone number string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getPhoneNumber(){
 		return phoneNumber;
@@ -54,6 +111,11 @@ public class Person{
 	}
 	private String phoneNumber;
 
+	/**
+	 * Get email address string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getEmailAddress(){
 		return emailAddress;
@@ -63,6 +125,11 @@ public class Person{
 	}
 	private String emailAddress;
 
+	/**
+	 * Get password string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getPassword(){
 		return password;
@@ -75,19 +142,40 @@ public class Person{
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private EnumSet<PersonType> personKind=EnumSet.of(PersonType.Person);
+	/**
+	 * Get person kind enum set.
+	 *
+	 * @return the enum set
+	 */
 	public EnumSet<PersonType> getPersonKind(){
 		return personKind;
 	}
 	private void setPersonKind(EnumSet<PersonType> personKind){
 		this.personKind=personKind;
 	}
+	/**
+	 * Add person kind.
+	 *
+	 * @param personType the person type
+	 */
 	public void addPersonKind(PersonType personType){
 		this.personKind.add(personType);
 	}
+	/**
+	 * Check person kind boolean.
+	 *
+	 * @param personType the person type
+	 * @return the boolean
+	 */
 	public boolean checkPersonKind(PersonType personType){
 		return personKind.contains(personType);
 	}
 
+	/**
+	 * Get credit cards list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="owner", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<CreditCard> getCreditCards(){
 		return creditCards;
@@ -95,6 +183,12 @@ public class Person{
 	private void setCreditCards(List<CreditCard> creditCards){
 		this.creditCards=creditCards;
 	}
+	/**
+	 * Add card.
+	 *
+	 * @param card the card
+	 * @throws Exception the exception
+	 */
 	public void addCard(CreditCard card) throws Exception{
 		if(personKind.contains(PersonType.User)){
 			if(card.getOwner().equals(this)){
@@ -108,6 +202,11 @@ public class Person{
 	}
 	private List<CreditCard> creditCards=new ArrayList<>();
 
+	/**
+	 * Get orders list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Order> getOrders(){
 		return orders;
@@ -115,6 +214,12 @@ public class Person{
 	private void setOrders(List<Order> orders){
 		this.orders=orders;
 	}
+	/**
+	 * Add order.
+	 *
+	 * @param order the order
+	 * @throws Exception the exception
+	 */
 	public void addOrder(Order order) throws Exception{
 		if(personKind.contains(PersonType.User)){
 			if(order.getUser().equals(this)){
@@ -128,6 +233,11 @@ public class Person{
 	}
 	private List<Order> orders=new ArrayList<>();
 
+	/**
+	 * Get orders produced list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="producer", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Order> getOrdersProduced(){
 		return ordersProduced;
@@ -135,6 +245,12 @@ public class Person{
 	private void setOrdersProduced(List<Order> ordersProduced){
 		this.ordersProduced=ordersProduced;
 	}
+	/**
+	 * Add order produced.
+	 *
+	 * @param order the order
+	 * @throws Exception the exception
+	 */
 	public void addOrderProduced(Order order) throws Exception{
 		if(personKind.contains(PersonType.Employee)||personKind.contains(PersonType.Operator)){
 			if(order.getProducer().equals(this)){
@@ -148,6 +264,11 @@ public class Person{
 	}
 	private List<Order> ordersProduced=new ArrayList<>();
 
+	/**
+	 * Get orders operated list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="operator", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Order> getOrdersOperated(){
 		return ordersOperated;
@@ -155,6 +276,12 @@ public class Person{
 	private void setOrdersOperated(List<Order> ordersOperated){
 		this.ordersOperated=ordersOperated;
 	}
+	/**
+	 * Add order operated.
+	 *
+	 * @param order the order
+	 * @throws Exception the exception
+	 */
 	public void addOrderOperated(Order order) throws Exception{
 		if(personKind.contains(PersonType.Operator)){
 			if(order.getOperator().equals(this)){
@@ -168,6 +295,11 @@ public class Person{
 	}
 	private List<Order> ordersOperated=new ArrayList<>();
 
+	/**
+	 * Get offers list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="author", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Offer> getOffers(){
 		return offers;
@@ -175,6 +307,12 @@ public class Person{
 	private void setOffers(List<Offer> offers){
 		this.offers=offers;
 	}
+	/**
+	 * Add offer.
+	 *
+	 * @param offer the offer
+	 * @throws Exception the exception
+	 */
 	public void addOffer(Offer offer) throws Exception{
 		if(personKind.contains(PersonType.Editor)){
 			if(offer.getAuthor().equals(this)){
@@ -188,6 +326,11 @@ public class Person{
 	}
 	private List<Offer> offers=new ArrayList<>();
 
+	/**
+	 * Get reviews list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="reviewer", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Review> getReviews(){
 		return reviews;
@@ -195,6 +338,12 @@ public class Person{
 	private void setReviews(List<Review> reviews){
 		this.reviews=reviews;
 	}
+	/**
+	 * Add review.
+	 *
+	 * @param review the review
+	 * @throws Exception the exception
+	 */
 	public void addReview(Review review) throws Exception{
 		if(personKind.contains(PersonType.User)){
 			if(review.getReviewer().equals(this)){
@@ -208,16 +357,29 @@ public class Person{
 	}
 	private List<Review> reviews=new ArrayList<>();
 
+	/**
+	 * Get work local.
+	 *
+	 * @return the local
+	 */
 	@ManyToOne
 	public Local getWork(){
 		return work;
 	}
+	/**
+	 * Set work.
+	 *
+	 * @param local the local
+	 */
 	public void setWork(Local local){
 		this.work=work;
 	}
 	private Local work;
 
 
+	/**
+	 * Instantiates a new Person.
+	 */
 	protected Person(){}
 	private Person(String firstName,String lastName,String phoneNumber,String emailAddress,String login,String password){
 		this.firstName=firstName;
@@ -228,6 +390,17 @@ public class Person{
 		this.password=password;
 	}
 
+	/**
+	 * Create user person.
+	 *
+	 * @param firstName    the first name
+	 * @param lastName     the last name
+	 * @param phoneNumber  the phone number
+	 * @param emailAddress the email address
+	 * @param login        the login
+	 * @param password     the password
+	 * @return the person
+	 */
 	public static Person createUser(String firstName,String lastName,String phoneNumber,String emailAddress,String login,String password){
 		if(checkLogin(login)){
 			throw new IllegalArgumentException("This login already exist");
@@ -237,6 +410,17 @@ public class Person{
 		user.addPersonKind(PersonType.User);
 		return user;
 	}
+	/**
+	 * Create editor person.
+	 *
+	 * @param firstName    the first name
+	 * @param lastName     the last name
+	 * @param phoneNumber  the phone number
+	 * @param emailAddress the email address
+	 * @param login        the login
+	 * @param password     the password
+	 * @return the person
+	 */
 	public static Person createEditor(String firstName,String lastName,String phoneNumber,String emailAddress,String login,String password){
 		if(checkLogin(login)){
 			throw new IllegalArgumentException("This login already exist");
@@ -246,6 +430,17 @@ public class Person{
 		editor.addPersonKind(PersonType.Editor);
 		return editor;
 	}
+	/**
+	 * Create producer person.
+	 *
+	 * @param firstName    the first name
+	 * @param lastName     the last name
+	 * @param phoneNumber  the phone number
+	 * @param emailAddress the email address
+	 * @param login        the login
+	 * @param password     the password
+	 * @return the person
+	 */
 	public static Person createProducer(String firstName,String lastName,String phoneNumber,String emailAddress,String login,String password){
 		if(checkLogin(login)){
 			throw new IllegalArgumentException("This login already exist");
@@ -255,6 +450,17 @@ public class Person{
 		producer.addPersonKind(PersonType.Employee);
 		return producer;
 	}
+	/**
+	 * Create operator person.
+	 *
+	 * @param firstName    the first name
+	 * @param lastName     the last name
+	 * @param phoneNumber  the phone number
+	 * @param emailAddress the email address
+	 * @param login        the login
+	 * @param password     the password
+	 * @return the person
+	 */
 	public static Person createOperator(String firstName,String lastName,String phoneNumber,String emailAddress,String login,String password){
 		if(checkLogin(login)){
 			throw new IllegalArgumentException("This login already exist");

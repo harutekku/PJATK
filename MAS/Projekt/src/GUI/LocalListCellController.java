@@ -10,6 +10,9 @@ import javafx.scene.control.ListCell;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
+/**
+ * The type Local list cell controller.
+ */
 public class LocalListCellController extends ListCell<Local>{
 	@FXML
 	private Label nameLabel;

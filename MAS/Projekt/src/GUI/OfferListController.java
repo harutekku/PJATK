@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The type Offer list controller.
+ */
 public class OfferListController implements Initializable{
 	@FXML
 	private Label priceLabel;
@@ -38,6 +41,11 @@ public class OfferListController implements Initializable{
 		choosedItems=new ArrayList<>();
 	}
 
+	/**
+	 * Set local.
+	 *
+	 * @param local the local
+	 */
 	public void setLocal(Local local){
 		this.local=local;
 		offerItems=local.getActualOfferItems();
@@ -46,12 +54,30 @@ public class OfferListController implements Initializable{
 		offerItemList.setCellFactory(offerItemListView->new OfferListCellController(this));
 		offerItemList.getItems().addAll(offerItems);
 	}
+	/**
+	 * On back to local.
+	 *
+	 * @param e the e
+	 * @throws IOException the io exception
+	 */
 	public void onBackToLocal(ActionEvent e) throws IOException{
 		MainMenuController.returnToLocal(e);
 	}
+	/**
+	 * On back to menu.
+	 *
+	 * @param e the e
+	 * @throws IOException the io exception
+	 */
 	public void onBackToMenu(ActionEvent e) throws IOException{
 		MainMenuController.returnToMainMenu(e);
 	}
+	/**
+	 * Confirm order.
+	 *
+	 * @param event the event
+	 * @throws Exception the exception
+	 */
 	public void confirmOrder(ActionEvent event) throws Exception{
 		//Person user=new PersonController().get("badziak");
 		if(choosedItems.size()<1){
@@ -66,6 +92,9 @@ public class OfferListController implements Initializable{
 		controller.setData(order);
 	}
 
+	/**
+	 * Update price.
+	 */
 	public void updatePrice(){
 		BigDecimal bigDecimal=new BigDecimal(0).setScale(2);
 		for(OfferItem offerItem: choosedItems){
@@ -77,11 +106,21 @@ public class OfferListController implements Initializable{
 		//offerItemList.getCellFactory().
 
 	}
+	/**
+	 * Add item.
+	 *
+	 * @param offerItem the offer item
+	 */
 	public void addItem(OfferItem offerItem){
 		choosedItems.add(offerItem);
 		updatePrice();
 		//System.out.println(choosedItems.size());
 	}
+	/**
+	 * Remove item.
+	 *
+	 * @param offerItem the offer item
+	 */
 	public void removeItem(OfferItem offerItem){
 		choosedItems.remove(offerItem);
 		updatePrice();

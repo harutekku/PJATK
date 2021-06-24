@@ -10,8 +10,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The type Offer item.
+ */
 @Entity(name="OfferItem")
 public class OfferItem{
+	/**
+	 * Get id long.
+	 *
+	 * @return the long
+	 */
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy="increment")
@@ -23,6 +31,11 @@ public class OfferItem{
 	}
 	private long id;
 
+	/**
+	 * Get name string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getName(){
 		return name;
@@ -32,6 +45,11 @@ public class OfferItem{
 	}
 	private String name;
 
+	/**
+	 * Get price big decimal.
+	 *
+	 * @return the big decimal
+	 */
 	@Basic
 	public BigDecimal getPrice(){
 		return price;
@@ -41,6 +59,11 @@ public class OfferItem{
 	}
 	private BigDecimal price;
 
+	/**
+	 * Get offer offer.
+	 *
+	 * @return the offer
+	 */
 	@ManyToOne
 	public Offer getOffer(){return offer;}
 	private void setOffer(Offer offer){
@@ -57,6 +80,11 @@ public class OfferItem{
 	}
 	private Set<Order> orders=new HashSet<Order>();*/
 
+	/**
+	 * Get order list list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="offerItem", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<OrderList> getOrderList(){
 		return orderList;
@@ -64,6 +92,12 @@ public class OfferItem{
 	private void setOrderList(List<OrderList> orderList){
 		this.orderList=orderList;
 	}
+	/**
+	 * Add order list.
+	 *
+	 * @param orderList the order list
+	 * @throws Exception the exception
+	 */
 	public void addOrderList(OrderList orderList) throws Exception{
 		if(orderList.getOrder().equals(this)){
 			this.orderList.add(orderList);
@@ -73,7 +107,17 @@ public class OfferItem{
 	}
 	private List<OrderList> orderList=new ArrayList<>();
 
+	/**
+	 * Instantiates a new Offer item.
+	 */
 	protected OfferItem(){}
+	/**
+	 * Instantiates a new Offer item.
+	 *
+	 * @param name  the name
+	 * @param price the price
+	 * @param offer the offer
+	 */
 	public OfferItem(String name,BigDecimal price,Offer offer){
 		this.name=name;
 		this.price=price;

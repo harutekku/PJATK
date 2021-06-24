@@ -11,10 +11,37 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-enum Status{pending,progress,finished,cancelled}
+/**
+ * The enum Status.
+ */
+enum Status{
+	/**
+	 * Pending status.
+	 */
+	pending,
+	/**
+	 * Progress status.
+	 */
+	progress,
+	/**
+	 * Finished status.
+	 */
+	finished,
+	/**
+	 * Cancelled status.
+	 */
+	cancelled}
 
+/**
+ * The type Order.
+ */
 @Entity(name="Order_fix")
 public class Order{
+	/**
+	 * Get id long.
+	 *
+	 * @return the long
+	 */
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy="increment")
@@ -26,6 +53,11 @@ public class Order{
 	}
 	private long id;
 
+	/**
+	 * Get creation date local date time.
+	 *
+	 * @return the local date time
+	 */
 	@Basic
 	public LocalDateTime getCreationDate(){
 		return creationDate;
@@ -35,6 +67,11 @@ public class Order{
 	}
 	private LocalDateTime creationDate;
 
+	/**
+	 * Get realization date local date time.
+	 *
+	 * @return the local date time
+	 */
 	@Basic
 	public LocalDateTime getRealizationDate(){
 		return realizationDate;
@@ -44,6 +81,11 @@ public class Order{
 	}
 	private LocalDateTime realizationDate;
 
+	/**
+	 * Get status status.
+	 *
+	 * @return the status
+	 */
 	@Enumerated(EnumType.STRING)
 	public Status getStatus(){
 		return status;
@@ -53,6 +95,11 @@ public class Order{
 	}
 	private Status status;
 
+	/**
+	 * Get amount big decimal.
+	 *
+	 * @return the big decimal
+	 */
 	@Column(columnDefinition="DECIMAL")
 	public BigDecimal getAmount(){
 		return amount;
@@ -62,37 +109,77 @@ public class Order{
 	}
 	private BigDecimal amount;
 
+	/**
+	 * Get user person.
+	 *
+	 * @return the person
+	 */
 	@ManyToOne
 	public Person getUser(){
 		return user;
 	}
+	/**
+	 * Set user.
+	 *
+	 * @param user the user
+	 */
 	public void setUser(Person user){
 		this.user=user;
 	}
 	private Person user;
 
+	/**
+	 * Get producer person.
+	 *
+	 * @return the person
+	 */
 	@ManyToOne
 	public Person getProducer(){
 		return producer;
 	}
+	/**
+	 * Set producer.
+	 *
+	 * @param producer the producer
+	 */
 	public void setProducer(Person producer){
 		this.producer=producer;
 	}
 	private Person producer;
 
+	/**
+	 * Get operator person.
+	 *
+	 * @return the person
+	 */
 	@ManyToOne
 	public Person getOperator(){
 		return operator;
 	}
+	/**
+	 * Set operator.
+	 *
+	 * @param operator the operator
+	 */
 	public void setOperator(Person operator){
 		this.operator=operator;
 	}
 	private Person operator;
 
+	/**
+	 * Get local local.
+	 *
+	 * @return the local
+	 */
 	@ManyToOne
 	public Local getLocal(){
 		return local;
 	}
+	/**
+	 * Set local.
+	 *
+	 * @param local the local
+	 */
 	public void setLocal(Local local){
 		this.local=local;
 	}
@@ -111,6 +198,11 @@ public class Order{
 	}
 	private Set<OfferItem> offerItemsList=new HashSet<OfferItem>();*/
 
+	/**
+	 * Get order list list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="order", cascade=CascadeType.ALL, orphanRemoval=true)
 	public List<OrderList> getOrderList(){
 		return orderList;
@@ -118,6 +210,12 @@ public class Order{
 	private void setOrderList(List<OrderList> orderList){
 		this.orderList=orderList;
 	}
+	/**
+	 * Add order list.
+	 *
+	 * @param orderList the order list
+	 * @throws Exception the exception
+	 */
 	public void addOrderList(OrderList orderList) throws Exception{
 		if(orderList.getOrder().equals(this)){
 			this.orderList.add(orderList);
@@ -127,6 +225,11 @@ public class Order{
 	}
 	private List<OrderList> orderList=new ArrayList<>();
 
+	/**
+	 * Get reviews list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Review> getReviews(){
 		return reviews;
@@ -134,6 +237,12 @@ public class Order{
 	private void setReviews(List<Review> reviews){
 		this.reviews=reviews;
 	}
+	/**
+	 * Add review.
+	 *
+	 * @param review the review
+	 * @throws Exception the exception
+	 */
 	public void addReview(Review review) throws Exception{
 		if(review.getLocal().equals(this)){
 			reviews.add(review);
@@ -144,6 +253,9 @@ public class Order{
 	private List<Review> reviews=new ArrayList<>();
 
 
+	/**
+	 * Instantiates a new Order.
+	 */
 	protected Order(){}
 	private Order(LocalDateTime creationDate,LocalDateTime realizationDate,Status status,BigDecimal amount,Person user,Person producer,Person operator,Local local){
 		this.creationDate=creationDate;
@@ -155,6 +267,14 @@ public class Order{
 		this.operator=operator;
 		this.local=local;
 	}
+	/**
+	 * Create order order.
+	 *
+	 * @param user   the user
+	 * @param local  the local
+	 * @param amount the amount
+	 * @return the order
+	 */
 	public static Order createOrder(Person user,Local local,BigDecimal amount){
 		Order order=new Order();
 		order.setLocal(local);
@@ -164,6 +284,16 @@ public class Order{
 		order.setAmount(amount);
 		return order;
 	}
+	/**
+	 * Create order order.
+	 *
+	 * @param user   the user
+	 * @param local  the local
+	 * @param amount the amount
+	 * @param items  the items
+	 * @return the order
+	 * @throws Exception the exception
+	 */
 	public static Order createOrder(Person user,Local local,BigDecimal amount,List<OfferItem> items) throws Exception{
 		Order order=new Order();
 		order.setLocal(local);

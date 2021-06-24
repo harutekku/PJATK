@@ -6,10 +6,21 @@ import org.hibernate.Session;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * The type Dao generic.
+ *
+ * @param <E>  the type parameter
+ * @param <Id> the type parameter
+ */
 public class DAOGeneric<E,Id extends Serializable> implements IGeneric<E,Id>{
 	private final Class classType;
 	private final String type;
 
+	/**
+	 * Instantiates a new Dao generic.
+	 *
+	 * @param classType the class type
+	 */
 	public DAOGeneric(Class classType){
 		this.classType=classType;
 		this.type=classType.getName().substring(classType.getName().lastIndexOf(".") + 1);

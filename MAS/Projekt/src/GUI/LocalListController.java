@@ -16,6 +16,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The type Local list controller.
+ */
 public class LocalListController implements Initializable{
 	/*@FXML
 	private ListView<String> listView;*/
@@ -25,6 +28,9 @@ public class LocalListController implements Initializable{
 	private ListView<Local> localList;
 	private Local local;
 
+	/**
+	 * The Locals.
+	 */
 	List<Local> locals;
 
 
@@ -51,6 +57,12 @@ public class LocalListController implements Initializable{
 		);
 	}
 
+	/**
+	 * On back to menu.
+	 *
+	 * @param e the e
+	 * @throws IOException the io exception
+	 */
 	public void onBackToMenu(ActionEvent e) throws IOException {
 		MainMenuController.returnToMainMenu(e);
 	}

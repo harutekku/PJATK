@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * The type Summary menu controller.
+ */
 public class SummaryMenuController implements Initializable{
 	@FXML
 	private ListView<String> itemList;
@@ -25,6 +28,11 @@ public class SummaryMenuController implements Initializable{
 
 	}
 
+	/**
+	 * Set data.
+	 *
+	 * @param order the order
+	 */
 	public void setData(Order order){
 		this.order=order;
 		List<OrderList> list=order.getOrderList();
@@ -36,6 +44,12 @@ public class SummaryMenuController implements Initializable{
 		itemList.getItems().addAll(representativeStr);
 	}
 
+	/**
+	 * On back to locals.
+	 *
+	 * @param event the event
+	 * @throws IOException the io exception
+	 */
 	public void onBackToLocals(ActionEvent event) throws IOException{
 		MainMenuController.returnToLocal(event);
 	}

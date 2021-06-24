@@ -19,10 +19,8 @@ public class GUI extends Application{
 			java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
 			HibernateConfig.StartHibernateConfiguration();
 			//addData();
-			//BorderPane root=new BorderPane();
 			Parent root =FXMLLoader.load(getClass().getResource("GUI/MainMenu.fxml"));
 			Scene scene=new Scene(root);
-			//scene.getStylesheets()
 			primaryStage.setTitle("Zamawianko");
 			primaryStage.setScene(scene);
 			primaryStage.show();

@@ -11,9 +11,17 @@ import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+/**
+ * The type Local.
+ */
 @Entity(name="Local")
 @Inheritance(strategy=InheritanceType.JOINED)
 public class Local{
+	/**
+	 * Get id long.
+	 *
+	 * @return the long
+	 */
 	@Id
 	@GeneratedValue(generator="increment")
 	@GenericGenerator(name="increment", strategy="increment")
@@ -25,6 +33,11 @@ public class Local{
 	}
 	private long id;
 
+	/**
+	 * Get street string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getStreet(){
 		return street;
@@ -34,6 +47,11 @@ public class Local{
 	}
 	private String street;
 
+	/**
+	 * Get number int.
+	 *
+	 * @return the int
+	 */
 	@Basic
 	public int getNumber(){
 		return number;
@@ -43,33 +61,68 @@ public class Local{
 	}
 	private int number;
 
+	/**
+	 * Get postal code string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getPostalCode(){
 		return postalCode;
 	}
+	/**
+	 * Set postal code.
+	 *
+	 * @param postalCode the postal code
+	 */
 	public void setPostalCode(String postalCode){
 		this.postalCode=postalCode;
 	}
 	private String postalCode;
 
+	/**
+	 * Get city string.
+	 *
+	 * @return the string
+	 */
 	@Basic
 	public String getCity(){
 		return city;
 	}
+	/**
+	 * Set city.
+	 *
+	 * @param city the city
+	 */
 	public void setCity(String city){
 		this.city=city;
 	}
 	private String city;
 
+	/**
+	 * Get owner company.
+	 *
+	 * @return the company
+	 */
 	@ManyToOne()
 	public Company getOwner(){
 		return owner;
 	}
+	/**
+	 * Set owner.
+	 *
+	 * @param owner the owner
+	 */
 	public void setOwner(Company owner){
 		this.owner=owner;
 	}
 	private Company owner;
 
+	/**
+	 * Get offers list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.EAGER)
 	public List<Offer> getOffers(){
 		return offers;
@@ -77,6 +130,12 @@ public class Local{
 	private void setOffers(List<Offer> offers){
 		this.offers=offers;
 	}
+	/**
+	 * Add offer.
+	 *
+	 * @param offer the offer
+	 * @throws Exception the exception
+	 */
 	public void addOffer(Offer offer) throws Exception{
 		if(offer.getLocal().equals(this)){
 			offers.add(offer);
@@ -86,6 +145,11 @@ public class Local{
 	}
 	private List<Offer> offers=new ArrayList<>();
 
+	/**
+	 * Get reviews list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Review> getReviews(){
 		return reviews;
@@ -93,6 +157,12 @@ public class Local{
 	private void setReviews(List<Review> reviews){
 		this.reviews=reviews;
 	}
+	/**
+	 * Add review.
+	 *
+	 * @param review the review
+	 * @throws Exception the exception
+	 */
 	public void addReview(Review review) throws Exception{
 		if(review.getLocal().equals(this)){
 			reviews.add(review);
@@ -102,6 +172,11 @@ public class Local{
 	}
 	private List<Review> reviews=new ArrayList<>();
 
+	/**
+	 * Get employees list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="work", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Person> getEmployees(){
 		return employees;
@@ -109,6 +184,12 @@ public class Local{
 	private void setEmployees(List<Person> employees){
 		this.employees=employees;
 	}
+	/**
+	 * Add employee.
+	 *
+	 * @param person the person
+	 * @throws Exception the exception
+	 */
 	public void addEmployee(Person person) throws Exception{
 		if(person.getWork().equals(this)){
 			employees.add(person);
@@ -118,6 +199,11 @@ public class Local{
 	}
 	private List<Person> employees=new ArrayList<>();
 
+	/**
+	 * Get orders list.
+	 *
+	 * @return the list
+	 */
 	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
 	public List<Order> getOrders(){
 		return orders;
@@ -125,6 +211,12 @@ public class Local{
 	private void setOrders(List<Order> orders){
 		this.orders=orders;
 	}
+	/**
+	 * Add order.
+	 *
+	 * @param order the order
+	 * @throws Exception the exception
+	 */
 	public void addOrder(Order order) throws Exception{
 		if(order.getLocal().equals(this)){
 			orders.add(order);
@@ -134,7 +226,19 @@ public class Local{
 	}
 	private List<Order> orders=new ArrayList<>();
 
+	/**
+	 * Instantiates a new Local.
+	 */
 	protected Local(){}
+	/**
+	 * Instantiates a new Local.
+	 *
+	 * @param street     the street
+	 * @param number     the number
+	 * @param postalCode the postal code
+	 * @param city       the city
+	 * @param owner      the owner
+	 */
 	protected Local(/*long id,*/String street,int number,String postalCode,String city,Company owner){
 		//this.id=id;
 		this.street=street;
@@ -143,10 +247,25 @@ public class Local{
 		this.city=city;
 		this.owner=owner;
 	}
+	/**
+	 * Create local local.
+	 *
+	 * @param street     the street
+	 * @param number     the number
+	 * @param postalCode the postal code
+	 * @param city       the city
+	 * @param owner      the owner
+	 * @return the local
+	 */
 	public static Local createLocal(String street,int number,String postalCode,String city,Company owner){
 		Local local=new Local(street,number,postalCode,city,owner);
 		return local;
 	}
+	/**
+	 * Get actual offer items list.
+	 *
+	 * @return the list
+	 */
 	@Transient
 	public List<OfferItem> getActualOfferItems(){
 		Optional<Offer> offer=getOffers()

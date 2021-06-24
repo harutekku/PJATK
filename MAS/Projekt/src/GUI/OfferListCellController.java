@@ -14,6 +14,9 @@ import javafx.scene.control.ListCell;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+/**
+ * The type Offer list cell controller.
+ */
 public class OfferListCellController extends ListCell<OfferItem>{
 	@FXML
 	private Label nameLabel;
@@ -29,6 +32,11 @@ public class OfferListCellController extends ListCell<OfferItem>{
 	private FXMLLoader loader;
 	private OfferItem offerItem;
 	private OfferListController offerListController;
+	/**
+	 * Instantiates a new Offer list cell controller.
+	 *
+	 * @param offerListController the offer list controller
+	 */
 	public OfferListCellController(OfferListController offerListController){
 		this.offerListController=offerListController;
 	}
@@ -59,6 +67,12 @@ public class OfferListCellController extends ListCell<OfferItem>{
 		}
 	}
 
+	/**
+	 * Increment.
+	 *
+	 * @param e the e
+	 * @throws IOException the io exception
+	 */
 	public void increment(ActionEvent e) throws IOException{
 		countLabel.setText(String.valueOf(Integer.parseInt(countLabel.getText())+1));
 		offerListController.addItem(offerItem);
@@ -69,12 +83,23 @@ public class OfferListCellController extends ListCell<OfferItem>{
 		}
 		offerListController.updatePrice();*/
 	}
+	/**
+	 * Decrement.
+	 *
+	 * @param e the e
+	 * @throws IOException the io exception
+	 */
 	public void decrement(ActionEvent e) throws IOException{
 		if(Integer.parseInt(countLabel.getText())>0){
 			countLabel.setText(String.valueOf(Integer.parseInt(countLabel.getText())-1));
 			offerListController.removeItem(offerItem);
 		}
 	}
+	/**
+	 * Get count int.
+	 *
+	 * @return the int
+	 */
 	public int getCount(){
 		return Integer.parseInt(countLabel.getText());
 	}
