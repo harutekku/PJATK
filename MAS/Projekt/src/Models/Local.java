@@ -3,8 +3,13 @@ package Models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Entity(name="Local")
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -65,7 +70,7 @@ public class Local{
 	}
 	private Company owner;
 
-	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.EAGER)
 	public List<Offer> getOffers(){
 		return offers;
 	}
@@ -141,6 +146,15 @@ public class Local{
 	public static Local createLocal(String street,int number,String postalCode,String city,Company owner){
 		Local local=new Local(street,number,postalCode,city,owner);
 		return local;
+	}
+	@Transient
+	public List<OfferItem> getActualOfferItems(){
+		Optional<Offer> offer=getOffers()
+				.stream()
+				.filter(o->o.getValidityEnd()==null||o.getValidityEnd().isAfter(LocalDateTime.now()))
+				.findFirst();
+		if(offer.isPresent()) return offer.get().getOfferItems();
+		else return null;
 	}
 
 }

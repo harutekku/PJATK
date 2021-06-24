@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.OfferListController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #a5faed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.OfferListController">
+    <children>
+        <Label alignment="CENTER" layoutY="26.0" prefHeight="45.0" prefWidth="800.0" text="Lista dostępnych pozycji">
+            <font>
+                <Font size="30.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER" layoutX="10.0" layoutY="208.0" prefHeight="25.0" prefWidth="385.0" spacing="100.0" style="-fx-border-color: black; -fx-background-color: pink;">
+            <children>
+                <Label text="Nazwa" />
+                <Label text="Cena" />
+                <Label text="Ile w koszyku" />
+            </children>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding>
+        </HBox>
+        <ListView fx:id="offerItemList" editable="true" layoutX="10.0" layoutY="233.0" prefHeight="247.0" prefWidth="385.0" />
+        <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackToLocal" prefHeight="68.0" prefWidth="68.0" text="Powrót">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+        <Label layoutX="517.0" layoutY="206.0" text="Suma zamówienia">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label fx:id="priceLabel" alignment="CENTER" layoutX="563.0" layoutY="300.0" prefHeight="17.0" prefWidth="68.0" text="0 zł" textAlignment="CENTER">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Label>
+        <Button fx:id="confirmButton" layoutX="500.0" layoutY="412.0" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="68.0" prefWidth="194.0" text="Potwierdź zamówienie">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>

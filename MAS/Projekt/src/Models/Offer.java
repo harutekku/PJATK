@@ -56,7 +56,7 @@ public class Offer{
 	}
 	private Person author;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	public Local getLocal(){
 		return local;
 	}
@@ -65,7 +65,7 @@ public class Offer{
 	}
 	private Local local;
 
-	@OneToMany(mappedBy="offer", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	@OneToMany(mappedBy="offer", cascade=CascadeType.REMOVE, orphanRemoval=true, fetch=FetchType.EAGER)
 	public List<OfferItem> getOfferItems(){
 		return offerItems;
 	}

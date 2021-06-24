@@ -6,11 +6,11 @@ import Models.Person;
 import java.util.List;
 
 public class PersonController{
-	private DAOGeneric<Person,Long> personDAO=new DAOGeneric<>(Person.class);
+	private DAOGeneric<Person,String> personDAO=new DAOGeneric<>(Person.class);
 	public List<Person> getAll(){
 		return personDAO.getAll();
 	}
-	public Person get(long id){
+	public Person get(String id){
 		return personDAO.get(id);
 	}
 	public Person update(Person person){

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="hbox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="30" minWidth="-Infinity" prefWidth="760.0"
+      spacing="260.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="nameLabel" prefHeight="30.0" text="Name"/>
+        <Label fx:id="streetLabel" prefHeight="30.0" text="Street"/>
+        <Label fx:id="numberLabel" prefHeight="30.0" text="Number"/>
+    </children>
+</HBox>

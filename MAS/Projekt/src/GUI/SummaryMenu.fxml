@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #a5faed;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SummaryMenuController">
+    <children>
+        <Label alignment="CENTER" layoutX="204.0" layoutY="108.0" prefHeight="30.0" prefWidth="393.0" text="Twoje produkty:" textAlignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="204.0" layoutY="29.0" text="Dziękujemy za złożenie zamówienia">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <ListView fx:id="itemList" editable="true" layoutX="200.0" layoutY="207.0" prefHeight="268.0" prefWidth="400.0" />
+        <Button fx:id="backButton" layoutX="322.0" layoutY="533.0" mnemonicParsing="false" onAction="#onBackToLocals" text="Powrót do listy lokali">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Button>
+    </children>
+
+</AnchorPane>

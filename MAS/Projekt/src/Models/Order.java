@@ -1,11 +1,14 @@
 package Models;
 
+import Controller.OrderItemController;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 enum Status{pending,progress,finished,cancelled}
@@ -95,18 +98,50 @@ public class Order{
 	}
 	private Local local;
 
-	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	/*@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
 	@JoinTable(
 			name="OrderList",
 			joinColumns = @JoinColumn(name = "Order_id"),
 			inverseJoinColumns = @JoinColumn(name = "OfferItem_id"))
-	public Set<OfferItem> getOrderList(){
+	public Set<OfferItem> getOfferItemsList(){
+		return offerItemsList;
+	}
+	public void setOfferItemsList(Set<OfferItem> offerItemsList){
+		this.offerItemsList=offerItemsList;
+	}
+	private Set<OfferItem> offerItemsList=new HashSet<OfferItem>();*/
+
+	@OneToMany(mappedBy="order", cascade=CascadeType.ALL, orphanRemoval=true)
+	public List<OrderList> getOrderList(){
 		return orderList;
 	}
-	public void setOrderList(Set<OfferItem> orderList){
+	private void setOrderList(List<OrderList> orderList){
 		this.orderList=orderList;
 	}
-	private Set<OfferItem> orderList=new HashSet<OfferItem>();
+	public void addOrderList(OrderList orderList) throws Exception{
+		if(orderList.getOrder().equals(this)){
+			this.orderList.add(orderList);
+		}else{
+			throw new Exception("This orderList is not created for this order");
+		}
+	}
+	private List<OrderList> orderList=new ArrayList<>();
+
+	@OneToMany(mappedBy="local", cascade=CascadeType.REMOVE, orphanRemoval=true)
+	public List<Review> getReviews(){
+		return reviews;
+	}
+	private void setReviews(List<Review> reviews){
+		this.reviews=reviews;
+	}
+	public void addReview(Review review) throws Exception{
+		if(review.getLocal().equals(this)){
+			reviews.add(review);
+		}else{
+			throw new Exception("Models.Review is not created for this local");
+		}
+	}
+	private List<Review> reviews=new ArrayList<>();
 
 
 	protected Order(){}
@@ -127,6 +162,36 @@ public class Order{
 		order.setStatus(Status.pending);
 		order.setCreationDate(LocalDateTime.now());
 		order.setAmount(amount);
+		return order;
+	}
+	public static Order createOrder(Person user,Local local,BigDecimal amount,List<OfferItem> items) throws Exception{
+		Order order=new Order();
+		order.setLocal(local);
+		order.setUser(user);
+		order.setStatus(Status.pending);
+		order.setCreationDate(LocalDateTime.now());
+		order.setAmount(amount);
+		for(OfferItem item:items){
+			OrderList var = OrderList.createOrderList(order,item);
+			if(order.getOrderList().contains(var)){
+				int index=order.getOrderList().indexOf(var);
+				order.getOrderList().get(index).setCount(order.getOrderList().get(index).getCount()+1);
+			}
+			else{
+				order.addOrderList(var);
+			/*OrderItemController orderItemController=new OrderItemController();
+			List<OrderList> orderList=orderItemController.getAll();*/
+			//for(OrderList item:)
+			//if(order.getOrderList().contains(item)){
+				//order.getOrderList().indexOf(item)
+			}
+			//OrderList orderList=new OrderList(item)
+		}
+		//order.setOrderList(items);
+
+		for(OrderList item:order.getOrderList()){
+			System.out.println(item.getCount()+" "+item.getOfferItem());
+		}
 		return order;
 	}
 

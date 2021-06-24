@@ -33,5 +33,6 @@
         <mapping class="Models.Offer"/>
         <mapping class="Models.OfferItem"/>
         <mapping class="Models.Order"/>
+        <mapping class="Models.OrderList"/>
     </session-factory>
 </hibernate-configuration>

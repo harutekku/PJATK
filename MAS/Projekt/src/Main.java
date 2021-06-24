@@ -1,19 +1,13 @@
 import Configuration.HibernateConfig;
-import Controller.LocalController;
-import Controller.PersonController;
 import Models.*;
 import org.hibernate.Session;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.logging.Level;
-
 
 public class Main{
 	public static void main(String[] args){
-		java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
 		HibernateConfig.StartHibernateConfiguration();
 		//addData();
 		//PersonController personController=new PersonController();
